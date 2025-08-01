@@ -51,7 +51,7 @@ la() {
 
 lt() {
   if command -v lsd >/dev/null 2>&1; then
-    lsd --tree --group-dirs=first "$@"
+    lsd --tree --group-dirs=first -I .git "$@"
   else
     echo "Error: 'lsd' is required for 'lt' command."
     return 1
