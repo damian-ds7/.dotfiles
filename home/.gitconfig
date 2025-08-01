@@ -1,0 +1,38 @@
+[safe]
+	directory = /mnt/Studies/c++/PokerLinux/cmake-build-debug/_deps/googletest-src
+	directory = /mnt/Studies/
+	directory = /mnt/Studies/Zen-Themes/
+[credential]
+	helper = cache --timeout 21600
+	helper = oauth
+	helper = 
+	helper = /home/damian/.dotnet/tools/git-credential-manager
+	credentialStore = secretservice
+	
+[user]
+	name = Damian D'Souza
+	email = dsouzadamian189@gmail.com
+	
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+	path = ~/.gitconfig.github
+
+[includeIf "hasconfig:remote.*.url:https://gitlab.com/**"]
+	path = ~/.gitconfig.gitlab
+	
+[includeIf "hasconfig:remote.*.url:https://gitlab-stud.elka.pw.edu.pl/**"]
+	path = ~/.gitconfig.gitlab
+
+[includeIf "hasconfig:remote.*.url:git@gitlab.com:*/**"]
+    path = ~/.gitconfig.gitlab
+
+[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
+    path = ~/.gitconfig.github
+    
+[core]
+	autocrlf = input
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[credential "https://gitlab-stud.elka.pw.edu.pl"]
+	provider = generic
+[init]
+	defaultBranch = main

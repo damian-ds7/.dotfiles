@@ -1,0 +1,34 @@
+{
+    "name": "#{NAME}",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "context": "."
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/SWO,type=bind,consistency=cached",
+    "workspaceFolder": "/#{WORKSPACE_FOLDER}",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cmake-tools",
+                "vadimcn.vscode-lldb",
+                "llvm-vs-code-extensions.vscode-clangd",
+                "xaver.clang-format",
+                "ms-python.python",
+                "ms-python.black-formatter",
+                "ms-python.vscode-pylance",
+                "matepek.vscode-catch2-test-adapter",
+                "cschlosser.doxdocgen"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "python.formatting.provider": "black",
+                "python.linting.enabled": true,
+                "terminal.integrated.defaultProfile.linux": "bash"
+            }
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    }
+}

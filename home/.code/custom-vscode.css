@@ -1,0 +1,360 @@
+/* ===== COLOR VARIABLES ===== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Primary Colors */
+        --primary-text: #F5F5DC;
+        --accent-purple: #bc9abc;
+        --highlight-blue: #3d59a1;
+        --comment-teal: #008c7d;
+
+        /* Background Colors */
+        --tooltip-bg: #1a1b26;
+        --keybinding-bg: #2f3546;
+
+        /* Muted Colors */
+        --muted-text: #565f89;
+        --keybinding-text: #a9b1d6;
+        --keybinding-border: #414868;
+        --command-text: #c0caf5;
+
+        /* Placeholder and Subtle Colors */
+        --placeholder-color: rgba(135, 150, 197, .5);
+
+        /* Shadow Colors */
+        --shadow-heavy: rgba(0, 0, 0, .75);
+        --shadow-medium: rgba(0, 0, 0, .35);
+        --shadow-light: rgba(0, 0, 0, .25);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        /* Primary Colors */
+        --primary-text: #363c4d;
+        --accent-purple: #65359d;
+        --highlight-blue: #7aa3e9;
+        --comment-teal: #41b4c9;
+
+        /* Background Colors */
+        --tooltip-bg: #dcdee3;
+        --keybinding-bg: #e6e7ed;
+
+        /* Muted Colors */
+        --muted-text: #707280;
+        --keybinding-text: #363c4d;
+        --keybinding-border: #c1c2c7;
+        --command-text: #363c4d;
+
+        /* Placeholder and Subtle Colors */
+        --placeholder-color: #4a5272;
+
+        /* Shadow Colors */
+        --shadow-heavy: rgba(0, 0, 0, .15);
+        --shadow-medium: rgba(0, 0, 0, .08);
+        --shadow-light: rgba(0, 0, 0, .05);
+    }
+}
+
+
+/* ===== CODE STYLING ===== */
+
+/* Code comment style */
+.mtk3 {
+    font-style: italic !important;
+    color: var(--comment-teal) !important;
+}
+
+/* Code canvas top shadow */
+.monaco-editor .scroll-decoration {
+    box-shadow: 0px 0px 20px var(--shadow-heavy) !important;
+    top: -6px !important;
+}
+
+/* Side bar */
+.part.sidebar {
+    box-shadow: 0px 0px 50px var(--shadow-light);
+}
+
+/* List item label name */
+.monaco-list.list_id_1 .monaco-list-row.selected .label-name {
+    color: var(--primary-text) !important;
+    opacity: 1 !important;
+}
+
+/* File Explorer Item Label */
+.monaco-tree .monaco-tree-row .label-name,
+.monaco-list .monaco-list-row .monaco-icon-label .label-name {
+    font-family: 'Geist Mono', monospace !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: var(--primary-text) !important;
+}
+
+.explorer-item-edited {
+    font-family: 'Geist Mono', monospace !important;
+    font-size: 14px !important;
+}
+
+.explorer-folders-view .monaco-list-row {
+    padding-left: 20px !important;
+}
+
+.monaco-list.list_id_1 .monaco-tl-indent>.indent-guide.active {
+    border: none !important;
+}
+
+.monaco-list.list_id_1 .monaco-tl-indent>.indent-guide.active:hover {
+    border: none !important;
+}
+
+/* Label next to tab title */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab.sizing-fit .monaco-icon-label {
+    font-family: 'Geist Mono', monospace !important;
+    padding-left: 5px !important;
+    font-size: 105% !important;
+}
+
+/* Tab label font */
+.monaco-icon-label>.monaco-icon-label-container {
+    font-family: 'Geist Mono', monospace !important;
+    color: var(--primary-text) !important
+}
+
+.monaco-icon-label {
+    font-family: 'Geist Mono', monospace !important;
+    font-size: 130% !important;
+}
+
+/* Sidebar title */
+.composite.title {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-items: center !important;
+}
+
+.composite.title h2 {
+    font-weight: bold !important;
+    font-size: 12px !important;
+    text-transform: uppercase;
+    color: var(--accent-purple) !important;
+}
+
+/* Tooltip box style */
+.monaco-editor-hover,
+.monaco-hover {
+    box-shadow: 0px 8px 32px var(--shadow-medium) !important;
+    background-color: var(--tooltip-bg) !important;
+    backdrop-filter: blur(5px) !important;
+    border-radius: 16px !important;
+    border: 1px solid var(--highlight-blue) !important;
+    outline: 0px !important;
+}
+
+.monaco-resizable-hover {
+    border: none !important;
+}
+
+/* Project title's style at the top. */
+.monaco-workbench .part.titlebar>.titlebar-container>.titlebar-center>.window-title>.command-center .action-item.command-center-center {
+    border: none !important;
+    background: transparent !important;
+}
+
+/* Search Label */
+.search-label {
+    font-family: 'Geist Mono', monospace !important;
+    font-size: 14px !important;
+    color: var(--primary-text);
+    display: block;
+}
+
+/* Search icon */
+.search-icon {
+    display: none !important;
+}
+
+.codicon-search::before {
+    display: none !important;
+}
+
+.window-title .codicon-arrow-right,
+.window-title .codicon-arrow-left,
+.title-label .codicon-arrow-right,
+.title-label .codicon-arrow-left {
+    display: none !important;
+}
+
+.titlebar-right>* {
+    display: none !important;
+}
+
+.command-center-center {
+    width: auto !important;
+}
+
+/* Command Palette */
+.quick-input-widget {
+    transform: translateY(-50%) !important;
+    top: 50% !important;
+    box-shadow: 0px 8px 32px var(--shadow-medium) !important;
+    padding: 10px 10px 18px 10px !important;
+    background-color: var(--tooltip-bg) !important;
+    backdrop-filter: blur(5px) !important;
+    border-radius: 20px !important;
+    border: 1px solid var(--highlight-blue) !important;
+}
+
+.quick-input-list .scrollbar {
+    display: none !important;
+}
+
+.quick-input-list,
+.quick-input-list .list_id_6 {
+    min-height: 400px !important;
+}
+
+/* Remove background for lists */
+.monaco-list-rows {
+    background: transparent !important;
+}
+
+/* Command palette text input */
+.quick-input-filter .monaco-inputbox {
+    border-radius: 8px !important;
+    padding: 16px !important;
+    border: none !important;
+    font-family: "Geist Mono", monospace !important;
+    font-size: 16px !important;
+    margin-bottom: 16px !important;
+}
+
+/* Command palette's input box placeholder. */
+.monaco-inputbox input::placeholder {
+    color: var(--placeholder-color) !important;
+}
+
+/* Highlighted item in the command palette */
+.quick-input-widget .monaco-list-row.focused {
+    background-color: var(--highlight-blue) !important;
+    /* Tokyo Night highlight blue */
+    border-radius: 6px !important;
+}
+
+/* Command text in the command palette dropdown */
+.quick-input-widget .monaco-list-row .monaco-highlighted-label {
+    color: var(--command-text) !important;
+    /* Tokyo Night foreground */
+}
+
+/* Description text in the command palette dropdown */
+.quick-input-widget .monaco-list-row .quick-input-list-entry-description {
+    color: var(--muted-text) !important;
+    /* Tokyo Night muted text */
+}
+
+/* Keybindings in the command palette dropdown */
+.quick-input-widget .monaco-keybinding>.monaco-keybinding-key {
+    background-color: var(--keybinding-bg) !important;
+    color: var(--keybinding-text) !important;
+    box-shadow: none !important;
+    border: 1px solid var(--keybinding-border) !important;
+}
+
+/* Open Folder dialog styling */
+.quick-input-titlebar {
+    font-family: 'Geist Mono', monospace !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: var(--accent-purple) !important;
+    background-color: transparent !important;
+}
+
+.codicon-eye,
+.codicon-eye-closed,
+.action-label.codicon.codicon-eye,
+.always-visible:before {
+    color: var(--primary-text) !important;
+    font-size: 14px !important;
+    transform: scale(1.2) !important;
+    position: relative !important;
+    left: -2px !important;
+    /* Adjust this value to move it more or less to the left */
+    margin-right: 2px !important;
+    /* Compensate for the leftward movement */
+}
+
+/* Hide the OK button completely */
+.quick-input-widget .monaco-button,
+.quick-input-action,
+.quick-input-action-bar .actions-container {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+}
+
+/* ===== SIDEBAR STYLING ===== */
+
+/* Change color sidebar title */
+.monaco-workbench .part.sidebar .composite.title h2 {
+    color: var(--vscode-sideBar-foreground) !important;
+}
+
+/* Rounded corners for selected file in sidebar */
+.monaco-workbench .part.sidebar .monaco-list .monaco-list-row.selected {
+    border-radius: 5px !important;
+}
+
+/* Limit file list width in sidebar */
+.monaco-workbench .part.sidebar .monaco-list {
+    width: 95% !important;
+    margin: auto !important;
+    color: inherit !important;
+}
+
+/* File explorer action buttons */
+.monaco-workbench .part.sidebar .title-actions .actions-container {
+    display: none;
+}
+
+/* Sidebar top shadow */
+.monaco-scrollable-element>.shadow.top {
+    box-shadow: 0px 0px 10px var(--shadow-heavy) !important;
+    top: -3px !important;
+}
+
+/* Expanded folder icon color */
+.codicon-tree-item-expanded:before {
+    color: var(--vscode-sideBar-foreground) !important;
+}
+
+/* ===== TITLEBAR STYLING ===== */
+
+/* Hide app icon */
+.window-appicon {
+    position: absolute !important;
+    left: -999px !important;
+}
+
+/* Remove general blur effect */
+#command-blur {
+    display: none !important;
+}
+
+/* Hide scrollbar */
+.slider {
+    position: absolute !important;
+    right: 0px !important;
+    width: 0px !important;
+    left: auto !important;
+}
+
+/* Hide VS Code home icon */
+.editor-group-watermark {
+    max-width: 0px !important;
+}

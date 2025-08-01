@@ -1,0 +1,136 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "rel",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+            },
+            "warnings": {
+                "unusedCli": false
+            }
+        },
+        {
+            "name": "deb",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BUILD_TESTS": true,
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+            }
+        },
+        {
+            "name": "conan-deb",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/conan/deb/conan_toolchain.cmake"
+            }
+        },
+        {
+            "name": "conan-rel",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/conan/rel/conan_toolchain.cmake"
+            }
+        },
+        {
+            "name": "gcc-ninja",
+            "hidden": true,
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_FLAGS_INIT": "$env{CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -pedantic"
+            }
+        },
+        {
+            "name": "clang-ninja",
+            "hidden": true,
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang-17",
+                "CMAKE_CXX_COMPILER": "clang++-17",
+                "CMAKE_CXX_FLAGS_INIT": "$env{CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -pedantic"
+            }
+        },
+        {
+            "name": "gcc-rel-ninja",
+            "displayName": "Ninja GCC Release",
+            "binaryDir": "${sourceDir}/build/gcc-rel-ninja",
+            "inherits": [
+                "gcc-ninja",
+                "rel"
+            ],
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/gcc-rel-ninja/install"
+            }
+        },
+        {
+            "name": "clang-rel-ninja",
+            "displayName": "Ninja Clang Release",
+            "binaryDir": "${sourceDir}/build/clang-rel-ninja",
+            "inherits": [
+                "clang-ninja",
+                "rel"
+            ],
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/clang-rel-ninja/install"
+            }
+        },
+        {
+            "name": "gcc-deb-ninja",
+            "displayName": "Ninja GCC Debug",
+            "binaryDir": "${sourceDir}/build/gcc-deb-ninja",
+            "inherits": [
+                "gcc-ninja",
+                "deb",
+                "conan-deb"
+            ],
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "-O0 --coverage -g -fsanitize=address -fstandalone-debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/gcc-deb-ninja/install"
+            }
+        },
+        {
+            "name": "clang-deb-ninja",
+            "displayName": "Ninja Clang Debug",
+            "binaryDir": "${sourceDir}/build/clang-deb-ninja",
+            "inherits": [
+                "clang-ninja",
+                "deb"
+            ],
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "-O0 --coverage -g -fsanitize=address -fstandalone-debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/clang-deb-ninja/install"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "gcc-deb-ninja",
+            "displayName": "GCC Ninja Debug Build",
+            "configurePreset": "gcc-deb-ninja",
+            "configuration": "Debug"
+        },
+        {
+            "name": "clang-deb-ninja",
+            "displayName": "Clang Ninja Debug Build",
+            "configurePreset": "clang-deb-ninja",
+            "configuration": "Debug"
+        },
+        {
+            "name": "gcc-rel-ninja",
+            "displayName": "GCC Ninja Release Build",
+            "configurePreset": "gcc-rel-ninja",
+            "configuration": "Release"
+        },
+        {
+            "name": "clang-rel-ninja",
+            "displayName": "Clang Ninja Release Build",
+            "configurePreset": "clang-rel-ninja",
+            "configuration": "Release"
+        }
+    ]
+}
