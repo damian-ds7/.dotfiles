@@ -11,52 +11,27 @@ alias grep='grep --color=auto'
 alias du='du -h --max-depth=1'
 alias df='df -hT'
 
-alias reload='source ~/.bashrc'
-
 # -------------------------
-#  Functions with fallback to original command
+#  Aliases with fallback to original command
 # -------------------------
 
-cat() {
-  if command -v bat >/dev/null 2>&1; then
-    bat "$@"
-  else
-    command cat "$@"
-  fi
-}
+if command -v bat >/dev/null 2>&1; then
+  alias cat='bat'
+else
+  alias cat='command cat'
+fi
 
-ls() {
-  if command -v lsd >/dev/null 2>&1; then
-    lsd -1 "$@"
-  else
-    ls -1 "$@"
-  fi
-}
-
-ll() {
-  if command -v lsd >/dev/null 2>&1; then
-    lsd -lX --group-dirs=first "$@"
-  else
-    ls -l "$@"
-  fi
-}
-
-la() {
-  if command -v lsd >/dev/null 2>&1; then
-    lsd -laX --group-dirs=first "$@"
-  else
-    ls -al "$@"
-  fi
-}
-
-lt() {
-  if command -v lsd >/dev/null 2>&1; then
-    lsd --tree --group-dirs=first -I .git "$@"
-  else
-    echo "Error: 'lsd' is required for 'lt' command."
-    return 1
-  fi
-}
+if command -v lsd >/dev/null 2>&1; then
+  alias ls='lsd -1'
+  alias ll='lsd -lX --group-dirs=first --header'
+  alias la='lsd -lAX --group-dirs=first --header'
+  alias lt='lsd --tree --group-dirs=first -I .git'
+else
+  alias ls='command ls -1'
+  alias ll='ls -l'
+  alias la='ls -al'
+  alias lt='echo "Error: '\''lsd'\'' is required for '\''lt'\'' command."; false'
+fi
 
 # -------------------------
 #  Editor Shortcuts
@@ -99,7 +74,7 @@ alias scp='noglob scp'
 #  Git Aliases
 # -------------------------
 
-alias gs='git status --short'
+alias gst='git status --short'
 alias gc='git commit'
 alias gp='git push'
 alias gpl='git pull'
