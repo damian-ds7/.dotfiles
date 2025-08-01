@@ -68,7 +68,6 @@ z4h source ~/.env.zsh
 #
 # This is just an example that you should delete. It does nothing useful.
 # z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
-# z4h load   ohmyzsh/ohmyzsh/plugins/ls  # load a plugin
 
 
 # Define key bindings.
@@ -95,6 +94,11 @@ compdef _directories md
 # Define named directories: ~w <=> Windows home directory on WSL.
 [[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
 
+# Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
+setopt glob_dots     # no special treatment for file names with a leading dot
+setopt no_auto_menu  # require an extra TAB press to open the completion menu
+setopt nullglob
+
 # Load common configs
 if [ -d ~/.shellrc.d/common ]; then
   for rc in ~/.shellrc.d/common/*; do
@@ -112,7 +116,3 @@ fi
 unset rc
 
 eval "$(zoxide init zsh --cmd cd)"
-
-# Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
-setopt glob_dots     # no special treatment for file names with a leading dot
-setopt no_auto_menu  # require an extra TAB press to open the completion menu
