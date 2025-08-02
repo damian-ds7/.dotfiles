@@ -45,7 +45,8 @@ install_packages() {
         lsd \
         tldr \
         code \
-        ulauncher
+        ulauncher \
+        ripgrep
 }
 
 setup_zen_browser() {
