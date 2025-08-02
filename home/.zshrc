@@ -91,6 +91,7 @@ z4h bindkey z4h-cd-back    Alt+Left   # cd into the previous directory
 z4h bindkey z4h-cd-forward Alt+Right  # cd into the next directory
 z4h bindkey z4h-cd-up      Alt+Up     # cd into the parent directory
 z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
+z4h bindkey z4h-eof Ctrl+D
 
 bindkey '^ ' autosuggest-accept
 
@@ -108,6 +109,7 @@ compdef _directories md
 setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
 setopt nullglob
+setopt ignore_eof
 
 # Load common configs
 if [ -d ~/.shellrc.d/common ]; then
