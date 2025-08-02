@@ -22,12 +22,12 @@ else
 fi
 
 if command -v lsd >/dev/null 2>&1; then
-  alias ls='lsd -1'
+  alias ls='lsd'
   alias ll='lsd -lX --group-dirs=first --header'
   alias la='lsd -lAX --group-dirs=first --header'
   alias lt='lsd --tree --group-dirs=first -I .git'
 else
-  alias ls='command ls -1'
+  alias ls='command ls'
   alias ll='ls -l'
   alias la='ls -al'
   alias lt='echo "Error: '\''lsd'\'' is required for '\''lt'\'' command."; false'
@@ -76,6 +76,7 @@ alias scp='noglob scp'
 
 alias gst='git status --short'
 alias gc='git commit'
+alias gcm='git commit -m'
 alias gpl='git pull'
 alias gps='git push'
 alias gbr='git branch'
