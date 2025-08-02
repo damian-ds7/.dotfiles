@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo chown -R $(whoami) "$(which code)"
+sudo chown -R $(whoami) /usr/share/code
+echo "VS Code ownership updated successfully."
