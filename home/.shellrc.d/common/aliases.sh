@@ -82,6 +82,7 @@ alias gbr='git branch'
 alias gco='git checkout'
 alias gl='git log --graph --pretty=format:"%C(yellow)%h%Creset  %C(cyan)%cn%Creset  %Cgreen%s%Creset"'
 alias ga='git add'
+alias gd='gid diff'
 
 # -------------------------
 #  Custom Functions
