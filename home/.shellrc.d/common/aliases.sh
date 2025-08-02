@@ -7,7 +7,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias grep='grep --color=auto'
 alias du='du -h --max-depth=1'
 alias df='df -hT'
 
@@ -20,6 +19,13 @@ if command -v bat >/dev/null 2>&1; then
 else
   alias cat='command cat'
 fi
+
+if command -v rg >/dev/null 2>&1; then
+  alias grep='rg'
+else
+  alias grep='command grep --color=auto'
+fi
+
 
 if command -v lsd >/dev/null 2>&1; then
   alias ls='lsd'
