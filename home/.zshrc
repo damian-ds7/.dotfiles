@@ -49,8 +49,8 @@ zstyle ':completion:*:ssh:argument-1:'       tag-order  hosts users
 zstyle ':completion:*:scp:argument-rest:'    tag-order  hosts files users
 zstyle ':completion:*:(ssh|scp|rdp):*:hosts' hosts
 
-zstyle ':z4h:ssh-agent:' start      yes
-zstyle ':z4h:ssh-agent:' extra-args -t 20h
+# zstyle ':z4h:ssh-agent:' start      yes
+# zstyle ':z4h:ssh-agent:' extra-args -t 20h
 
 # Clone additional Git repositories from GitHub.
 #
@@ -130,3 +130,5 @@ unset rc
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
+
+export SSH_AUTH_SOCK=/home/damian/.bitwarden-ssh-agent.sock
