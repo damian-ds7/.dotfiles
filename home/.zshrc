@@ -131,4 +131,4 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
-export SSH_AUTH_SOCK=/home/damian/.bitwarden-ssh-agent.sock
+export SSH_AUTH_SOCK=/home/damian/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
