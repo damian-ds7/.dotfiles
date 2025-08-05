@@ -65,6 +65,7 @@ setup_zen_browser() {
     curl -Lo ~/.local/share/applications/zen.desktop https://raw.githubusercontent.com/zen-browser/desktop/1bca2529790304822411b403d3971a1f23ab8d49/build/AppDir/zen.desktop
 
     sed -i 's|^Icon=zen$|Icon=/home/damian/.local/opt/zen/browser/chrome/icons/default/default128.png|' ~/.local/share/applications/zen.desktop
+    sed -i 's|^Exec=zen|Exec=/home/damian/.local/opt/zen/zen|' ~/.local/share/applications/zen.desktop
 }
 
 setup_dotfiles() {
