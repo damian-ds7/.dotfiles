@@ -34,7 +34,10 @@ install_flatpaks() {
     flatpak install -y \
         com.mattjakeman.ExtensionManager \
         io.github.vikdevelop.SaveDesktop \
-        page.tesk.Refine
+        page.tesk.Refine \
+        com.microsoft.Edge \
+        net.nokyan.Resources \
+        com.bitwarden.desktop
 }
 
 install_packages() {
