@@ -22,23 +22,21 @@ update_system() {
     fi
 }
 
+source install.conf
+source utils.sh
+
 configure_dnf() {
     echo "Configuring DNF options..."
-    for setting in \
-        "defaultyes=True" \
-        "fastestmirror=True" \
-        "max_parallel_downloads=10"; do
 
+    for setting in ${DNF_SETTINGS[@]}; do
+        [[ -z $setting || $setting =~ ^# ]] && continue
         if ! grep -q "^$setting" /etc/dnf/dnf.conf; then
-            echo "$setting" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
+            echo $setting | sudo tee -a /etc/dnf/dnf.conf > /dev/null
         else
             echo "Already set: $setting"
         fi
     done
 }
-
-source install.conf
-source utils.sh
 
 setup_code_repo() {
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
