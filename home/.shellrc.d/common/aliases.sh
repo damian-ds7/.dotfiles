@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source utils.sh
+source "${0:A:h}/utils.sh"
 
 # -------------------------
 #  General Aliases
