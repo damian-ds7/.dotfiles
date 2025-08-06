@@ -74,31 +74,6 @@ setup_zen_browser() {
 }
 
 setup_dotfiles() {
-    echo "Cloning dotfiles repository..."
-
-    while true; do
-        if git clone git@github.com:damian-ds7/dotfiles.git ~/.dotfiles; then
-            break
-        fi
-
-        echo "Failed to clone repository. Likely no SSH key is set up."
-        echo "Options:"
-        select choice in "Try again" "Skip"; do
-            case $choice in
-                "Try again")
-                    echo "Generate SSH key eg.:"
-                    echo "ssh-keygen -t ed25519"
-                    echo "After that, return here and select 'Try again'."
-                    break
-                    ;;
-                "Skip")
-                    echo "Skipping dotfiles setup."
-                    return
-                    ;;
-            esac
-        done
-    done
-
     cd ~/.dotfiles || exit 1
     stow -t ~/.local/bin scripts
     stow -t ~/ home --adopt
