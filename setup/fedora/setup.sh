@@ -100,7 +100,7 @@ setup_dotfiles() {
     done
 
     cd ~/.dotfiles || exit 1
-    stow -t ~/ scripts
+    stow -t ~/.local/bin scripts
     stow -t ~/ home --adopt
     git restore .
 
