@@ -36,6 +36,19 @@ configure_dnf() {
         fi
     done
 }
+
+source install.conf
+source utils.sh
+
+setup_code_repo() {
+    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+    dnf check-update
+}
+
+install_apps() {
+  install_flatpaks "${FLATPAKS[@]}"
+  install_packages "${PACKAGES[@]}"
 }
 
 setup_zen_browser() {
@@ -62,7 +75,7 @@ setup_dotfiles() {
 
     while true; do
         if git clone git@github.com:damian-ds7/dotfiles.git ~/.dotfiles; then
-            break  # Success, move on
+            break
         fi
 
         echo "Failed to clone repository. Likely no SSH key is set up."
@@ -95,14 +108,12 @@ setup_dotfiles() {
 main() {
     update_system
     configure_dnf
-    install_flatpaks
-    install_packages
+    setup_code_repo
+    install_apps
     setup_zen_browser
     setup_dotfiles
-
     echo "Changing default shell to zsh..."
     chsh -s $(which zsh)
 }
 
 main
-
