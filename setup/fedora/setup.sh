@@ -2,22 +2,23 @@
 
 update_system() {
     echo "Checking for system updates..."
-    if ! dnf check-update > /tmp/dnf_check 2>/dev/null; then
-        echo "Failed to check for updates."
-    else
-        if grep -q -v "Repositories loaded." /tmp/dnf_check; then
-            echo "Updates available. Running full update..."
-            sudo dnf update -y
+    dnf check-update > /tmp/dnf_check 2>/dev/null
+    code=$?
 
-            echo "System update complete."
-            read -p "Reboot now? [y/N]: " choice
-            case "$choice" in
-                y|Y ) reboot ;;
-                * ) echo "Continuing without reboot." ;;
-            esac
-        else
-            echo "System is already up to date."
-        fi
+    if [[ $code -eq 1 ]]; then
+        echo "Failed to check for updates."
+    elif [[ $code -eq 100 ]]; then
+        echo "Updates available. Running full update..."
+        sudo dnf update -y
+
+        echo "System update complete."
+        read -p "Reboot now? [y/N]: " choice
+        case "$choice" in
+            y|Y ) reboot ;;
+            * ) echo "Continuing without reboot." ;;
+        esac
+    else
+        echo "System is already up to date."
     fi
 }
 
