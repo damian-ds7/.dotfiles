@@ -1,3 +1,7 @@
+#!/bin/bash
+
+source utils.sh
+
 # -------------------------
 #  General Aliases
 # -------------------------
@@ -14,20 +18,20 @@ alias df='df -hT'
 #  Aliases with fallback to original command
 # -------------------------
 
-if command -v bat >/dev/null 2>&1; then
+if is_installed bat; then
   alias cat='bat'
 else
   alias cat='command cat'
 fi
 
-if command -v rg >/dev/null 2>&1; then
+if is_installed rg; then
   alias grep='rg'
 else
   alias grep='command grep --color=auto'
 fi
 
 
-if command -v lsd >/dev/null 2>&1; then
+if is_installed lsd; then
   alias ls='lsd'
   alias ll='lsd -lX --group-dirs=first --header'
   alias la='lsd -lAX --group-dirs=first --header'
@@ -155,4 +159,3 @@ fd() {
   [[ -n "$1" ]] || return 1
   find . -type d -name "$1"
 }
-
