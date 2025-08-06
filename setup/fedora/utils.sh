@@ -11,5 +11,5 @@ install_flatpaks() {
 install_packages() {
     local packages=("$@")
     echo "Installing dnf packages"
-    sudo dnf install -y "${packages[@]}"
+    sudo dnf install -y --skip-unavailable "${packages[@]}"
 }
