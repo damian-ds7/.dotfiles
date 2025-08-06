@@ -24,33 +24,18 @@ update_system() {
 
 configure_dnf() {
     echo "Configuring DNF options..."
-    sudo tee -a /etc/dnf/dnf.conf > /dev/null <<EOF
-defaultyes=True
-fastestmirror=True
-max_parallel_downloads=10
-EOF
-}
+    for setting in \
+        "defaultyes=True" \
+        "fastestmirror=True" \
+        "max_parallel_downloads=10"; do
 
-install_flatpaks() {
-    flatpak install -y \
-        com.mattjakeman.ExtensionManager \
-        io.github.vikdevelop.SaveDesktop \
-        page.tesk.Refine \
-        com.microsoft.Edge \
-        net.nokyan.Resources \
-        com.bitwarden.desktop
+        if ! grep -q "^$setting" /etc/dnf/dnf.conf; then
+            echo "$setting" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
+        else
+            echo "Already set: $setting"
+        fi
+    done
 }
-
-install_packages() {
-    sudo dnf install -y \
-        zsh \
-        blackbox-terminal \
-        bat \
-        lsd \
-        tldr \
-        code \
-        ulauncher \
-        ripgrep
 }
 
 setup_zen_browser() {
