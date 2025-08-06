@@ -52,6 +52,11 @@ install_apps() {
 setup_zen_browser() {
     echo "Setting up Zen Browser..."
 
+    if [[ -d "$HOME/.local/opt/zen" ]]; then
+        echo "Zen Browser is already installed at $HOME/.local/opt/zen"
+        return
+    fi
+
     curl -L -o /tmp/zen.linux-x86_64.tar.xz https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz
     tar -xf /tmp/zen.linux-x86_64.tar.xz -C /tmp
 
