@@ -73,6 +73,16 @@ setup_zen_browser() {
     sed -i 's|^Exec=zen|Exec=/home/damian/.local/opt/zen/zen|' ~/.local/share/applications/zen.desktop
 }
 
+source gnome.conf
+
+gnome_keybinds() {
+    echo "Setting up GNOME keybinding"
+    echo "Overriding system keybindings"
+    apply_overrides "${GNOME_OVERRIDES[@]}"
+    echo "Adding custom keybindings"
+    apply_custom_shortcuts "${GNOME_CUSTOM_SHORTCUTS[@]}"
+}
+
 setup_dotfiles() {
     cd ~/.dotfiles || exit 1
     stow -t ~/.local/bin scripts
@@ -89,6 +99,7 @@ main() {
     setup_code_repo
     install_apps
     setup_zen_browser
+    gnome_keybinds
     setup_dotfiles
     echo "Changing default shell to zsh..."
     chsh -s $(which zsh)
