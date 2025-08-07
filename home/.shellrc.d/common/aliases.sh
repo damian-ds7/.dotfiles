@@ -87,13 +87,17 @@ alias scp='noglob scp'
 alias gst='git status --short'
 alias gc='git commit'
 alias gcm='git commit -m'
+alias gcam='git commit -am'
 alias gpl='git pull'
 alias gps='git push'
 alias gbr='git branch'
 alias gco='git checkout'
+alias gcob='git checkout -b'
 alias gl='git log --graph --pretty=format:"%C(yellow)%h%Creset  %C(cyan)%cn%Creset  %Cgreen%s%Creset"'
 alias ga='git add'
 alias gd='git diff'
+alias gdw='git diff --word-diff=color'
+alias diff-words='git diff --word-diff=color'
 
 # -------------------------
 #  Custom Functions
