@@ -5,11 +5,10 @@
         /* Primary Colors */
         --primary-text: #F5F5DC;
         --accent-purple: #bc9abc;
-        --highlight-blue: #3d59a1;
-        --comment-teal: #008c7d;
+        --highlight-blue: #8be9fd50;
 
         /* Background Colors */
-        --tooltip-bg: #1a1b26;
+        --tooltip-bg: #282a36;
         --keybinding-bg: #2f3546;
 
         /* Muted Colors */
@@ -33,11 +32,10 @@
         /* Primary Colors */
         --primary-text: #363c4d;
         --accent-purple: #65359d;
-        --highlight-blue: #7aa3e9;
-        --comment-teal: #41b4c9;
+        --highlight-blue: #74def687;
 
         /* Background Colors */
-        --tooltip-bg: #dcdee3;
+        --tooltip-bg: #f8f8f2;
         --keybinding-bg: #e6e7ed;
 
         /* Muted Colors */
@@ -60,10 +58,10 @@
 /* ===== CODE STYLING ===== */
 
 /* Code comment style */
-.mtk3 {
+/* .mtk3 {
     font-style: italic !important;
     color: var(--comment-teal) !important;
-}
+} */
 
 /* Code canvas top shadow */
 .monaco-editor .scroll-decoration {
