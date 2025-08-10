@@ -6,7 +6,6 @@ source "${0:A:h}/utils.sh"
 #  General Aliases
 # -------------------------
 
-alias history='history 1'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
