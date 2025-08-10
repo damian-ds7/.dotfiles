@@ -345,12 +345,12 @@
 }
 
 /* Hide scrollbar */
-.slider {
+/* .slider {
     position: absolute !important;
     right: 0px !important;
     width: 0px !important;
     left: auto !important;
-}
+} */
 
 /* Hide VS Code home icon */
 .editor-group-watermark {
