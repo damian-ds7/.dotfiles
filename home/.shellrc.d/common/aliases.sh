@@ -34,13 +34,14 @@ if is_installed lsd; then
   alias ls='lsd'
   alias ll='lsd -lX --group-dirs=first --header'
   alias la='lsd -lAX --group-dirs=first --header'
-  alias lt='lsd --tree --group-dirs=first -I .git'
 else
   alias ls='command ls'
   alias ll='ls -l'
   alias la='ls -al'
-  alias lt='echo "Error: '\''lsd'\'' is required for '\''lt'\'' command."; false'
 fi
+
+alias tree='tree -I .git --gitignore --dirsfirst'
+
 
 # -------------------------
 #  Editor Shortcuts
