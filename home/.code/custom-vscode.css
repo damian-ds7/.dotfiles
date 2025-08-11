@@ -220,9 +220,10 @@
 
 /* Command palette text input */
 .quick-input-filter .monaco-inputbox {
-    border-radius: 8px !important;
+    border-radius: 10px !important;
     padding: 16px !important;
-    border: none !important;
+    outline: none !important;
+    border: 1px solid var(--highlight-blue) !important;
     font-family: "Geist Mono", monospace !important;
     font-size: 16px !important;
     margin-bottom: 16px !important;
@@ -236,20 +237,17 @@
 /* Highlighted item in the command palette */
 .quick-input-widget .monaco-list-row.focused {
     background-color: var(--highlight-blue) !important;
-    /* Tokyo Night highlight blue */
     border-radius: 6px !important;
 }
 
 /* Command text in the command palette dropdown */
 .quick-input-widget .monaco-list-row .monaco-highlighted-label {
     color: var(--command-text) !important;
-    /* Tokyo Night foreground */
 }
 
 /* Description text in the command palette dropdown */
 .quick-input-widget .monaco-list-row .quick-input-list-entry-description {
     color: var(--muted-text) !important;
-    /* Tokyo Night muted text */
 }
 
 /* Keybindings in the command palette dropdown */
