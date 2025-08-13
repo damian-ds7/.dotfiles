@@ -49,6 +49,13 @@ install_apps() {
   install_packages "${PACKAGES[@]}"
 }
 
+install_web_apps() {
+  for app in "${WEBAPPS[@]}"; do
+    IFS='|' read -r APP_NAME APP_URL ICON_URL <<< "$app"
+    create_web_app "$APP_NAME" "$APP_URL" "$ICON_URL"
+  done
+}
+
 setup_zen_browser() {
     echo "Setting up Zen Browser..."
 
@@ -98,6 +105,7 @@ main() {
     configure_dnf
     setup_code_repo
     install_apps
+    install_web_apps
     setup_zen_browser
     gnome_keybinds
     setup_dotfiles
