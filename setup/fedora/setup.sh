@@ -52,6 +52,7 @@ install_apps() {
 install_web_apps() {
   for app in "${WEBAPPS[@]}"; do
     IFS='|' read -r APP_NAME APP_URL ICON_URL <<< "$app"
+    echo "Installing $APP_NAME web app"
     create_web_app "$APP_NAME" "$APP_URL" "$ICON_URL"
   done
 }
