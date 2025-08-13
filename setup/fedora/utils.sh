@@ -44,7 +44,7 @@ create_web_app() {
 Version=1.0
 Name=$APP_NAME
 Comment=$APP_NAME
-Exec=chromium --new-window --app="$APP_URL" --name="$APP_NAME" --class="$APP_NAME"
+Exec=chromium-browser --new-window --app="$APP_URL" --name="$APP_NAME" --class="$APP_NAME"
 Terminal=false
 Type=Application
 Icon=$ICON_PATH
