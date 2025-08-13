@@ -14,6 +14,46 @@ install_packages() {
     sudo dnf install -y --skip-unavailable "${packages[@]}"
 }
 
+create_web_app() {
+  if [ "$#" -ne 3 ]; then
+    return 0
+  fi
+
+  APP_NAME="$1"
+  APP_URL="$2"
+  ICON_URL="$3"
+
+  if [[ -z "$APP_NAME" || -z "$APP_URL" || -z "$ICON_URL" ]]; then
+    echo "You must set app name, app URL, and icon URL!"
+    return 1
+  fi
+
+  ICON_DIR="$HOME/.local/share/applications/icons"
+  DESKTOP_FILE="$HOME/.local/share/applications/$APP_NAME.desktop"
+  ICON_PATH="$ICON_DIR/$APP_NAME.png"
+
+  mkdir -p "$ICON_DIR"
+
+  if ! curl -sL -o "$ICON_PATH" "$ICON_URL"; then
+    echo "Error: Failed to download icon."
+    return 1
+  fi
+
+  cat >"$DESKTOP_FILE" <<EOF
+[Desktop Entry]
+Version=1.0
+Name=$APP_NAME
+Comment=$APP_NAME
+Exec=chromium --new-window --app="$APP_URL" --name="$APP_NAME" --class="$APP_NAME"
+Terminal=false
+Type=Application
+Icon=$ICON_PATH
+StartupNotify=true
+EOF
+
+  chmod +x "$DESKTOP_FILE"
+}
+
 # =======================================
 # === Gnome related utility functions ===
 # =======================================
