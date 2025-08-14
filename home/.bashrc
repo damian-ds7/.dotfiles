@@ -41,3 +41,4 @@ PERL_MM_OPT="INSTALL_BASE=/home/damian/perl5"; export PERL_MM_OPT;
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+. "$HOME/.cargo/env"
