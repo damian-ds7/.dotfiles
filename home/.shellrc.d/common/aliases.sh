@@ -1,6 +1,7 @@
-#!/bin/bash
+CURRENT_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]:-$0}")")
+source "$CURRENT_DIR/utils.sh"
 
-source "${0:A:h}/utils.sh"
+unset CURRENT_DIR
 
 # -------------------------
 #  General Aliases
