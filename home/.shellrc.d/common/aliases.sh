@@ -100,6 +100,12 @@ alias gdw='git diff --word-diff=color'
 alias diff-words='git diff --word-diff=color'
 
 # -------------------------
+# Other
+# -------------------------
+
+alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
+
+# -------------------------
 #  Custom Functions
 # -------------------------
 
