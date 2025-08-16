@@ -1,5 +1,32 @@
 #!/bin/bash
 
+source install.conf
+source gnome.conf
+source utils.sh
+
+BINDINGS_ONLY=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -b|--bindings-only)
+            BINDINGS_ONLY=true
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: $0 [OPTIONS]"
+            echo "Options:"
+            echo "  -b, --bindings-only    Only setup GNOME keybindings"
+            echo "  -h, --help            Show this help message"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Use -h or --help for usage information"
+            exit 1
+            ;;
+    esac
+done
+
 update_system() {
     echo "Checking for system updates..."
     dnf check-update > /tmp/dnf_check 2>/dev/null
@@ -21,9 +48,6 @@ update_system() {
         echo "System is already up to date."
     fi
 }
-
-source install.conf
-source utils.sh
 
 remove_default_apps() {
     remove_packages "${REMOVE_PACKAGES[@]}"
@@ -86,8 +110,6 @@ install_zen_browser() {
     sed -i 's|^Exec=zen|Exec=/home/damian/.local/opt/zen/zen|' ~/.local/share/applications/zen.desktop
 }
 
-source gnome.conf
-
 setup_gnome_keybinds() {
     echo "Setting up GNOME keybinding"
     echo "Overriding system keybindings"
@@ -121,6 +143,13 @@ setup_nautilus() {
 }
 
 main() {
+    if [[ "$BINDINGS_ONLY" == true ]]; then
+        echo "Running in bindings-only mode..."
+        setup_gnome_keybinds
+        echo "GNOME keybindings setup complete."
+        exit 0
+    fi
+
     update_system
     remove_default_apps
     configure_dnf
