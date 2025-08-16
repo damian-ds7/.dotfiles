@@ -131,7 +131,7 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
-export SSH_AUTH_SOCK=/home/damian/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
+# export SSH_AUTH_SOCK=/home/damian/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
 
 # PS2 customization
 PS2=$'%{\e[38;2;168;90;137m%}•%{\e[0m%} '
