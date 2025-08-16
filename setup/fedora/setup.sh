@@ -150,7 +150,7 @@ main() {
     setup_code_repo
     install_apps
     install_web_apps
-    install_zen_browser
+    # install_zen_browser
     setup_gnome_keybinds
     setup_dotfiles
     setup_nautilus
