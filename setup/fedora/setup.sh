@@ -134,12 +134,6 @@ setup_nautilus() {
     sudo dnf install nautilus-open-any-terminal
     gsettings set com.github.stunkymonkey.nautilus-open-any-terminal use-generic-terminal-name true
     gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal blackbox
-
-    # Nautilus actions
-    sudo dnf install nautilus-python python3-gobject procps-ng js-jquery
-    git clone https://github.com/bassmanitram/actions-for-nautilus.git /tmp/actions
-    make install
-
 }
 
 main() {
