@@ -106,6 +106,20 @@ setup_dotfiles() {
     chmod 700 ~/.ssh/s
 }
 
+setup_nautilus() {
+    # Open in any terminal
+    sudo dnf copr enable monkeygold/nautilus-open-any-terminal
+    sudo dnf install nautilus-open-any-terminal
+    gsettings set com.github.stunkymonkey.nautilus-open-any-terminal use-generic-terminal-name true
+    gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal blackbox
+
+    # Nautilus actions
+    sudo dnf install nautilus-python python3-gobject procps-ng js-jquery
+    git clone https://github.com/bassmanitram/actions-for-nautilus.git /tmp/actions
+    make install
+
+}
+
 main() {
     update_system
     remove_default_apps
@@ -116,6 +130,7 @@ main() {
     install_zen_browser
     setup_gnome_keybinds
     setup_dotfiles
+    setup_nautilus
     echo "Changing default shell to zsh..."
     chsh -s $(which zsh)
 }
