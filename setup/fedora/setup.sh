@@ -25,6 +25,11 @@ update_system() {
 source install.conf
 source utils.sh
 
+remove_default_apps() {
+    remove_packages "${REMOVE_PACKAGES[@]}"
+    remove_groups "${REMOVE_GROUPS[@]}"
+}
+
 configure_dnf() {
     echo "Configuring DNF options..."
 
@@ -57,8 +62,8 @@ install_web_apps() {
   done
 }
 
-setup_zen_browser() {
-    echo "Setting up Zen Browser..."
+install_zen_browser() {
+    echo "Installing Zen Browser..."
 
     if [[ -d "$HOME/.local/opt/zen" ]]; then
         echo "Zen Browser is already installed at $HOME/.local/opt/zen"
@@ -83,7 +88,7 @@ setup_zen_browser() {
 
 source gnome.conf
 
-gnome_keybinds() {
+setup_gnome_keybinds() {
     echo "Setting up GNOME keybinding"
     echo "Overriding system keybindings"
     apply_overrides "${GNOME_OVERRIDES[@]}"
@@ -103,12 +108,13 @@ setup_dotfiles() {
 
 main() {
     update_system
+    remove_default_apps
     configure_dnf
     setup_code_repo
     install_apps
     install_web_apps
-    setup_zen_browser
-    gnome_keybinds
+    install_zen_browser
+    setup_gnome_keybinds
     setup_dotfiles
     echo "Changing default shell to zsh..."
     chsh -s $(which zsh)
