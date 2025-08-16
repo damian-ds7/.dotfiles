@@ -14,6 +14,18 @@ install_packages() {
     sudo dnf install -y --skip-unavailable "${packages[@]}"
 }
 
+remove_packages() {
+    local packages=("$@")
+    echo "Removing dnf packages"
+    sudo dnf remove -y --skip-unavailable "${packages[@]}"
+}
+
+remove_groups() {
+    local groups=("$@")
+    echo "Removing dnf groups"
+    sudo dnf group remove -y "${groups[@]}"
+}
+
 create_web_app() {
   if [ "$#" -ne 3 ]; then
     return 0
