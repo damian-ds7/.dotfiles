@@ -36,9 +36,9 @@ if is_installed lsd; then
   alias ll='lsd -lX --group-dirs=first --header'
   alias la='lsd -lAX --group-dirs=first --header'
 else
-  alias ls='command ls'
-  alias ll='ls -l'
-  alias la='ls -al'
+  alias ls='command ls --color=always'
+  alias ll='ls -l --color=always'
+  alias la='ls -al --color=always'
 fi
 
 alias tree='tree -I .git --gitignore --dirsfirst'
@@ -58,6 +58,8 @@ alias sunano='sudo nano'
 
 alias update='sudo dnf update'
 alias inst='sudo dnf install'
+alias remove='sudo dnf remove'
+
 alias chme='sudo chown -R damian:damian'
 
 # -------------------------
