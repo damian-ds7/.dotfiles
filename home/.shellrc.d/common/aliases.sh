@@ -102,6 +102,8 @@ alias gd='git diff'
 alias gdw='git diff --word-diff=color'
 alias diff-words='git diff --word-diff=color'
 
+alias lg='lazygit'
+
 # -------------------------
 # Other
 # -------------------------
