@@ -24,9 +24,8 @@
     
 [core]
 	autocrlf = input
-[credential "https://dev.azure.com"]
-	useHttpPath = true
-[credential "https://gitlab-stud.elka.pw.edu.pl"]
-	provider = generic
 [init]
 	defaultBranch = main
+
+[url "git@github.com:damian-ds7/"]
+    insteadOf = gh:
