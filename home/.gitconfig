@@ -2,12 +2,6 @@
 	directory = /mnt/Studies/c++/PokerLinux/cmake-build-debug/_deps/googletest-src
 	directory = /mnt/Studies/
 	directory = /mnt/Studies/Zen-Themes/
-[credential]
-	helper = cache --timeout 21600
-	helper = oauth
-	helper = 
-	helper = /home/damian/.dotnet/tools/git-credential-manager
-	credentialStore = secretservice
 	
 [user]
 	name = Damian D'Souza
