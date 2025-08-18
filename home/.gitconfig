@@ -29,3 +29,9 @@
 
 [url "git@github.com:damian-ds7/"]
     insteadOf = gh:
+
+[url "https://gitlab-stud.elka.pw.edu.pl/ddsouza/"]
+    insteadOf = uni:
+
+[url "https://gitlab-stud.elka.pw.edu.pl/"]
+    insteadOf = uniall:
