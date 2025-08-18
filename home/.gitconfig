@@ -35,3 +35,12 @@
 
 [url "https://gitlab-stud.elka.pw.edu.pl/"]
     insteadOf = uniall:
+
+[credential]
+	helper = 
+	helper = /usr/local/sbin/git-credential-manager
+	credentialStore = secretservice
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[credential "https://gitlab-stud.elka.pw.edu.pl"]
+	provider = generic
