@@ -1,0 +1,74 @@
+#!/bin/bash
+
+copy_name=false
+copy_path=false
+file=""
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -n|--name)
+            copy_name=true
+            shift
+            ;;
+        -p|--path)
+            copy_path=true
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: copy [OPTIONS] FILE"
+            echo "Copy file content, name, or path to clipboard using wl-copy"
+            echo ""
+            echo "Options:"
+            echo "  -n, --name    Copy filename only"
+            echo "  -p, --path    Copy full path"
+            echo "  -h, --help    Show this help message"
+            echo ""
+            echo "Examples:"
+            echo "  copy file.txt         # Copy file content"
+            echo "  copy -n file.txt      # Copy 'file.txt'"
+            echo "  copy -p file.txt      # Copy '/full/path/to/file.txt'"
+            exit 0
+            ;;
+        -*)
+            echo "Error: Unknown option $1" >&2
+            echo "Use 'copy --help' for usage information" >&2
+            exit 1
+            ;;
+        *)
+            if [[ -z "$file" ]]; then
+                file="$1"
+            else
+                echo "Error: Multiple files specified" >&2
+                exit 1
+            fi
+            shift
+            ;;
+    esac
+done
+
+if [[ -z "$file" ]]; then
+    echo "Error: No file specified" >&2
+    echo "Use 'copy --help' for usage information" >&2
+    exit 1
+fi
+
+if [[ ! -e "$file" ]]; then
+    echo "Error: File '$file' does not exist" >&2
+    exit 1
+fi
+
+if [[ "$copy_name" == true ]]; then
+    basename "$file" | wl-copy
+elif [[ "$copy_path" == true ]]; then
+    realpath "$file" | wl-copy
+else
+    if [[ ! -r "$file" ]]; then
+        echo "Error: Cannot read file '$file'" >&2
+        exit 1
+    fi
+    if [[ -d "$file" ]]; then
+        echo "Error: '$file' is a directory, not a file" >&2
+        exit 1
+    fi
+    cat "$file" | wl-copy
+fi
