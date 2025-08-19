@@ -21,3 +21,4 @@ _darcs
 ^/COPYING
 
 current-theme.conf
+home/.config/lsd/colors.yaml
