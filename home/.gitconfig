@@ -30,6 +30,9 @@
 [url "git@github.com:damian-ds7/"]
     insteadOf = gh:
 
+[url "git@github.com:"]
+    insteadOf = ghall:
+
 [url "https://gitlab-stud.elka.pw.edu.pl/ddsouza/"]
     insteadOf = uni:
 
