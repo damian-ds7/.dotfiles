@@ -14,6 +14,8 @@ alias ....='cd ../../..'
 alias du='du -h --max-depth=1'
 alias df='df -hT'
 
+alias c='clear'
+
 # -------------------------
 #  Aliases with fallback to original command
 # -------------------------
