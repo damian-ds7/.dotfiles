@@ -94,6 +94,7 @@ z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
 z4h bindkey z4h-eof Ctrl+D
 
 bindkey '^ ' autosuggest-accept
+z4h bindkey z4h-clear-screen-soft-top Alt+L
 
 # Autoload functions.
 autoload -Uz zmv
