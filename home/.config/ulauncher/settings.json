@@ -12,7 +12,7 @@
     "max-recent-apps": 0,
     "raise-if-started": false,
     "render-on-screen": "mouse-pointer-monitor",
-    "show-indicator-icon": false,
+    "show-indicator-icon": true,
     "show-recent-apps": "0",
     "show-tray-icon": false,
     "theme-name": "libadwaita-dark",
