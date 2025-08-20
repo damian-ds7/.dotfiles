@@ -1,0 +1,22 @@
+{
+    "0a7c7c7b-aa06-4ee4-8a4f-c168ccaac500": {
+        "added": 1720386352,
+        "cmd": "https://www.youtube.com/results?search_query=%s",
+        "icon": "~/.icons/yt-search-ulauncher.png",
+        "id": "0a7c7c7b-aa06-4ee4-8a4f-c168ccaac500",
+        "is_default_search": false,
+        "keyword": "yt",
+        "name": "YouTube",
+        "run_without_argument": false
+    },
+    "e46fba6b-a859-4e4a-ab65-9a49b5ccfed0": {
+        "id": "e46fba6b-a859-4e4a-ab65-9a49b5ccfed0",
+        "name": "Kagi",
+        "keyword": "kg",
+        "cmd": "https://kagi.com/search?q=%s",
+        "icon": "~/.icons/Kagi_Search_Engine_Icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1753926721.8073165
+    }
+}
