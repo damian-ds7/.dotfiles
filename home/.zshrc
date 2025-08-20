@@ -43,7 +43,9 @@ zstyle ':z4h:ssh:*'                   enable 'no'
 
 # Send these files over to the remote host when connecting over SSH to the
 # enabled hosts.
-zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' '~/.shellrc.d/common' '~/.shellrc.d/zsh'
+zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' '~/.shellrc.d/common' '~/.shellrc.d/zsh' '~/.tmux.conf' '~/.tmux/themes/dark.conf' '~/.tmux/themes/light.conf' '~/.tmux/themes/current-theme.conf'
+
+
 
 zstyle ':completion:*:ssh:argument-1:'       tag-order  hosts users
 zstyle ':completion:*:scp:argument-rest:'    tag-order  hosts files users
@@ -64,9 +66,6 @@ zstyle ':completion:*:(ssh|scp|rdp):*:hosts' hosts
 # is fully initialized. Everything that requires user interaction or can
 # perform network I/O must be done above. Everything else is best done below.
 z4h init || return
-
-# Extend PATH.
-path=(~/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY

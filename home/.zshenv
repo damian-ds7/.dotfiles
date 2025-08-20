@@ -43,4 +43,5 @@ fi
 . "$Z4H"/z4h.zsh || return
 
 setopt rcs
+
 . "$HOME/.cargo/env" 2>/dev/null
