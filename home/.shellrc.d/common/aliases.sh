@@ -172,16 +172,3 @@ ustatus()   { systemctl --user status "$1"; }
 uenable()   { systemctl --user enable "$1"; }
 udisable()  { systemctl --user disable "$1"; }
 
-# -------------------------
-#  File/Dir Search Helpers
-# -------------------------
-
-ff() {
-  [[ -n "$1" ]] || return 1
-  find . -type f -name "$1"
-}
-
-fd() {
-  [[ -n "$1" ]] || return 1
-  find . -type d -name "$1"
-}
