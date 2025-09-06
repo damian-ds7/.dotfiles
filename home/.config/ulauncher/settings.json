@@ -15,6 +15,6 @@
     "show-indicator-icon": false,
     "show-recent-apps": "0",
     "show-tray-icon": false,
-    "theme-name": "libadwaita-dark",
+    "theme-name": "ulauncher-theme-gnome-dark",
     "tray-icon-name": "ulauncher-indicator-symbolic"
 }
