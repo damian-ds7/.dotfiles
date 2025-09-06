@@ -55,5 +55,4 @@ window-padding-x = 3
 window-padding-y = 3
 
 cursor-style = bar
-command = ~/.local/opt/ghostty-command.sh
 confirm-close-surface = false
