@@ -3,6 +3,7 @@ set -euo pipefail
 
 TMUX_THEME_DIR="$HOME/.tmux/themes"
 LSD_THEME_DIR="$HOME/.config/lsd"
+ULAUNCHER_SETTINGS="$HOME/.config/ulauncher/settings.json"
 
 get_current_theme() {
     gsettings get org.gnome.desktop.interface color-scheme
@@ -14,6 +15,8 @@ switch_to_dark() {
     "$TMUX_THEME_DIR/reset.sh"
     ln -sf "$TMUX_THEME_DIR/dark.conf" "$TMUX_THEME_DIR/current-theme.conf"
     ln -sf  "$LSD_THEME_DIR/dark.yaml" "$LSD_THEME_DIR/colors.yaml"
+    sed -i 's/"theme-name": "ulauncher-theme-gnome-light"/"theme-name": "ulauncher-theme-gnome-dark"/' "$ULAUNCHER_SETTINGS"
+    systemctl --user restart ulauncher
 }
 
 switch_to_light() {
@@ -22,6 +25,8 @@ switch_to_light() {
     "$TMUX_THEME_DIR/reset.sh"
     ln -sf "$TMUX_THEME_DIR/light.conf" "$TMUX_THEME_DIR/current-theme.conf"
     ln -sf  "$LSD_THEME_DIR/light.yaml" "$LSD_THEME_DIR/colors.yaml"
+    sed -i 's/"theme-name": "ulauncher-theme-gnome-dark"/"theme-name": "ulauncher-theme-gnome-light"/' "$ULAUNCHER_SETTINGS"
+    systemctl --user restart ulauncher
 }
 
 if test "$(get_current_theme)" = "'prefer-light'"; then
