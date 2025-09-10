@@ -19,12 +19,5 @@
         "updated_at": "2025-09-05T18:24:58.305644",
         "last_commit": "60a5106821478f965e4e24dbe1833f6af0d437f1",
         "last_commit_time": "2023-12-01T07:25:12"
-    },
-    "com.github.lighttigerxiv.ulauncher-session-manager": {
-        "id": "com.github.lighttigerxiv.ulauncher-session-manager",
-        "url": "https://github.com/lighttigerXIV/ulauncher-session-manager",
-        "updated_at": "2025-09-05T18:24:59.900441",
-        "last_commit": "39218fddb79d86150c4624d96b1a162eba89c993",
-        "last_commit_time": "2023-05-23T08:14:57"
     }
 }
