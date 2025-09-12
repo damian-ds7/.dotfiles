@@ -43,7 +43,7 @@
 # resize-overlay-duration = 4s 200ms
 
 font-family = "MesloLGL Nerd Font Regular"
-font-size = 12
+font-size = 12.5
 
 theme = dark:catppuccin-mocha,light:catppuccin-latte
 bold-is-bright = true
@@ -51,6 +51,7 @@ bold-is-bright = true
 gtk-titlebar = false
 window-height = 36
 window-width = 146
+maximize = true
 window-padding-x = 3
 window-padding-y = 3
 
