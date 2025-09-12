@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 set -euo pipefail
 
-TMUX_THEME_DIR="$HOME/.config/tmux/themes"
+TMUX_CONF_DIR="$HOME/.config/tmux"
+TMUX_THEME_DIR="$TMUX_CONF_DIR/themes"
 LSD_THEME_DIR="$HOME/.config/lsd"
 ULAUNCHER_SETTINGS="$HOME/.config/ulauncher/settings.json"
 
@@ -35,4 +36,4 @@ else
     switch_to_light
 fi
 
-tmux source-file ~/.tmux.conf
+tmux source-file "$TMUX_CONF_DIR/tmux.conf"
