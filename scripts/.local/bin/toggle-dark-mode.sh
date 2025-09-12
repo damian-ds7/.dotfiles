@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -euo pipefail
 
-TMUX_THEME_DIR="$HOME/.tmux/themes"
+TMUX_THEME_DIR="$HOME/.config/tmux/themes"
 LSD_THEME_DIR="$HOME/.config/lsd"
 ULAUNCHER_SETTINGS="$HOME/.config/ulauncher/settings.json"
 

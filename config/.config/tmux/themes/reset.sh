@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Unset options
-rg -Io 'set\s+-[aFgopqsuUw]+\s+"?@([^\s]+(\w|_))"?' -r '@$1' $HOME/.tmux/plugins/tmux/**/*.conf | uniq | xargs -n1 -P0 tmux set -Ugq
+rg -Io 'set\s+-[aFgopqsuUw]+\s+"?@([^\s]+(\w|_))"?' -r '@$1' $HOME/.config/tmux/plugins/tmux/**/*.conf | uniq | xargs -n1 -P0 tmux set -Ugq
 
 status_dir="$HOME/.tmux/plugins/tmux/status"
 status_utils_file="$HOME/.tmux/plugins/tmux/utils/status_module.conf"

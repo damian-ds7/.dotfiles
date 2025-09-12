@@ -112,15 +112,15 @@ setopt nullglob
 setopt ignore_eof
 
 # Load common configs
-if [ -d ~/.shellrc.d/common ]; then
-  for rc in ~/.shellrc.d/common/*; do
+if [ -d ~/.config/shell/common ]; then
+  for rc in ~/.config/shell/common/*; do
     [ -f "$rc" ] && source "$rc"
   done
 fi
 
 # Load zsh-specific configs
-if [ -d ~/.shellrc.d/zsh ]; then
-  for rc in ~/.shellrc.d/zsh/*; do
+if [ -d ~/.config/shell/zsh ]; then
+  for rc in ~/.config/shell/zsh/*; do
     [ -f "$rc" ] && source "$rc"
   done
 fi
