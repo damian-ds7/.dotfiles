@@ -43,9 +43,10 @@ zstyle ':z4h:ssh:*'                   enable 'no'
 
 # Send these files over to the remote host when connecting over SSH to the
 # enabled hosts.
-zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' '~/.shellrc.d/common' '~/.shellrc.d/zsh' '~/.tmux.conf' '~/.tmux/themes/dark.conf' '~/.tmux/themes/light.conf' '~/.tmux/themes/current-theme.conf'
 
-
+CONF_DIR="~/.config"
+zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' "$CONF_DIR/zsh" "$CONF_DIR/shell/common" "$CONF_DIR/shell/zsh" "$CONF_DIR/tmux/tmux.conf" "$CONF_DIR/tmux/themes/dark.conf" "$CONF_DIR/tmux/themes/light.conf" "$CONF_DIR/tmux/themes/current-theme.conf"
+unset CONF_DIR
 
 zstyle ':completion:*:ssh:argument-1:'       tag-order  hosts users
 zstyle ':completion:*:scp:argument-rest:'    tag-order  hosts files users
