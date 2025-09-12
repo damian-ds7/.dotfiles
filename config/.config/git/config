@@ -23,10 +23,10 @@
 	defaultBranch = main
 
 [url "git@github.com:damian-ds7/"]
-    insteadOf = gh:
+    insteadOf = ds:
 
 [url "git@github.com:"]
-    insteadOf = ghall:
+    insteadOf = gh:
 
 [url "https://gitlab-stud.elka.pw.edu.pl/ddsouza/"]
     insteadOf = uni:
