@@ -22,5 +22,5 @@ _darcs
 
 current-theme.conf
 home/.config/lsd/colors.yaml
-home/.tmux/plugins
+home/.config/tmux/plugins
 .zsh_history
