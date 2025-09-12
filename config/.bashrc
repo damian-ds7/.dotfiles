@@ -18,15 +18,15 @@ export PATH
 # User specific aliases and functions
 
 # Load common configs
-if [ -d ~/.shellrc.d/common ]; then
-  for rc in ~/.shellrc.d/common/*; do
+if [ -d ~/.config/shell/common ]; then
+  for rc in ~/.config/shell/common/*; do
     [ -f "$rc" ] && . "$rc"
   done
 fi
 
 # Load bash-specific configs
-if [ -d ~/.shellrc.d/bash ]; then
-  for rc in ~/.shellrc.d/bash/*; do
+if [ -d ~/.cofig/shell/bash ]; then
+  for rc in ~/.config/shell/bash/*; do
     [ -f "$rc" ] && . "$rc"
   done
 fi
