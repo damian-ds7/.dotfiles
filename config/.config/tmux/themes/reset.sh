@@ -5,8 +5,8 @@ set -euo pipefail
 # Unset options
 rg -Io 'set\s+-[aFgopqsuUw]+\s+"?@([^\s]+(\w|_))"?' -r '@$1' $HOME/.config/tmux/plugins/tmux/**/*.conf | uniq | xargs -n1 -P0 tmux set -Ugq
 
-status_dir="$HOME/.tmux/plugins/tmux/status"
-status_utils_file="$HOME/.tmux/plugins/tmux/utils/status_module.conf"
+status_dir="$HOME/.config/tmux/plugins/tmux/status"
+status_utils_file="$HOME/.config/tmux/plugins/tmux/utils/status_module.conf"
 
 # Get all status modules in $HOME/.config/tmux/plugins/tmux/status/
 modules=()
