@@ -54,7 +54,11 @@ window-width = 146
 window-padding-x = 3
 window-padding-y = 3
 
+shell-integration = detect
+
 # cursor-style = bar
 cursor-opacity = 0.6
+cursor-invert-fg-bg = true
+cursor-style-blink = false
 
 confirm-close-surface = false
