@@ -1,4 +1,4 @@
 current-theme.conf
-home/.config/lsd/colors.yaml
-home/.config/tmux/plugins
+config/.config/lsd/colors.yaml
+config/.config/tmux/plugins
 .zsh_history
