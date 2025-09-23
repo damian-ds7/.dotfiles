@@ -135,4 +135,4 @@ fi
 # export SSH_AUTH_SOCK=/home/damian/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
 
 # PS2 customization
-PS2=$'%{\e[38;2;168;90;137m%}•%{\e[0m%} '
+PS2=$'%{\e[38;2;168;90;137m%}❯❯%{\e[0m%} '
