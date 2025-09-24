@@ -11,8 +11,8 @@ get_current_theme() {
 }
 
 switch_to_dark() {
-    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-    gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'
+    dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+    dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3-dark'"
     "$TMUX_THEME_DIR/reset.sh"
     ln -sf "$TMUX_THEME_DIR/dark.conf" "$TMUX_THEME_DIR/current-theme.conf"
     ln -sf  "$LSD_THEME_DIR/dark.yaml" "$LSD_THEME_DIR/colors.yaml"
@@ -21,8 +21,8 @@ switch_to_dark() {
 }
 
 switch_to_light() {
-    gsettings set org.gnome.desktop.interface color-scheme prefer-light
-    gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
+    dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+    dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'"
     "$TMUX_THEME_DIR/reset.sh"
     ln -sf "$TMUX_THEME_DIR/light.conf" "$TMUX_THEME_DIR/current-theme.conf"
     ln -sf  "$LSD_THEME_DIR/light.yaml" "$LSD_THEME_DIR/colors.yaml"
