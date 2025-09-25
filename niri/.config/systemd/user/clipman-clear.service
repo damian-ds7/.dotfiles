@@ -1,0 +1,10 @@
+[Unit]
+Description=Clear clipman clipboard on niri shutdown
+BindsTo=niri.service
+After=niri.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStop=/usr/bin/clipman clear -a
+TimeoutStopSec=5
