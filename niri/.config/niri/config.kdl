@@ -116,12 +116,9 @@ window-rule {
 }
 
 window-rule {
-    match app-id="Ulauncher"
-    focus-ring {
-        off
-    }
-    min-width 450
+    match title="bluetui"
     open-floating true
+    max-height 700;
 }
 
 window-rule {
