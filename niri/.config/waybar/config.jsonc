@@ -4,19 +4,21 @@
     // "width": 1280, // Waybar width
     // Choose the order of the modules
     "modules-left": [
-        "niri/workspaces"
+        "niri/workspaces",
+        "custom/music"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
-        "custom/music",
         "pulseaudio",
+        "power-profiles-daemon",
         "network",
+        "bluetooth",
         "backlight",
         "battery",
-        "tray",
-        "custom/lock"
+        "group/tray-expander",
+        "custom/power"
     ],
     "niri/workspaces": {
         "on-click": "activate",
@@ -34,10 +36,6 @@
             "9": "9"
         }
     },
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10
-    },
     "custom/music": {
         "format": "  {} ",
         "escape": true,
@@ -45,7 +43,7 @@
         "tooltip": false,
         "exec": "playerctl metadata --format='{{ title }}'",
         "on-click": "playerctl play-pause",
-        "max-length": 50
+        "max-length": 30
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -104,39 +102,41 @@
             ]
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol",
+        "on-click-right": "pavucontrol"
+    },
+    "group/tray-expander": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 600,
+            "children-class": "tray-group-item"
+        },
+        "modules": [
+            "custom/expand-icon",
+            "tray"
+        ]
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 15
+    },
+    "custom/expand-icon": {
+        "format": " ",
+        "tooltip": false
     },
     "custom/lock": {
         "tooltip": false,
-        "on-click": "hyprlock &",
-        "format": " ",
-    },
-    "custom/power": {
-        "tooltip": false,
-        "on-click": "wlogout &",
-        "format": "⏻ "
+        "on-click": "swaylock &",
+        "format": " "
     },
     "niri/language": {
-        "format": "  {short}",
+        "format": "  {short}"
     },
-    "network": {
-        "format-icons": [
-            "󰤯",
-            "󰤟",
-            "󰤢",
-            "󰤥",
-            "󰤨"
-        ],
-        "format": "{icon}",
-        "format-wifi": "{icon}",
-        "format-ethernet": "󰀂",
-        "format-disconnected": "󰤮",
-        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-        "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-        "tooltip-format-disconnected": "Disconnected",
-        "interval": 3,
-        "spacing": 1,
-        "on-click": "omarchy-launch-wifi"
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "format-connected": "",
+        "tooltip-format": "Devices connected: {num_connections}",
+        "on-click": "bt-popup"
     },
     // "network": {
     //     "interface": "wlan0",
@@ -146,15 +146,46 @@
     //     "format-alt": "  {essid}",
     //     "tooltip-format": "{signalStrength}%",
     //     "tooltip-format-wifi": "{essid} {signalStrength}%",
-    //     "tooltip-format-disconnected": "No Connection"
-    // },
-    // "network": {
-    //     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    //     "format-wifi": "{essid} ({signalStrength}%) <U+F1EB>",
-    //     "format-ethernet": "{ipaddr}/{cidr} <U+F796>",
-    //     "tooltip-format": "{ifname} via {gwaddr} <U+F796>",
-    //     "format-linked": "{ifname} (No IP) <U+F796>",
-    //     "format-disconnected": "Disconnected ⚠",
-    //     "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    // },
+    //     "tooltip-format-disconnected": "No Connection",
+    // }
+    "network": {
+        "format-icons": [
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "format": "{icon} ",
+        "format-wifi": "{icon} ",
+        "format-ethernet": "󰀂",
+        "format-disconnected": "󰤮 ",
+        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "wifi-popup"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": " ",
+            "power-saver": " "
+        }
+    },
+    "custom/power": {
+        // "format": "",
+        "format": " ",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
+    }
 }
