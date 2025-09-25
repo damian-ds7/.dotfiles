@@ -111,6 +111,7 @@ window-rule {
 
 window-rule {
     match app-id="zen" title="^Picture-in-Picture$"
+    match title="impala"
     open-floating true
 }
 
