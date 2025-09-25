@@ -100,6 +100,15 @@ window-rule {
 }
 
 window-rule {
+    match app-id="Ulauncher"
+    focus-ring {
+        off
+    }
+    min-width 450
+    open-floating true
+}
+
+window-rule {
     match app-id="Bitwarden"
     default-column-width { proportion 0.6666; }
 }
@@ -153,7 +162,7 @@ binds {
 
     Super+Shift+D hotkey-overlay-title="Toggle Dark/Light Style" { spawn-sh "~/.local/bin/toggle-dark-mode.sh"; }
 
-    Super+Space hotkey-overlay-title="Ulauncher" { spawn "ulauncher-toggle"; }
+    Super+Space hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
     Super+V hotkey-overlay-title="Clipboard history" {spawn-sh "clipman --histpath=/tmp/clipman.json pick --tool=CUSTOM --tool-args='fuzzel -d --config=/home/damian/.config/fuzzel/clipboard.ini'"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
