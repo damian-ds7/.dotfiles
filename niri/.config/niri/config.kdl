@@ -2,7 +2,7 @@
 // https://yalter.github.io/niri/Configuration%3A-Introduction.html
 
 spawn-at-startup "waybar"
-spawn-sh-at-startup "wl-paste -t text --watch clipman store"
+spawn-sh-at-startup "wl-paste -t text --watch clipman --histpath=/tmp/clipman.json store"
 
 hotkey-overlay {
     skip-at-startup
@@ -153,8 +153,8 @@ binds {
 
     Super+Shift+D hotkey-overlay-title="Toggle Dark/Light Style" { spawn-sh "~/.local/bin/toggle-dark-mode.sh"; }
 
-    Super+Space hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
-    Super+V hotkey-overlay-title="Clipboard history" {spawn-sh "clipman pick --tool=CUSTOM --tool-args='fuzzel -d --config=/home/damian/.config/fuzzel/clipboard.ini'"; }
+    Super+Space hotkey-overlay-title="Ulauncher" { spawn "ulauncher-toggle"; }
+    Super+V hotkey-overlay-title="Clipboard history" {spawn-sh "clipman --histpath=/tmp/clipman.json pick --tool=CUSTOM --tool-args='fuzzel -d --config=/home/damian/.config/fuzzel/clipboard.ini'"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
@@ -268,7 +268,7 @@ binds {
     Super+Ctrl+R { reset-window-height; }
     Super+F { maximize-column; }
     Super+Shift+F { fullscreen-window; }
-    Super+Ctrl+F { expand-column-to-available-width; }
+    Super+G { expand-column-to-available-width; }
     Super+Shift+C { center-column; }
     Super+Ctrl+C { center-visible-columns; }
 
