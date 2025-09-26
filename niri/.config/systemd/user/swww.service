@@ -1,0 +1,9 @@
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=%h/.local/bin/swww-daemon
+ExecStartPost=%h/.local/bin/swww img %h/Pictures/Wallpapers/Rainnight-blurred.jpg
+Restart=on-failure

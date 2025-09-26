@@ -1,7 +1,9 @@
 // DOCS
 // https://yalter.github.io/niri/Configuration%3A-Introduction.html
 
-spawn-at-startup "waybar"
+// spawn-sh-at-startup "swaybg -i ~/Picutres/Wallpapers/Rainnight.jpg"
+// spawn-at-startup "waybar"
+// spawn-sh-at-startup "~/.local/bin/sww-daemon"
 spawn-sh-at-startup "wl-paste -t text --watch clipman --histpath=/tmp/clipman.json store"
 
 hotkey-overlay {
@@ -99,6 +101,11 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
+layer-rule {
+    match namespace="^swww-daemon"
+    place-within-backdrop true
+}
+
 workspace "browser"
 workspace "code"
 workspace "teams"
@@ -107,7 +114,6 @@ workspace "deezer"
 window-rule {
     geometry-corner-radius 8
     clip-to-geometry true
-    // opacity 0.95
 }
 
 window-rule {
@@ -162,10 +168,10 @@ binds {
     Super+T hotkey-overlay-title="Ghostty with Tmux" { spawn-sh "ghostty -e ~/.local/opt/ghostty-command.sh"; }
     Super+Alt+T hotkey-overlay-title="Ghostty" { spawn "ghostty"; }
 
-    Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
-    Super+B hotkey-overlay-title="Zen Browser" { spawn "~/.local/bin/zen"; }
+    Mod+Shift+L hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
+    Super+B hotkey-overlay-title="Zen Browser" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen"; }
 
-    Super+C hotkey-overlay-title="VSCode" { spawn "code";  }
+    Super+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a Code code";  }
     Super+E hotkey-overlay-title="Nautilus" { spawn "nautilus";  }
     Control+Alt+BackSpace hotkey-overlay-title="Reboot" { spawn "systemctl" "reboot";  }
     Control+Alt+Page_Up hotkey-overlay-title="Suspend" { spawn "systemctl" "suspend";  }
