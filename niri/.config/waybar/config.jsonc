@@ -136,7 +136,7 @@
         "format-disabled": "󰂲",
         "format-connected": "",
         "tooltip-format": "Devices connected: {num_connections}",
-        "on-click": "bt-popup"
+        "on-click": "$HOME/.local/bin/bt-popup"
     },
     // "network": {
     //     "interface": "wlan0",
@@ -162,7 +162,7 @@
         "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
-        "on-click": "wifi-popup"
+        "on-click": "$HOME/.local/bin/wifi-popup"
     },
     "power-profiles-daemon": {
         "format": "{icon}",
@@ -182,8 +182,8 @@
         "menu": "on-click",
         "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
         "menu-actions": {
-            "shutdown": "shutdown",
-            "reboot": "reboot",
+            "shutdown": "systemctl poweroff",
+            "reboot": "systemctl reboot",
             "suspend": "systemctl suspend",
             "hibernate": "systemctl hibernate"
         }

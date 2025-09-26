@@ -26,7 +26,7 @@ window#waybar {
 #power-profiles-daemon,
 #tray-expander,
 #custom-power {
-    margin-top: 10px;
+    margin-top: 8px;
     margin-left: 8px;
     padding-left: 10px;
     padding-right: 10px;
