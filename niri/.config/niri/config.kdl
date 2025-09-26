@@ -101,6 +101,10 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
+switch-events {
+    lid-close {spawn "swaylock";}
+}
+
 layer-rule {
     match namespace="^swww-daemon"
     place-within-backdrop true
