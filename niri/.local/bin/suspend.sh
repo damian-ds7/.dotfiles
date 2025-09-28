@@ -18,7 +18,7 @@ done
 
 send_notification() {
     if [ "$SHOW_NOTIFICATIONS" = true ]; then
-        notify-send "$1" "$2"
+        notify-send -t 5000 "$1" "$2"
     fi
 }
 

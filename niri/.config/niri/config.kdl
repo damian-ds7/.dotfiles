@@ -5,6 +5,7 @@
 // spawn-at-startup "waybar"
 // spawn-sh-at-startup "~/.local/bin/sww-daemon"
 spawn-sh-at-startup "wl-paste -t text --watch clipman --histpath=/tmp/clipman.json store"
+spawn-sh-at-startup "~/.local/bin/suspend.sh -n"
 
 hotkey-overlay {
     skip-at-startup
