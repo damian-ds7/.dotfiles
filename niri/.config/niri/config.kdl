@@ -133,6 +133,11 @@ window-rule {
 }
 
 window-rule {
+    match app-id="com.damian.tmux"
+    open-maximized true
+}
+
+window-rule {
     match title="bluetui"
     open-floating true
     max-height 700;
@@ -175,7 +180,7 @@ window-rule {
 binds {
     Super+Shift+Slash { show-hotkey-overlay; }
 
-    Super+T hotkey-overlay-title="Ghostty with Tmux" { spawn-sh "ghostty -e ~/.local/opt/ghostty-command.sh"; }
+    Super+T hotkey-overlay-title="Ghostty with Tmux" { spawn-sh "ghostty --class=com.damian.tmux -e ~/.local/opt/ghostty-command.sh"; }
     Super+Alt+T hotkey-overlay-title="Ghostty" { spawn "ghostty"; }
 
     Mod+Shift+L hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
