@@ -174,13 +174,14 @@ binds {
 
     Mod+Shift+L hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
     Super+B hotkey-overlay-title="Zen Browser" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen"; }
-
     Super+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a Code code";  }
     Super+E hotkey-overlay-title="Nautilus" { spawn "nautilus";  }
+
     Control+Alt+BackSpace hotkey-overlay-title="Reboot" { spawn "systemctl" "reboot";  }
     Control+Alt+Page_Up hotkey-overlay-title="Suspend" { spawn "systemctl" "suspend";  }
     Control+Alt+Home hotkey-overlay-title="Shut down" { spawn "systemctl" "poweroff";  }
     Control+Alt+XF86AudioMute hotkey-overlay-title="Shut down" { spawn "systemctl" "poweroff";  }
+
     Super+Escape hotkey-overlay-title="Resources" { spawn "flatpak" "run" "net.nokyan.Resources";  }
     Super+M hotkey-overlay-title="Deezer" { spawn "flatpak" "run" "dev.aunetx.deezer";  }
 
@@ -199,8 +200,8 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
     Super+O repeat=false { toggle-overview; }
-    Super+Shift+Tab repeat=false { toggle-overview; }
-    Super+Tab repeat=false { spawn-sh "~/.local/bin/niri-window-switcher-fuzzel"; }
+    Super+Tab repeat=false { toggle-overview; }
+    Super+Shift+Tab repeat=false { spawn-sh "~/.local/bin/niri-window-switcher-fuzzel"; }
 
     Super+Q repeat=false { close-window; }
 
