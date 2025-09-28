@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+niri msg action spawn-sh -- "ghostty --title=impala -e ~/.cargo/bin/impala"
