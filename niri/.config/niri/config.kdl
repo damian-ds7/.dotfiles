@@ -4,6 +4,7 @@
 // spawn-sh-at-startup "swaybg -i ~/Picutres/Wallpapers/Rainnight.jpg"
 // spawn-at-startup "waybar"
 // spawn-sh-at-startup "~/.local/bin/sww-daemon"
+spawn-sh-at-startup "wl-paste -t text --watch clipman --histpath=/tmp/clipman.json store"
 
 hotkey-overlay {
     skip-at-startup
