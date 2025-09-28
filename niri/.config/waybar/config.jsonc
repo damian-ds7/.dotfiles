@@ -24,16 +24,8 @@
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-            "default": "",
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "9": "9"
+            "active": "",
+            "default": ""
         }
     },
     "custom/music": {
@@ -49,22 +41,6 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "  {:%d/%m/%Y}",
         "format": "  {:%H:%M}"
-    },
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-alt": "{icon}",
-        "tooltip": false,
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
     },
     "battery": {
         "interval": 30,
@@ -90,20 +66,6 @@
             "󰁹"
         ]
     },
-    // "pulseaudio": {
-    //     // "scroll-step": 1, // %, can be a float
-    //     "format": "{icon} {volume}%",
-    //     "format-muted": " ",
-    //     "format-icons": {
-    //         "default": [
-    //             "",
-    //             "",
-    //             ""
-    //         ]
-    //     },
-    //     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    //     "on-click-right": "pavucontrol"
-    // },
     "pulseaudio#sink": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} ",
@@ -151,14 +113,6 @@
         "format": " ",
         "tooltip": false
     },
-    "custom/lock": {
-        "tooltip": false,
-        "on-click": "swaylock &",
-        "format": " "
-    },
-    "niri/language": {
-        "format": "  {short}"
-    },
     "bluetooth": {
         "format": "",
         "format-disabled": "󰂲",
@@ -167,26 +121,24 @@
         "on-click": "$HOME/.local/bin/bt-popup"
     },
     // "network": {
-    //     "interface": "wlan0",
-    //     "format": "{ifname}",
-    //     "format-disconnected": "",
-    //     "format-wifi": " ",
-    //     "format-alt": "  {essid}",
-    //     "tooltip-format": "{signalStrength}%",
-    //     "tooltip-format-wifi": "{essid} {signalStrength}%",
-    //     "tooltip-format-disconnected": "No Connection",
-    // }
+    //     "format-icons": [
+    //         "󰤟",
+    //         "󰤢",
+    //         "󰤥",
+    //         "󰤨"
+    //     ],
+    //     "format": "{icon} ",
+    //     "format-wifi": "{icon} ",
+    //     "format-ethernet": "󰀂",
+    //     "format-disconnected": "󰤮",
+    //     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    //     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    //     "tooltip-format-disconnected": "Disconnected",
+    //     "on-click": "$HOME/.local/bin/wifi-popup"
+    // },
     "network": {
-        "format-icons": [
-            "󰤟",
-            "󰤢",
-            "󰤥",
-            "󰤨"
-        ],
-        "format": "{icon} ",
-        "format-wifi": "{icon} ",
-        "format-ethernet": "󰀂",
-        "format-disconnected": "󰤮",
+        "format-wifi": " ",
+        "format-ethernet": "<span>󰀂</span> ",
         "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
