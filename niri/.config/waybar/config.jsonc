@@ -16,7 +16,6 @@
         "power-profiles-daemon",
         "network",
         "bluetooth",
-        "backlight",
         "battery",
         "group/tray-expander",
         "custom/power"
