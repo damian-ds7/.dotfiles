@@ -4,7 +4,7 @@
 // spawn-sh-at-startup "swaybg -i ~/Picutres/Wallpapers/Rainnight.jpg"
 // spawn-at-startup "waybar"
 // spawn-sh-at-startup "~/.local/bin/sww-daemon"
-spawn-sh-at-startup "wl-paste -t text --watch clipman --histpath=/tmp/clipman.json store"
+spawn-at-startup "swayosd-server"
 
 hotkey-overlay {
     skip-at-startup
@@ -127,6 +127,11 @@ window-rule {
 }
 
 window-rule {
+    match app-id="com.damian.yazi"
+    default-column-width { proportion 0.6666; }
+}
+
+window-rule {
     match title="bluetui"
     open-floating true
     max-height 700;
@@ -175,7 +180,7 @@ binds {
     Mod+Shift+L hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
     Super+B hotkey-overlay-title="Zen Browser" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen"; }
     Super+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a Code code";  }
-    Super+E hotkey-overlay-title="Nautilus" { spawn "nautilus";  }
+    Super+E hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
 
     Control+Alt+BackSpace hotkey-overlay-title="Reboot" { spawn "systemctl" "reboot";  }
     Control+Alt+Page_Up hotkey-overlay-title="Suspend" { spawn "systemctl" "suspend";  }
@@ -191,13 +196,13 @@ binds {
     Super+V hotkey-overlay-title="Clipboard history" {spawn-sh "clipman --histpath=/tmp/clipman.json pick --tool=CUSTOM --tool-args='fuzzel -d --config=/home/damian/.config/fuzzel/clipboard.ini'"; }
     Super+Period hotkey-overlay-title="Fuzzel" { spawn "~/.local/bin/bemoji"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume raise"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume lower"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "swayosd-client --output-volume mute-toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
 
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "swayosd-client --brightness raise"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "swayosd-client --brightness lower"; }
 
     Super+O repeat=false { toggle-overview; }
     Super+Tab repeat=false { toggle-overview; }
