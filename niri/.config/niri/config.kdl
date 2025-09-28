@@ -186,7 +186,8 @@ binds {
     Super+Shift+C hotkey-overlay-title="Toggle auto suspend" { spawn-sh "~/.local/bin/suspend.sh"; }
     Control+Alt+BackSpace hotkey-overlay-title="Reboot" { spawn "systemctl" "reboot";  }
     Control+Alt+Page_Up hotkey-overlay-title="Suspend" { spawn "systemctl" "suspend";  }
-    Control+Alt+Home hotkey-overlay-title="Shut down" { spawn "systemctl" "poweroff";  }
+    Control+Alt+Home { spawn "systemctl" "poweroff";  }
+    Control+Alt+BackSlash { spawn "systemctl" "poweroff";  }
     Control+Alt+XF86AudioMute hotkey-overlay-title="Shut down" { spawn "systemctl" "poweroff";  }
 
     Super+Escape hotkey-overlay-title="Resources" { spawn "flatpak" "run" "net.nokyan.Resources";  }
