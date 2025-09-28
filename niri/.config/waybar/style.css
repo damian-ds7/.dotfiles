@@ -19,6 +19,7 @@ window#waybar {
 #battery,
 #backlight,
 #pulseaudio,
+#pulseaudio,
 #clock,
 #disk,
 #tray menu,
@@ -52,6 +53,7 @@ window#waybar {
 #battery:hover,
 #backlight:hover,
 #pulseaudio:hover,
+#pulseaudio:hover,
 #clock:hover,
 #disk:hover,
 #workspaces:hover,
@@ -79,7 +81,7 @@ window#waybar {
     margin-right: 5px;
 }
 
-#pulseaudio.muted {
+#pulseaudio.sink.muted {
     color: @red;
     background: @surface0;
     border-bottom: 3px;
@@ -88,7 +90,7 @@ window#waybar {
     transition: 0.3s;
 }
 
-#pulseaudio.muted:hover {
+#pulseaudio.sink.muted:hover {
     background: @red;
     color: @surface0;
 }

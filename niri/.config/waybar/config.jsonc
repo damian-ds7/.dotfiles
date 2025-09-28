@@ -11,7 +11,8 @@
         "clock"
     ],
     "modules-right": [
-        "pulseaudio",
+        "pulseaudio#sink",
+        "pulseaudio#source",
         "power-profiles-daemon",
         "network",
         "bluetooth",
@@ -41,7 +42,7 @@
         "escape": true,
         "interval": 5,
         "tooltip": false,
-        "exec": "playerctl metadata --format='{{ title }}'",
+        "exec": "playerctl --ignore-player=firefox metadata --format='{{ title }}'",
         "on-click": "playerctl play-pause",
         "max-length": 30
     },
@@ -90,11 +91,32 @@
             "󰁹"
         ]
     },
-    "pulseaudio": {
+    // "pulseaudio": {
+    //     // "scroll-step": 1, // %, can be a float
+    //     "format": "{icon} {volume}%",
+    //     "format-muted": " ",
+    //     "format-icons": {
+    //         "default": [
+    //             "",
+    //             "",
+    //             ""
+    //         ]
+    //     },
+    //     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    //     "on-click-right": "pavucontrol"
+    // },
+    "pulseaudio#sink": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{icon} {volume}%",
+        "format": "{volume}% {icon} ",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": "  {icon}",
         "format-muted": " ",
         "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
             "default": [
                 "",
                 "",
@@ -102,6 +124,13 @@
             ]
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+    "pulseaudio#source": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": " ",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
         "on-click-right": "pavucontrol"
     },
     "group/tray-expander": {
@@ -158,7 +187,7 @@
         "format": "{icon} ",
         "format-wifi": "{icon} ",
         "format-ethernet": "󰀂",
-        "format-disconnected": "󰤮 ",
+        "format-disconnected": "󰤮",
         "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
