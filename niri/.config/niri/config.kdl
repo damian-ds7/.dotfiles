@@ -182,6 +182,7 @@ binds {
     Super+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a Code code";  }
     Super+E hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
 
+    Super+Shift+C hotkey-overlay-title="Toggle auto suspend" { spawn-sh "~/.local/bin/suspend.sh"; }
     Control+Alt+BackSpace hotkey-overlay-title="Reboot" { spawn "systemctl" "reboot";  }
     Control+Alt+Page_Up hotkey-overlay-title="Suspend" { spawn "systemctl" "suspend";  }
     Control+Alt+Home hotkey-overlay-title="Shut down" { spawn "systemctl" "poweroff";  }
@@ -310,7 +311,6 @@ binds {
     Super+F { maximize-column; }
     Super+Shift+F { fullscreen-window; }
     Super+G { expand-column-to-available-width; }
-    Super+Shift+C { center-column; }
     Super+Ctrl+C { center-visible-columns; }
 
     Super+Minus { set-column-width "-10%"; }
