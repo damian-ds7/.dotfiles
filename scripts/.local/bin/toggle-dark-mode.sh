@@ -17,8 +17,8 @@ switch_to_dark() {
     "$TMUX_THEME_DIR/reset.sh"
     ln -sfn "$THEME_DIR/catppuccin-mocha"  "$THEME_DIR/current"
     sed -i 's/^\([[:space:]]*active-color[[:space:]]\+\)"#[^"]*"/\1"#cba6f7"/' "$NIRI_CONF_DIR/config.kdl"
-#    sed -i 's/"theme-name": "ulauncher-theme-gnome-light"/"theme-name": "ulauncher-theme-gnome-dark"/' "$ULAUNCHER_SETTINGS"
-#    systemctl --user restart ulauncher
+    sed -i 's/"theme-name": "ulauncher-theme-gnome-light"/"theme-name": "ulauncher-theme-gnome-dark"/' "$ULAUNCHER_SETTINGS"
+    systemctl --user try-restart ulauncher
 }
 
 switch_to_light() {
@@ -27,8 +27,8 @@ switch_to_light() {
     "$TMUX_THEME_DIR/reset.sh"
     ln -sfn "$THEME_DIR/catppuccin-latte"  "$THEME_DIR/current"
     sed -i 's/^\([[:space:]]*active-color[[:space:]]\+\)"#[^"]*"/\1"#8839ef"/' "$NIRI_CONF_DIR/config.kdl"
-#    sed -i 's/"theme-name": "ulauncher-theme-gnome-dark"/"theme-name": "ulauncher-theme-gnome-light"/' "$ULAUNCHER_SETTINGS"
-#    systemctl --user restart ulauncher
+    sed -i 's/"theme-name": "ulauncher-theme-gnome-dark"/"theme-name": "ulauncher-theme-gnome-light"/' "$ULAUNCHER_SETTINGS"
+    systemctl --user try-restart ulauncher
 }
 
 if test "$(get_current_theme)" = "'prefer-light'"; then
@@ -37,6 +37,7 @@ else
     switch_to_light
 fi
 
-killall waybar && waybar &
+systemctl --user try-restart waybar.service
 tmux source-file "$TMUX_CONF_DIR/tmux.conf"
-killall swayosd-server && swayosd-server &
+systemctl --user try-restart swayosd-server.service
+
