@@ -221,7 +221,7 @@ binds {
 
     Super+O repeat=false { toggle-overview; }
     Super+Tab repeat=false { toggle-overview; }
-    Super+Shift+Tab repeat=false { spawn-sh "~/.local/bin/niri-window-switcher-fuzzel"; }
+    Super+Grave repeat=false { spawn-sh "~/.local/bin/niri-window-switcher-fuzzel"; }
 
     Super+Q repeat=false { close-window; }
 
