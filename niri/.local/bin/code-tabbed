@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-code "$@"
+code --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
 
 sleep 1
 
