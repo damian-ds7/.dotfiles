@@ -138,6 +138,7 @@
     // },
     "network": {
         "format-wifi": " ",
+        "format-disconnected": "󰖪 ",
         "format-ethernet": "󰀂 ",
         "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
