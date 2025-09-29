@@ -25,3 +25,4 @@ config/.config/lsd/colors.yaml
 config/.config/tmux/plugins
 .zsh_history
 .swayidle_toggle.lock
+.zcompdump
