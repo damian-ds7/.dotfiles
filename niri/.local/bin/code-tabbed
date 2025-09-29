@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+code "$@"
+
+sleep 1
+
+niri msg action consume-or-expel-window-left
+niri msg action toggle-column-tabbed-display
