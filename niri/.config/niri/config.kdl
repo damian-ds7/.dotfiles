@@ -18,6 +18,7 @@ cursor {
 input {
     keyboard {
         xkb {
+            layout "pl"
             options "caps:escape_shifted_capslock"
         }
     }
