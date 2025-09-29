@@ -67,14 +67,13 @@
         ]
     },
     "pulseaudio#sink": {
-        // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} ",
         "format-bluetooth": "{volume}% {icon}",
         "format-bluetooth-muted": "  {icon}",
         "format-muted": " ",
         "format-icons": {
-            "headphone": "",
-            "headset": "",
+            "headphone": " ",
+            "headset": " ",
             "phone": "",
             "portable": "",
             "car": "",
@@ -106,7 +105,7 @@
         ]
     },
     "tray": {
-        "icon-size": 21,
+        "icon-size": 18,
         "spacing": 15
     },
     "custom/expand-icon": {
