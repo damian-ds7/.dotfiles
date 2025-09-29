@@ -188,6 +188,7 @@ binds {
     Super+B hotkey-overlay-title="Zen Browser" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen"; }
     Super+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a Code code";  }
     Super+E hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
+    XF86Explorer hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
 
     Super+Shift+C hotkey-overlay-title="Toggle auto suspend" { spawn-sh "~/.local/bin/suspend.sh"; }
     Control+Alt+BackSpace hotkey-overlay-title="Reboot" { spawn "systemctl" "reboot";  }
@@ -202,8 +203,9 @@ binds {
     Super+Shift+D hotkey-overlay-title="Toggle Dark/Light Style" { spawn-sh "~/.local/bin/toggle-dark-mode.sh"; }
 
     Super+Space hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
+    XF86Search hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
     Super+V hotkey-overlay-title="Clipboard history" {spawn-sh "clipman --histpath=/tmp/clipman.json pick --tool=CUSTOM --tool-args='fuzzel -d --config=/home/damian/.config/fuzzel/clipboard.ini'"; }
-    Super+Period hotkey-overlay-title="Fuzzel" { spawn "~/.local/bin/bemoji"; }
+    Super+Period hotkey-overlay-title="Emoji search" { spawn "~/.local/bin/bemoji"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume raise"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume lower"; }
