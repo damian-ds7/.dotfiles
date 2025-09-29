@@ -40,7 +40,6 @@ tooltip {
     border-radius: 10px;
     transition: none;
 
-    font-size: 14px;
     color: @mauve;
     background-color: @surface0;
     border: 2px solid @surface2;
