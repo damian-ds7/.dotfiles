@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+deezer_open=$(niri msg windows | grep "App ID: \"Deezer\"")
+if [ -n "$deezer_open" ]; then
+    nirius focus -a Deezer
+else
+    niri msg action spawn-sh -- "flatpak run dev.aunetx.deezer"
+fi
