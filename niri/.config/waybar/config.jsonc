@@ -35,6 +35,7 @@
         "tooltip": false,
         "exec": "playerctl --ignore-player=firefox metadata --format='{{ title }}'",
         "on-click": "playerctl play-pause",
+        "on-click-right": "$HOME/.local/bin/focus-or-spawn-deezer",
         "max-length": 30
     },
     "clock": {
