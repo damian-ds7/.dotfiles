@@ -130,6 +130,7 @@ alias lg='lazygit'
 # -------------------------
 
 alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
+alias tcode='code-tabbed'
 
 # -------------------------
 #  Custom Functions
