@@ -124,6 +124,7 @@ window-rule {
 window-rule {
     match app-id="zen" title="^Picture-in-Picture$"
     match title="impala"
+    match title="Discord Updater"
     open-floating true
 }
 
