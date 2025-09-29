@@ -1,8 +1,0 @@
-[Unit]
-PartOf=graphical-session.target
-After=graphical-session.target
-Requisite=graphical-session.target
-
-[Service]
-ExecStart=/usr/local/sbin/sway-audio-idle-inhibit
-Restart=on-failure
