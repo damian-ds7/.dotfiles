@@ -197,7 +197,7 @@ binds {
     Control+Alt+XF86AudioMute hotkey-overlay-title="Shut down" { spawn "systemctl" "poweroff";  }
 
     Super+Escape hotkey-overlay-title="Resources" { spawn "flatpak" "run" "net.nokyan.Resources";  }
-    Super+M hotkey-overlay-title="Deezer" { spawn "flatpak" "run" "dev.aunetx.deezer";  }
+    Super+M hotkey-overlay-title="Deezer" { spawn-sh "~/.local/bin/focus-or-spawn-deezer";  }
 
     Super+Shift+D hotkey-overlay-title="Toggle Dark/Light Style" { spawn-sh "~/.local/bin/toggle-dark-mode.sh"; }
 
