@@ -189,7 +189,7 @@ binds {
 
     Mod+Shift+L hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
     Super+B hotkey-overlay-title="Zen Browser" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen"; }
-    Super+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a Code code";  }
+    Super+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a code -- code --enable-features=UseOzonePlatform --ozone-platform=wayland";  }
     Super+E hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
     XF86Explorer hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
 
