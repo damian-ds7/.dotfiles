@@ -115,7 +115,7 @@
         "tooltip": false
     },
     "bluetooth": {
-        "format": "",
+        "format": "<big></big>",
         "format-disabled": "󰂲",
         "format-connected": "",
         "tooltip-format": "Devices connected: {num_connections}",
