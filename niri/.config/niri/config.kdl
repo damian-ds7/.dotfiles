@@ -15,6 +15,17 @@ cursor {
     xcursor-theme "Bibata-Modern-Ice"
 }
 
+output "ASUSTek COMPUTER INC VG27A R7LMQS013728" {
+    // off
+    mode "2560x1440@119.998"
+    // variable-refresh-rate // on-demand=true
+    focus-at-startup
+}
+
+output "Acer Technologies Acer VG240Y 0x03427A2D" {
+    mode "1920x1080@75.000"
+}
+
 input {
     keyboard {
         xkb {
