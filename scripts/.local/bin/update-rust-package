@@ -1,0 +1,101 @@
+#!/bin/env bash
+
+show_usage() {
+    cat << EOF
+Usage: $0 <repo_url> [cargo_options] -- <executable1> [executable2] ...
+   or: $0 <repo_url> <executable1> [executable2] ...
+
+Updates manually installed Rust programs from Git repositories.
+
+Arguments:
+  repo_url        Git repository URL to clone and build from
+  cargo_options   Optional cargo build options (use -- separator if needed)
+  executables     Names of executables to install to ~/.local/bin
+
+Options:
+  -h, --help      Show this help message
+
+EOF
+}
+
+
+update_rust_program() {
+    local repo_url="$1"
+    shift
+
+    local cargo_options=""
+    local executables=""
+
+    while [[ $# -gt 0 ]]; do
+        if [[ "$1" == "--" ]]; then
+            shift
+            executables="$@"
+            break
+        else
+            cargo_options="$cargo_options $1"
+            shift
+        fi
+    done
+
+    if [[ -z "$executables" ]]; then
+        executables="$cargo_options"
+        cargo_options=""
+    fi
+
+    cargo_options="${cargo_options# }"
+
+
+    local repo_name=$(basename "$repo_url" .git)
+
+    local temp_dir=$(mktemp -d)
+    echo "Working in temporary directory: $temp_dir"
+
+    git clone "$repo_url" "$temp_dir/$repo_name"
+    cd "$temp_dir/$repo_name" || return 1
+
+    local latest_tag=$(git describe --tags --abbrev=0 2>/dev/null)
+    if [ -z "$latest_tag" ]; then
+        latest_tag=$(git rev-parse --short HEAD)
+        echo "No tags found, using commit hash: $latest_tag"
+    else
+        echo "Latest version: $latest_tag"
+    fi
+
+    local installed_version=""
+    for executable in $executables; do
+        if [ -f "$HOME/.cargo/bin/$executable" ]; then
+            installed_version=$("$HOME/.cargo/bin/$executable" --version 2>/dev/null | head -n 1)
+            local version_output=$(echo "$installed_version" | awk '{print $2}')
+
+            if [[ "$latest_tag" == "v$version_output" ]] || [[ "$latest_tag" == "$version_output" ]]; then
+                echo "$executable is already up to date (version $latest_tag)"
+                cd - > /dev/null
+                rm -rf "$temp_dir"
+                return 0
+            fi
+        fi
+    done
+
+    echo "Building with cargo..."
+    cargo build --release $cargo_options
+
+    for executable in $executables; do
+        if [ -f "target/release/$executable" ]; then
+            echo "Installing $executable to ~/.cargo/bin"
+            install -Dm755 "target/release/$executable" "$HOME/.cargo/bin/$executable"
+        else
+            echo "Warning: $executable not found in target/release/"
+        fi
+    done
+
+    cd - > /dev/null
+    rm -rf "$temp_dir"
+    echo "Update complete!"
+}
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+    show_usage
+    exit 0
+fi
+
+update_rust_program "$@"
