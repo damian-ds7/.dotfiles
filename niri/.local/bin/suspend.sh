@@ -31,7 +31,7 @@ else
       timeout 180 'niri msg action power-off-monitors' \
       timeout 240 'swaylock -f' \
       timeout 300 'systemctl suspend' \
-      resume 'niri msg action power-off-monitors' \
+      resume 'niri msg action power-on-monitors' \
       before-sleep 'swaylock -f' &
 
     touch "$LOCKFILE"
