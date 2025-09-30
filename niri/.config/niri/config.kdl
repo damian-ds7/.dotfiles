@@ -198,7 +198,7 @@ binds {
     Super+T hotkey-overlay-title="Ghostty with Tmux" { spawn-sh "ghostty --class=com.damian.tmux -e ~/.local/opt/ghostty-command.sh"; }
     Super+Alt+T hotkey-overlay-title="Ghostty" { spawn "ghostty"; }
 
-    Mod+Control+L hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
+    Mod+Control+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
     Super+B hotkey-overlay-title="Zen Browser" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen"; }
     Super+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a code -- code --enable-features=UseOzonePlatform --ozone-platform=wayland";  }
     Super+E hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
