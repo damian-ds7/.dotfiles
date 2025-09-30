@@ -140,7 +140,7 @@
     "network": {
         "format-wifi": " ",
         "format-disconnected": "󰖪 ",
-        "format-ethernet": "󰀂 ",
+        "format-ethernet": "<big>󰌗</big> {ifname}",
         "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
@@ -151,7 +151,7 @@
         "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
         "tooltip": true,
         "format-icons": {
-            "default": "",
+            "default": " ",
             "performance": "",
             "balanced": " ",
             "power-saver": " "
