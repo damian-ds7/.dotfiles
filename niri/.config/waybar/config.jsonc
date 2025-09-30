@@ -41,7 +41,8 @@
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "  {:%d/%m/%Y}",
-        "format": "  {:%H:%M}"
+        "format": "  {:%H:%M}",
+        "on-click-right": "/usr/bin/gnome-calendar"
     },
     "battery": {
         "interval": 30,
