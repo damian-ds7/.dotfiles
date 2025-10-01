@@ -214,7 +214,7 @@ binds {
     Mod+E hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
     XF86Explorer hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
 
-    Mod+Shift+C hotkey-overlay-title="Toggle auto suspend" { spawn-sh "~/.local/bin/swayidle-toggle"; }
+    Mod+Shift+C hotkey-overlay-title="Toggle auto suspend" { spawn-sh "~/.local/bin/hypridle-toggle"; }
     Control+Alt+BackSpace hotkey-overlay-title="Reboot" { spawn "systemctl" "reboot";  }
     Control+Alt+Page_Up hotkey-overlay-title="Suspend" { spawn "systemctl" "suspend";  }
     Control+Alt+Home { spawn "systemctl" "poweroff";  }

@@ -1,0 +1,27 @@
+#!/bin/env bash
+
+SHOW_NOTIFICATIONS=true
+
+while getopts "n" opt; do
+    case $opt in
+        n) SHOW_NOTIFICATIONS=false ;;
+        \?)
+            echo "Usage: $0 [-n]"
+            exit 1
+            ;;
+    esac
+done
+
+send_notification() {
+    if [ "$SHOW_NOTIFICATIONS" = true ]; then
+        notify-send -t 5000 "$1" "$2"
+    fi
+}
+
+if systemctl --user is-active --quiet hypridle.service; then
+    systemctl --user stop hypridle.service
+    send_notification "Auto Suspend" "Auto Suspend is now disabled"
+else
+    systemctl --user start hypridle.service
+    send_notification "Auto Suspend" "Auto Suspend is now enabled"
+fi
