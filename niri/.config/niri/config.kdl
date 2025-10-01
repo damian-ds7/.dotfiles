@@ -189,6 +189,7 @@ window-rule {
 }
 
 window-rule {
+    match app-id="chrome-teams.microsoft.com__v2-Default"
     match app-id="chrome-teams.microsoft.com__v2_-Default"
     open-on-workspace "teams"
     open-maximized true
