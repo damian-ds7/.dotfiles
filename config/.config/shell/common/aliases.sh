@@ -75,7 +75,8 @@ alias sunano='sudo nano'
 #  Package Management
 # -------------------------
 
-alias update='sudo dnf update'
+alias refresh='sudo dnf upgrade --refresh'
+alias upgrade='sudo dnf upgrade'
 alias inst='sudo dnf install'
 alias remove='sudo dnf remove'
 
