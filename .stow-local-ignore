@@ -27,3 +27,4 @@ config/.config/tmux/plugins
 .swayidle_toggle.lock
 .zcompdump
 hypridle.conf
+hyprlock.conf
