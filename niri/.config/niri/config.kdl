@@ -84,7 +84,7 @@ input {
 }
 
 layout {
-    gaps 4
+    gaps 8
     center-focused-column "never"
 
     preset-column-widths {
