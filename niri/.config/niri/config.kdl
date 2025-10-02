@@ -146,6 +146,7 @@ window-rule {
 
 window-rule {
     match app-id="zen" title="^Picture-in-Picture$"
+    match app-id="org.gnome.Calculator"
     match title="impala"
     match title="Discord Updater"
     open-floating true
@@ -175,8 +176,8 @@ window-rule {
 }
 
 window-rule {
-    match app-id="Code"
-    match app-id="code"
+    match app-id="Code$"
+    match app-id="cod$"
     exclude app-id="page.codeberg.libre_menu_editor.LibreMenuEditor"
     open-on-workspace "code"
     open-maximized true
