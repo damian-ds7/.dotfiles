@@ -40,4 +40,4 @@ fi
 systemctl --user try-restart waybar.service
 tmux source-file "$TMUX_CONF_DIR/tmux.conf"
 systemctl --user try-restart swayosd-server.service
-
+makoctl reload
