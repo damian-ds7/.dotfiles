@@ -8,7 +8,6 @@ layer=overlay
 width=400
 height=180
 margin=8
-padding=0,5,10
 border-size=2
 border-radius=8
 icons=1
