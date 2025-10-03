@@ -1,6 +1,7 @@
 include=~/.config/themes/current/mako
 font=JetbrainsMono Nerd Font 11
 format=<b>%a ⏵</b> %s\n%b
+anchor=top-center
 sort=-time
 output=DP-2,eDP-1
 layer=overlay
