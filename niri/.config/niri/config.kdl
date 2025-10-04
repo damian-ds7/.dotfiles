@@ -214,7 +214,7 @@ binds {
     Mod+Control+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "hyprlock"; }
     Mod+B hotkey-overlay-title="Zen Browser" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen"; }
     Mod+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a '^code$' -- code --enable-features=UseOzonePlatform --ozone-platform=wayland";  }
-    Mod+E hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
+    Mod+E hotkey-overlay-title="Nautilus" { spawn "nautilus";  }
     XF86Explorer hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
 
     Mod+S hotkey-overlay-title="Toggle auto DND" { spawn-sh "qs ipc call controlCenter toggle"; }
