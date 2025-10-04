@@ -27,7 +27,13 @@ NPanel {
 
   // Navigation properties
   property int selectedIndex: 0
-  readonly property var powerOptions: [{
+  readonly property var powerOptions: [
+    {
+      "action": "logout",
+      "icon": "logout",
+      "title": I18n.tr("session-menu.logout"),
+      "subtitle": I18n.tr("session-menu.logout-subtitle")
+    }, {
       "action": "lock",
       "icon": "lock",
       "title": I18n.tr("session-menu.lock"),
@@ -42,11 +48,6 @@ NPanel {
       "icon": "reboot",
       "title": I18n.tr("session-menu.reboot"),
       "subtitle": I18n.tr("session-menu.reboot-subtitle")
-    }, {
-      "action": "logout",
-      "icon": "logout",
-      "title": I18n.tr("session-menu.logout"),
-      "subtitle": I18n.tr("session-menu.logout-subtitle")
     }, {
       "action": "shutdown",
       "icon": "shutdown",
