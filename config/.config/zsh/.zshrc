@@ -52,7 +52,7 @@ zstyle ':completion:*:ssh:argument-1:'       tag-order  hosts users
 zstyle ':completion:*:scp:argument-rest:'    tag-order  hosts files users
 zstyle ':completion:*:(ssh|scp|rdp):*:hosts' hosts
 
-# zstyle ':z4h:ssh-agent:' start      yes
+zstyle ':z4h:ssh-agent:' start      yes
 # zstyle ':z4h:ssh-agent:' extra-args -t 20h
 
 # Clone additional Git repositories from GitHub.
