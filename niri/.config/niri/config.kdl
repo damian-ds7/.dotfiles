@@ -135,6 +135,11 @@ layer-rule {
     place-within-backdrop true
 }
 
+layer-rule {
+    match namespace="noctalia-notifications"
+    block-out-from "screencast"
+}
+
 workspace "browser"
 workspace "code"
 workspace "teams"
