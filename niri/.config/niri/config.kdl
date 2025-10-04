@@ -2,7 +2,7 @@
 // https://yalter.github.io/niri/Configuration%3A-Introduction.html
 
 spawn-sh-at-startup "wl-paste -t text --watch clipman --histpath=/tmp/clipman.json store"
-spawn-sh-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+spawn-sh-at-startup "/usr/libexec/xfce-polkit"
 // spawn-sh-at-startup "~/.local/bin/suspend.sh -n"
 
 hotkey-overlay {
@@ -127,7 +127,7 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 switch-events {
-    lid-close {spawn "swaylock";}
+    lid-close {spawn "hyprlock";}
 }
 
 layer-rule {
@@ -148,6 +148,7 @@ window-rule {
 window-rule {
     match app-id="zen" title="^Picture-in-Picture$"
     match app-id="org.gnome.Calculator"
+    match app-id="xfce-polkit"
     match title="impala"
     match title="Discord Updater"
     open-floating true
