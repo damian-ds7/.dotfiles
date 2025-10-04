@@ -72,7 +72,6 @@ ShellRoot {
     sourceComponent: Item {
       Component.onCompleted: {
         Logger.log("Shell", "---------------------------")
-        MatugenService.init()
         ColorSchemeService.init()
         BarWidgetRegistry.init()
         LocationService.init()

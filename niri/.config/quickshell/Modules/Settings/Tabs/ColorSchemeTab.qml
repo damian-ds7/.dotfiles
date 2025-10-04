@@ -73,28 +73,6 @@ ColumnLayout {
     }
   }
 
-  // Simple process to check if matugen exists
-  Process {
-    id: matugenCheck
-    command: ["which", "matugen"]
-    running: false
-
-    onExited: function (exitCode) {
-      if (exitCode === 0) {
-        // Matugen exists, enable it
-        Settings.data.colorSchemes.useWallpaperColors = true
-        MatugenService.generateFromWallpaper()
-        ToastService.showNotice(I18n.tr("settings.color-scheme.color-source.use-wallpaper-colors.label"), I18n.tr("toast.wallpaper-colors.enabled"))
-      } else {
-        // Matugen not found
-        ToastService.showWarning(I18n.tr("settings.color-scheme.color-source.use-wallpaper-colors.label"), I18n.tr("toast.wallpaper-colors.not-installed"))
-      }
-    }
-
-    stdout: StdioCollector {}
-    stderr: StdioCollector {}
-  }
-
   // A non-visual Item to host the Repeater that loads the color scheme files.
   Item {
     visible: false
@@ -125,84 +103,19 @@ ColumnLayout {
     }
   }
 
-  // Main Toggles - Dark Mode / Matugen
+  // Main Toggles - Dark Mode
   NHeader {
     label: I18n.tr("settings.color-scheme.color-source.section.label")
     description: I18n.tr("settings.color-scheme.color-source.section.description")
   }
 
-  // Dark Mode Toggle (affects both Matugen and predefined schemes that provide variants)
+  // Dark Mode Toggle
   NToggle {
     label: I18n.tr("settings.color-scheme.color-source.dark-mode.label")
     description: I18n.tr("settings.color-scheme.color-source.dark-mode.description")
     checked: Settings.data.colorSchemes.darkMode
     enabled: true
     onToggled: checked => Settings.data.colorSchemes.darkMode = checked
-  }
-
-  // Use Wallpaper Colors
-  NToggle {
-    label: I18n.tr("settings.color-scheme.color-source.use-wallpaper-colors.label")
-    description: I18n.tr("settings.color-scheme.color-source.use-wallpaper-colors.description")
-    checked: Settings.data.colorSchemes.useWallpaperColors
-    onToggled: checked => {
-                 if (checked) {
-                   // Check if matugen is installed
-                   matugenCheck.running = true
-                 } else {
-                   Settings.data.colorSchemes.useWallpaperColors = false
-                   ToastService.showNotice(I18n.tr("settings.color-scheme.color-source.use-wallpaper-colors.label"), I18n.tr("toast.wallpaper-colors.disabled"))
-
-                   if (Settings.data.colorSchemes.predefinedScheme) {
-
-                     ColorSchemeService.applyScheme(Settings.data.colorSchemes.predefinedScheme)
-                   }
-                 }
-               }
-  }
-
-  // Matugen Scheme Type Selection
-  NComboBox {
-    label: I18n.tr("settings.color-scheme.color-source.matugen-scheme-type.label")
-    description: I18n.tr("settings.color-scheme.color-source.matugen-scheme-type.description")
-    enabled: Settings.data.colorSchemes.useWallpaperColors
-    opacity: Settings.data.colorSchemes.useWallpaperColors ? 1.0 : 0.6
-    visible: Settings.data.colorSchemes.useWallpaperColors
-
-    model: [{
-        "key": "scheme-content",
-        "name": "Content"
-      }, {
-        "key": "scheme-expressive",
-        "name": "Expressive"
-      }, {
-        "key": "scheme-fidelity",
-        "name": "Fidelity"
-      }, {
-        "key": "scheme-fruit-salad",
-        "name": "Fruit Salad"
-      }, {
-        "key": "scheme-monochrome",
-        "name": "Monochrome"
-      }, {
-        "key": "scheme-neutral",
-        "name": "Neutral"
-      }, {
-        "key": "scheme-rainbow",
-        "name": "Rainbow"
-      }, {
-        "key": "scheme-tonal-spot",
-        "name": "Tonal Spot"
-      }]
-
-    currentKey: Settings.data.colorSchemes.matugenSchemeType
-
-    onSelected: key => {
-                  Settings.data.colorSchemes.matugenSchemeType = key
-                  if (Settings.data.colorSchemes.useWallpaperColors) {
-                    MatugenService.generateFromWallpaper()
-                  }
-                }
   }
 
   NDivider {
@@ -221,22 +134,6 @@ ColumnLayout {
     NHeader {
       label: I18n.tr("settings.color-scheme.predefined.section.label")
       description: I18n.tr("settings.color-scheme.predefined.section.description")
-    }
-
-    // Generate templates for predefined schemes
-    NCheckbox {
-      Layout.fillWidth: true
-      label: I18n.tr("settings.color-scheme.predefined.generate-templates.label")
-      description: I18n.tr("settings.color-scheme.predefined.generate-templates.description")
-      checked: Settings.data.colorSchemes.generateTemplatesForPredefined
-      onToggled: checked => {
-                   Settings.data.colorSchemes.generateTemplatesForPredefined = checked
-                   // Re-generate templates if a predefined scheme is currently active
-                   if (!Settings.data.colorSchemes.useWallpaperColors && Settings.data.colorSchemes.predefinedScheme) {
-                     ColorSchemeService.applyScheme(Settings.data.colorSchemes.predefinedScheme)
-                   }
-                 }
-      Layout.bottomMargin: Style.marginL * scaling
     }
 
     // Color Schemes Grid

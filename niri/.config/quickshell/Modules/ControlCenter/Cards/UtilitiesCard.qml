@@ -50,15 +50,6 @@ NBox {
       }
     }
 
-    // Wallpaper
-    NIconButton {
-      visible: Settings.data.wallpaper.enabled
-      icon: "wallpaper-selector"
-      tooltipText: I18n.tr("tooltips.wallpaper-selector")
-      onClicked: PanelService.getPanel("wallpaperPanel")?.toggle(this)
-      onRightClicked: WallpaperService.setRandomWallpaper()
-    }
-
     Item {
       Layout.fillWidth: true
     }

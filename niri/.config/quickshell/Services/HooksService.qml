@@ -16,13 +16,6 @@ Singleton {
     }
   }
 
-  Connections {
-    target: WallpaperService
-    function onWallpaperChanged(screenName, path) {
-      executeWallpaperHook(path, screenName)
-    }
-  }
-
   // Execute wallpaper change hook
   function executeWallpaperHook(wallpaperPath, screenName) {
     if (!Settings.data.hooks?.enabled) {

@@ -33,7 +33,7 @@
             "center": [
                 {
                     "customFont": "",
-                    "formatHorizontal": "HH:mm ddd, MMM dd",
+                    "formatHorizontal": "HH:mm ddd MMM dd",
                     "formatVertical": "HH mm - dd MM",
                     "id": "Clock",
                     "useCustomFont": false,
@@ -92,7 +92,6 @@
     "colorSchemes": {
         "darkMode": true,
         "generateTemplatesForPredefined": false,
-        "matugenSchemeType": "scheme-fruit-salad",
         "predefinedScheme": "Catppuccin",
         "useWallpaperColors": false
     },
