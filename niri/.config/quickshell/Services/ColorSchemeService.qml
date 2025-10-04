@@ -131,6 +131,35 @@ Singleton {
     stderr: StdioCollector {}
   }
 
+  // Internal loader to read a scheme file
+  FileView {
+    id: schemeReader
+    onLoaded: {
+      try {
+        var data = JSON.parse(text())
+        var variant = data
+        // If scheme provides dark/light variants, pick based on settings
+        if (data && (data.dark || data.light)) {
+          if (Settings.data.colorSchemes.darkMode) {
+            variant = data.dark || data.light
+          } else {
+            variant = data.light || data.dark
+          }
+        }
+        writeColorsToDisk(variant)
+        Logger.log("ColorScheme", "Applying color scheme:", getBasename(path))
+
+        // Generate Matugen templates if any are enabled and setting allows it
+        if (Settings.data.colorSchemes.generateTemplatesForPredefined && hasEnabledMatugenTemplates()) {
+          MatugenService.generateFromPredefinedScheme(data)
+        }
+      } catch (e) {
+        Logger.error("ColorScheme", "Failed to parse scheme JSON:", path, e)
+      }
+    }
+  }
+
+
   // Writer to colors.json using a JsonAdapter for safety
   FileView {
     id: colorsWriter
