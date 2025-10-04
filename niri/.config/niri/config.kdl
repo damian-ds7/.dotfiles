@@ -217,7 +217,12 @@ binds {
     Mod+E hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
     XF86Explorer hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
 
-    Mod+Shift+C hotkey-overlay-title="Toggle auto suspend" { spawn-sh "~/.local/bin/hypridle-toggle"; }
+    Mod+S hotkey-overlay-title="Toggle auto DND" { spawn-sh "qs ipc call controlCenter toggle"; }
+    Mod+Shift+N hotkey-overlay-title="Toggle auto DND" { spawn-sh "qs ipc call notifications toggleDND"; }
+    Mod+Shift+C hotkey-overlay-title="Toggle auto suspend" { spawn-sh "qs ipc call idleInhibitor toggle"; }
+    Control+Alt+Delete hotkey-overlay-title="Session menu" { spawn-sh "qs ipc call sessionMenu toggle"; }
+    Mod+Comma hotkey-overlay-title="Noctalia settings" { spawn-sh "qs ipc call settings toggle"; }
+
     Control+Alt+BackSpace hotkey-overlay-title="Reboot" { spawn "systemctl" "reboot";  }
     Control+Alt+Page_Up hotkey-overlay-title="Suspend" { spawn "systemctl" "suspend";  }
     Control+Alt+Home { spawn "systemctl" "poweroff";  }
@@ -263,19 +268,19 @@ binds {
 
     Alt+Tab   { focus-window-down-or-top; }
 
-    Mod+Ctrl+Left  { move-column-left; }
-    Mod+Ctrl+Down  { move-window-down; }
-    Mod+Ctrl+Up    { move-window-up; }
-    Mod+Ctrl+Right { move-column-right; }
-    Mod+Ctrl+H     { move-column-left; }
-    Mod+Ctrl+J     { move-window-down; }
-    Mod+Ctrl+K     { move-window-up; }
-    Mod+Ctrl+L     { move-column-right; }
+    Mod+Control+Left  { move-column-left; }
+    Mod+Control+Down  { move-window-down; }
+    Mod+Control+Up    { move-window-up; }
+    Mod+Control+Right { move-column-right; }
+    Mod+Control+H     { move-column-left; }
+    Mod+Control+J     { move-window-down; }
+    Mod+Control+K     { move-window-up; }
+    Mod+Control+L     { move-column-right; }
 
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
-    Mod+Ctrl+Home { move-column-to-first; }
-    Mod+Ctrl+End  { move-column-to-last; }
+    Mod+Control+Home { move-column-to-first; }
+    Mod+Control+End  { move-column-to-last; }
 
     Mod+Shift+Left  { focus-monitor-left; }
     Mod+Shift+Down  { focus-monitor-down; }
@@ -286,14 +291,14 @@ binds {
     Mod+Shift+K     { focus-monitor-up; }
     Mod+Shift+L     { focus-monitor-right; }
 
-    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-    Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+    Mod+Shift+Control+Left  { move-column-to-monitor-left; }
+    Mod+Shift+Control+Down  { move-column-to-monitor-down; }
+    Mod+Shift+Control+Up    { move-column-to-monitor-up; }
+    Mod+Shift+Control+Right { move-column-to-monitor-right; }
+    Mod+Shift+Control+H     { move-column-to-monitor-left; }
+    Mod+Shift+Control+J     { move-column-to-monitor-down; }
+    Mod+Shift+Control+K     { move-column-to-monitor-up; }
+    Mod+Shift+Control+L     { move-column-to-monitor-right; }
 
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
@@ -308,18 +313,18 @@ binds {
 
     Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Control+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Control+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+    Mod+Control+WheelScrollRight { move-column-right; }
+    Mod+Control+WheelScrollLeft  { move-column-left; }
 
     Mod+Shift+WheelScrollDown      { focus-column-right; }
     Mod+Shift+WheelScrollUp        { focus-column-left; }
-    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+    Mod+Control+Shift+WheelScrollDown { move-column-right; }
+    Mod+Control+Shift+WheelScrollUp   { move-column-left; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
@@ -330,26 +335,26 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
-    Mod+Ctrl+4 { move-column-to-workspace 4; }
-    Mod+Ctrl+5 { move-column-to-workspace 5; }
-    Mod+Ctrl+6 { move-column-to-workspace 6; }
-    Mod+Ctrl+7 { move-column-to-workspace 7; }
-    Mod+Ctrl+8 { move-column-to-workspace 8; }
-    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+Control+1 { move-column-to-workspace 1; }
+    Mod+Control+2 { move-column-to-workspace 2; }
+    Mod+Control+3 { move-column-to-workspace 3; }
+    Mod+Control+4 { move-column-to-workspace 4; }
+    Mod+Control+5 { move-column-to-workspace 5; }
+    Mod+Control+6 { move-column-to-workspace 6; }
+    Mod+Control+7 { move-column-to-workspace 7; }
+    Mod+Control+8 { move-column-to-workspace 8; }
+    Mod+Control+9 { move-column-to-workspace 9; }
 
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
 
     Mod+R { switch-preset-column-width; }
-    Mod+Shift+R { switch-preset-window-height; }
-    Mod+Ctrl+R { reset-window-height; }
+    Mod+Shift+Control+R { switch-preset-window-height; }
+    Mod+Control+R { reset-window-height; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+G { expand-column-to-available-width; }
-    Mod+Ctrl+C { center-visible-columns; }
+    Mod+Control+C { center-visible-columns; }
 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
@@ -363,13 +368,12 @@ binds {
 
     Print { screenshot; }
     Mod+Shift+S { screenshot; }
-    Ctrl+Print { screenshot-screen; }
+    Control+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
     Mod+Control+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
 
     Mod+Shift+P { power-off-monitors; }
 }
