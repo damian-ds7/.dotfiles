@@ -179,6 +179,11 @@ window-rule {
 }
 
 window-rule {
+    match app-id="mpv"
+    open-maximized true
+}
+
+window-rule {
     match app-id="zen"
     open-on-workspace "browser"
     open-maximized true
