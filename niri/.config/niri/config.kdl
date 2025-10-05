@@ -83,6 +83,7 @@ input {
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     focus-follows-mouse max-scroll-amount="95%"
+    disable-power-key-handling
 }
 
 layout {
@@ -244,6 +245,7 @@ binds {
     Control+Alt+Home { spawn "systemctl" "poweroff";  }
     Control+Alt+BackSlash { spawn "systemctl" "poweroff";  }
     Control+Alt+XF86AudioMute hotkey-overlay-title="Shut down" { spawn "systemctl" "poweroff";  }
+    XF86PowerOff { spawn-sh "qs ipc call sessionMenu toggle"; }
 
     Mod+Escape hotkey-overlay-title="Resources" { spawn "flatpak" "run" "net.nokyan.Resources";  }
     Mod+M hotkey-overlay-title="Deezer" { spawn-sh "~/.local/bin/focus-or-spawn-deezer";  }
