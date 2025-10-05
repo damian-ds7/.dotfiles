@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+CACHE_FILE="$HOME/.cache/fuzzel-window-switcher"
+CACHE_DIR="$(dirname "$CACHE_FILE")"
+
+mkdir -p "$CACHE_DIR"
+
+declare -A icon_cache
+if [ -f "$CACHE_FILE" ]; then
+  while IFS='=' read -r key value; do
+    icon_cache["$key"]="$value"
+  done < "$CACHE_FILE"
+fi
+
+get_icon_name() {
+  local app_id="$1"
+
+  if [ -n "${icon_cache[$app_id]}" ]; then
+    echo "${icon_cache[$app_id]}"
+    return
+  fi
+
+  local icon=""
+
+  for dir in ~/.local/share/applications /usr/share/applications /usr/local/share/applications; do
+    if [ -f "$dir/$app_id.desktop" ]; then
+      icon=$(grep "^Icon=" "$dir/$app_id.desktop" | head -1 | cut -d'=' -f2)
+      if [ -n "$icon" ]; then
+        icon_cache["$app_id"]="$icon"
+        echo "$app_id=$icon" >> "$CACHE_FILE"
+        echo "$icon"
+        return
+      fi
+    fi
+  done
+
+  for dir in ~/.local/share/applications /usr/share/applications /usr/local/share/applications; do
+    [ -d "$dir" ] || continue
+
+    for desktop_file in "$dir"/*.desktop; do
+      [ -f "$desktop_file" ] || continue
+
+      wm_class=$(grep "^StartupWMClass=" "$desktop_file" | head -1 | cut -d'=' -f2)
+
+      if [ "$wm_class" = "$app_id" ]; then
+        icon=$(grep "^Icon=" "$desktop_file" | head -1 | cut -d'=' -f2)
+        if [ -n "$icon" ]; then
+          icon_cache["$app_id"]="$icon"
+          echo "$app_id=$icon" >> "$CACHE_FILE"
+          echo "$icon"
+          return
+        fi
+      fi
+    done
+  done
+
+  icon_cache["$app_id"]="$app_id"
+  echo "$app_id=$app_id" >> "$CACHE_FILE"
+  echo "$app_id"
+}
+
+window_ids=()
+window_titles=()
+
+while read i; do
+  declare -a line_array="($i)"
+  window_ids+=(${line_array[0]})
+  icon_name=$(get_icon_name "${line_array[1]}")
+  window_titles+=("${line_array[1]} - ${line_array[2]} \0icon\x1f${icon_name}")
+done <<<$(niri msg --json windows | jq -r '.[] | [ .id, .app_id, .title] | "\""+join ("\" \"")+"\""')
+
+result=$(printf "%b\n" "${window_titles[@]}" | fuzzel --counter --dmenu --index)
+
+if [ "x$result" != "x" ] && [ $result != -1 ]; then
+  niri msg action focus-window --id ${window_ids[result]}
+fi
