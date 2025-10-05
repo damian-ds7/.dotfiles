@@ -260,7 +260,7 @@ binds {
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Tab repeat=false { toggle-overview; }
-    Mod+Grave repeat=false { spawn-sh "~/.local/bin/niri-window-switcher-fuzzel"; }
+    Mod+Grave repeat=false { spawn-sh "~/.local/bin/niri-window-switcher"; }
 
     Mod+Q repeat=false { close-window; }
 
