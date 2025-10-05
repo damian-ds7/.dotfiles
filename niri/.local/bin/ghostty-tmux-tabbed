@@ -13,4 +13,4 @@ fi
 
 commands="niri msg action consume-or-expel-window-left; /home/damian/.local/opt/vscode-tmux-session.sh '$workspace'"
 
-ghostty --class=com.code."$workspace" -e sh -c "$commands"
+ghostty --title="Tmux - $workspace" -e sh -c "$commands"
