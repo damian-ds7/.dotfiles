@@ -230,7 +230,8 @@ binds {
     Mod+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a '^[cC]ode$' -- code --enable-features=UseOzonePlatform --ozone-platform=wayland";  }
     XF86Explorer hotkey-overlay-title="Nautilus" { spawn-sh "ghostty --class=com.damian.yazi -e yazi";  }
 
-    Mod+S hotkey-overlay-title="Toggle auto DND" { spawn-sh "qs ipc call controlCenter toggle"; }
+    Mod+S hotkey-overlay-title="Toggle control center" { spawn-sh "qs ipc call controlCenter toggle"; }
+    Mod+Z hotkey-overlay-title="Toggle notification center" { spawn-sh "qs ipc call notifications toggleHistory"; }
     Mod+Shift+N hotkey-overlay-title="Toggle auto DND" { spawn-sh "qs ipc call notifications toggleDND"; }
     Mod+Shift+C hotkey-overlay-title="Toggle auto suspend" { spawn-sh "qs ipc call idleInhibitor toggle"; }
     Control+Alt+Delete hotkey-overlay-title="Session menu" { spawn-sh "qs ipc call sessionMenu toggle"; }
