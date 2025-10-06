@@ -165,6 +165,7 @@ window-rule {
 
 window-rule {
     match app-id="com.damian.yazi"
+    match app-id="org.gnome.Calendar"
     default-column-width { proportion 0.6666; }
 }
 
