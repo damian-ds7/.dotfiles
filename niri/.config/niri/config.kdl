@@ -251,7 +251,7 @@ binds {
     Mod+Escape hotkey-overlay-title="Resources" { spawn "flatpak" "run" "net.nokyan.Resources";  }
     Mod+M hotkey-overlay-title="Deezer" { spawn-sh "~/.local/bin/focus-or-spawn-deezer";  }
 
-    Mod+Shift+D hotkey-overlay-title="Toggle Dark/Light Style" { spawn-sh "~/.local/bin/toggle-dark-mode.sh"; }
+    Mod+Shift+D hotkey-overlay-title="Toggle Dark/Light Style" { spawn-sh "niri msg action do-screen-transition --delay-ms=300; ~/.local/bin/toggle-dark-mode.sh"; }
 
     Mod+Space hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
     XF86Search hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
