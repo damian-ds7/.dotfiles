@@ -28,3 +28,4 @@ config/.config/tmux/plugins
 .zcompdump
 hypridle.conf
 hyprlock.conf
+\.config/quickshell
