@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Application
+Name=Deezer
+GenericName=Online music streaming service
+Comment=Listen and download all your favorite music
+StartupNotify=true
+Icon=/home/damian/.local/share/applications/icons/Deezer.png
+Terminal=false
+MimeType=x-scheme-handler/deezer;
+Categories=Audio;Music;Player;AudioVideo;
+Keywords=Music;Player;Streaming;Online;
+StartupWMClass=Deezer
+SingleMainWindow=true
+X-GNOME-UsesNotifications=true
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=run.sh --file-forwarding dev.aunetx.deezer @@u %U @@
+X-Flatpak-Tags=proprietary;
+X-Flatpak=dev.aunetx.deezer
