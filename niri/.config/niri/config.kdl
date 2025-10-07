@@ -264,6 +264,7 @@ binds {
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
     XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play"; }
     XF86AudioPause       allow-when-locked=true { spawn-sh "playerctl pause"; }
+    XF86TouchpadToggle   allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
 
