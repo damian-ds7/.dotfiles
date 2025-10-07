@@ -52,7 +52,7 @@ fi
 
 if is_installed lsd; then
   alias ls='lsd'
-  alias ll='lsd -lX --group-dirs=first --header'
+  alias ll='lsd -lX --group-dirs=first --header --no-symlink'
   alias la='lsd -lAX --group-dirs=first --header'
 else
   alias ls='command ls --color=always'
