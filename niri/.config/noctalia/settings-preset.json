@@ -2,8 +2,7 @@
     "appLauncher": {
         "backgroundOpacity": 1,
         "enableClipboardHistory": false,
-        "pinnedExecs": [
-        ],
+        "pinnedExecs": [],
         "position": "center",
         "sortByMostUsed": true,
         "terminalCommand": "ghostty -e",
@@ -12,9 +11,11 @@
     "audio": {
         "cavaFrameRate": 60,
         "mprisBlacklist": [
-            "zen"
+            "zen",
+            "firefox",
+            "firefox.instance_1_123"
         ],
-        "preferredPlayer": "dev.aunetx.deezer",
+        "preferredPlayer": "deezer",
         "visualizerType": "linear",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -25,15 +26,14 @@
         "floating": true,
         "marginHorizontal": 0.2,
         "marginVertical": 0.15,
-        "monitors": [
-        ],
+        "monitors": [],
         "position": "top",
         "showCapsule": true,
         "widgets": {
             "center": [
                 {
                     "customFont": "",
-                    "formatHorizontal": "HH:mm ddd MMM dd",
+                    "formatHorizontal": "d MMM HH:mm",
                     "formatVertical": "HH mm - dd MM",
                     "id": "Clock",
                     "useCustomFont": false,
@@ -92,24 +92,24 @@
     "colorSchemes": {
         "darkMode": true,
         "generateTemplatesForPredefined": false,
+        "matugenSchemeType": "scheme-fruit-salad",
         "predefinedScheme": "Catppuccin",
         "useWallpaperColors": false
     },
+    "controlCenter": {
+        "position": "close_to_bar_button"
+    },
     "dock": {
-        "autoHide": false,
         "backgroundOpacity": 1,
-        "exclusive": false,
+        "displayMode": "always_visible",
         "floatingRatio": 1,
-        "monitors": [
-        ],
+        "monitors": [],
         "onlySameOutput": false,
-        "pinnedApps": [
-        ],
-        "position": "bottom"
+        "pinnedApps": []
     },
     "general": {
         "animationDisabled": false,
-        "animationSpeed": 1.2000000000000002,
+        "animationSpeed": 1.3,
         "avatarImage": "/home/damian/.face",
         "dimDesktop": true,
         "forceBlackScreenCorners": false,
@@ -144,11 +144,10 @@
         "alwaysOnTop": false,
         "criticalUrgencyDuration": 10,
         "doNotDisturb": false,
-        "lastSeenTs": 1759608119000,
+        "lastSeenTs": 1759873409000,
         "location": "top",
         "lowUrgencyDuration": 3,
-        "monitors": [
-        ],
+        "monitors": [],
         "normalUrgencyDuration": 5,
         "respectExpireTimeout": false
     },
@@ -156,8 +155,7 @@
         "autoHideMs": 2000,
         "enabled": false,
         "location": "top_right",
-        "monitors": [
-        ]
+        "monitors": []
     },
     "screenRecorder": {
         "audioCodec": "opus",
@@ -183,13 +181,13 @@
         "vesktop": false
     },
     "ui": {
-        "fontDefault": "MesloLGL Nerd Font",
-        "fontDefaultScale": 1.1600000000000001,
+        "fontDefault": "JetBrainsMono Nerd Font",
+        "fontDefaultScale": 1.17,
         "fontFixed": "MesloLGL Nerd Font",
         "fontFixedScale": 1.07,
         "idleInhibitorEnabled": false,
-        "monitorsScaling": [
-        ]
+        "monitorsScaling": [],
+        "tooltipsEnabled": true
     },
     "wallpaper": {
         "defaultWallpaper": "/home/damian/.dotfiles/niri/.config/quickshell/Assets/Wallpaper/noctalia.png",
@@ -198,8 +196,7 @@
         "enabled": false,
         "fillColor": "#000000",
         "fillMode": "crop",
-        "monitors": [
-        ],
+        "monitors": [],
         "randomEnabled": false,
         "randomIntervalSec": 300,
         "setWallpaperOnAllMonitors": true,
