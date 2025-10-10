@@ -6,7 +6,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-eval "$(starship init bash)"
+#eval "$(starship init bash)"
 
 # Added by Toolbox App
 export PATH="$PATH:/home/damian/.local/share/JetBrains/Toolbox/scripts"
