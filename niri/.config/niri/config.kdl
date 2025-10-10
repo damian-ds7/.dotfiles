@@ -181,6 +181,13 @@ window-rule {
 }
 
 window-rule {
+    match app-id="localsend"
+    open-floating true
+    default-column-width { fixed 450; }
+    default-window-height { fixed 690; }
+}
+
+window-rule {
     match app-id="mpv"
     open-maximized true
 }
