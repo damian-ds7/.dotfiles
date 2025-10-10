@@ -1,0 +1,13 @@
+[Desktop Entry]
+X-AppImage-Arch=x86_64
+X-AppImage-Version=latest
+X-AppImage-Name=LocalSend
+Name=LocalSend
+Exec=env GTK_CSD=0 /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=localsend --file-forwarding org.localsend.localsend_app @@u %U @@
+Icon=org.localsend.localsend_app
+Type=Application
+Terminal=false
+Categories=Utility;
+Comment=Share files to nearby devices.
+X-Desktop-File-Install-Version=0.28
+X-Flatpak=org.localsend.localsend_app
