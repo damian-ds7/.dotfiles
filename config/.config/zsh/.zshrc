@@ -45,7 +45,7 @@ zstyle ':z4h:ssh:*'                   enable 'no'
 # enabled hosts.
 
 CONF_DIR="~/.config"
-zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' "$CONF_DIR/zsh" "$CONF_DIR/shell/common" "$CONF_DIR/shell/zsh" "$CONF_DIR/tmux/tmux.conf" "$CONF_DIR/tmux/themes/dark.conf" "$CONF_DIR/tmux/themes/light.conf" "$CONF_DIR/tmux/themes/current-theme.conf"
+zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' "$CONF_DIR/zsh" "$CONF_DIR/shell/common" "$CONF_DIR/shell/zsh" "$CONF_DIR/tmux/tmux.conf" "$CONF_DIR/themes/current/tmux.conf" "$CONF_DIR/git"
 unset CONF_DIR
 
 zstyle ':completion:*:ssh:argument-1:'       tag-order  hosts users
