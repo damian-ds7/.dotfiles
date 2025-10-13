@@ -87,7 +87,12 @@ input {
 }
 
 layout {
-    gaps 8
+    shadow {
+        on
+        softness 15
+        spread 3
+    }
+    gaps 10
     center-focused-column "on-overflow"
     always-center-single-column
 
