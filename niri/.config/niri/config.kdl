@@ -31,7 +31,7 @@ output "Acer Technologies Acer VG240Y 0x03427A2D" {
 }
 
 // output "eDP-1" {
-//     mode "1280x720"
+//     mode "2880x1800@90.001"
 // }
 
 input {
@@ -235,7 +235,7 @@ binds {
     Mod+T hotkey-overlay-title="Ghostty with Tmux" { spawn-sh "ghostty -e ~/.local/opt/ghostty-command.sh"; }
     Mod+Alt+T hotkey-overlay-title="Ghostty" { spawn "ghostty"; }
 
-    Mod+Control+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "hyprlock"; }
+    Mod+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "hyprlock"; }
     Mod+B hotkey-overlay-title="Zen Browser" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen"; }
     Mod+E hotkey-overlay-title="Nautilus" { spawn "nautilus";  }
     Mod+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a '^[cC]ode$' -- code --enable-features=UseOzonePlatform --ozone-platform=wayland";  }
