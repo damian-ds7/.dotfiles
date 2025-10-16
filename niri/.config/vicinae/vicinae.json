@@ -1,0 +1,18 @@
+{
+    "faviconService": "google",
+    "font": {
+        "size": 13
+    },
+    "popToRootOnClose": true,
+    "rootSearch": {
+        "searchFiles": true
+    },
+    "theme": {
+        "name": "catppuccin-mocha.json"
+    },
+    "window": {
+        "csd": true,
+        "opacity": 1,
+        "rounding": 10
+    }
+}

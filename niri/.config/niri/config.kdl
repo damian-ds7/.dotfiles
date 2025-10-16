@@ -1,7 +1,7 @@
 // DOCS
 // https://yalter.github.io/niri/Configuration%3A-Introduction.html
 
-spawn-sh-at-startup "wl-paste -t text --watch clipman --histpath=/tmp/clipman.json store"
+// spawn-sh-at-startup "wl-paste -t text --watch clipman --histpath=/tmp/clipman.json store"
 spawn-sh-at-startup "/usr/libexec/xfce-polkit"
 // spawn-sh-at-startup "~/.local/bin/suspend.sh -n"
 
@@ -148,6 +148,15 @@ layer-rule {
     block-out-from "screencast"
 }
 
+layer-rule {
+    match namespace="vicinae"
+
+    shadow {
+        on
+    }
+    geometry-corner-radius 8
+}
+
 workspace "browser"
 workspace "code"
 workspace "teams"
@@ -266,10 +275,18 @@ binds {
 
     Mod+Shift+D hotkey-overlay-title="Toggle Dark/Light Style" { spawn-sh "niri msg action do-screen-transition --delay-ms=300; ~/.local/bin/toggle-dark-mode.sh"; }
 
-    Mod+Space hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
-    XF86Search hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
-    Mod+V hotkey-overlay-title="Clipboard history" {spawn-sh "clipman --histpath=/tmp/clipman.json pick --tool=CUSTOM --tool-args='fuzzel -d --config=/home/damian/.config/fuzzel/clipboard.ini'"; }
-    Mod+Period hotkey-overlay-title="Emoji search" { spawn "~/.local/bin/bemoji"; }
+    // Mod+Space hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
+    // XF86Search hotkey-overlay-title="Fuzzel" { spawn "fuzzel"; }
+    // Mod+V hotkey-overlay-title="Clipboard history" {spawn-sh "clipman --histpath=/tmp/clipman.json pick --tool=CUSTOM --tool-args='fuzzel -d --config=/home/damian/.config/fuzzel/clipboard.ini'"; }
+    // Mod+Period hotkey-overlay-title="Emoji search" { spawn "~/.local/bin/bemoji"; }
+    // Mod+Grave repeat=false { spawn-sh "~/.local/bin/niri-window-switcher"; }
+
+    Mod+Grave repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
+    Mod+Space hotkey-overlay-title="Launcher" { spawn "vicinae"; }
+    XF86Search hotkey-overlay-title="Launcher" { spawn "vicinae"; }
+    Mod+V hotkey-overlay-title="Clipboard history" {spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
+    Mod+Period hotkey-overlay-title="Emoji search" { spawn-sh "vicinae vicinae://extensions/vicinae/vicinae/search-emojis"; }
+
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume raise"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume lower"; }
@@ -286,7 +303,6 @@ binds {
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Tab repeat=false { toggle-overview; }
-    Mod+Grave repeat=false { spawn-sh "~/.local/bin/niri-window-switcher"; }
 
     Mod+Q repeat=false { close-window; }
 

@@ -15,6 +15,7 @@ switch_to_dark() {
     dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
     dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3-dark'"
     qs ipc call darkMode setDark
+    vicinae vicinae://theme/set/catppuccin-mocha
     "$TMUX_THEME_DIR/reset.sh"
     ln -sfn "$THEME_DIR/catppuccin-mocha"  "$THEME_DIR/current"
     sed -i 's/^\([[:space:]]*active-color[[:space:]]\+\)"#[^"]*"/\1"#cba6f7"/' "$NIRI_CONF_DIR/config.kdl"
@@ -26,6 +27,7 @@ switch_to_light() {
     dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
     dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'"
     qs ipc call darkMode setLight
+    vicinae vicinae://theme/set/catppuccin_latte
     "$TMUX_THEME_DIR/reset.sh"
     ln -sfn "$THEME_DIR/catppuccin-latte"  "$THEME_DIR/current"
     sed -i 's/^\([[:space:]]*active-color[[:space:]]\+\)"#[^"]*"/\1"#8839ef"/' "$NIRI_CONF_DIR/config.kdl"
