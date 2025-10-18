@@ -31,16 +31,14 @@ if is_installed bat; then
     #get color scheme
     sys_color_scheme_is_dark
     if [[ $? -eq 0 ]]; then
-        # bat command with dark color scheme
-        bat --theme="Catppuccin Mocha" "$@"
+      # bat command with dark color scheme
+      bat --theme="Catppuccin Mocha" "$@"
     else
-        # bat command with light color scheme
-        bat --theme="Catppuccin Latte" "$@"
+      # bat command with light color scheme
+      bat --theme="Catppuccin Latte" "$@"
     fi
   }
-  alias cat='bat_alias_wrapper'
-else
-  alias cat='command cat'
+  alias bat='bat_alias_wrapper'
 fi
 
 if is_installed rg; then
@@ -48,7 +46,6 @@ if is_installed rg; then
 else
   alias grep='command grep --color=auto'
 fi
-
 
 if is_installed lsd; then
   alias ls='lsd'
@@ -61,7 +58,6 @@ else
 fi
 
 alias tree='tree -I .git --gitignore --dirsfirst'
-
 
 # -------------------------
 #  Editor Shortcuts
@@ -157,11 +153,11 @@ xopen() {
 }
 
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
 }
 
 # -------------------------
@@ -178,17 +174,22 @@ listd() {
 }
 
 # System-level
-start()    { sudo systemctl start "$1"; }
-stop()     { sudo systemctl stop "$1"; }
-restart()  { sudo systemctl restart "$1"; }
-status()   { sudo systemctl status "$1"; }
-enabled()  { sudo systemctl enable "$1"; listd; }
-disabled() { sudo systemctl disable "$1"; listd; }
+start() { sudo systemctl start "$1"; }
+stop() { sudo systemctl stop "$1"; }
+restart() { sudo systemctl restart "$1"; }
+status() { sudo systemctl status "$1"; }
+enabled() {
+  sudo systemctl enable "$1"
+  listd
+}
+disabled() {
+  sudo systemctl disable "$1"
+  listd
+}
 
 # User-level
-ustart()    { systemctl --user start "$1"; }
-ustop()     { systemctl --user stop "$1"; }
-ustatus()   { systemctl --user status "$1"; }
-uenable()   { systemctl --user enable "$1"; }
-udisable()  { systemctl --user disable "$1"; }
-
+ustart() { systemctl --user start "$1"; }
+ustop() { systemctl --user stop "$1"; }
+ustatus() { systemctl --user status "$1"; }
+uenable() { systemctl --user enable "$1"; }
+udisable() { systemctl --user disable "$1"; }
