@@ -93,7 +93,7 @@ layout {
         spread 3
     }
     gaps 8
-    // center-focused-column "on-overflow"
+    center-focused-column "on-overflow"
     always-center-single-column
 
     preset-column-widths {
