@@ -179,6 +179,11 @@ window-rule {
 }
 
 window-rule {
+    match app-id="zen" title="^Picture-in-Picture$"
+    default-floating-position x=9 y=9 relative-to="bottom-right"
+}
+
+window-rule {
     match app-id="com.damian.yazi"
     match app-id="org.gnome.Calendar"
     default-column-width { proportion 0.6666; }
@@ -187,6 +192,7 @@ window-rule {
 window-rule {
     match is-active=false
     opacity 0.95
+    exclude app-id="zen" title="^Picture-in-Picture$"
 }
 
 window-rule {
