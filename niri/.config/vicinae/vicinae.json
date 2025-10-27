@@ -1,8 +1,8 @@
 {
-    "faviconService": "google",
+    "faviconService": "twenty",
     "font": {
         "normal": "JetBrainsMono Nerd Font",
-        "size": 13
+        "size": 12
     },
     "popToRootOnClose": true,
     "rootSearch": {
