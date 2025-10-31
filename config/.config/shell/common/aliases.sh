@@ -128,6 +128,7 @@ alias lg='lazygit'
 
 alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
 alias tcode='code-tabbed'
+alias vsource='source .venv/bin/activate'
 
 # -------------------------
 #  Custom Functions
