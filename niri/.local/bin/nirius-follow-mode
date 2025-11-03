@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+output=$("$HOME/.cargo/bin/nirius" toggle-follow-mode 2>&1)
+
+if echo "$output" | grep -q "Enabled"; then
+  notify-send "Nirius" "Follow mode enabled"
+elif echo "$output" | grep -q "Disabled"; then
+  notify-send "Nirius" "Follow mode disabled"
+else
+  notify-send "Nirius" "$output"
+fi
