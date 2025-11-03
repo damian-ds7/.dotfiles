@@ -222,6 +222,7 @@ window-rule {
 
 window-rule {
     match app-id="zen"
+    exclude app-id="zen" title="^Picture-in-Picture$"
     open-on-workspace "browser"
     open-maximized true
     open-focused true
