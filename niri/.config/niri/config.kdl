@@ -265,7 +265,7 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Ghostty with Tmux" { spawn-sh "ghostty -e ~/.local/opt/ghostty-command.sh"; }
+    Mod+T hotkey-overlay-title="Ghostty with Tmux" { spawn-sh "ghostty -e ~/.local/bin/ghostty-default-tmux"; }
     Mod+Alt+T hotkey-overlay-title="Ghostty" { spawn "ghostty"; }
 
     Mod+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "hyprlock"; }
