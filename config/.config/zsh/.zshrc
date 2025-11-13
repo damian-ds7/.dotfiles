@@ -46,7 +46,7 @@ zstyle ':z4h:ssh:*'                   enable 'no'
 # enabled hosts.
 
 CONF_DIR="~/.config"
-zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' "$CONF_DIR/zsh" "$CONF_DIR/shell/common" "$CONF_DIR/shell/zsh" "$CONF_DIR/tmux/tmux.conf" "$CONF_DIR/themes/current/tmux.conf" "$CONF_DIR/git"
+zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh' "$CONF_DIR/zsh" "$CONF_DIR/tmux/tmux.conf" "$CONF_DIR/themes/current/tmux.conf" "$CONF_DIR/git"
 unset CONF_DIR
 
 zstyle ':completion:*:ssh:argument-1:'       tag-order  hosts users
@@ -79,9 +79,6 @@ z4h source ~/.env.zsh
 
 # Use additional Git repositories pulled in with `z4h install`.
 #
-# This is just an example that you should delete. It does nothing useful.
-# z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
-
 
 # Define key bindings.
 z4h bindkey z4h-backward-kill-word  Ctrl+Backspace     Ctrl+H
@@ -115,19 +112,7 @@ setopt no_auto_menu  # require an extra TAB press to open the completion menu
 setopt nullglob
 setopt ignore_eof
 
-# Load common configs
-if [ -d ~/.config/shell/common ]; then
-  for rc in ~/.config/shell/common/*; do
-    [ -f "$rc" ] && source "$rc"
-  done
-fi
-
-# Load zsh-specific configs
-if [ -d ~/.config/shell/zsh ]; then
-  for rc in ~/.config/shell/zsh/*; do
-    [ -f "$rc" ] && source "$rc"
-  done
-fi
+source $HOME/.config/zsh/aliases.sh
 
 unset rc
 

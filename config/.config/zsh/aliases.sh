@@ -7,6 +7,7 @@ unset CURRENT_DIR
 #  General Aliases
 # -------------------------
 
+alias reload='exec zsh'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
