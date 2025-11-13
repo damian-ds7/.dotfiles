@@ -4,18 +4,19 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DRY_RUN=0
 RUN_SSH=0
+RUN_RESTORE=0
 MODULES=()
 
 usage() {
   cat <<EOF
-Usage: $(basename "$0") [--dry-run] [--ssh] <module> [module...]
+Usage: $(basename "$0") [OPTIONS] <module> [module...]
 
-Runs GNU stow with --adopt for the given modules and then runs
-"git restore ." in the repository root. If --ssh is passed the
-script will run the repository's ssh-setup.sh
+Runs GNU stow with --adopt for the given modules. Optionally runs
+"git restore ." in the repository root and/or ssh-setup.sh.
 
 Options:
   --dry-run    Run stow with --simulate (no changes applied)
+  --restore    Run 'git restore .' after stow completes
   --ssh        Run ssh-setup.sh without prompting
   -h, --help   Show this help
 EOF
@@ -25,6 +26,10 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run)
       DRY_RUN=1
+      shift
+      ;;
+    --restore)
+      RUN_RESTORE=1
       shift
       ;;
     --ssh)
@@ -79,15 +84,17 @@ if [[ $STOW_EXIT -ne 0 ]]; then
   exit $STOW_EXIT
 fi
 
-if [[ $DRY_RUN -eq 0 ]]; then
-  echo "stow completed. Now running 'git restore .' in repo root: $REPO_ROOT"
-  if command -v git >/dev/null 2>&1; then
-    git -C "$REPO_ROOT" restore . || true
+if [[ $RUN_RESTORE -eq 1 ]]; then
+  if [[ $DRY_RUN -eq 0 ]]; then
+    echo "Running 'git restore .' in repo root: $REPO_ROOT"
+    if command -v git >/dev/null 2>&1; then
+      git -C "$REPO_ROOT" restore . || true
+    else
+      echo "git not found; skipping git restore." >&2
+    fi
   else
-    echo "git not found; skipping git restore." >&2
+    echo "Dry-run mode: skipping 'git restore .'"
   fi
-else
-  echo "Dry-run mode: skipping 'git restore .'"
 fi
 
 SSH_SCRIPT="$REPO_ROOT/ssh-setup.sh"
