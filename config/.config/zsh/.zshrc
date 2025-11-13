@@ -71,6 +71,8 @@ z4h init || return
 
 # Export environment variables.
 export GPG_TTY=$TTY
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
 
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
