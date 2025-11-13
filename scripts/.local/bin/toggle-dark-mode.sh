@@ -37,7 +37,7 @@ else
   switch_to_light
 fi
 
-systemctl --user try-restart waybar.service
-tmux source-file "$TMUX_CONF_DIR/tmux.conf"
-systemctl --user try-restart swayosd-server.service
 killall -SIGUSR2 ghostty
+tmux source-file "$TMUX_CONF_DIR/tmux.conf"
+systemctl --user try-restart waybar.service
+systemctl --user try-restart swayosd-server.service
