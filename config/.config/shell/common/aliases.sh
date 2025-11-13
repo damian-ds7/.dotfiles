@@ -19,28 +19,6 @@ alias c='clear'
 # -------------------------
 #  Aliases with fallback to original command
 # -------------------------
-
-if is_installed bat; then
-  sys_color_scheme_is_dark() {
-    condition=$(gsettings get org.gnome.desktop.interface color-scheme)
-    condition=$(echo "$condition" | tr -d "[:space:]'")
-    [ "$condition" = "prefer-dark" ]
-  }
-
-  bat_alias_wrapper() {
-    #get color scheme
-    sys_color_scheme_is_dark
-    if [[ $? -eq 0 ]]; then
-      # bat command with dark color scheme
-      bat --theme="Catppuccin Mocha" "$@"
-    else
-      # bat command with light color scheme
-      bat --theme="Catppuccin Latte" "$@"
-    fi
-  }
-  alias bat='bat_alias_wrapper'
-fi
-
 if is_installed rg; then
   alias grep='rg'
 else
