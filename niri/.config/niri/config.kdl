@@ -1,9 +1,7 @@
 // DOCS
 // https://yalter.github.io/niri/Configuration%3A-Introduction.html
 
-// spawn-sh-at-startup "wl-paste -t text --watch clipman --histpath=/tmp/clipman.json store"
 spawn-sh-at-startup "/usr/libexec/xfce-polkit"
-// spawn-sh-at-startup "~/.local/bin/suspend.sh -n"
 
 hotkey-overlay {
     skip-at-startup
