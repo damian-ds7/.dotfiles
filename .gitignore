@@ -1,8 +1,7 @@
-current-theme.conf
 config/.config/lsd/colors.yaml
 config/.config/tmux/plugins
+config/.config/zsh/.p10k.zsh.zwc*
 .zsh_history
-.swayidle_toggle.lock
 .zcompdump
 hypridle.conf
 hyprlock.conf
