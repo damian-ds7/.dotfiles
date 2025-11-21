@@ -448,3 +448,7 @@ binds {
 
     Mod+Shift+P { power-off-monitors; }
 }
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
