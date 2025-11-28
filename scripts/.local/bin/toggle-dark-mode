@@ -5,7 +5,6 @@ THEME_DIR="$HOME/.config/themes"
 TMUX_CONF_DIR="$HOME/.config/tmux"
 TMUX_THEME_DIR="$TMUX_CONF_DIR/themes"
 NIRI_CONF_DIR="$HOME/.config/niri"
-ULAUNCHER_SETTINGS="$HOME/.config/ulauncher/settings.json"
 
 get_current_theme() {
   dconf read /org/gnome/desktop/interface/color-scheme
