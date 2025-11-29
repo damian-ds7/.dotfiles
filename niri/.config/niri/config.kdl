@@ -420,6 +420,7 @@ binds {
     Mod+Shift+Control+R { switch-preset-window-height; }
     Mod+Control+R { reset-window-height; }
     Mod+F { maximize-column; }
+    Mod+Alt+F { maximize-window-to-edges; }
     Mod+Shift+F { fullscreen-window; }
     Mod+G { expand-column-to-available-width; }
     Mod+Control+C { center-visible-columns; }
