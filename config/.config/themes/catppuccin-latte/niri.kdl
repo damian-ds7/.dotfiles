@@ -1,7 +1,18 @@
 layout {
     border {
+        on
         width 1.5
         active-color "#8839ef"
         inactive-color "#6c7086"
+        urgent-color "#d20f39"
+    }
+}
+
+recent-windows {
+    highlight {
+        active-color "#8839ef"
+        urgent-color "#d20f39"
+        padding 30
+        corner-radius 8
     }
 }
