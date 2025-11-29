@@ -1,0 +1,18 @@
+layer-rule {
+    match namespace="^swww-daemon"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="noctalia-notifications"
+    block-out-from "screencast"
+}
+
+layer-rule {
+    match namespace="vicinae"
+
+    shadow {
+        on
+    }
+    geometry-corner-radius 8
+}

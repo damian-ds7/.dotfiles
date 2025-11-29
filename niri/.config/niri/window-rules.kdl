@@ -1,0 +1,105 @@
+workspace "browser"
+workspace "code"
+workspace "teams"
+workspace "other"
+
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+    draw-border-with-background false
+}
+
+window-rule {
+    match app-id="zen" title="^Picture-in-Picture$"
+    match app-id="org.gnome.Calculator"
+    match app-id="xfce-polkit"
+    match app-id="io.github.nozwock.Packet"
+    match title="impala"
+    match title="Discord Updater"
+    open-floating true
+}
+
+window-rule {
+    match app-id="zen" title="^Picture-in-Picture$"
+    default-floating-position x=9 y=9 relative-to="bottom-right"
+}
+
+window-rule {
+    match app-id="com.damian.yazi"
+    match app-id="org.gnome.Calendar"
+    default-column-width { proportion 0.6666; }
+}
+
+window-rule {
+    match is-active=false
+    opacity 0.95
+    exclude app-id="zen" title="^Picture-in-Picture$"
+}
+
+window-rule {
+    match title="bluetui"
+    open-floating true
+    max-height 700;
+}
+
+window-rule {
+    match app-id="Bitwarden"
+    default-column-width { proportion 0.6666; }
+}
+
+window-rule {
+    match app-id="localsend"
+    open-floating true
+    default-column-width { fixed 450; }
+    default-window-height { fixed 690; }
+}
+
+window-rule {
+    match app-id="mpv"
+    match app-id="vlc"
+    match title="Neovim"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="zen"
+    exclude app-id="zen" title="^Picture-in-Picture$"
+    open-on-workspace "browser"
+    open-maximized true
+    open-focused true
+}
+
+window-rule {
+    match app-id="^Code$"
+    match app-id="^code$"
+    exclude app-id="page.codeberg.libre_menu_editor.LibreMenuEditor"
+    open-on-workspace "code"
+    open-maximized true
+    open-focused true
+}
+
+window-rule {
+    match app-id="chrome-teams.microsoft.com__v2-Default"
+    match app-id="chrome-teams.microsoft.com__v2_-Default"
+    open-on-workspace "teams"
+    open-maximized true
+    open-focused true
+}
+
+window-rule {
+    match app-id="Deezer"
+    match app-id="dev.aunetx.deezer"
+    match app-id="discord"
+    match app-id="steam"
+    match app-id="heroic"
+    open-on-workspace "other"
+    open-maximized true
+    open-focused true
+}
+
+window-rule {
+    match app-id="com.github.wwmm.easyeffects"
+    open-focused false
+    open-on-workspace "other"
+    open-maximized true
+}
