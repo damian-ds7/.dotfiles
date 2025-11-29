@@ -28,3 +28,7 @@ map("n", "<leader>kO", function()
     initial_mode = "insert",
   })
 end, { desc = "Change directory from home" })
+
+map("n", "<leader>kp", function()
+  require("telescope").extensions.project.project({ display_type = "full" })
+end, { desc = "Open project picker" })
