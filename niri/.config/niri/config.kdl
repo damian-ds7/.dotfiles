@@ -6,6 +6,7 @@ include "input.kdl"
 include "layer-rules.kdl"
 include "window-rules.kdl"
 include "binds.kdl"
+include "colors.kdl"
 include "layout.kdl"
 
 spawn-sh-at-startup "/usr/libexec/xfce-polkit"

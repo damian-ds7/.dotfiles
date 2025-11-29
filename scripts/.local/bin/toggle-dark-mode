@@ -1,10 +1,9 @@
 #!/usr/bin/env sh
-set -uo pipefail
+set -uo
 
 THEME_DIR="$HOME/.config/themes"
 TMUX_CONF_DIR="$HOME/.config/tmux"
 TMUX_THEME_DIR="$TMUX_CONF_DIR/themes"
-NIRI_CONF_DIR="$HOME/.config/niri"
 
 get_current_theme() {
   dconf read /org/gnome/desktop/interface/color-scheme
@@ -17,7 +16,6 @@ switch_to_dark() {
   vicinae vicinae://theme/set/catppuccin-mocha
   "$TMUX_THEME_DIR/reset.sh"
   ln -sfnr "$THEME_DIR/catppuccin-mocha" "$THEME_DIR/current"
-  sed -i 's/^\([[:space:]]*active-color[[:space:]]\+\)"#[^"]*"/\1"#cba6f7"/' "$NIRI_CONF_DIR/config.kdl"
 }
 
 switch_to_light() {
@@ -27,7 +25,6 @@ switch_to_light() {
   vicinae vicinae://theme/set/catppuccin_latte
   "$TMUX_THEME_DIR/reset.sh"
   ln -sfnr "$THEME_DIR/catppuccin-latte" "$THEME_DIR/current"
-  sed -i 's/^\([[:space:]]*active-color[[:space:]]\+\)"#[^"]*"/\1"#8839ef"/' "$NIRI_CONF_DIR/config.kdl"
 }
 
 if test "$(get_current_theme)" = "'prefer-light'"; then
