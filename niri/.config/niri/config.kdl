@@ -335,8 +335,6 @@ binds {
     Mod+K     { focus-window-up-or-bottom; }
     Mod+L     { focus-column-right; }
 
-    Alt+Tab   { focus-window-down-or-top; }
-
     Mod+Control+Left  { move-column-left; }
     Mod+Control+Down  { move-window-down; }
     Mod+Control+Up    { move-window-up; }
