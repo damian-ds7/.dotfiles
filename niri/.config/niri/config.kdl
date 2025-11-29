@@ -14,18 +14,18 @@ cursor {
 output "ASUSTek COMPUTER INC VG27A R7LMQS013728" {
     mode "2560x1440@119.998"
     focus-at-startup
-    // hot-corners {
-    //     top-left
-    //     // top-right
-    // }
+    hot-corners {
+        top-left
+        // top-right
+    }
 }
 
 output "Acer Technologies Acer VG240Y 0x03427A2D" {
     mode "1920x1080@75.000"
-    // hot-corners {
-    //     // top-left
-    //     top-right
-    // }
+    hot-corners {
+        // top-left
+        top-right
+    }
 }
 
 // output "eDP-1" {
