@@ -9,7 +9,6 @@ bold-is-bright = true
 gtk-titlebar = false
 window-height = 36
 window-width = 146
-maximize = true
 window-padding-x = 3
 window-padding-y = 3
 
