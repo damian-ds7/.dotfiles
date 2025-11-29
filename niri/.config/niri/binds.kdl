@@ -190,7 +190,7 @@ recent-windows {
     // off
     debounce-ms 750
 
-    open-delay-ms 150
+    open-delay-ms 75
 
 
     previews {
