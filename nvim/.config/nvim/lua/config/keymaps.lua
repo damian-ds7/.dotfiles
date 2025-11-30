@@ -32,3 +32,20 @@ end, { desc = "Change directory from home" })
 map("n", "<leader>kp", function()
   require("telescope").extensions.project.project({ display_type = "full" })
 end, { desc = "Open project picker" })
+
+map("n", "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", { desc = "Preview Definition" })
+map(
+  "n",
+  "gpt",
+  "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>",
+  { desc = "Preview Type Definition" }
+)
+map(
+  "n",
+  "gpi",
+  "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
+  { desc = "Preview Implementation" }
+)
+map("n", "gpD", "<cmd>lua require('goto-preview').goto_preview_declaration()<CR>", { desc = "Preview Declaration" })
+map("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", { desc = "Close All Previews" })
+map("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", { desc = "Preview References" })
