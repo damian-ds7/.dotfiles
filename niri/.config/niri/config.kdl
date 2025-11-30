@@ -27,6 +27,17 @@ switch-events {
     lid-close {spawn "hyprlock";}
 }
 
+recent-windows {
+    debounce-ms 750
+
+    open-delay-ms 75
+
+    previews {
+        max-height 800
+        max-scale 0.7
+    }
+}
+
 debug {
     honor-xdg-activation-with-invalid-serial
 }

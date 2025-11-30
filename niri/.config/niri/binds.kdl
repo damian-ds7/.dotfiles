@@ -187,24 +187,10 @@ binds {
 }
 
 recent-windows {
-    // off
-    debounce-ms 750
-
-    open-delay-ms 75
-
-
-    previews {
-        max-height 480
-        max-scale 0.5
-    }
-
     binds {
         Alt+Tab         { next-window; }
         Alt+Shift+Tab   { previous-window; }
         Alt+grave       { next-window     filter="app-id"; }
         Alt+Shift+grave { previous-window filter="app-id"; }
-
-        Mod+Tab         { next-window; }
-        Mod+Shift+Tab   { previous-window; }
     }
 }
