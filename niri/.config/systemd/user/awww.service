@@ -4,6 +4,6 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=%h/.cargo/bin/swww-daemon
-ExecStartPost=%h/.cargo/bin/swww img %h/Pictures/Wallpapers/Rainnight-blurred.png
+ExecStart=%h/.cargo/bin/awww-daemon
+ExecStartPost=%h/.cargo/bin/awww img %h/Pictures/Wallpapers/Rainnight-blurred.png
 Restart=on-failure
