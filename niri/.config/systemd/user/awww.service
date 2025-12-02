@@ -5,5 +5,5 @@ Requisite=graphical-session.target
 
 [Service]
 ExecStart=%h/.cargo/bin/awww-daemon
-ExecStartPost=%h/.cargo/bin/awww img %h/Pictures/Wallpapers/Rainnight-blurred.png
+ExecStartPost=%h/.cargo/bin/awww img %h/Pictures/Wallpapers/blur/Rainnight.png
 Restart=on-failure
