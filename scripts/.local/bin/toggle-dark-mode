@@ -22,7 +22,7 @@ switch_to_light() {
   dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
   dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'"
   qs ipc call darkMode setLight
-  vicinae vicinae://theme/set/catppuccin_latte
+  vicinae vicinae://theme/set/catppuccin-latte
   "$TMUX_THEME_DIR/reset.sh"
   ln -sfnr "$THEME_DIR/catppuccin-latte" "$THEME_DIR/current"
 }
