@@ -40,7 +40,7 @@ binds {
     // Mod+Grave repeat=false { spawn-sh "~/.local/bin/niri-window-switcher"; }
 
     Mod+Grave repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
-    Mod+Space hotkey-overlay-title="Launcher" { spawn "vicinae"; }
+    Mod+Space hotkey-overlay-title="Launcher" { spawn-sh "vicinae toggle"; }
     XF86Search hotkey-overlay-title="Launcher" { spawn "vicinae"; }
     Mod+V hotkey-overlay-title="Clipboard history" {spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
     Mod+Period hotkey-overlay-title="Emoji search" { spawn-sh "vicinae vicinae://extensions/vicinae/vicinae/search-emojis"; }
