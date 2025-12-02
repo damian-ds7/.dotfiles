@@ -41,3 +41,7 @@ recent-windows {
 debug {
     honor-xdg-activation-with-invalid-serial
 }
+
+overview {
+    zoom 0.6
+}
