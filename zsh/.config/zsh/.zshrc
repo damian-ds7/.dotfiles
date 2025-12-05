@@ -75,6 +75,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 export EDITOR='nvim'
 export VISUAL='nvim'
+export GOPATH="$HOME/.go"
 
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
