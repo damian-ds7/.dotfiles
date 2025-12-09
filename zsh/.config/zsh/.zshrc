@@ -25,6 +25,9 @@ zinit ice depth=1; zinit light zsh-users/zsh-syntax-highlighting
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 
+# Oh My Posh
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/p10k.toml)"
+
 ## FZF Tab
 zstyle ':fzf-tab:*' fzf-bindings 'tab:accept,enter:accept'
 zstyle ':fzf-tab:*' continuous-trigger '/'
