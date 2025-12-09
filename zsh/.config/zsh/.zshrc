@@ -76,7 +76,7 @@ export MANROFFOPT="-c"
 export EDITOR='nvim'
 export VISUAL='nvim'
 export GOPATH="$HOME/.go"
-
+PATH=$PATH:/usr/local/go/bin
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
 
