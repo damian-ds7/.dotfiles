@@ -46,15 +46,17 @@ binds {
     Mod+Period hotkey-overlay-title="Emoji search" { spawn-sh "vicinae vicinae://extensions/vicinae/vicinae/search-emojis"; }
 
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume raise"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "swayosd-client --output-volume lower"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "swayosd-client --output-volume mute-toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
-    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioPause       allow-when-locked=true { spawn-sh "playerctl pause"; }
-    XF86TouchpadToggle   allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
-    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioRaiseVolume              allow-when-locked=true { spawn-sh "swayosd-client --output-volume raise"; }
+    XF86AudioLowerVolume              allow-when-locked=true { spawn-sh "swayosd-client --output-volume lower"; }
+    XF86AudioMute                     allow-when-locked=true { spawn-sh "swayosd-client --output-volume mute-toggle"; }
+    XF86AudioMicMute                  allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
+    Alt+XF86AudioMute                 allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
+    ISO_Level3_Shift+XF86AudioMute    allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
+    XF86AudioPlay                     allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPause                    allow-when-locked=true { spawn-sh "playerctl pause"; }
+    XF86TouchpadToggle                allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioNext                     allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPrev                     allow-when-locked=true { spawn-sh "playerctl previous"; }
 
     XF86MonBrightnessUp allow-when-locked=true { spawn-sh "swayosd-client --brightness raise"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn-sh "swayosd-client --brightness lower"; }
