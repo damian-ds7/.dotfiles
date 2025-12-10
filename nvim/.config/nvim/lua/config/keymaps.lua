@@ -49,3 +49,5 @@ map(
 map("n", "gpD", "<cmd>lua require('goto-preview').goto_preview_declaration()<CR>", { desc = "Preview Declaration" })
 map("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", { desc = "Close All Previews" })
 map("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", { desc = "Preview References" })
+
+map("v", "<leader>p", '"_dP', { desc = "Paste over currently selected text without yanking it" })
