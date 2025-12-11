@@ -113,16 +113,6 @@ alias vsource='source .venv/bin/activate'
 #  Custom Functions
 # -------------------------
 
-mkcd() {
-  if [ -z "$1" ]; then
-    echo "Enter a directory name"
-  elif [ -d "$1" ]; then
-    echo "\`$1' already exists"
-  else
-    mkdir "$1" && cd "$1"
-  fi
-}
-
 now() {
   export now=$(date +"%Y-%m-%dT%H%M%S")
 }
