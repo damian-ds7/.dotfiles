@@ -144,22 +144,16 @@ listd() {
 }
 
 # System-level
-start() { sudo systemctl start "$1"; }
-stop() { sudo systemctl stop "$1"; }
-restart() { sudo systemctl restart "$1"; }
-status() { sudo systemctl status "$1"; }
-enabled() {
-  sudo systemctl enable "$1"
-  listd
-}
-disabled() {
-  sudo systemctl disable "$1"
-  listd
-}
+alias start='sudo systemctl start'
+alias stop='sudo systemctl stop'
+alias restart='sudo systemctl restart'
+alias status='sudo systemctl status'
+alias enabled='sudo systemctl enable'
+alias disabled='sudo systemctl disable'
 
 # User-level
-ustart() { systemctl --user start "$1"; }
-ustop() { systemctl --user stop "$1"; }
-ustatus() { systemctl --user status "$1"; }
-uenable() { systemctl --user enable "$1"; }
-udisable() { systemctl --user disable "$1"; }
+alias ustart='systemctl --user start'
+alias ustop='systemctl --user stop'
+alias ustatus='systemctl --user status'
+alias uenable='systemctl --user enable'
+alias udisable='systemctl --user disable'
