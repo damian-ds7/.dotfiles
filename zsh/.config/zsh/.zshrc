@@ -26,7 +26,15 @@ ZSH_AUTOSUGGEST_STRATEGY=(history)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 
 # Oh My Posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/p10k.toml)"
+if [[ -z "$NO_OMP" ]]; then
+  if ! command -v oh-my-posh >/dev/null 2>&1; then
+    source "$ZDOTDIR/setup-omp.sh"
+  fi
+
+  if command -v oh-my-posh >/dev/null 2>&1; then
+    eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/p10k.toml)"
+  fi
+fi
 
 ## FZF Tab
 zstyle ':fzf-tab:*' fzf-bindings 'tab:accept,enter:accept'
