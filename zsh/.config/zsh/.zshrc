@@ -71,6 +71,7 @@ ZVM_VI_EDITOR=$EDITOR
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
 ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true
 
 # Shell Options
 setopt glob_dots
@@ -130,4 +131,37 @@ function zvm_after_init() {
   fi
 
   setup_keybindings
+}
+
+# OMP zsh-vi-mode integration
+_omp_redraw-prompt() {
+  local precmd
+  for precmd in "${precmd_functions[@]}"; do
+    "$precmd"
+  done
+
+  zle .reset-prompt
+}
+
+export POSH_VI_MODE="insert"
+
+function zvm_after_select_vi_mode() {
+  case $ZVM_MODE in
+  $ZVM_MODE_NORMAL)
+    POSH_VI_MODE="command"
+    ;;
+  $ZVM_MODE_INSERT)
+    POSH_VI_MODE="insert"
+    ;;
+  $ZVM_MODE_VISUAL)
+    POSH_VI_MODE="visual"
+    ;;
+  $ZVM_MODE_VISUAL_LINE)
+    POSH_VI_MODE="visual"
+    ;;
+  $ZVM_MODE_REPLACE)
+    POSH_VI_MODE="insert"
+    ;;
+  esac
+  _omp_redraw-prompt
 }

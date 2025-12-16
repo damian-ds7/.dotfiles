@@ -5,6 +5,7 @@ final_space = true
 [palette]
   magenta = '#F265B8'
   red = '#F25754'
+  purple = '#c19fed'
 
 [secondary_prompt]
   template = '❯❯ '
@@ -62,11 +63,15 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    template = '❯'
+    template = '{{if or (eq .Env.POSH_VI_MODE "command") (eq .Env.POSH_VI_MODE "visual")}}❮{{else}}❯{{end}}'
     background = 'transparent'
     type = 'text'
     style = 'plain'
-    foreground_templates = ['{{if gt .Code 0}}p:red{{end}}', '{{if eq .Code 0}}p:magenta{{end}}']
+    foreground_templates = [
+      '{{if eq .Env.POSH_VI_MODE "visual"}}p:purple{{end}}',
+      '{{if gt .Code 0}}p:red{{end}}',
+      '{{if eq .Code 0}}p:magenta{{end}}'
+    ]
 
     [blocks.segments.properties]
       cache_duration = 'none'
