@@ -45,12 +45,8 @@ final_space = true
       commit_icon = '@'
       fetch_status = true
 
-[[blocks]]
-  type = 'rprompt'
-  overflow = 'hidden'
-
   [[blocks.segments]]
-    template = '{{ .FormattedMs }}'
+    template = ' {{ .FormattedMs }}'
     foreground = 'yellow'
     background = 'transparent'
     type = 'executiontime'
