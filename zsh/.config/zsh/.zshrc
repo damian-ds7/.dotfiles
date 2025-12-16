@@ -48,6 +48,7 @@ export MANROFFOPT="-c"
 export EDITOR='nvim'
 export VISUAL='nvim'
 export GOPATH="$HOME/.go"
+export VIRTUAL_ENV_DISABLE_PROMPT=0
 
 # PATH Configuration
 if [[ ! "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
@@ -59,6 +60,9 @@ export PATH="$PATH:/usr/local/go/bin"
 # ZVM Configuration
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 ZVM_VI_EDITOR=$EDITOR
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
+ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
 
 # Shell Options
 setopt glob_dots
