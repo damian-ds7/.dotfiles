@@ -8,7 +8,25 @@ if command -v oh-my-posh >/dev/null 2>&1; then
   return 0 2>/dev/null || exit 0
 fi
 
-echo "Oh My Posh not found. Installing..."
+while true; do
+  echo -n "Oh My Posh not found. Do you want to install it? [Y/n]: "
+  read -k 1 response
+  echo
+
+  case "$response" in
+    y|Y|$'\n')
+      echo "Proceeding with installation..."
+      break
+      ;;
+    n|N)
+      echo "Skipping Oh My Posh installation."
+      return 0 2>/dev/null || exit 0
+      ;;
+    *)
+      echo "Invalid input. Please press 'y', 'n', or 'q'."
+      ;;
+  esac
+done
 
 INSTALL_SCRIPT_URL="https://ohmyposh.dev/install.sh"
 EXPECTED_SHA256="2e03d4e90e0d390f28ce739fbd90ed2a14f1e7b48bf693d538bede460b547560"
