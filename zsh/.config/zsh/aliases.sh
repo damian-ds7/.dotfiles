@@ -113,10 +113,6 @@ alias vsource='source .venv/bin/activate'
 #  Custom Functions
 # -------------------------
 
-now() {
-  export now=$(date +"%Y-%m-%dT%H%M%S")
-}
-
 xopen() {
   local arg="${1:-.}"
   xdg-open "$arg"
