@@ -87,6 +87,8 @@ setopt append_history
 setopt inc_append_history
 
 WORDCHARS=${WORDCHARS//\//}
+WORDCHARS=${WORDCHARS//-/}
+WORDCHARS=${WORDCHARS//./}
 
 # History Configuration
 HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/history"
