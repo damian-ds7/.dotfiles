@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Wallpaper selector
+StartupNotify=true
+Icon=/home/damian/.local/share/applications/icons/wallpaper.png
+Terminal=false
+Keywords=Wallpaper;Select;Selection;Selector
+Exec=sh -c "$HOME/.local/bin/vicinae-wallpaper-selector"
