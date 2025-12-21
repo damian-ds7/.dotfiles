@@ -9,6 +9,11 @@ layout {
         off
     }
 
+    border {
+        on
+        width 1.5
+    }
+
     gaps 8
     center-focused-column "on-overflow"
     always-center-single-column
@@ -34,5 +39,12 @@ layout {
     tab-indicator {
         place-within-column
         hide-when-single-tab
+    }
+}
+
+recent-windows {
+    highlight {
+        padding 20
+        corner-radius 12
     }
 }
