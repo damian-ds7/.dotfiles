@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+wallpapers_dir="$HOME/Pictures/Wallpapers"
+
+selected=$(find "$wallpapers_dir" -name "*-normal.png" -type f |
+  vicinae dmenu -p 'Pick a wallpaper...')
+
+if [ -n "$selected" ]; then
+  wallpaper_name=$(basename "$selected" | sed 's/-normal\.png$//')
+
+  "$HOME/.local/bin/awww-set-wallpaper" "$wallpaper_name"
+fi

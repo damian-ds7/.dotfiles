@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+wallpapers_dir="$HOME/Pictures/Wallpapers"
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <wallpaper-dir-name>"
+  exit 1
+fi
+
+dirname="$1"
+wallpaper_path="$wallpapers_dir/$dirname"
+
+if [ ! -d "$wallpaper_path" ]; then
+  echo "Error: Directory '$wallpaper_path' not found"
+  exit 1
+fi
+
+if [ ! -f "$wallpaper_path/${dirname}-blur.png" ] || [ ! -f "$wallpaper_path/${dirname}-normal.png" ]; then
+  echo "Error: blur or normal wallpaper not found in $dirname"
+  exit 1
+fi
+
+echo "Setting wallpaper: $dirname"
+
+ln -sf "$wallpaper_path/${dirname}-blur.png" "$wallpapers_dir/current/blur.png"
+ln -sf "$wallpaper_path/${dirname}-normal.png" "$wallpapers_dir/current/normal.png"
+
+"$HOME/.cargo/bin/awww" img --namespace "overview" "$wallpaper_path/${dirname}-blur.png" && "$HOME/.cargo/bin/awww" img "$wallpaper_path/${dirname}-normal.png"

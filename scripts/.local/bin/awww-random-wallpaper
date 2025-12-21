@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+wallpapers_dir="$HOME/Pictures/Wallpapers"
+
+random_dir=$(find "$wallpapers_dir" -mindepth 1 -maxdepth 1 -type d ! -name "current" | shuf -n 1)
+
+dirname=$(basename "$random_dir")
+
+"$HOME/.local/bin/awww-set-wallpaper" "$dirname"

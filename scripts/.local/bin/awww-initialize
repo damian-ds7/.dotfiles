@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+"$HOME/.cargo/bin/awww-daemon" --namespace "overview" &
+"$HOME/.cargo/bin/awww-daemon" &
+
+"$HOME/.local/bin/awww-random-wallpaper"

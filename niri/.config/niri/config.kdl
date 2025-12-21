@@ -10,6 +10,7 @@ include "colors.kdl"
 include "layout.kdl"
 
 spawn-sh-at-startup "/usr/libexec/xfce-polkit"
+spawn-sh-at-startup "~/.local/bin/awww-initialize"
 
 hotkey-overlay {
     skip-at-startup
