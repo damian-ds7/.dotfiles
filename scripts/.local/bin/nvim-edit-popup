@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+wtype -M ctrl -k a -k c -m ctrl &&
+  ghostty --class="com.nvim.edit" -e bash -c "wl-paste | nvim -n - +'file /tmp/nvimedit_temp_buf'" &&
+  cat /tmp/nvimedit_temp_buf | wl-copy && rm /tmp/nvimedit_temp_buf || true && wtype -M ctrl -k v -m ctrl

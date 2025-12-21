@@ -44,6 +44,13 @@ window-rule {
 }
 
 window-rule {
+    match app-id="com.nvim.edit"
+    open-floating true
+    default-column-width { fixed 700; }
+    default-window-height { fixed 300; }
+}
+
+window-rule {
     match title="bluetui"
     open-floating true
     max-height 700;

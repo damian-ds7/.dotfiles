@@ -9,6 +9,7 @@ binds {
     Mod+E hotkey-overlay-title="Nautilus" { spawn "nautilus";  }
     Mod+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a '^[cC]ode$' -- code --enable-features=UseOzonePlatform --ozone-platform=wayland";  }
     Mod+N hotkey-overlay-title="Neovim" { spawn "~/.local/bin/launch-nvim-window";  }
+    Mod+P hotkey-overlay-title="Neovim textbox edit popup" { spawn "~/.local/bin/nvim-edit-popup";  }
 
     Mod+S hotkey-overlay-title="Toggle control center" { spawn-sh "qs ipc call controlCenter toggle"; }
     Mod+Z hotkey-overlay-title="Toggle notification center" { spawn-sh "qs ipc call notifications toggleHistory"; }
@@ -116,7 +117,6 @@ binds {
     Mod+Page_Up        { focus-workspace-up; }
     Mod+U              { focus-workspace-down; }
     Mod+I              { focus-workspace-up; }
-    Mod+P              { focus-workspace-previous; }
     Mod+Shift+Page_Down { move-column-to-workspace-down; }
     Mod+Shift+Page_Up   { move-column-to-workspace-up; }
     Mod+Shift+U         { move-column-to-workspace-down; }
