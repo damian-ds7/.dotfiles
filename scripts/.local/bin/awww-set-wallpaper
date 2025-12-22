@@ -25,4 +25,6 @@ echo "Setting wallpaper: $dirname"
 ln -sf "$wallpaper_path/${dirname}-blur.png" "$wallpapers_dir/current/blur.png"
 ln -sf "$wallpaper_path/${dirname}-normal.png" "$wallpapers_dir/current/normal.png"
 
-"$HOME/.cargo/bin/awww" img --namespace "overview" "$wallpaper_path/${dirname}-blur.png" && "$HOME/.cargo/bin/awww" img "$wallpaper_path/${dirname}-normal.png"
+opts="--transition-type random --transition-duration 1.5 --transition-fps 60"
+"$HOME"/.cargo/bin/awww img $opts --namespace overview "$wallpaper_path/${dirname}-blur.png"
+"$HOME"/.cargo/bin/awww img $opts "$wallpaper_path/${dirname}-normal.png"
