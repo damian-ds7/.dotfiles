@@ -63,6 +63,10 @@ if [[ ! "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 
+if [[ ! "$PATH" =~ "$HOME/.cargo/bin:$HOME/bin:" ]]; then
+    export PATH="$HOME/.cargo/bin:$HOME/bin:$PATH"
+fi
+
 export PATH="$PATH:/usr/local/go/bin"
 
 # ZVM Configuration
