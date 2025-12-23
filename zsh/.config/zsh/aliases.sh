@@ -17,6 +17,8 @@ alias df='df -hT'
 
 alias c='clear'
 
+alias update-poweroff='sudo dnf upgrade -y && flatpak update -y && systemctl poweroff'
+
 # -------------------------
 #  Aliases with fallback to original command
 # -------------------------
