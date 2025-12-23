@@ -64,7 +64,7 @@ if [[ ! "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
 fi
 
 if [[ ! "$PATH" =~ "$HOME/.cargo/bin:$HOME/bin:" ]]; then
-    export PATH="$HOME/.cargo/bin:$HOME/bin:$PATH"
+    export PATH="$PATH:$HOME/.cargo/bin"
 fi
 
 export PATH="$PATH:/usr/local/go/bin"
