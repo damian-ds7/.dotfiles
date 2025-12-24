@@ -1,7 +1,10 @@
 CURRENT_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]:-$0}")")
-source "$CURRENT_DIR/utils.sh"
 
 unset CURRENT_DIR
+
+is_installed() {
+  command -v "$1" >/dev/null 2>&1
+}
 
 # -------------------------
 #  General Aliases

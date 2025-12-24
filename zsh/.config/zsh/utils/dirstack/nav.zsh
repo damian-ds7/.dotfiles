@@ -6,6 +6,8 @@
 function -cd-rotate() {
   emulate -L zsh -o extended_glob
 
+  (( ${+_zsh_dir_hist_fd} )) && typeset -f -zsh-update-dir-history >/dev/null 2>&1 && -zsh-update-dir-history
+
   while (( $#dirstack )) && ! pushd -q $1 &>/dev/null; do
     popd -q $1
   done

@@ -5,7 +5,7 @@ if ! command -v rustup >/dev/null 2>&1; then
   return 0
 fi
 
-COMPLETIONS_DIR="${ZDOTDIR:-$HOME/.config/zsh}/completions"
+COMPLETIONS_DIR="${ZSH_CACHE_DIR:-$HOME/.cache/zsh}/completions"
 
 if [[ ! -d "$COMPLETIONS_DIR" ]]; then
   mkdir -p "$COMPLETIONS_DIR"

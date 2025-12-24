@@ -1,3 +1,7 @@
+# Cache Directory
+ZSH_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh"
+mkdir -p "$ZSH_CACHE_DIR"
+
 # Zinit Setup
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [[ ! -d "$ZINIT_HOME" ]]; then
@@ -6,11 +10,22 @@ if [[ ! -d "$ZINIT_HOME" ]]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
+# PATH Configuration
+if [[ ! "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+
+if [[ ! "$PATH" =~ "$HOME/.cargo/bin:$HOME/bin:" ]]; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
+
+export PATH="$PATH:/usr/local/go/bin"
+
 # Completions Setup
 if [[ ! -d "$ZDOTDIR/completions" ]]; then
-  source "$ZDOTDIR/setup-completions.sh"
+  source "$ZDOTDIR/utils/setup-completions.zsh"
 fi
-fpath=($ZDOTDIR/completions $fpath)
+fpath=($ZSH_CACHE_DIR/completions $fpath)
 autoload -Uz compinit && compinit
 
 # Zinit Plugins
@@ -28,7 +43,7 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 # Oh My Posh
 if [[ -z "$NO_OMP" ]]; then
   if ! command -v oh-my-posh >/dev/null 2>&1; then
-    source "$ZDOTDIR/setup-omp.sh"
+    source "$ZDOTDIR/utils/setup-omp.zsh"
   fi
 
   if command -v oh-my-posh >/dev/null 2>&1; then
@@ -57,17 +72,6 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export GOPATH="$HOME/.go"
 export VIRTUAL_ENV_DISABLE_PROMPT=0
-
-# PATH Configuration
-if [[ ! "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-
-if [[ ! "$PATH" =~ "$HOME/.cargo/bin:$HOME/bin:" ]]; then
-    export PATH="$PATH:$HOME/.cargo/bin"
-fi
-
-export PATH="$PATH:/usr/local/go/bin"
 
 # ZVM Configuration
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
@@ -99,6 +103,7 @@ HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/history"
 HISTSIZE=10000
 SAVEHIST=10000
 mkdir -p "$(dirname "$HISTFILE")"
+DIRSTACKSIZE=1000
 
 # Key Bindings
 setup_keybindings() {
@@ -134,10 +139,18 @@ fi
 
 # Source External Files
 ## Aliases
-[[ -f $HOME/.config/zsh/aliases.sh ]] && source $HOME/.config/zsh/aliases.sh
+[[ -f $ZDOTDIR/utils/aliases.zsh ]] && source $ZDOTDIR/utils/aliases.zsh
 
 ## Directory Stack Navigation
-[[ -f $ZDOTDIR/dirstack-nav.sh ]] && source $ZDOTDIR/dirstack-nav.sh
+[[ -f $ZDOTDIR/utils/dirstack/nav.zsh ]] && source $ZDOTDIR/utils/dirstack/nav.zsh
+
+# Directory history persistence
+if [[ -f $ZDOTDIR/utils/dirstack/update-dir-history.zsh ]]; then
+  source $ZDOTDIR/utils/dirstack/update-dir-history.zsh
+  autoload -Uz add-zsh-hook
+  add-zsh-hook chpwd -zsh-update-dir-history
+  -zsh-update-dir-history
+fi
 
 . "$HOME/.cargo/env" 2>/dev/null
 
