@@ -105,6 +105,14 @@ setup_keybindings() {
   bindkey '^ ' autosuggest-accept
   bindkey '^Y' forward-word
   bindkey '^[l' clear-screen
+
+  # Directory stack navigation
+  bindkey -M viins '^[[1;3D' cd-back     # Alt+Left
+  bindkey -M viins '^[[1;3C' cd-forward  # Alt+Right
+  bindkey -M vicmd 'H' cd-back
+  bindkey -M vicmd 'L' cd-forward
+  bindkey -M visual 'H' cd-back
+  bindkey -M visual 'L' cd-forward
 }
 
 setup_keybindings
@@ -127,6 +135,9 @@ fi
 # Source External Files
 ## Aliases
 [[ -f $HOME/.config/zsh/aliases.sh ]] && source $HOME/.config/zsh/aliases.sh
+
+## Directory Stack Navigation
+[[ -f $ZDOTDIR/dirstack-nav.sh ]] && source $ZDOTDIR/dirstack-nav.sh
 
 . "$HOME/.cargo/env" 2>/dev/null
 
