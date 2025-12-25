@@ -43,7 +43,10 @@ return {
               picker:update({ target = dir })
             end,
           },
+          hidden = true,
         },
+        files = { hidden = true },
+        grep = { hidden = true },
       },
     },
   },
