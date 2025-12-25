@@ -118,15 +118,24 @@ setup_keybindings() {
   bindkey -M vicmd 'L' cd-forward
   bindkey -M visual 'H' cd-back
   bindkey -M visual 'L' cd-forward
-}
 
-setup_keybindings
+  bindkey -M vicmd '^M' accept-line-in-insert
+}
 
 # Functions
 autoload -Uz zmv
 
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
+
+# Custom widget that switches to insert mode before accepting line
+# Fixes the issue with OMP transient prompt not working when command
+# is run in normal mode
+function accept-line-in-insert() {
+  zle accept-line
+  zvm_select_vi_mode $ZVM_MODE_INSERT
+}
+zle -N accept-line-in-insert
 
 # External Tool Initialization
 if command -v zoxide >/dev/null 2>&1; then
