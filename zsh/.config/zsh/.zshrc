@@ -114,6 +114,8 @@ setup_keybindings() {
   # Directory stack navigation
   bindkey -M viins '^[[1;3D' cd-back     # Alt+Left
   bindkey -M viins '^[[1;3C' cd-forward  # Alt+Right
+  bindkey -M viins '^[^H' cd-back     # Alt+Left
+  bindkey -M viins '^[^L' cd-forward  # Alt+Right
   bindkey -M vicmd 'H' cd-back
   bindkey -M vicmd 'L' cd-forward
   bindkey -M visual 'H' cd-back
