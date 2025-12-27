@@ -17,6 +17,15 @@ fi
 
 export PATH="$PATH:/usr/local/go/bin"
 
+# Environment Variables
+export GPG_TTY=$TTY
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+export EDITOR='nvim'
+export VISUAL='nvim'
+export GOPATH="$HOME/.go"
+export VIRTUAL_ENV_DISABLE_PROMPT=0
+
 # Check deps
 ## fzf
 if [[ -z "$NO_FZF" ]]; then
@@ -50,15 +59,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:ssh:argument-1:' tag-order hosts users
 zstyle ':completion:*:scp:argument-rest:' tag-order hosts files users
 zstyle ':completion:*:(ssh|scp|rdp):*:hosts' hosts
-
-# Environment Variables
-export GPG_TTY=$TTY
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANROFFOPT="-c"
-export EDITOR='nvim'
-export VISUAL='nvim'
-export GOPATH="$HOME/.go"
-export VIRTUAL_ENV_DISABLE_PROMPT=0
 
 # Theme detection for Oh My Posh
 THEME_MODE_FILE="${HOME}/.config/themes/mode"
