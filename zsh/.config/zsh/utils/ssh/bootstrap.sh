@@ -153,7 +153,7 @@ if ! command -v zsh >'/dev/null' 2>&1; then
     'exit' '1'
   fi
 
-  'command' 'sh' '--' "$_zsh_tmp" '-d' "$HOME"/.local '-e' 'no' '-q' || {
+  'command' 'sh' '--' "$_zsh_tmp" '-d' "$HOME"/.local '-e' 'no' || {
     >&2 'printf' '\033[31mError:\033[0m Failed to install zsh\n'
     _teleport_error
     'exit' '1'
