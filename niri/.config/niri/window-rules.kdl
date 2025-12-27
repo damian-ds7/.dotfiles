@@ -28,7 +28,7 @@ window-rule {
 
 window-rule {
     match app-id="zen" title="^Picture-in-Picture$"
-    default-floating-position x=9 y=9 relative-to="bottom-right"
+    default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
 window-rule {
