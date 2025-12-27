@@ -36,13 +36,6 @@ if [[ "$FZF_OS" == "unknown" || "$FZF_ARCH" == "unknown" ]]; then
 fi
 
 if command -v gum >/dev/null 2>&1; then
-  gum style \
-    --foreground 212 --border-foreground 212 --border rounded \
-    --align center --width 50 --margin "1 2" --padding "1 2" \
-    "fzf" \
-    "" \
-    "fzf is not installed"
-
   if ! gum confirm "Install fzf?"; then
     gum style --foreground 220 "Skipping fzf installation"
     return 0 2>/dev/null || exit 0

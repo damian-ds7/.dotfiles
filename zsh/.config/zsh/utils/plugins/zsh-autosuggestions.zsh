@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+ZSH_AUTOSUGGEST_STRATEGY=(history)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40

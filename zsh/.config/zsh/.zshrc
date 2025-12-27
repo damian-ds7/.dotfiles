@@ -1,14 +1,10 @@
+if [[ -n "$ZSH_PROFILE" ]]; then
+  zmodload zsh/zprof
+fi
+
 # Cache Directory
 ZSH_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh"
 mkdir -p "$ZSH_CACHE_DIR"
-
-# Zinit Setup
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-if [[ ! -d "$ZINIT_HOME" ]]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-source "${ZINIT_HOME}/zinit.zsh"
 
 # PATH Configuration
 if [[ ! "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
@@ -21,49 +17,33 @@ fi
 
 export PATH="$PATH:/usr/local/go/bin"
 
-# Completions Setup
-if [[ ! -d "$ZSH_CACHE_DIR/completions" ]]; then
-  source "$ZSH_CACHE_DIR/utils/setup-completions.zsh"
-fi
-fpath=($ZSH_CACHE_DIR/completions $fpath)
-autoload -Uz compinit && compinit
-
-# fzf
+# Check deps
+## fzf
 if [[ -z "$NO_FZF" ]]; then
   if ! command -v fzf >/dev/null 2>&1; then
     source "$ZDOTDIR/utils/setup-fzf.zsh"
   fi
 fi
 
-# Zinit Plugins
-zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
-zinit ice depth=1; zinit light zsh-users/zsh-completions
-zinit ice depth=1; zinit light Aloxaf/fzf-tab
-zinit ice depth=1; zinit light zsh-users/zsh-autosuggestions
-zinit ice depth=1; zinit light zsh-users/zsh-syntax-highlighting
-
-# Plugin Configuration
-## Autosuggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history)
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
-
-# Oh My Posh
+## OMP
 if [[ -z "$NO_OMP" ]]; then
   if ! command -v oh-my-posh >/dev/null 2>&1; then
     source "$ZDOTDIR/utils/setup-omp.zsh"
   fi
+fi
 
+# Zinit Setup
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+source "$ZDOTDIR/utils/setup-zinit.zsh"
+
+# Oh My Posh
+if [[ -z "$NO_OMP" ]]; then
   if command -v oh-my-posh >/dev/null 2>&1; then
     eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/p10k.toml)"
   fi
 fi
 
-## FZF Tab
-zstyle ':fzf-tab:*' fzf-bindings 'tab:accept,enter:accept'
-zstyle ':fzf-tab:*' continuous-trigger '/'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath 2>/dev/null'
-
-## Completion Styles
+# Completion Styles
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -79,14 +59,6 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export GOPATH="$HOME/.go"
 export VIRTUAL_ENV_DISABLE_PROMPT=0
-
-# ZVM Configuration
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-ZVM_VI_EDITOR=$EDITOR
-ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
-ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-ZVM_SYSTEM_CLIPBOARD_ENABLED=true
 
 # Shell Options
 setopt glob_dots
@@ -121,8 +93,8 @@ setup_keybindings() {
   # Directory stack navigation
   bindkey -M viins '^[[1;3D' cd-back     # Alt+Left
   bindkey -M viins '^[[1;3C' cd-forward  # Alt+Right
-  bindkey -M viins '^[^H' cd-back     # Alt+Left
-  bindkey -M viins '^[^L' cd-forward  # Alt+Right
+  bindkey -M viins '^[^H' cd-back        # Ctrl+Alt+Shift+H
+  bindkey -M viins '^[^L' cd-forward     # Ctrl+Alt+Shift+L
   bindkey -M vicmd 'H' cd-back
   bindkey -M vicmd 'L' cd-forward
   bindkey -M visual 'H' cd-back
@@ -135,9 +107,7 @@ setup_keybindings() {
 autoload -Uz zmv
 
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
-compdef _directories md
 
-# Custom widget that switches to insert mode before accepting line
 # Fixes the issue with OMP transient prompt not working when command
 # is run in normal mode
 function accept-line-in-insert() {
@@ -218,3 +188,26 @@ function zvm_after_select_vi_mode() {
   esac
   _omp_redraw-prompt
 }
+
+function reset_cursor_shape() {
+  case $ZVM_MODE in
+    $ZVM_MODE_NORMAL)
+      echo -ne '\e[2 q'  # Block cursor
+      ;;
+    $ZVM_MODE_INSERT)
+      echo -ne '\e[6 q'  # Beam cursor
+      ;;
+    $ZVM_MODE_VISUAL|$ZVM_MODE_VISUAL_LINE)
+      echo -ne '\e[2 q'  # Block cursor
+      ;;
+    *)
+      echo -ne '\e[6 q'  # Default to beam
+      ;;
+  esac
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd reset_cursor_shape
+
+if [[ -n "$ZSH_PROFILE" ]]; then
+  zprof
+fi

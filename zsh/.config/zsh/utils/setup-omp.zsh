@@ -9,13 +9,6 @@ if command -v oh-my-posh >/dev/null 2>&1; then
 fi
 
 if command -v gum >/dev/null 2>&1; then
-  gum style \
-    --foreground 212 --border-foreground 212 --border rounded \
-    --align center --width 50 --margin "1 2" --padding "1 2" \
-    "Oh My Posh" \
-    "" \
-    "Oh My Posh is not installed"
-
   if ! gum confirm "Install Oh My Posh?"; then
     gum style --foreground 220 "Skipping Oh My Posh installation"
     return 0 2>/dev/null || exit 0
@@ -56,17 +49,13 @@ if [[ ! -d "$INSTALL_DIR" ]]; then
   mkdir -p "$INSTALL_DIR"
 fi
 
-# Build installation commands
 _download_cmd="curl -fsSL \"$INSTALL_SCRIPT_URL\" -o \"$INSTALL_SCRIPT\""
 _install_cmd="bash \"$INSTALL_SCRIPT\" -d \"$INSTALL_DIR\""
 
-# Execute with gum spinner or directly
 if command -v gum >/dev/null 2>&1; then
-  # Use gum spinner for download
   if gum spin --spinner dot --title "Downloading Oh My Posh installer..." -- sh -c "$_download_cmd"; then
     chmod +x "$INSTALL_SCRIPT"
 
-    # Use gum spinner for install
     if gum spin --spinner dot --title "Installing Oh My Posh..." -- sh -c "$_install_cmd"; then
       if command -v oh-my-posh >/dev/null 2>&1; then
         gum style --foreground 212 "Oh My Posh installed successfully!"
@@ -84,7 +73,6 @@ if command -v gum >/dev/null 2>&1; then
     return 1 2>/dev/null || exit 1
   fi
 else
-  # Fallback without gum
   echo "Downloading Oh My Posh installer..."
   if ! sh -c "$_download_cmd"; then
     echo "Error: Failed to download installer" >&2
