@@ -1,2 +1,4 @@
 # SSH Teleportation - Enabled Hosts
 # One hostname per line
+localhost
+galera
