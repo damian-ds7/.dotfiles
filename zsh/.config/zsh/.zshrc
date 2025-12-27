@@ -60,6 +60,30 @@ export VISUAL='nvim'
 export GOPATH="$HOME/.go"
 export VIRTUAL_ENV_DISABLE_PROMPT=0
 
+# Theme detection for Oh My Posh
+THEME_MODE_FILE="${HOME}/.config/themes/mode"
+if [[ -f "$THEME_MODE_FILE" ]]; then
+  export THEME_MODE="$(cat "$THEME_MODE_FILE")"
+else
+  export THEME_MODE="dark"
+fi
+
+update_theme_mode() {
+  if [[ -f "$THEME_MODE_FILE" ]]; then
+    local new_mode="$(cat "$THEME_MODE_FILE")"
+    if [[ "$new_mode" != "$THEME_MODE" ]]; then
+      export THEME_MODE="$new_mode"
+    fi
+  fi
+}
+
+TRAPUSR1() {
+  update_theme_mode
+  if typeset -f _omp_redraw-prompt > /dev/null; then
+    _omp_redraw-prompt
+  fi
+}
+
 # Shell Options
 setopt glob_dots
 setopt no_auto_menu

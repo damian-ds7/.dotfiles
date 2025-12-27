@@ -2,12 +2,24 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 version = 3
 final_space = true
 
-[palette]
-  magenta = '#F265B8'
-  red = '#F25754'
-  purple = '#c19fed'
-  grey = '#3e3e43'
-  blue = '#55bef2'
+[palettes]
+  template = '{{ if eq .Env.THEME_MODE "light" }}light{{ else }}dark{{ end }}'
+
+  [palettes.list.dark]
+    magenta = '#F265B8'
+    red = '#F25754'
+    purple = '#c19fed'
+    grey = '#3e3e43'
+    blue = '#55bef2'
+    cyan = '#06b6d4'
+
+  [palettes.list.light]
+    magenta = '#c7417b'
+    red = '#d11149'
+    purple = '#8b5cf6'
+    grey = '#4a5568'
+    blue = '#2563eb'
+    cyan = '#0891b2'
 
 [secondary_prompt]
   template = '❯❯ '
@@ -43,7 +55,7 @@ final_space = true
       style = 'full'
 
   [[blocks.segments]]
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <p:cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
     foreground = 'p:grey'
     background = 'transparent'
     type = 'git'

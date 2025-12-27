@@ -16,6 +16,7 @@ switch_to_dark() {
   vicinae vicinae://theme/set/catppuccin-mocha
   "$TMUX_THEME_DIR/reset.sh"
   ln -sfnr "$THEME_DIR/catppuccin-mocha" "$THEME_DIR/current"
+  echo dark >"$THEME_DIR"/mode
 }
 
 switch_to_light() {
@@ -25,6 +26,7 @@ switch_to_light() {
   vicinae vicinae://theme/set/catppuccin-latte
   "$TMUX_THEME_DIR/reset.sh"
   ln -sfnr "$THEME_DIR/catppuccin-latte" "$THEME_DIR/current"
+  echo light >"$THEME_DIR"/mode
 }
 
 if test "$(get_current_theme)" = "'prefer-light'"; then
@@ -34,6 +36,7 @@ else
 fi
 
 killall -SIGUSR2 ghostty
+killall -SIGUSR1 zsh
 tmux source-file "$TMUX_CONF_DIR/tmux.conf"
 systemctl --user try-restart waybar.service
 systemctl --user try-restart swayosd-server.service
