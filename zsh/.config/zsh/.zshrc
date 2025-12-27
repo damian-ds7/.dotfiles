@@ -28,6 +28,13 @@ fi
 fpath=($ZSH_CACHE_DIR/completions $fpath)
 autoload -Uz compinit && compinit
 
+# fzf
+if [[ -z "$NO_FZF" ]]; then
+  if ! command -v fzf >/dev/null 2>&1; then
+    source "$ZDOTDIR/utils/setup-fzf.zsh"
+  fi
+fi
+
 # Zinit Plugins
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 zinit ice depth=1; zinit light zsh-users/zsh-completions
