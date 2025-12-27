@@ -1,0 +1,2 @@
+# SSH Teleportation - Disabled Hosts
+# One hostname per line

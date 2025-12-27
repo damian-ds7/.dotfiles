@@ -149,6 +149,11 @@ if command -v direnv >/dev/null 2>&1; then
 fi
 
 # Source External Files
+# SSH Teleportation
+if [[ -f "$ZDOTDIR/utils/ssh/ssh-wrapper.zsh" ]]; then
+  source "$ZDOTDIR/utils/ssh/ssh-wrapper.zsh"
+fi
+
 ## Aliases
 [[ -f $ZDOTDIR/utils/aliases.zsh ]] && source $ZDOTDIR/utils/aliases.zsh
 
