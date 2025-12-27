@@ -7,6 +7,7 @@ final_space = true
   red = '#F25754'
   purple = '#c19fed'
   grey = '#3e3e43'
+  blue = '#55bef2'
 
 [secondary_prompt]
   template = '❯❯ '
@@ -32,7 +33,7 @@ final_space = true
 
   [[blocks.segments]]
     template = '{{ .Path }}'
-    foreground = 'blue'
+    foreground = 'p:blue'
     background = 'transparent'
     type = 'path'
     style = 'plain'
