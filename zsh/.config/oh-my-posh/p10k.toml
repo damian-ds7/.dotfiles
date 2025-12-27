@@ -6,6 +6,7 @@ final_space = true
   magenta = '#F265B8'
   red = '#F25754'
   purple = '#c19fed'
+  grey = '#3e3e43'
 
 [secondary_prompt]
   template = '❯❯ '
@@ -21,6 +22,13 @@ final_space = true
   type = 'prompt'
   alignment = 'left'
   newline = true
+
+  [[blocks.segments]]
+    template = '{{ if .SSHSession }}@{{ .HostName }} {{ end }}'
+    foreground = 'p:grey'
+    background = 'transparent'
+    type = 'session'
+    style = 'plain'
 
   [[blocks.segments]]
     template = '{{ .Path }}'
