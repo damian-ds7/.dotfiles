@@ -22,8 +22,8 @@ fi
 export PATH="$PATH:/usr/local/go/bin"
 
 # Completions Setup
-if [[ ! -d "$ZDOTDIR/completions" ]]; then
-  source "$ZDOTDIR/utils/setup-completions.zsh"
+if [[ ! -d "$ZSH_CACHE_DIR/completions" ]]; then
+  source "$ZSH_CACHE_DIR/utils/setup-completions.zsh"
 fi
 fpath=($ZSH_CACHE_DIR/completions $fpath)
 autoload -Uz compinit && compinit
