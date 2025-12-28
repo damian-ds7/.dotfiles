@@ -306,7 +306,13 @@ function ssh-teleport() {
     local files_checksum
     files_checksum=$(
       for src dst in "${(@kv)send_files}"; do
-        [[ -e $src ]] && print -r -- "${src:A}" && command sha256sum "${src:A}" 2>/dev/null
+        if [[ -d $src ]]; then
+          print -r -- "${src:A}"
+          command find "${src:A}" -type f -exec sha256sum {} \; 2>/dev/null | sort
+        elif [[ -f $src ]]; then
+          print -r -- "${src:A}"
+          command sha256sum "${src:A}" 2>/dev/null
+        fi
       done | command sha256sum 2>/dev/null | cut -d' ' -f1
     )
 
