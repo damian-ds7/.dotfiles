@@ -261,6 +261,8 @@ function ssh-teleport() {
         send_files[$src]=$dst
       fi
     done
+    _teleport_debug "After extra files loop: src=$src dst=$dst"
+    unset src dst
   fi
 
   if (( $+functions[ssh-teleport-configure] )); then
