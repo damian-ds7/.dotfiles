@@ -3,7 +3,7 @@
 wallpapers_dir="$HOME/Pictures/Wallpapers"
 
 selected=$(find "$wallpapers_dir" -name "*-normal.png" -type f |
-  vicinae dmenu --no-metadata -p 'Pick a wallpaper...')
+  vicinae dmenu --width 800 --no-metadata -p 'Pick a wallpaper...')
 
 if [ -n "$selected" ]; then
   wallpaper_name=$(basename "$selected" | sed 's/-normal\.png$//')
