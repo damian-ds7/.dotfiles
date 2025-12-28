@@ -52,14 +52,6 @@ if [[ -z "$NO_OMP" ]]; then
   fi
 fi
 
-# Completion Styles
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*:ssh:argument-1:' tag-order hosts users
-zstyle ':completion:*:scp:argument-rest:' tag-order hosts files users
-zstyle ':completion:*:(ssh|scp|rdp):*:hosts' hosts
-
 # Theme detection for Oh My Posh
 THEME_MODE_FILE="${HOME}/.config/themes/mode"
 if [[ -f "$THEME_MODE_FILE" ]]; then
