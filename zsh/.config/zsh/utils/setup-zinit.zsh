@@ -62,6 +62,7 @@ setup_zinit_plugins() {
       zdharma-continuum/fast-syntax-highlighting
 
   zstyle :omz:plugins:ssh-agent lazy yes
+  zstyle :omz:plugins:ssh-agent quiet yes
 
   zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
   zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
