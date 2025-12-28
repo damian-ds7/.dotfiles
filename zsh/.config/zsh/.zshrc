@@ -145,6 +145,10 @@ fi
 # SSH Teleportation
 if [[ -f "$ZDOTDIR/utils/ssh/ssh-wrapper.zsh" ]]; then
   source "$ZDOTDIR/utils/ssh/ssh-wrapper.zsh"
+
+  CONF_DIR="~/.config"
+  zstyle ':ssh-teleport:*' send-extra-files "$CONF_DIR/tmux/tmux.conf" "$CONF_DIR/themes/current/tmux.conf" "$CONF_DIR/git"
+  unset CONF_DIR
 fi
 
 ## Aliases
