@@ -65,7 +65,6 @@ setup_zinit_plugins() {
   zstyle :omz:plugins:ssh-agent quiet yes
 
   zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
-  zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
   zinit snippet OMZ::plugins/rust/rust.plugin.zsh
 }
 

@@ -105,7 +105,8 @@ setup_keybindings() {
   bindkey '^ ' autosuggest-accept
   bindkey '^Y' forward-word
   bindkey '^[l' clear-screen
-
+  bindkey '^Z' fancy-ctrl-z
+ 
   # Directory stack navigation
   bindkey -M viins '^[[1;3D' cd-back     # Alt+Left
   bindkey -M viins '^[[1;3C' cd-forward  # Alt+Right
@@ -123,6 +124,17 @@ setup_keybindings() {
 autoload -Uz zmv
 
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
+
+function fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line -w
+  else
+    zle push-input -w
+    zle clear-screen -w
+  fi
+}
+zle -N fancy-ctrl-z
 
 # Fixes the issue with OMP transient prompt not working when command
 # is run in normal mode
