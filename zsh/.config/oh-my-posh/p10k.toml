@@ -84,6 +84,13 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
+    template = '{{ if gt .Jobs 0 }}[{{ .Jobs }}] {{ end }}'
+    foreground = 'p:purple'
+    background = 'transparent'
+    type = 'text'
+    style = 'plain'
+
+  [[blocks.segments]]
     template = '{{if or (eq .Env.POSH_VI_MODE "command") (eq .Env.POSH_VI_MODE "visual")}}❮{{else}}❯{{end}}'
     background = 'transparent'
     type = 'text'
