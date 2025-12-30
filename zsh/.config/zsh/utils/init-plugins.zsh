@@ -58,7 +58,14 @@ fpath+=("$ZDOTDIR/completions")
 fpath+=("$ZDOTDIR/plugins/completions/src")
 
 autoload -Uz compinit
-compinit -C -d "${ZSH_CACHE_DIR:-$HOME/.cache/zsh}/.zcompdump"
+zcompdump="${ZSH_CACHE_DIR:-$HOME/.cache/zsh}/.zcompdump"
+
+if [[ ! -f "$zcompdump" || -n ${zcompdump}(#qN.m1) ]]; then
+  compinit -i -C -d "$zcompdump"
+  { rm -f "${zcompdump}.zwc" && zcompile "$zcompdump" } &!
+else
+  compinit -C -d "$zcompdump"
+fi
 
 
 # ssh-agent

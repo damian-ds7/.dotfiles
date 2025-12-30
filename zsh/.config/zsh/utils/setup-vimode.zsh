@@ -54,7 +54,7 @@ done
 # Reset to insert mode when starting a new line (after Ctrl+C, command, etc.)
 function zle-line-init() {
   zle -K viins
-  [[ -n "$ZLE_STATE" ]] && echo -ne '\e[6 q'
+  echo -ne '\e[6 q'
   POSH_VI_MODE="insert"
 }
 zle -N zle-line-init
@@ -62,25 +62,14 @@ zle -N zle-line-init
 function zle-keymap-select() {
   case "${KEYMAP}" in
     vicmd)
-      [[ -n "$ZLE_STATE" ]] && echo -ne '\e[2 q'  # Block cursor
+      echo -ne '\e[2 q'  # Block cursor
       POSH_VI_MODE="command"
       ;;
     viins|main)
-      [[ -n "$ZLE_STATE" ]] && echo -ne '\e[6 q'  # Beam cursor
+      echo -ne '\e[6 q'  # Beam cursor
       POSH_VI_MODE="insert"
       ;;
   esac
-  _vimode_redraw_prompt
+  _redraw_prompt
 }
 zle -N zle-keymap-select
-
-_vimode_redraw_prompt() {
-  [[ -z "$ZLE_STATE" ]] && return
-
-  local precmd
-  for precmd in "${precmd_functions[@]}"; do
-    "$precmd"
-  done
-
-  zle .reset-prompt
-}

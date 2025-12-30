@@ -13,11 +13,7 @@ function -cd-rotate() {
   done
 
   if (( $#dirstack )); then
-    if typeset -f _omp_redraw-prompt >/dev/null 2>&1; then
-      _omp_redraw-prompt
-    else
-      zle && zle .reset-prompt
-    fi
+    _redraw_prompt
     return 0
   fi
 

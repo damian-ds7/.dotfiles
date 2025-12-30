@@ -62,6 +62,15 @@ if [[ -z "$NO_OMP" ]]; then
     }
     autoload -Uz add-zsh-hook
     add-zsh-hook preexec _set_should_newline
+
+    _redraw_prompt() {
+      local precmd
+      for precmd in "${precmd_functions[@]}"; do
+        "$precmd"
+      done
+
+      zle .reset-prompt
+    }
   fi
 fi
 
