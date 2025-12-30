@@ -16,7 +16,7 @@ function ssh() {
 
   if [[ -f "$ZDOTDIR/utils/ssh/ssh-teleport.zsh" ]]; then
     source "$ZDOTDIR/utils/ssh/ssh-teleport.zsh"
-    ssh-teleport "$@"
+    ssh_teleport "$@"
   else
     command ssh "$@"
   fi

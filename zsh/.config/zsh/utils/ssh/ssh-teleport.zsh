@@ -65,7 +65,7 @@ function _teleport_check_host_config() {
   fi
 
   local zstyle_value
-  if zstyle -s :ssh-teleport:$hostname enable zstyle_value; then
+  if zstyle -s :ssh_teleport:$hostname enable zstyle_value; then
     case $zstyle_value in
       yes|true|1|on)
         return 0  # Enabled by zstyle
@@ -84,7 +84,7 @@ function _teleport_prompt_user() {
   local user_choice
 
   _enable_and_confirm() {
-    ssh-teleport-enable-host "$hostname"
+    ssh_teleport_enable_host "$hostname"
     if command -v gum >/dev/null 2>&1; then
       gum style --foreground 212 "Host $hostname added to enabled list"
     else
@@ -93,7 +93,7 @@ function _teleport_prompt_user() {
   }
 
   _disable_and_confirm() {
-    ssh-teleport-disable-host "$hostname"
+    ssh_teleport_disable_host "$hostname"
     if command -v gum >/dev/null 2>&1; then
       gum style --foreground 212 "Host $hostname added to disabled list"
     else
@@ -178,11 +178,11 @@ function _teleport_prompt_user() {
   fi
 }
 
-function ssh-teleport() {
+function ssh_teleport() {
   emulate -L zsh
   setopt no_unset pipe_fail
 
-  _teleport_debug "ssh-teleport called with args: $*"
+  _teleport_debug "ssh_teleport called with args: $*"
 
   local -i i
   local -a pos ssh_args
@@ -235,12 +235,12 @@ function ssh-teleport() {
     send_files[$ZDOTDIR/.zshrc]='"$ZDOTDIR"/.zshrc'
   fi
 
-  if [[ -f $HOME/.zshenv ]]; then
-    send_files[$HOME/.zshenv]='"$HOME"/.zshenv'
-  fi
-
   if [[ -f $ZDOTDIR/.zshenv ]]; then
     send_files[$ZDOTDIR/.zshenv]='"$ZDOTDIR"/.zshenv'
+  fi
+
+  if [[ -f $HOME/.zshenv ]]; then
+    send_files[$HOME/.zshenv]='"$HOME"/.zshenv'
   fi
 
   if [[ -f $HOME/.config/oh-my-posh/p10k.toml ]]; then
@@ -253,7 +253,19 @@ function ssh-teleport() {
     send_files[$util_file]='"$ZDOTDIR"/utils/'${(q)rel_path}
   done
 
-  if zstyle -a :ssh-teleport:$hostname send-extra-files extra_files; then
+  local plugin_file
+  for plugin_file in $ZDOTDIR/plugins/**/*(.N); do
+    local rel_path=${plugin_file#$ZDOTDIR/plugins/}
+    send_files[$plugin_file]='"$ZDOTDIR"/plugins/'${(q)rel_path}
+  done
+
+  local compl_file
+  for compl_file in $ZDOTDIR/completions/**/*(.N); do
+    local rel_path=${compl_file#$ZDOTDIR/completions/}
+    send_files[$compl_file]='"$ZDOTDIR"/completions/'${(q)rel_path}
+  done
+
+  if zstyle -a :ssh_teleport:$hostname send-extra-files extra_files; then
     local src dst
     for dst in $extra_files; do
       eval "src=$dst"
@@ -265,14 +277,14 @@ function ssh-teleport() {
     unset src dst
   fi
 
-  if (( $+functions[ssh-teleport-configure] )); then
+  if (( $+functions[ssh_teleport-configure] )); then
     typeset -g ssh_teleport_send_files=send_files
     typeset -g ssh_teleport_prelude=prelude
     typeset -g ssh_teleport_setup=setup
     typeset -g ssh_teleport_run=run
     typeset -g ssh_teleport_teardown=teardown
 
-    ssh-teleport-configure
+    ssh_teleport-configure
 
     send_files=("${(@kv)ssh_teleport_send_files}")
     prelude=("${(@)ssh_teleport_prelude}")
@@ -282,7 +294,7 @@ function ssh-teleport() {
   fi
 
   local tmpdir
-  tmpdir=$(mktemp -d ${TMPDIR:-/tmp}/ssh-teleport.XXXXXXXXXX) || return 1
+  tmpdir=$(mktemp -d ${TMPDIR:-/tmp}/ssh_teleport.XXXXXXXXXX) || return 1
 
   {
     local -i index=0
@@ -322,7 +334,7 @@ function ssh-teleport() {
     dump_marker=$(LC_ALL=C command tr -dc 'a-zA-Z0-9' </dev/urandom 2>/dev/null | head -c 8)
 
     local term
-    zstyle -s :ssh-teleport:$hostname term term || term=${TERM:-xterm-256color}
+    zstyle -s :ssh_teleport:$hostname term term || term=${TERM:-xterm-256color}
 
     local file_moves_code=""
     local -i idx=0
@@ -362,7 +374,7 @@ fi
     fi
 
     local -a ssh_command
-    if ! zstyle -a :ssh-teleport:$hostname ssh-command ssh_command; then
+    if ! zstyle -a :ssh_teleport:$hostname ssh-command ssh_command; then
       ssh_command=(command ssh)
     fi
 
@@ -384,12 +396,12 @@ fi
 
     _teleport_info "Teleporting to $hostname"
 
-    local remote_script="/tmp/ssh-teleport-$$"
+    local remote_script="/tmp/ssh_teleport-$$"
     local -i write_location
 
     write_location=$(
       "${ssh_command[@]}" "${ssh_args[@]}" "$user_host" \
-        "cat >$remote_script && echo 1 || { cat >\$HOME/ssh-teleport-$$ && echo 2; }" \
+        "cat >$remote_script && echo 1 || { cat >\$HOME/ssh_teleport-$$ && echo 2; }" \
         < $tmpdir/bootstrap
     ) || {
       _teleport_error "Failed to transmit bootstrap script"
@@ -397,7 +409,7 @@ fi
     }
 
     if [[ $write_location == 2 ]]; then
-      remote_script="\$HOME/ssh-teleport-$$"
+      remote_script="\$HOME/ssh_teleport-$$"
     fi
 
     "${ssh_command[@]}" "${ssh_args[@]}" "$user_host" "sh $remote_script; rm -f $remote_script" || {

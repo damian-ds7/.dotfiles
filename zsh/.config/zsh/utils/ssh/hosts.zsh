@@ -14,12 +14,12 @@ if [[ -f "$ssh_dir/hosts-disabled.txt" ]]; then
   SSH_TELEPORT_DISABLED_HOSTS=(${(f)"$(grep -v '^#' "$ssh_dir/hosts-disabled.txt" | grep -v '^[[:space:]]*$')"})
 fi
 
-function ssh-teleport-enable-host() {
+function ssh_teleport_enable_host() {
   local host=$1
   local ssh_dir="${ZDOTDIR:-$HOME/.config/zsh}/utils/ssh"
 
   if [[ -z $host ]]; then
-    print -u 2 "Usage: ssh-teleport-enable-host <hostname>"
+    print -u 2 "Usage: ssh_teleport_enable_host <hostname>"
     return 1
   fi
 
@@ -38,12 +38,12 @@ function ssh-teleport-enable-host() {
   fi
 }
 
-function ssh-teleport-disable-host() {
+function ssh_teleport_disable_host() {
   local host=$1
   local ssh_dir="${ZDOTDIR:-$HOME/.config/zsh}/utils/ssh"
 
   if [[ -z $host ]]; then
-    print -u 2 "Usage: ssh-teleport-disable-host <hostname>"
+    print -u 2 "Usage: ssh_teleport_disable_host <hostname>"
     return 1
   fi
 

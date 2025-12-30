@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 # Based on dirstack navigation from romkatv/zsh4humans
 
-function -zsh-update-dir-history() {
+function _zsh_update_dir_history() {
   if (( ${+_zsh_dir_hist_fd} )); then
     zle -F "$_zsh_dir_hist_fd" 2>/dev/null
     exec {_zsh_dir_hist_fd}>&- 2>/dev/null
