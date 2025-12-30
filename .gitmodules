@@ -1,0 +1,20 @@
+[submodule "zsh/.config/zsh/plugins/fzf-tab"]
+	path = zsh/.config/zsh/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
+	branch = master
+[submodule "zsh/.config/zsh/plugins/completions"]
+	path = zsh/.config/zsh/plugins/completions
+	url = https://github.com/zsh-users/zsh-completions
+	branch = master
+[submodule "zsh/.config/zsh/plugins/autosuggestions"]
+	path = zsh/.config/zsh/plugins/autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+	branch = master
+[submodule "zsh/.config/zsh/plugins/defer"]
+	path = zsh/.config/zsh/plugins/defer
+	url = https://github.com/romkatv/zsh-defer
+	branch = master
+[submodule "zsh/.config/zsh/plugins/syntax-highlighting"]
+	path = zsh/.config/zsh/plugins/syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+	branch = master
