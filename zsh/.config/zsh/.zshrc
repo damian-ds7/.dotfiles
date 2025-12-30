@@ -54,7 +54,14 @@ source "$ZDOTDIR/utils/init-plugins.zsh"
 # Oh My Posh
 if [[ -z "$NO_OMP" ]]; then
   if command -v oh-my-posh >/dev/null 2>&1; then
+    export SHOULD_NEWLINE=false
     eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/p10k.toml)"
+
+    _set_should_newline() {
+      export SHOULD_NEWLINE=true
+    }
+    autoload -Uz add-zsh-hook
+    add-zsh-hook preexec _set_should_newline
   fi
 fi
 
