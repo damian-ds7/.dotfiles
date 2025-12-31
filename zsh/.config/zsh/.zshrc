@@ -118,6 +118,8 @@ bindkey '^ ' autosuggest-accept
 bindkey '^Y' forward-word
 bindkey '^Z' fancy-ctrl-z
 bindkey '^[l' clear-screen
+bindkey '^_' undo
+bindkey ' ' magic-space
 
 # Directory stack navigation
 bindkey -M viins '^[[1;3D' cd-back     # Alt+Left
@@ -129,8 +131,9 @@ bindkey -M vicmd 'L' cd-forward
 bindkey -M visual 'H' cd-back
 bindkey -M visual 'L' cd-forward
 
-bindkey ^R history-incremental-search-backward
-bindkey ^S history-incremental-search-forward
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
 
 # Functions
 autoload -Uz zmv

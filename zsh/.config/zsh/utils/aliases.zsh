@@ -9,7 +9,6 @@ is_installed() {
 # -------------------------
 #  General Aliases
 # -------------------------
-
 alias reload='exec zsh'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -21,6 +20,22 @@ alias df='df -hT'
 alias c='clear'
 
 alias update-poweroff='sudo dnf upgrade -y && flatpak update -y && systemctl poweroff'
+
+# -------------------------
+#  Suffix aliases
+# -------------------------
+alias -s json=jless
+alias -s yaml=jless --yaml
+alias -s md=bat
+alias -s go='$EDITOR'
+alias -s rs='$EDITOR'
+alias -s py='$EDITOR'
+alias -s c='$EDITOR'
+alias -s cpp='$EDITOR'
+alias -s h='$EDITOR'
+alias -s hpp='$EDITOR'
+alias -s txt=bat
+alias -s log=bat
 
 # -------------------------
 #  Aliases with fallback to original command
@@ -47,8 +62,8 @@ alias tree='tree -I .git --gitignore --dirsfirst'
 #  Editor Shortcuts
 # -------------------------
 
-alias suvi='sudo vim'
-alias suvim='sudo vim'
+alias suvi='sudo nvim'
+alias suvim='sudo nvim'
 alias sunano='sudo nano'
 
 # -------------------------
