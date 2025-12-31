@@ -93,9 +93,7 @@ update_theme_mode() {
 
 TRAPUSR1() {
   update_theme_mode
-  if typeset -f _omp_redraw-prompt > /dev/null; then
-    _omp_redraw-prompt
-  fi
+  _redraw_prompt
 }
 
 # Shell Options
@@ -160,6 +158,10 @@ if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
+fi
+
 # Source External Files
 # SSH Teleportation
 if [[ -f "$ZDOTDIR/utils/ssh/ssh-wrapper.zsh" ]]; then
@@ -174,10 +176,6 @@ fi
 [[ -f $ZDOTDIR/utils/aliases.zsh ]] && source $ZDOTDIR/utils/aliases.zsh
 
 . "$HOME/.cargo/env" 2>/dev/null
-
-if command -v fzf >/dev/null 2>&1; then
-  eval "$(fzf --zsh)"
-fi
 
 if [[ -n "$ZSH_PROFILE" ]]; then
   zprof

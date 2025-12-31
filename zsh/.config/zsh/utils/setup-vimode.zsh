@@ -51,13 +51,15 @@ for m in visual viopp; do
   done
 done
 
-# Reset to insert mode when starting a new line (after Ctrl+C, command, etc.)
-function zle-line-init() {
-  zle -K viins
-  echo -ne '\e[6 q'
-  POSH_VI_MODE="insert"
+# Reset to insert mode before each prompt (handles Ctrl+C, after command, etc.)
+function _reset_vimode_precmd() {
+  if [[ -z "${ZLE_STATE:-}" ]]; then
+    POSH_VI_MODE="insert"
+    echo -ne '\e[6 q'
+  fi
 }
-zle -N zle-line-init
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _reset_vimode_precmd
 
 function zle-keymap-select() {
   case "${KEYMAP}" in
