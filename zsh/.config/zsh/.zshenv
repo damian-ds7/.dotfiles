@@ -3,7 +3,7 @@ case ":$PATH:" in
   *) export PATH="$HOME/.local/bin:$PATH" ;;
 esac
 
-if [ -z "${SSH_TELEPORT:-}" ] && ! command -v zsh >/dev/null 2>&1; then
+if ! command -v zsh >/dev/null 2>&1; then
   _zsh_tmp="${TMPDIR:-/tmp}/install-zsh.$$"
 
   _install_cmd=""
