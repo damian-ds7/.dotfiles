@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-SKIP_PLUGINS_FILE="${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/.skip-plugins"
+SKIP_PLUGINS_FILE="${ZSH_CACHE_DIR:-$HOME/.cache}/zsh/skip-plugins"
 [[ -f "$SKIP_PLUGINS_FILE" ]] && return 0
 
 source-compiled() {

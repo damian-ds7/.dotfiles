@@ -25,14 +25,15 @@ if [ -z "${SSH_TELEPORT:-}" ] && ! command -v zsh >/dev/null 2>&1; then
   unset _install_cmd
 fi
 
-if [ -n "${ZSH_VERSION-}" ] && [ ! -f "$HOME/.config/zsh/.shell-changed" ]; then
+if [ -n "${ZSH_VERSION-}" ] && [ ! -f "${ZSH_CACHE_DIR:-$HOME/.cache}/shell-changed" ]; then
   _current_shell="${SHELL:-/bin/sh}"
   _zsh_path="$(command -v zsh 2>/dev/null)"
 
   if [ -n "$_zsh_path" ] && [ "$_current_shell" != "$_zsh_path" ]; then
     _mark_shell_changed() {
-      mkdir -p "$HOME/.config/zsh" 2>/dev/null
-      touch "$HOME/.config/zsh/.shell-changed"
+      _cache_dir="${ZSH_CACHE_DIR:-$HOME/.cache}"
+      mkdir -p "$_cache_dir" 2>/dev/null
+      touch "$_cache_dir/shell-changed"
     }
 
     _change_shell() {
