@@ -52,8 +52,8 @@ binds {
     XF86AudioMicMute                         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     Alt+XF86AudioMute                        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     ISO_Level3_Shift+XF86AudioMute           allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    ISO_Level3_Shift+XF86AudioRaiseVolume    allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    ISO_Level3_Shift+XF86AudioLowerVolume    allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    ISO_Level3_Shift+XF86AudioRaiseVolume    allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SOURCE@" "0.05+"; }
+    ISO_Level3_Shift+XF86AudioLowerVolume    allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SOURCE@" "0.05-"; }
     // XF86AudioRaiseVolume              allow-when-locked=true { spawn-sh "swayosd-client --output-volume raise"; }
     // XF86AudioLowerVolume              allow-when-locked=true { spawn-sh "swayosd-client --output-volume lower"; }
     // XF86AudioMute                     allow-when-locked=true { spawn-sh "swayosd-client --output-volume mute-toggle"; }
