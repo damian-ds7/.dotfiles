@@ -12,14 +12,14 @@ bindkey -M viins 'jk' vi-cmd-mode
 function enter-visual-mode() {
   zle visual-mode
   POSH_VI_MODE="visual"
-  _vimode_redraw_prompt
+  _redraw_prompt
 }
 zle -N enter-visual-mode
 
 function exit-visual-mode() {
   zle deactivate-region
   POSH_VI_MODE="command"
-  _vimode_redraw_prompt
+  _redraw_prompt
 }
 zle -N exit-visual-mode
 
