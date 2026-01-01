@@ -120,6 +120,8 @@ bindkey '^Z' fancy-ctrl-z
 bindkey '^[l' clear-screen
 bindkey '^_' undo
 bindkey ' ' magic-space
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 
 # Directory stack navigation
 bindkey -M viins '^[[1;3D' cd-back     # Alt+Left
