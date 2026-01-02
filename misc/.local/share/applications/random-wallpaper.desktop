@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Random Wallpaper
+Comment=Select a random wallpaper form Picutres
+StartupNotify=true
+Icon=/home/damian/.local/share/applications/icons/random.png
+Terminal=false
+Keywords=Wallpaper;Select;Selection;Selector
+Exec=sh -c "$HOME/.local/bin/awww-random-wallpaper"
