@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+projects_dir="$HOME/Projects"
+
+relative_path=$(find -L "$projects_dir" -name ".git" \( -type f -o -type d \) |
+  sed 's/\/\.git$//' |
+  while read -r dir; do
+    printf "%s %s\n" "$(stat -c %Y "$dir")" "$dir"
+  done |
+  sort -rn |
+  cut -d' ' -f2- |
+  sed "s|^$projects_dir/||" |
+  vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick a project...')
+
+if [ -n "$relative_path" ]; then
+  full_path="$projects_dir/$relative_path"
+
+  session_name="${relative_path//\//-}"
+
+  ghostty --title="Tmux - $session_name" -e bash -l -c "tmux new-session -A -s '$session_name' -c '$full_path' nvim"
+fi

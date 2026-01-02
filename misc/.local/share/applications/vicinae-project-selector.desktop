@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Project selector
+StartupNotify=true
+Icon=/home/damian/.local/share/applications/icons/projects.png
+Terminal=false
+Keywords=Wallpaper;Select;Selection;Selector
+Exec=sh -c "$HOME/.local/bin/vicinae-project-selector"
