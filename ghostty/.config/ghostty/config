@@ -9,7 +9,8 @@ bold-is-bright = true
 gtk-titlebar = false
 
 shell-integration = detect
-
+window-padding-y = 1,0
+window-padding-x = 1
 # cursor-style = bar
 cursor-opacity = 0.6
 cursor-invert-fg-bg = true
