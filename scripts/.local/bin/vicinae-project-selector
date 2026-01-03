@@ -1,21 +1,37 @@
 #!/usr/bin/env bash
 
 projects_dir="$HOME/Projects"
+dotfiles_dir="$HOME/.dotfiles"
 
-relative_path=$(find -L "$projects_dir" -name ".git" \( -type f -o -type d \) |
-  sed 's/\/\.git$//' |
+relative_path=$({
+  find -L "$projects_dir" -name ".git" \( -type f -o -type d \) |
+    sed 's/\/\.git$//'
+
+  if [ -d "$dotfiles_dir/.git" ] || [ -f "$dotfiles_dir/.git" ]; then
+    echo "$dotfiles_dir"
+  fi
+} |
   while read -r dir; do
     printf "%s %s\n" "$(stat -c %Y "$dir")" "$dir"
   done |
   sort -rn |
   cut -d' ' -f2- |
-  sed "s|^$projects_dir/||" |
+  sed -e "s|^$projects_dir/||" -e "s|^$dotfiles_dir$|dotfiles|" |
   vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick a project...')
 
 if [ -n "$relative_path" ]; then
-  full_path="$projects_dir/$relative_path"
+  if [ "$relative_path" = "dotfiles" ]; then
+    full_path="$dotfiles_dir"
+  else
+    full_path="$projects_dir/$relative_path"
+  fi
 
   session_name="${relative_path//\//-}"
+  window_title="Neovim - $session_name"
 
-  ghostty --title="Neovim - $session_name" -e bash -l -c "tmux new-session -A -s '$session_name' -c '$full_path' nvim"
+  if [ -x "$HOME/.cargo/bin/nirius" ]; then
+    ~/.cargo/bin/nirius focus-or-spawn -t "^${window_title}$" -- ghostty --title="$window_title" -e bash -l -c "tmux new-session -A -s '$session_name' -c '$full_path' nvim"
+  else
+    ghostty --title="$window_title" -e bash -l -c "tmux new-session -A -s '$session_name' -c '$full_path' nvim"
+  fi
 fi
