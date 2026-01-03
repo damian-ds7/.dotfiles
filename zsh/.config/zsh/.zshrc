@@ -177,15 +177,6 @@ if command -v fzf >/dev/null 2>&1; then
 fi
 
 # Source External Files
-# SSH Teleportation
-if [[ -f "$ZDOTDIR/utils/ssh/ssh-wrapper.zsh" ]]; then
-  source "$ZDOTDIR/utils/ssh/ssh-wrapper.zsh"
-
-  CONF_DIR="~/.config"
-  zstyle ':ssh-teleport:*' send-extra-files "$CONF_DIR/tmux/tmux.conf" "$CONF_DIR/themes/current/tmux.conf" "$CONF_DIR/git"
-  unset CONF_DIR
-fi
-
 ## Aliases
 [[ -f $ZDOTDIR/utils/aliases.zsh ]] && source $ZDOTDIR/utils/aliases.zsh
 
