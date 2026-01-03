@@ -26,16 +26,8 @@ alias update-poweroff='sudo dnf upgrade -y && flatpak update -y && systemctl pow
 # -------------------------
 alias -s json=jless
 alias -s yaml=jless --yaml
-alias -s md=bat
-alias -s go='$EDITOR'
-alias -s rs='$EDITOR'
-alias -s py='$EDITOR'
-alias -s c='$EDITOR'
-alias -s cpp='$EDITOR'
-alias -s h='$EDITOR'
-alias -s hpp='$EDITOR'
-alias -s txt=bat
-alias -s log=bat
+alias -s {md,txt,log}=bat
+alias -s {go,rs,py,c,cpp,h,hpp}='$EDITOR'
 
 # -------------------------
 #  Aliases with fallback to original command
