@@ -66,8 +66,8 @@ binds {
     XF86AudioNext                     allow-when-locked=true { spawn-sh "playerctl next"; }
     XF86AudioPrev                     allow-when-locked=true { spawn-sh "playerctl previous"; }
 
-    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "swayosd-client --brightness raise"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "swayosd-client --brightness lower"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-" "--min-value" "5"; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Tab repeat=false { toggle-overview; }
