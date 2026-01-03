@@ -1,24 +1,93 @@
 {
-    "closeOnFocusLoss": true,
-    "considerPreedit": false,
-    "faviconService": "twenty",
+  "close_on_focus_loss": true,
+  "pop_to_root_on_close": true,
+  "escape_key_behavior": "close_window",
+  "search_files_in_root": true,
+  "font": {
+    "normal": {
+      "family": "JetBrainsMono Nerd Font",
+      "size": 12.5
+    }
+  },
+  "theme": {
+    "dark": {
+      "name": "catppuccin-mocha",
+      "icon_theme": "Adwaita"
+    }
+  },
+  "launcher_window": {
+    "opacity": 1,
+    "layer_shell": {
+      "enabled": true,
+      "keyboard_interactivity": "on_demand",
+      "layer": "top"
+    },
+    "compact_mode": {
+      "enabled": true
+    }
+  },
+  "favorites": [
+    "applications:dev.aunetx.deezer",
+    "applications:com.mitchellh.ghostty",
+    "applications:zen",
+    "applications:Claude",
+    "applications:nvim",
+    "clipboard:history"
+  ],
+  "providers": {
+    "@ajaypremshankar/bd66a1ad-75d7-4b26-8ea7-92fcc9adf473": {
+      "entrypoints": {
+        "index": {
+          "alias": "vim"
+        }
+      }
+    },
+    "applications": {
+      "preferences": {
+        "defaultAction": "focus"
+      }
+    },
+    "clipboard": {
+      "preferences": {
+        "encryption": true,
+        "eraseOnStartup": true,
+        "monitoring": true
+      },
+      "entrypoints": {
+        "history": {
+          "preferences": {
+            "defaultAction": "copy"
+          }
+        }
+      }
+    },
+    "core": {
+      "entrypoints": {
+        "about": {
+          "enabled": false
+        },
+        "keybind-settings": {
+          "enabled": false
+        },
+        "manage-fallback": {
+          "enabled": false
+        },
+        "settings": {
+          "enabled": false
+        },
+        "sponsor": {
+          "enabled": false
+        }
+      }
+    },
     "font": {
-        "normal": "JetBrainsMono Nerd Font",
-        "size": 12
+      "enabled": false
     },
-    "keybinding": "default",
-    "keybinds": {
-    },
-    "popToRootOnClose": true,
-    "rootSearch": {
-        "searchFiles": true
+    "raycast-compat": {
+      "enabled": false
     },
     "theme": {
-        "name": "catppuccin-mocha"
-    },
-    "window": {
-        "csd": true,
-        "opacity": 1,
-        "rounding": 10
+      "enabled": false
     }
+  }
 }
