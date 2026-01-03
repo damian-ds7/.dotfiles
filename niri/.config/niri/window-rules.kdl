@@ -86,7 +86,7 @@ window-rule {
 window-rule {
     match app-id="^Code$"
     match app-id="^code$"
-    match title="Neovim"
+    match title="^Neovim"
     exclude app-id="page.codeberg.libre_menu_editor.LibreMenuEditor"
     open-on-workspace "code"
     open-maximized true

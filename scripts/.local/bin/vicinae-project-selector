@@ -17,5 +17,5 @@ if [ -n "$relative_path" ]; then
 
   session_name="${relative_path//\//-}"
 
-  ghostty --title="Tmux - $session_name" -e bash -l -c "tmux new-session -A -s '$session_name' -c '$full_path' nvim"
+  ghostty --title="Neovim - $session_name" -e bash -l -c "tmux new-session -A -s '$session_name' -c '$full_path' nvim"
 fi
