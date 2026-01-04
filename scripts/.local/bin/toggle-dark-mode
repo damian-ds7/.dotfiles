@@ -1,42 +1,46 @@
 #!/usr/bin/env sh
-set -uo
+set -eu
 
 THEME_DIR="$HOME/.config/themes"
 TMUX_CONF_DIR="$HOME/.config/tmux"
 TMUX_THEME_DIR="$TMUX_CONF_DIR/themes"
 
+mkdir -p "$THEME_DIR"
+
 get_current_theme() {
-  dconf read /org/gnome/desktop/interface/color-scheme
+  dconf read /org/gnome/desktop/interface/color-scheme || echo "'default'"
 }
 
-switch_to_dark() {
-  dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-  dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3-dark'"
-  qs ipc call darkMode setDark
-  vicinae vicinae://theme/set/catppuccin-mocha
-  "$TMUX_THEME_DIR/reset.sh"
-  ln -sfnr "$THEME_DIR/catppuccin-mocha" "$THEME_DIR/current"
-  echo dark >"$THEME_DIR"/mode
+apply_theme() {
+  mode=$1          # "dark" or "light"
+  gnome_pref=$2    # "'prefer-dark'" or "'prefer-light'"
+  gtk_theme=$3     # "adw-gtk3-dark" or "adw-gtk3"
+  vicinae_theme=$4 # "catppuccin-mocha" or "catppuccin-latte"
+  qs_call=$5       # "setDark" or "setLight"
+
+  dconf write /org/gnome/desktop/interface/color-scheme "$gnome_pref"
+  dconf write /org/gnome/desktop/interface/gtk-theme "'$gtk_theme'"
+
+  qs ipc call darkMode "$qs_call" >/dev/null 2>&1 || true
+  vicinae vicinae://theme/set/"$vicinae_theme" >/dev/null 2>&1 || true
+
+  [ -x "$TMUX_THEME_DIR/reset.sh" ] && "$TMUX_THEME_DIR/reset.sh"
+
+  ln -sfnr "$THEME_DIR/$vicinae_theme" "$THEME_DIR/current"
+  echo "$mode" >"$THEME_DIR/mode"
 }
 
-switch_to_light() {
-  dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
-  dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'"
-  qs ipc call darkMode setLight
-  vicinae vicinae://theme/set/catppuccin-latte
-  "$TMUX_THEME_DIR/reset.sh"
-  ln -sfnr "$THEME_DIR/catppuccin-latte" "$THEME_DIR/current"
-  echo light >"$THEME_DIR"/mode
-}
-
-if test "$(get_current_theme)" = "'prefer-light'"; then
-  switch_to_dark
+if [ "$(get_current_theme)" = "'prefer-light'" ]; then
+  apply_theme "dark" "'prefer-dark'" "adw-gtk3-dark" "catppuccin-mocha" "setDark"
 else
-  switch_to_light
+  apply_theme "light" "'prefer-light'" "adw-gtk3" "catppuccin-latte" "setLight"
 fi
 
-killall -SIGUSR2 ghostty
-killall -SIGUSR1 zsh
-tmux source-file "$TMUX_CONF_DIR/tmux.conf"
-systemctl --user try-restart waybar.service
-systemctl --user try-restart swayosd-server.service
+killall -q -SIGUSR2 ghostty || true
+killall -q -SIGUSR1 zsh || true
+
+if tmux info >/dev/null 2>&1; then
+  tmux source-file "$TMUX_CONF_DIR/tmux.conf"
+fi
+
+systemctl --user try-restart waybar.service swayosd-server.service >/dev/null 2>&1 || true
