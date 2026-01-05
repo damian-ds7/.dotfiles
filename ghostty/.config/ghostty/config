@@ -6,6 +6,8 @@ font-size = 12.5
 
 gtk-titlebar = false
 
+cursor-color = cell-foreground
+
 shell-integration = detect
 window-padding-y = 1,0
 window-padding-x = 1
