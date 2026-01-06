@@ -73,13 +73,13 @@ source-compiled "$ZDOTDIR/plugins/conventional-commits/conventional-commits.zsh"
 
 source-compiled "$ZDOTDIR/utils/setup-vimode.zsh"
 
+source-compiled "$ZDOTDIR/plugins/fzf-tab/fzf-tab.zsh"
+source-compiled "$ZDOTDIR/utils/plugins-config/fzf-tab.zsh"
+
 source-compiled "$ZDOTDIR/utils/plugins-config/zsh-autosuggestions.zsh"
 zsh-defer source-compiled "$ZDOTDIR/plugins/autosuggestions/zsh-autosuggestions.zsh"
 
 zsh-defer source-compiled "$ZDOTDIR/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-source-compiled "$ZDOTDIR/utils/plugins-config/fzf-tab.zsh"
-zsh-defer source-compiled "$ZDOTDIR/plugins/fzf-tab/fzf-tab.zsh"
 
 # Utils
 if [[ -d "$ZDOTDIR/utils/dirstack" ]]; then
