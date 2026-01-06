@@ -76,6 +76,8 @@ source-compiled "$ZDOTDIR/utils/setup-vimode.zsh"
 source-compiled "$ZDOTDIR/plugins/fzf-tab/fzf-tab.zsh"
 source-compiled "$ZDOTDIR/utils/plugins-config/fzf-tab.zsh"
 
+source "$ZDOTDIR/plugins/fzf-git/fzf-git.sh"
+
 source-compiled "$ZDOTDIR/utils/plugins-config/zsh-autosuggestions.zsh"
 zsh-defer source-compiled "$ZDOTDIR/plugins/autosuggestions/zsh-autosuggestions.zsh"
 

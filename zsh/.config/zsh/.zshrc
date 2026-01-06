@@ -180,6 +180,7 @@ fi
 # Source External Files
 ## Aliases
 [[ -f $ZDOTDIR/utils/aliases.zsh ]] && source $ZDOTDIR/utils/aliases.zsh
+[[ -f $ZDOTDIR/utils/custom-git-bindings.zsh ]] && source $ZDOTDIR/utils/custom-git-bindings.zsh
 
 . "$HOME/.cargo/env" 2>/dev/null
 

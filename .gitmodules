@@ -18,3 +18,7 @@
 	path = zsh/.config/zsh/plugins/syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 	branch = master
+[submodule "zsh/.config/zsh/plugins/fzf-git"]
+	path = zsh/.config/zsh/plugins/fzf-git
+	url = https://github.com/junegunn/fzf-git.sh
+	branch = main
