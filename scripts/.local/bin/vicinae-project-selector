@@ -2,20 +2,56 @@
 
 projects_dir="$HOME/Projects"
 dotfiles_dir="$HOME/.dotfiles"
+cache_file="$HOME/.cache/project-selector-mru"
 
-relative_path=$({
-  find -L "$projects_dir" -maxdepth 3 -name ".git" -printf "%T@ %p\n" 2>/dev/null | sed 's/\/\.git$//'
+search_projects() {
+  {
+    find -L "$projects_dir" -maxdepth 3 -name ".git" -printf "%p\n" 2>/dev/null | sed 's/\/\.git$//'
 
-  if [ -d "$dotfiles_dir/.git" ]; then
-    printf "%s %s\n" "$(stat -c %Y "$dotfiles_dir")" "$dotfiles_dir"
+    if [ -d "$dotfiles_dir/.git" ]; then
+      echo "$dotfiles_dir"
+    fi
+  } |
+    sed -e "s|^$projects_dir/||" -e "s|^$dotfiles_dir$|dotfiles|"
+}
+
+if [ ! -f "$cache_file" ]; then
+  mkdir -p "$(dirname "$cache_file")"
+  search_projects >"$cache_file"
+else
+  current_projects=$(search_projects | sort)
+  cached_projects=$(sort "$cache_file")
+
+  new_projects=$(comm -13 <(echo "$cached_projects") <(echo "$current_projects"))
+  removed_projects=$(comm -23 <(echo "$cached_projects") <(echo "$current_projects"))
+
+  if [ -n "$removed_projects" ]; then
+    temp_file="${cache_file}.tmp.$$"
+    while IFS= read -r project; do
+      grep -v -F -x "$project" "$cache_file" >"$temp_file" && mv "$temp_file" "$cache_file"
+    done <<<"$removed_projects"
+    rm -f "$temp_file"
   fi
-} |
-  sort -rn |
-  cut -d' ' -f2- |
-  sed -e "s|^$projects_dir/||" -e "s|^$dotfiles_dir$|dotfiles|" |
-  vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick a project...')
+
+  if [ -n "$new_projects" ]; then
+    echo "$new_projects" >>"$cache_file"
+  fi
+fi
+
+relative_path=$(cat "$cache_file" | vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick a project...')
 
 [[ -z "$relative_path" ]] && exit 0
+
+{
+  temp_file="${cache_file}.tmp.$$"
+  if grep -v -F -x "$relative_path" "$cache_file" >"$temp_file" 2>/dev/null; then
+    {
+      echo "$relative_path"
+      cat "$temp_file"
+    } >"$cache_file"
+  fi
+  rm -f "$temp_file"
+} &
 
 if [ "$relative_path" = "dotfiles" ]; then
   full_path="$dotfiles_dir"
