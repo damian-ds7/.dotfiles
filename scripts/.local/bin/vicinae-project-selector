@@ -60,7 +60,7 @@ else
 fi
 
 session_name="${relative_path//[\/\.]/-}"
-window_title="$session_name"
+window_title="Project - $session_name"
 
 if [[ -f "$full_path/project-launch.sh" ]]; then
   launch_cmd="tmux new-session -d -s '$session_name' -c '$full_path' && \

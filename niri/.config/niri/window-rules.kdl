@@ -71,7 +71,6 @@ window-rule {
 window-rule {
     match app-id="mpv"
     match app-id="vlc"
-    match title="Neovim"
     open-maximized true
 }
 
@@ -87,6 +86,7 @@ window-rule {
     match app-id="^Code$"
     match app-id="^code$"
     match title="^Neovim"
+    match title="^Project"
     exclude app-id="page.codeberg.libre_menu_editor.LibreMenuEditor"
     open-on-workspace "code"
     open-maximized true
