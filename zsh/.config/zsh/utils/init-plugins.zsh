@@ -59,7 +59,7 @@ fpath+=("$ZDOTDIR/plugins/completions/src")
 
 autoload -Uz compinit
 zcompdump="${ZSH_CACHE_DIR:-$HOME/.cache/zsh}/.zcompdump"
-compinit "$zcompdump"
+compinit -d "$zcompdump"
 
 
 # ssh-agent
@@ -68,6 +68,8 @@ if [[ -f "$ZDOTDIR/plugins/ssh-agent/ssh-agent.zsh" ]]; then
   zstyle :omz:plugins:ssh-agent quiet yes
   source-compiled "$ZDOTDIR/plugins/ssh-agent/ssh-agent.zsh"
 fi
+
+source-compiled "$ZDOTDIR/plugins/conventional-commits/conventional-commits.zsh"
 
 source-compiled "$ZDOTDIR/utils/setup-vimode.zsh"
 
