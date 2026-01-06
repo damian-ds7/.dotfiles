@@ -51,3 +51,5 @@ map("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", { desc = 
 map("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", { desc = "Preview References" })
 
 map("v", "<leader>p", '"_dP', { desc = "Paste over currently selected text without yanking it" })
+
+map("i", "<A-.>", " -> ", { noremap = true, silent = true })
