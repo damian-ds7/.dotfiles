@@ -108,6 +108,7 @@ setopt hist_ignore_space
 setopt share_history
 setopt append_history
 setopt inc_append_history
+setopt interactivecomments
 
 WORDCHARS=${WORDCHARS//\//}
 WORDCHARS=${WORDCHARS//-/}
