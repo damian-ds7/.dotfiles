@@ -60,9 +60,15 @@ else
 fi
 
 session_name="${relative_path//[\/\.]/-}"
-window_title="Neovim - $session_name"
+window_title="$session_name"
 
-launch_cmd="tmux new-session -A -s '$session_name' -c '$full_path' nvim"
+if [[ -f "$full_path/project-launch.sh" ]]; then
+  launch_cmd="tmux new-session -d -s '$session_name' -c '$full_path' && \
+              tmux send-keys -t '$session_name' '$full_path/project-launch.sh' Enter && \
+              tmux attach -t '$session_name'"
+else
+  launch_cmd="tmux new-session -A -s '$session_name' -c '$full_path' nvim"
+fi
 
 if [ -x "$HOME/.cargo/bin/nirius" ]; then
   exec "$HOME/.cargo/bin/nirius" focus-or-spawn -t "^${window_title}$" -- \
