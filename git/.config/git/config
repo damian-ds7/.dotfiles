@@ -49,3 +49,7 @@
 
 [credential "https://gitlab-stud.elka.pw.edu.pl"]
 	provider = generic
+[include]
+	path = /home/damian/.config/git/conventional-commit-aliases.local
+[zsh "conv-commit"]
+	version = 1.0

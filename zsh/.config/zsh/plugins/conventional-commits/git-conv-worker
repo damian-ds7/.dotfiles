@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+type=$1; shift
+local scope attention message
+local -a pass_thru
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -s|--scope)     scope="$2"; shift 2 ;;
+    -a|--attention) attention="!"; shift ;;
+    *)
+      if [[ -z "$message" && "$1" != -* ]]; then
+        message="$1"
+      else
+        pass_thru+=("$1")
+      fi
+      shift
+      ;;
+  esac
+done
+
+[[ -z "$message" ]] && { echo "Error: Missing message"; exit 1 }
+
+final_msg="${type}${scope:+($scope)}${attention}: ${message}"
+git commit -m "$final_msg" "${pass_thru[@]}"

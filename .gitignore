@@ -1,6 +1,5 @@
-config/.config/lsd/colors.yaml
-config/.config/tmux/plugins
-config/.config/zsh/.p10k.zsh.zwc*
+conventional-commit-aliases.local
+_git-*
 .zsh_history
 .zcompdump
 hypridle.conf
