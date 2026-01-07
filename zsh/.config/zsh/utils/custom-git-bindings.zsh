@@ -1,4 +1,15 @@
 _fzf_git_custom_tab_widget() {
+  local -a lwords=(${(z)LBUFFER})
+  if [[ $LBUFFER[-1] != ' ' && ${#lwords} -gt 0 && ${lwords[-1]} == -* ]]; then
+    zle fzf-tab-complete
+    return
+  fi
+
+  # If completing after a command without a space, insert one first.
+  if [[ $LBUFFER[-1] != ' ' ]]; then
+    LBUFFER+=" "
+  fi
+
   local -a words
   words=(${(z)BUFFER})
 
@@ -48,8 +59,20 @@ _fzf_git_custom_tab_widget() {
   esac
 }
 
-# Create a new widget
 zle -N fzf-git-custom-tab-widget _fzf_git_custom_tab_widget
 
-# Bind Tab to our new custom widget
 bindkey '^I' fzf-git-custom-tab-widget
+
+if [[ $__fzf_git_fzf ]]; then
+  eval "$__fzf_git_fzf"
+else
+  _fzf_git_fzf() {
+    fzf --height 50% \
+      --layout reverse --multi --min-height 20+ --border \
+      --no-separator --header-border horizontal \
+      --border-label-pos 2 \
+      --color 'label:blue' \
+      --preview-window 'right,50%' --preview-border line \
+      --bind 'ctrl-/:change-preview-window(down,50%|hidden|)' "$@"
+  }
+fi
