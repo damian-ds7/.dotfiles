@@ -41,60 +41,9 @@ if [[ -z "$NO_FZF" ]]; then
   fi
 fi
 
-## OMP
-if [[ -z "$NO_OMP" ]]; then
-  if ! command -v oh-my-posh >/dev/null 2>&1; then
-    source "$ZDOTDIR/utils/setup-omp.zsh"
-  fi
-fi
-
 # Plugin Initialization
 source "$ZDOTDIR/utils/init-plugins.zsh"
 
-# Oh My Posh
-if [[ -z "$NO_OMP" ]]; then
-  if command -v oh-my-posh >/dev/null 2>&1; then
-    export SHOULD_NEWLINE=false
-    eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/p10k.toml)"
-
-    _set_should_newline() {
-      export SHOULD_NEWLINE=true
-    }
-    autoload -Uz add-zsh-hook
-    add-zsh-hook preexec _set_should_newline
-
-    _redraw_prompt() {
-      local precmd
-      for precmd in "${precmd_functions[@]}"; do
-        "$precmd"
-      done
-
-      zle .reset-prompt
-    }
-  fi
-fi
-
-# Theme detection for Oh My Posh
-THEME_MODE_FILE="${HOME}/.config/themes/mode"
-if [[ -f "$THEME_MODE_FILE" ]]; then
-  export THEME_MODE="$(cat "$THEME_MODE_FILE")"
-else
-  export THEME_MODE="dark"
-fi
-
-update_theme_mode() {
-  if [[ -f "$THEME_MODE_FILE" ]]; then
-    local new_mode="$(cat "$THEME_MODE_FILE")"
-    if [[ "$new_mode" != "$THEME_MODE" ]]; then
-      export THEME_MODE="$new_mode"
-    fi
-  fi
-}
-
-TRAPUSR1() {
-  update_theme_mode
-  _redraw_prompt
-}
 
 # Shell Options
 setopt glob_dots
