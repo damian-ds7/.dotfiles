@@ -1,24 +1,25 @@
 #!/usr/bin/env zsh
 # Directory stack navigation (ported from zsh4humans)
 
-# Usage: -cd-rotate +1  (go back)
-#        -cd-rotate -0  (go forward)
-function -cd-rotate() {
-  emulate -L zsh -o extended_glob
-
-  (( ${+_zsh_dir_hist_fd} )) && typeset -f _zsh_update_dir_history >/dev/null 2>&1 && _zsh_update_dir_history
-
-  while (( $#dirstack )) && ! pushd -q $1 &>/dev/null; do
-    popd -q $1
+function redraw-prompt() {
+  local f
+  for f in chpwd "${chpwd_functions[@]}" precmd "${precmd_functions[@]}"; do
+    [[ "${+functions[$f]}" == 0 ]] || "$f" &>/dev/null || true
   done
-
-  if (( $#dirstack )); then
-    _redraw_prompt
-    return 0
-  fi
-
-  return 1
+  p10k display -r
 }
+
+function -cd-rotate() {
+  () {
+    emulate -L zsh
+    while (( $#dirstack )) && ! builtin pushd -q $1 &>/dev/null; do
+      builtin popd -q $1
+    done
+    (( $#dirstack ))
+  } "$@" && redraw-prompt
+}
+
+setopt autopushd
 
 function cd-back() {
   -cd-rotate +1

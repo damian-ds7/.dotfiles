@@ -2,6 +2,14 @@ if [[ -n "$ZSH_PROFILE" ]]; then
   zmodload zsh/zprof
 fi
 
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
+
 # Cache Directory
 ZSH_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh"
 mkdir -p "$ZSH_CACHE_DIR"
@@ -118,10 +126,6 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
-if command -v direnv >/dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
-fi
-
 if command -v fzf >/dev/null 2>&1; then
   eval "$(fzf --zsh)"
 fi
@@ -136,3 +140,5 @@ fi
 if [[ -n "$ZSH_PROFILE" ]]; then
   zprof
 fi
+
+[[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
