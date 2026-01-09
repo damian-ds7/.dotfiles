@@ -141,4 +141,26 @@ if [[ -n "$ZSH_PROFILE" ]]; then
   zprof
 fi
 
+# Theme detection
+THEME_MODE_FILE="${HOME}/.config/themes/mode"
+if [[ -f "$THEME_MODE_FILE" ]]; then
+  export THEME_MODE="$(cat "$THEME_MODE_FILE")"
+else
+  export THEME_MODE="dark"
+fi
+
+update_theme_mode() {
+  if [[ -f "$THEME_MODE_FILE" ]]; then
+    local new_mode="$(cat "$THEME_MODE_FILE")"
+    if [[ "$new_mode" != "$THEME_MODE" ]]; then
+      export THEME_MODE="$new_mode"
+    fi
+  fi
+}
+
+TRAPUSR1() {
+  update_theme_mode
+  [[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
+}
+
 [[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
