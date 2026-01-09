@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 set -eu
 
 THEME_DIR="$HOME/.config/themes"
@@ -12,22 +12,31 @@ get_current_theme() {
 }
 
 apply_theme() {
-  mode=$1          # "dark" or "light"
-  gnome_pref=$2    # "'prefer-dark'" or "'prefer-light'"
-  gtk_theme=$3     # "adw-gtk3-dark" or "adw-gtk3"
-  vicinae_theme=$4 # "catppuccin-mocha" or "catppuccin-latte"
-  qs_call=$5       # "setDark" or "setLight"
+  mode=$1
+  gnome_pref=$2
+  gtk_theme=$3
+  vicinae_theme=$4
+  qs_call=$5
 
   dconf write /org/gnome/desktop/interface/color-scheme "$gnome_pref"
   dconf write /org/gnome/desktop/interface/gtk-theme "'$gtk_theme'"
-
-  qs ipc call darkMode "$qs_call" >/dev/null 2>&1 || true
-  vicinae vicinae://theme/set/"$vicinae_theme" >/dev/null 2>&1 || true
-
-  [ -x "$TMUX_THEME_DIR/reset.sh" ] && "$TMUX_THEME_DIR/reset.sh"
-
   ln -sfnr "$THEME_DIR/$vicinae_theme" "$THEME_DIR/current"
   echo "$mode" >"$THEME_DIR/mode"
+
+  qs ipc call darkMode "$qs_call" >/dev/null 2>&1 &
+  vicinae vicinae://theme/set/"$vicinae_theme" >/dev/null 2>&1 &
+
+  {
+    [ -x "$TMUX_THEME_DIR/reset.sh" ] && "$TMUX_THEME_DIR/reset.sh"
+
+    (tmux info >/dev/null 2>&1 && tmux source-file "$TMUX_CONF_DIR/tmux.conf")
+  } &
+
+  killall -q -SIGUSR2 ghostty &
+  killall -q -SIGUSR1 zsh &
+
+  systemctl --user try-restart \
+    waybar.service swayosd-server.service >/dev/null 2>&1 &
 }
 
 if [ "$(get_current_theme)" = "'prefer-light'" ]; then
@@ -36,11 +45,4 @@ else
   apply_theme "light" "'prefer-light'" "adw-gtk3" "catppuccin-latte" "setLight"
 fi
 
-killall -q -SIGUSR2 ghostty || true
-killall -q -SIGUSR1 zsh || true
-
-if tmux info >/dev/null 2>&1; then
-  tmux source-file "$TMUX_CONF_DIR/tmux.conf"
-fi
-
-systemctl --user try-restart waybar.service swayosd-server.service >/dev/null 2>&1 || true
+disown
