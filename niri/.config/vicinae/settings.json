@@ -9,12 +9,36 @@
 // Learn more about configuration at https://docs.vicinae.com/config
 
 {
+   "$schema": "https://vicinae.com/schemas/config.json",
    "imports": [
       "vicinae.json"
    ],
    "theme": {
       "dark": {
          "name": "catppuccin-mocha"
+      }
+   },
+   "providers": {
+      "@jomifepe/5fdb86d3-dfcc-45a7-8969-8113b51434ab": {
+         "preferences": {
+            "cliPath": "/usr/local/bin/bw"
+         },
+         "entrypoints": {
+            "search": {
+               "alias": "bv"
+            }
+         }
+      },
+      "clipboard": {
+         "preferences": {
+            "eraseOnStartup": false
+         }
+      },
+      "power": {
+         "enabled": false
+      },
+      "wm": {
+         "enabled": false
       }
    }
 }
