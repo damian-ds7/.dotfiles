@@ -4,6 +4,7 @@ return {
     ---@type opencode.Opts
     vim.g.opencode_opts = {
       provider = {
+        cmd = "opencode --continue --port",
         enabled = (function()
           local by_name = {}
           for _, p in ipairs(require("opencode.provider").list()) do
