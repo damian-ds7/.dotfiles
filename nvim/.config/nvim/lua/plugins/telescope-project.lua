@@ -4,9 +4,10 @@ return {
     "nvim-telescope/telescope.nvim",
   },
   config = function()
+    local telescope = require("telescope")
     local project_actions = require("telescope._extensions.project.actions")
 
-    require("telescope").setup({
+    telescope.setup({
       extensions = {
         project = {
           base_dirs = {
@@ -21,6 +22,15 @@ return {
       },
     })
 
-    require("telescope").load_extension("project")
+    telescope.load_extension("project")
+
+    local wk = require("which-key")
+    wk.add({
+      { "<leader>k", group = "projects/files" },
+    })
+
+    vim.keymap.set("n", "<leader>kp", function()
+      telescope.extensions.project.project({ display_type = "full" })
+    end, { desc = "Open project picker" })
   end,
 }
