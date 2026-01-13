@@ -3,7 +3,39 @@ return {
   config = function()
     ---@type opencode.Opts
     vim.g.opencode_opts = {
-      -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition".
+      provider = {
+        enabled = (function()
+          local by_name = {}
+          for _, p in ipairs(require("opencode.provider").list()) do
+            by_name[p.name] = p
+          end
+
+          for _, name in ipairs({ "tmux", "snacks" }) do
+            local provider = by_name[name]
+            if provider then
+              local ok = provider.health()
+              if ok == true then
+                return name
+              end
+            end
+          end
+
+          return false
+        end)(),
+        tmux = {},
+        snacks = {
+          win = {
+            enter = true,
+          },
+        },
+      },
+      events = {
+        enabled = true,
+        reload = true,
+        permissions = {
+          enabled = false,
+        },
+      },
     }
 
     -- Required for `opts.events.reload`.
@@ -18,7 +50,7 @@ return {
     vim.keymap.set({ "n", "x" }, "<leader>aa", function()
       require("opencode").ask("@this: ", { submit = true })
     end, { desc = "Ask opencode" })
-    vim.keymap.set({ "n", "x" }, "<leader>aa", function()
+    vim.keymap.set({ "n", "x" }, "<leader>ax", function()
       require("opencode").select()
     end, { desc = "Execute opencode action…" })
     vim.keymap.set({ "n", "t" }, "<leader>at", function()
