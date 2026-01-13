@@ -4,7 +4,15 @@
 () {
   emulate -L zsh
 
-  local file=$ZSH_CACHE_DIR/dir-history-$EUID
+  local cache_dir=${ZSH_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/zsh}
+
+  if [[ -n $cache_dir && ! -d $cache_dir ]]; then
+    mkdir -p -- $cache_dir 2>/dev/null || return
+  fi
+
+  [[ -n $cache_dir && -w $cache_dir ]] || return
+
+  local file=$cache_dir/dir-history-$EUID
   local tmp=$file.tmp.$$
 
   {
