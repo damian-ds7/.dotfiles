@@ -23,7 +23,9 @@ return {
 
           return false
         end)(),
-        tmux = {},
+        tmux = {
+          options = "-h -p 33",
+        },
         snacks = {
           win = {
             enter = true,
