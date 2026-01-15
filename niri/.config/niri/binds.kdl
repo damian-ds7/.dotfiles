@@ -164,7 +164,7 @@ binds {
     Mod+BracketRight { consume-or-expel-window-right; }
 
     Mod+R { switch-preset-column-width; }
-    Mod+Shift+Control+R { switch-preset-window-height; }
+    Mod+Shift+R { switch-preset-window-height; }
     Mod+Control+R { reset-window-height; }
     Mod+F { maximize-column; }
     Control+Return { maximize-window-to-edges; }
@@ -182,7 +182,7 @@ binds {
 
     Mod+W { toggle-column-tabbed-display; }
 
-    Mod+Shift+R hotkey-overlay-title="Toggle screen recorder" { spawn-sh "qs ipc call screenRecorder toggle"; }
+    Mod+Shift+Control+R hotkey-overlay-title="Toggle screen recorder" { spawn-sh "qs ipc call screenRecorder toggle"; }
     Print { screenshot; }
     Mod+Shift+S { screenshot; }
     Control+Print { screenshot-screen; }
