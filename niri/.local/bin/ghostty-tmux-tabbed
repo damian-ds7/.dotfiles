@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 if [ $# -eq 0 ]; then
-    echo "Usage: $0 <workspace_name>"
-    exit 1
+  echo "Usage: $0 <workspace_name>"
+  exit 1
 fi
 
 workspace="$1"
 
 if [ "$workspace" = "\${workspaceFolderBasename}" ]; then
-    workspace="vscode"
+  workspace="vscode"
 fi
 
 commands="niri msg action consume-or-expel-window-left; /home/damian/.local/opt/vscode-tmux-session.sh '$workspace'"
 
-ghostty --title="Tmux - $workspace" -e sh -c "$commands"
+ghostty --title="Tmux - $workspace" -e sh -c "$commands" +new-window

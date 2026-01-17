@@ -72,7 +72,7 @@ fi
 
 if [ -x "$HOME/.cargo/bin/nirius" ]; then
   exec "$HOME/.cargo/bin/nirius" focus-or-spawn -t "^${window_title}$" -- \
-    ghostty --title="$window_title" -e bash -l -c "$launch_cmd"
+    ghostty --title="$window_title" -e bash -l -c "$launch_cmd" +new-window
 else
-  exec ghostty --title="$window_title" -e bash -l -c "$launch_cmd"
+  exec ghostty --title="$window_title" -e bash -l -c "$launch_cmd" +new-window
 fi

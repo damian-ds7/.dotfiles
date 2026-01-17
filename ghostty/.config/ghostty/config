@@ -1,18 +1,30 @@
 # dynamic themes
 config-file = ?"~/.config/themes/current/ghostty.conf"
 
-font-family = "MesloLGL Nerd Font Regular"
-font-size = 12.5
+font-family = "JetBrainsMono Nerd Font"
+font-size = 12
+font-feature = +liga
+font-feature = +calt
+font-feature = +dlig
+
+adjust-cell-height = 20%
 
 gtk-titlebar = false
-
-cursor-color = cell-foreground
+bell-features = system
+quit-after-last-window-closed = false
+confirm-close-surface = false
 
 shell-integration = detect
-window-padding-y = 1,0
-window-padding-x = 1
-# cursor-style = bar
+
+# window-padding-color = extend
+window-padding-y = 8
+window-padding-x = 8
+
 cursor-opacity = 0.6
 cursor-style-blink = false
+cursor-color = cell-foreground
 
-confirm-close-surface = false
+keybind = global:super+enter=toggle_quick_terminal
+quick-terminal-size = 33%
+quick-terminal-position=right
+quick-terminal-keyboard-interactivity=exclusive
