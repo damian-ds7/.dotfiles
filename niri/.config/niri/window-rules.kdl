@@ -118,3 +118,11 @@ window-rule {
     open-on-workspace "other"
     open-maximized true
 }
+
+window-rule {
+  match app-id="org.quickshell"
+  match title="Noctalia"
+  open-floating true
+  default-column-width { fixed 900; }
+  default-window-height { fixed 400; }
+}
