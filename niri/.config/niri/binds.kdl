@@ -193,6 +193,9 @@ binds {
     Mod+Shift+E { spawn-sh "qs ipc call sessionMenu toggle"; }
 
     Mod+Shift+P { power-off-monitors; }
+
+    // MISC
+    Control+Shift+F1 { spawn-sh "~/.local/bin/firefox_tab_search"; }
 }
 
 recent-windows {

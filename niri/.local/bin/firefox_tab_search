@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BROWSER_REGEX='^(firefox|zen|zen-browser)$'
+
+app_id="$(
+  niri msg --json focused-window 2>/dev/null | jq -r '.app_id'
+)"
+
+if [[ "$app_id" =~ $BROWSER_REGEX ]]; then
+  wtype -M ctrl t -m ctrl "% "
+fi
