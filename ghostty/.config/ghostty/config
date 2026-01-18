@@ -16,7 +16,7 @@ confirm-close-surface = false
 
 shell-integration = detect
 
-# window-padding-color = extend
+window-padding-color = extend
 window-padding-y = 8
 window-padding-x = 8
 
