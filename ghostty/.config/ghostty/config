@@ -2,7 +2,7 @@
 config-file = ?"~/.config/themes/current/ghostty.conf"
 
 font-family = "JetBrainsMono Nerd Font"
-font-size = 12
+font-size = 13
 font-feature = +liga
 font-feature = +calt
 font-feature = +dlig
