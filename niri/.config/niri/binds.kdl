@@ -11,14 +11,18 @@ binds {
     Mod+N hotkey-overlay-title="Neovim" { spawn-sh "ghostty --title=Neovim -e nvim +new-window";  }
     Mod+P hotkey-overlay-title="Neovim textbox edit popup" { spawn "~/.local/bin/nvim-edit-popup";  }
 
+    Mod+X hotkey-overlay-title="Toggle control center" { spawn-sh "qs ipc call plugin:weekly-calendar togglePanel"; }
     Mod+S hotkey-overlay-title="Toggle control center" { spawn-sh "qs ipc call controlCenter toggle"; }
     Mod+Z hotkey-overlay-title="Toggle notification center" { spawn-sh "qs ipc call notifications toggleHistory"; }
     Mod+Shift+Z hotkey-overlay-title="Clear notification history" { spawn-sh "qs ipc call notifications clear"; }
     Mod+Shift+N hotkey-overlay-title="Toggle auto DND" { spawn-sh "qs ipc call notifications toggleDND"; }
     Mod+Shift+C hotkey-overlay-title="Toggle auto suspend" { spawn-sh "qs ipc call idleInhibitor toggle"; }
     Mod+Shift+B hotkey-overlay-title="Toggle bar" { spawn-sh "qs ipc call bar toggle"; }
-    Control+Alt+Delete hotkey-overlay-title="Session menu" { spawn-sh "qs ipc call sessionMenu toggle"; }
     Mod+Comma hotkey-overlay-title="Noctalia settings" { spawn-sh "qs ipc call settings toggle"; }
+
+    Mod+Shift+E { spawn-sh "qs ipc call sessionMenu toggle"; }
+    Control+Alt+Delete hotkey-overlay-title="Session menu" { spawn-sh "qs ipc call sessionMenu toggle"; }
+    XF86PowerOff { spawn-sh "qs ipc call sessionMenu toggle"; }
 
     Mod+Control+Shift+F hotkey-overlay-title="Toggle follow mode" { spawn-sh "~/.local/bin/nirius-follow-mode"; }
 
@@ -27,7 +31,6 @@ binds {
     Control+Alt+Home { spawn "systemctl" "poweroff";  }
     Control+Alt+BackSlash { spawn "systemctl" "poweroff";  }
     Control+Alt+XF86AudioMute hotkey-overlay-title="Shut down" { spawn "systemctl" "poweroff";  }
-    XF86PowerOff { spawn-sh "qs ipc call sessionMenu toggle"; }
 
     Mod+Escape hotkey-overlay-title="Resources" { spawn "flatpak" "run" "net.nokyan.Resources";  }
     Mod+M hotkey-overlay-title="Deezer" { spawn-sh "~/.local/bin/focus-or-spawn-deezer";  }
@@ -189,8 +192,6 @@ binds {
     Alt+Print { screenshot-window; }
 
     Mod+Shift+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
-    Mod+Shift+E { spawn-sh "qs ipc call sessionMenu toggle"; }
 
     Mod+Shift+P { power-off-monitors; }
 
