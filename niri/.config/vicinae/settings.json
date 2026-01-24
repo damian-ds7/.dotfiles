@@ -29,6 +29,27 @@
             }
          }
       },
+      "@jomifepe/store.raycast.bitwarden": {
+         "preferences": {
+            "cliPath": "/usr/local/bin/bw",
+            "repromptIgnoreDuration": "1800000"
+         },
+         "entrypoints": {
+            "search": {
+               "alias": "bv"
+            }
+         }
+      },
+      "applications": {
+         "preferences": {
+            "paths": [
+               "/home/damian/.local/share/applications",
+               "/var/lib/flatpak/exports/share/applications",
+               "/usr/local/share/applications",
+               "/usr/share/applications"
+            ]
+         }
+      },
       "clipboard": {
          "preferences": {
             "eraseOnStartup": false
@@ -36,6 +57,14 @@
       },
       "power": {
          "enabled": false
+      },
+      "raycast-compat": {
+         "enabled": true,
+         "entrypoints": {
+            "store": {
+               "enabled": true
+            }
+         }
       },
       "wm": {
          "enabled": false
