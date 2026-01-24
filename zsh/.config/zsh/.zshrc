@@ -130,16 +130,17 @@ if command -v fzf >/dev/null 2>&1; then
   eval "$(fzf --zsh)"
 fi
 
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+  bindkey -M vicmd '^r' atuin-search-vicmd
+fi
+
 # Source External Files
 ## Aliases
 [[ -f $ZDOTDIR/utils/aliases.zsh ]] && source $ZDOTDIR/utils/aliases.zsh
 [[ -f $ZDOTDIR/utils/custom-git-bindings.zsh ]] && source $ZDOTDIR/utils/custom-git-bindings.zsh
 
 . "$HOME/.cargo/env" 2>/dev/null
-
-if [[ -n "$ZSH_PROFILE" ]]; then
-  zprof
-fi
 
 # Theme detection
 THEME_MODE_FILE="${HOME}/.config/themes/mode"
@@ -164,3 +165,8 @@ TRAPUSR1() {
 }
 
 [[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
+
+if [[ -n "$ZSH_PROFILE" ]]; then
+  zprof
+fi
+
