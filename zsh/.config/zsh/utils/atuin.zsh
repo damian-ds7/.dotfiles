@@ -4,6 +4,8 @@ export ATUIN_NOBIND="true"
 eval "$(atuin init zsh)"
 
 bindkey -M vicmd '^r' atuin-search-vicmd
+bindkey -M viins '^r' atuin-search-viins
+bindkey '^r' atuin-search-viins
 
 # Smart Up/Down:
 # - If BUFFER is empty -> Atuin (atuin-up-search / atuin-search)
