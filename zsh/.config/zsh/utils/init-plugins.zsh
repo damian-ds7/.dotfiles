@@ -26,6 +26,7 @@ zcompile-many "$ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme" \
               "$ZDOTDIR/plugins/conventional-commits/conventional-commits.zsh" \
               "$ZDOTDIR/utils/setup-vimode.zsh" \
               "$ZDOTDIR/plugins/fzf-tab/fzf-tab.zsh" \
+              "$ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh" \
 
 
 autoload -Uz "$ZDOTDIR/plugins/defer/zsh-defer"
@@ -58,6 +59,9 @@ source "$ZDOTDIR/utils/plugins-config/zsh-autosuggestions.zsh"
 zsh-defer source "$ZDOTDIR/plugins/autosuggestions/zsh-autosuggestions.zsh"
 
 zsh-defer source "$ZDOTDIR/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+source "$ZDOTDIR/utils/plugins-config/zsh-history-substring-search.zsh"
+source "$ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh" 
 
 if [[ -d "$ZDOTDIR/utils/dirstack" ]]; then
   zcompile-many "$ZDOTDIR/utils/dirstack/**/*.zsh" true

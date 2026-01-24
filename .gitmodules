@@ -26,3 +26,7 @@
 	path = zsh/.config/zsh/plugins/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k
 	branch = master
+[submodule "zsh/.config/zsh/plugins/zsh-history-substring-search"]
+	path = zsh/.config/zsh/plugins/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search
+	branch = master

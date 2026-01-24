@@ -131,8 +131,7 @@ if command -v fzf >/dev/null 2>&1; then
 fi
 
 if command -v atuin >/dev/null 2>&1; then
-  eval "$(atuin init zsh)"
-  bindkey -M vicmd '^r' atuin-search-vicmd
+  source "$ZDOTDIR/utils/atuin.zsh"
 fi
 
 # Source External Files
