@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+last_id=""
+
+niri msg --json event-stream | jq --unbuffered -r '
+select(
+  has("WindowOpenedOrChanged")
+  and .WindowOpenedOrChanged.window.title == "Picture-in-Picture"
+  and (.WindowOpenedOrChanged.window.app_id | IN("zen","firefox"))
+)
+| .WindowOpenedOrChanged.window
+| [.id]
+| @tsv
+' | while IFS=$'\t' read -r id; do
+  if [[ "$id" == "$last_id" ]]; then
+    continue
+  fi
+
+  last_id="$id"
+
+  niri msg action focus-tiling
+  niri msg action focus-floating
+  nirius toggle-follow-mode
+done
