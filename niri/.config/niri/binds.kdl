@@ -7,11 +7,10 @@ binds {
     Mod+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "hyprlock"; }
     Mod+B hotkey-overlay-title="Zen Browser" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen"; }
     Mod+E hotkey-overlay-title="Nautilus" { spawn "nautilus";  }
-    Mod+C hotkey-overlay-title="VSCode" { spawn-sh "~/.cargo/bin/nirius focus-or-spawn -a '^[cC]ode$' -- code --enable-features=UseOzonePlatform --ozone-platform=wayland";  }
     Mod+N hotkey-overlay-title="Neovim" { spawn-sh "ghostty --title=Neovim -e nvim +new-window";  }
     Mod+P hotkey-overlay-title="Neovim textbox edit popup" { spawn "~/.local/bin/nvim-edit-popup";  }
 
-    Mod+X hotkey-overlay-title="Toggle control center" { spawn-sh "qs ipc call plugin:weekly-calendar togglePanel"; }
+    Mod+X hotkey-overlay-title="Toggle weekly calendar" { spawn-sh "qs ipc call plugin:weekly-calendar togglePanel"; }
     Mod+S hotkey-overlay-title="Toggle control center" { spawn-sh "qs ipc call controlCenter toggle"; }
     Mod+Z hotkey-overlay-title="Toggle notification center" { spawn-sh "qs ipc call notifications toggleHistory"; }
     Mod+Shift+Z hotkey-overlay-title="Clear notification history" { spawn-sh "qs ipc call notifications clear"; }
@@ -174,6 +173,7 @@ binds {
     Mod+Shift+F { fullscreen-window; }
     Mod+G { expand-column-to-available-width; }
     Mod+Control+C { center-visible-columns; }
+    Mod+C { center-column; }
 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
