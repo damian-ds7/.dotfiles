@@ -46,8 +46,8 @@ window-rule {
 window-rule {
     match app-id="com.nvim.edit"
     open-floating true
-    default-column-width { fixed 700; }
-    default-window-height { fixed 300; }
+    default-column-width { fixed 850; }
+    default-window-height { fixed 450; }
 }
 
 window-rule {
