@@ -13,6 +13,11 @@ spawn-sh-at-startup "/usr/libexec/xfce-polkit"
 spawn-sh-at-startup "~/.local/bin/awww-initialize"
 spawn-sh-at-startup "~/.local/bin/pip-auto-follow"
 
+environment {
+    EDITOR "nvim"
+    VISUAL "nvim"
+}
+
 hotkey-overlay {
     skip-at-startup
 }

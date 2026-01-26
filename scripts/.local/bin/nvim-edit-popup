@@ -4,7 +4,7 @@ tmpfile="/tmp/nvimedit_temp_buf"
 
 wtype -M ctrl -k a -k c -m ctrl
 
-ghostty --class="com.nvim.edit" -e bash -c "wl-paste | nvim -n - +'file $tmpfile'"
+ghostty --class="com.nvim.edit" -e bash -c "wl-paste | nvim -n - +'file $tmpfile'" +new-window
 
 sed -e '/[^[:space:]]/,$!d' -e :a -e '/^[[:space:]]*$/{$d;N;ba' -e '}' "$tmpfile" | wl-copy
 rm -f "$tmpfile"

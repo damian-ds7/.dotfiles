@@ -10,30 +10,6 @@ fi
 
 (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
-# Cache Directory
-ZSH_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh"
-mkdir -p "$ZSH_CACHE_DIR"
-
-# Environment Variables
-export GPG_TTY=$TTY
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANROFFOPT="-c"
-export EDITOR='nvim'
-export VISUAL='nvim'
-export GOPATH="$HOME/.go"
-export VIRTUAL_ENV_DISABLE_PROMPT=0
-
-# PATH Configuration
-if [[ ! "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-
-if [[ ! "$PATH" =~ "$HOME/.cargo/bin:$HOME/bin:" ]]; then
-    export PATH="$PATH:$HOME/.cargo/bin"
-fi
-
-export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
-
 # History Configuration
 HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/history"
 HISTSIZE=10000
@@ -51,7 +27,6 @@ fi
 
 # Plugin Initialization
 source "$ZDOTDIR/utils/init-plugins.zsh"
-
 
 # Shell Options
 setopt glob_dots

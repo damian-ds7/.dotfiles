@@ -1,7 +1,25 @@
-case ":$PATH:" in
-  *:$HOME/.local/bin:*) ;;
-  *) export PATH="$HOME/.local/bin:$PATH" ;;
-esac
+# Cache Directory
+ZSH_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh"
+mkdir -p "$ZSH_CACHE_DIR"
+
+# Environment Variables
+export GPG_TTY=$TTY
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+export EDITOR='nvim'
+export VISUAL='nvim'
+export GOPATH="$HOME/.go"
+
+# PATH Configuration
+if [[ ! "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+
+if [[ ! "$PATH" =~ "$HOME/.cargo/bin:$HOME/bin:" ]]; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
+
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 
 if ! command -v zsh >/dev/null 2>&1; then
   _zsh_tmp="${TMPDIR:-/tmp}/install-zsh.$$"
