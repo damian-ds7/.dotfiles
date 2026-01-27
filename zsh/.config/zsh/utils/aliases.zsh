@@ -28,6 +28,7 @@ alias -s json=jless
 alias -s yaml=jless --yaml
 alias -s {md,txt,log}=bat
 alias -s {go,rs,c,cpp,h,hpp}='$EDITOR'
+alias -s git="git clone"
 
 # -------------------------
 #  Aliases with fallback to original command
