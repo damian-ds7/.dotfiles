@@ -18,6 +18,14 @@
          "name": "catppuccin-mocha"
       }
    },
+   "favorites": [
+      "browser-extension:browse-tabs",
+      "applications:dev.aunetx.deezer",
+      "applications:com.mitchellh.ghostty",
+      "applications:zen",
+      "applications:nvim",
+      "clipboard:history"
+   ],
    "providers": {
       "@jomifepe/5fdb86d3-dfcc-45a7-8969-8113b51434ab": {
          "preferences": {
