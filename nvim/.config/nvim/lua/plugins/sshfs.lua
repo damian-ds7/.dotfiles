@@ -1,5 +1,6 @@
 return {
   "uhs-robert/sshfs.nvim",
+  enabled = false,
   opts = {
     connections = {
       sshfs_options = {
