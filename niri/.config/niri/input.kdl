@@ -42,7 +42,7 @@ input {
 
     // warp-mouse-to-focus
 
-    focus-follows-mouse max-scroll-amount="95%"
+    focus-follows-mouse max-scroll-amount="50%"
     disable-power-key-handling
     workspace-auto-back-and-forth
 }
