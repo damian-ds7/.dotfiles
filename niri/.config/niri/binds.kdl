@@ -187,8 +187,8 @@ binds {
     Mod+W { toggle-column-tabbed-display; }
 
     Mod+Shift+Control+R hotkey-overlay-title="Toggle screen recorder" { spawn-sh "qs ipc call plugin:screen-recorder toggle"; }
-    Print { screenshot; }
-    Mod+Shift+S { screenshot; }
+    Print { screenshot show-pointer=false; }
+    Mod+Shift+S { screenshot show-pointer=false; }
     Control+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
