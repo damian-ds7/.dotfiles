@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
+
 SESSION_NAME="ghostty"
 
-tmux has-session -t $SESSION_NAME 2>/dev/null
+tmux new-session -A -s "$SESSION_NAME"
 
-exec tmux new-session -A -s "$SESSION_NAME"
+if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+  exec "$SHELL"
+fi
