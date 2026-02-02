@@ -20,7 +20,7 @@
     "layer_shell": {
       "enabled": true,
       "keyboard_interactivity": "on_demand",
-      "layer": "top"
+      "layer": "overlay"
     },
     "compact_mode": {
       "enabled": true
