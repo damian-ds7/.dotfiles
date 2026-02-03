@@ -26,6 +26,10 @@
       "applications:nvim",
       "clipboard:history"
    ],
+   "fallbacks": [
+      "shortcuts:4881d8a4-6def-44d6-8080-0e5266d60ee5",
+      "files:search"
+   ],
    "providers": {
       "@jomifepe/5fdb86d3-dfcc-45a7-8969-8113b51434ab": {
          "preferences": {
@@ -61,6 +65,13 @@
       "clipboard": {
          "preferences": {
             "eraseOnStartup": false
+         }
+      },
+      "core": {
+         "entrypoints": {
+            "manage-fallback": {
+               "enabled": true
+            }
          }
       },
       "power": {
