@@ -49,6 +49,8 @@ WORDCHARS=${WORDCHARS//./}
 # Binds
 bindkey '^ ' autosuggest-accept
 bindkey '^Y' forward-word
+bindkey '^[ ' autosuggest-accept
+bindkey '^[y' forward-word
 bindkey '^Z' fancy-ctrl-z
 bindkey '^[l' clear-screen
 bindkey '^_' undo
