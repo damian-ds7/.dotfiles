@@ -63,14 +63,14 @@ binds {
     // XF86AudioMicMute                  allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
     // Alt+XF86AudioMute                 allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
     // ISO_Level3_Shift+XF86AudioMute    allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
-    XF86AudioPlay                     allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioPause                    allow-when-locked=true { spawn-sh "playerctl pause"; }
-    XF86TouchpadToggle                allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioNext                     allow-when-locked=true { spawn-sh "playerctl next"; }
-    XF86AudioPrev                     allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioPlay                     allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPause                    allow-when-locked=true { spawn "playerctl" "pause"; }
+    XF86TouchpadToggle                allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioNext                     allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPrev                     allow-when-locked=true { spawn "playerctl" "previous"; }
 
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-" "--min-value" "5"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "~/.local/bin/brightness-up-down 5"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "~/.local/bin/brightness-up-down -5"; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Tab repeat=false { toggle-overview; }

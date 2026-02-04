@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  echo "Usage: $(basename "$0") <PERCENT|-PERCENT>" >&2
+}
+
+delta="$1"
+
+if [[ ! "$delta" =~ ^-?[0-9]+$ ]]; then
+  usage
+  exit 2
+fi
+
+if ((delta == 0)); then
+  exit 0
+fi
+
+method="increase"
+amount="$delta"
+if ((delta < 0)); then
+  method="decrease"
+  amount="$((-delta))"
+fi
+
+try_qs() {
+  command -v qs >/dev/null 2>&1 || return 1
+
+  local out
+  out="$(qs ipc call brightness "$method" 2>&1)" || return 1
+
+  if echo "$out" | grep -qi "not found"; then
+    return 1
+  fi
+
+  return 0
+}
+
+if try_qs; then
+  exit 0
+fi
+
+if ((delta > 0)); then
+  brightnessctl --class=backlight set "+${amount}%"
+else
+  brightnessctl --class=backlight set "${amount}%-" --min-value 5
+fi
