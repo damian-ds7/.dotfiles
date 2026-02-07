@@ -11,6 +11,7 @@ include "layout.kdl"
 
 spawn-sh-at-startup "/usr/libexec/xfce-polkit"
 spawn-sh-at-startup "~/.local/bin/awww-initialize"
+spawn-sh-at-startup "~/.go/bin/niri-float-sticky -app-id zen -title Picture-in-Picture"
 
 environment {
     EDITOR "nvim"
