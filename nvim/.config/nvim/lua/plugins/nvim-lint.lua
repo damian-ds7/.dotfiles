@@ -3,7 +3,7 @@ return {
   dependencies = {
     {
       "mason-org/mason.nvim",
-      opts = { ensure_installed = { "golangci-lint" } },
+      -- opts = { ensure_installed = { "golangci-lint" } },
     },
   },
   opts = {
