@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 local map = vim.keymap.set
 
-map("i", ";;", "<Esc>", { noremap = true })
+map("i", "df", "<Esc>", { noremap = true })
 
 map("n", "<C-d>", "<C-d>zz", { desc = "Jump half page down and center view" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Jump half page up and center view" })
