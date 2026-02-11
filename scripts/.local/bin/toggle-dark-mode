@@ -5,10 +5,31 @@ THEME_DIR="$HOME/.config/themes"
 TMUX_CONF_DIR="$HOME/.config/tmux"
 TMUX_THEME_DIR="$TMUX_CONF_DIR/themes"
 
+WLR_FILE="$HOME/.config/wlr-which-key/config.yaml"
+
 mkdir -p "$THEME_DIR"
 
 get_current_theme() {
   dconf read /org/gnome/desktop/interface/color-scheme || echo "'default'"
+}
+
+apply_wlr_which_key_theme() {
+  [ -f "$WLR_FILE" ] || return 0
+  [ -f "$THEME_DIR/current/wlr-which-key" ] || return 0
+
+  line="$(grep -n '^# Colors' "$WLR_FILE" | head -n1 | cut -d: -f1 || true)"
+  [ -n "$line" ] || return 0
+
+  start=$((line + 1))
+  end=$((line + 3))
+
+  tmp="$(mktemp)"
+
+  sed -e "${line}r $THEME_DIR/current/wlr-which-key" \
+    -e "${start},${end}d" \
+    "$WLR_FILE" >"$tmp"
+
+  mv "$tmp" "$WLR_FILE"
 }
 
 apply_theme() {
@@ -23,12 +44,13 @@ apply_theme() {
   ln -sfnr "$THEME_DIR/$vicinae_theme" "$THEME_DIR/current"
   echo "$mode" >"$THEME_DIR/mode"
 
+  apply_wlr_which_key_theme &
+
   qs ipc call darkMode "$qs_call" >/dev/null 2>&1 &
   vicinae vicinae://theme/set/"$vicinae_theme" >/dev/null 2>&1 &
 
   {
     [ -x "$TMUX_THEME_DIR/reset.sh" ] && "$TMUX_THEME_DIR/reset.sh"
-
     (tmux info >/dev/null 2>&1 && tmux source-file "$TMUX_CONF_DIR/tmux.conf")
   } &
 
