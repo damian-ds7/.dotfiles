@@ -111,6 +111,35 @@ menu:
   - key: "s"
     desc: System
     submenu:
+      - key: "n"
+        desc: Network
+        submenu:
+          - key: "n"
+            desc: Network panel
+            cmd: qs ipc call network togglePanel
+          - key: "w"
+            desc: Wi-Fi toggle
+            cmd: qs ipc call wifi toggle
+          - key: "b"
+            desc: Bluetooth toggle
+            cmd: qs ipc call bluetooth toggle
+          - key: "B"
+            desc: Bluetooth panel
+            cmd: qs ipc call bluetooth togglePanel
+
+      - key: "a"
+        desc: Audio
+        submenu:
+          - key: "p"
+            desc: Audio panel
+            cmd: qs ipc call volume togglePanel
+          - key: "m"
+            desc: Mute output
+            cmd: qs ipc call volume muteOutput
+          - key: "M"
+            desc: Mute input
+            cmd: qs ipc call volume muteInput
+
       - key: "c"
         desc: Capture
         submenu:
@@ -126,6 +155,7 @@ menu:
           - key: "w"
             desc: Screenshot (window)
             cmd: niri msg action screenshot-window
+
       - key: "l"
         desc: Lock screen
         cmd: hyprlock
