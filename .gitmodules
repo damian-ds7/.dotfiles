@@ -30,3 +30,7 @@
 	path = zsh/.config/zsh/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
 	branch = master
+[submodule "nvim/.lazy-idea"]
+	path = nvim/.lazy-idea
+	url = https://github.com/cufarvid/lazy-idea.git
+	branch = main

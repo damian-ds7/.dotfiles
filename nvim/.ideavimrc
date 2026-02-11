@@ -1,0 +1,8 @@
+source ~/.lazy-idea/lazy-idea.vim
+
+" Insert mode: save + go to Normal
+inoremap <C-s> <Esc>:w<CR>
+
+" Normal mode: save
+nnoremap <C-s> :w<CR>
+
