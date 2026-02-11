@@ -1,0 +1,60 @@
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+Slash hotkey-overlay-title="Which-key (root)" {
+        spawn "~/.cargo/bin/wlr-which-key";
+    }
+
+    // Power submenu (p)
+    Mod+P hotkey-overlay-title="Which-key: Power" {
+        spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "p";
+    }
+
+    Mod+Control+Alt+Page_Up hotkey-overlay-title="Suspend" {
+        spawn "systemctl" "suspend";
+    }
+
+    Control+Alt+BackSpace hotkey-overlay-title="Reboot" {
+        spawn "systemctl" "reboot";
+    }
+
+    Control+Alt+Home hotkey-overlay-title="Power Off" {
+        spawn "systemctl" "poweroff";
+    }
+
+    // UI submenu (u)
+    Mod+U hotkey-overlay-title="Which-key: UI" {
+        spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "u";
+    }
+
+    // Vicinae submenu (v)
+    Mod+Shift+Space hotkey-overlay-title="Which-key: Vicinae" {
+        spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "v";
+    }
+
+    Mod+Space hotkey-overlay-title="Launcher (Vicinae)" {
+        spawn "vicinae" "toggle";
+    }
+
+    Mod+V hotkey-overlay-title="Clipboard history" {
+        spawn "vicinae" "vicinae://extensions/vicinae/clipboard/history";
+    }
+
+    Mod+Grave repeat=false hotkey-overlay-title="Switch windows" {
+        spawn "vicinae" "vicinae://extensions/vicinae/wm/switch-windows";
+    }
+
+    // Apps submenu (a)
+    Mod+A hotkey-overlay-title="Which-key: Apps" {
+        spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "a";
+    }
+
+    // System submenu (s)
+    Mod+S hotkey-overlay-title="Which-key: System" {
+        spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "s";
+    }
+
+    Mod+Shift+D hotkey-overlay-title="Toggle Dark/Light" {
+        spawn-sh "niri msg action do-screen-transition --delay-ms=500; ~/.local/bin/toggle-dark-mode";
+    }
+}
