@@ -55,11 +55,11 @@ binds {
     Mod+Shift+Control+J { move-column-to-monitor-down; }
     Mod+Shift+Control+K { move-column-to-monitor-up; }
 
-    // Workspace focus (PgUp/PgDn + u/i)
+    // Workspace focus (PgUp/PgDn + ,/.)
     Mod+Page_Down { focus-workspace-down; }
     Mod+Page_Up   { focus-workspace-up; }
-    Mod+U         { focus-workspace-down; }
-    Mod+I         { focus-workspace-up; }
+    Mod+Comma     { focus-workspace-down; }
+    Mod+Period    { focus-workspace-up; }
 
     // Move column to workspace (Shift + PgUp/PgDn + u/i)
     Mod+Shift+Page_Down { move-column-to-workspace-down; }
