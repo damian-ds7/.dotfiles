@@ -18,6 +18,7 @@ window-rule {
     match title="Discord Updater"
     match app-id="steam" title="Friends List"
     match app-id="steam" title="Steam Settings"
+    match app-id="jetbrains-idea" title="Welcome to IntelliJ IDEA"
     open-floating true
 }
 
@@ -87,6 +88,8 @@ window-rule {
     match app-id="^code$"
     match title="^Neovim"
     match title="^Project"
+    match app-id="jetbrains-idea"
+    exclude app-id="jetbrains-idea" title="Welcome to IntelliJ IDEA"
     exclude app-id="page.codeberg.libre_menu_editor.LibreMenuEditor"
     open-on-workspace "code"
     open-maximized true
