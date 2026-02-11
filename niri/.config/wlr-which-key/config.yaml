@@ -1,0 +1,138 @@
+# Theming
+font: JetBrainsMono Nerd Font 12
+separator: " ➜ "
+border_width: 2
+corner_r: 10
+padding: 15 # Defaults to corner_r
+column_padding: 25 # Defaults to padding
+
+# Colors
+background: "#1e1e2ee6"
+color: "#cdd6f4"
+border: "#cba6f7"
+
+# Anchor and margin
+anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
+# Only relevant when anchor is not center
+margin_right: 8
+margin_bottom: 8
+margin_left: 0
+margin_top: 0
+
+# Permits key bindings that conflict with compositor key bindings.
+# Default is `false`.
+inhibit_compositor_keyboard_shortcuts: false
+
+# Try to guess the correct keyboard layout to use. Default is `false`.
+auto_kbd_layout: true
+
+menu:
+  - key: "a"
+    desc: Apps
+    submenu:
+      - key: "t"
+        desc: Terminal (Ghostty + tmux)
+        cmd: ghostty -e ~/.local/bin/ghostty-default-tmux +new-window
+      - key: "T"
+        desc: Terminal (Ghostty)
+        cmd: ghostty +new-window
+      - key: "b"
+        desc: Browser (Zen)
+        cmd: ~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen
+      - key: "e"
+        desc: Files (Nautilus)
+        cmd: nautilus
+      - key: "y"
+        desc: Files (Yazi)
+        cmd: ~/.local/bin/ghostty-yazi
+      - key: "n"
+        desc: Neovim
+        cmd: ghostty --title=Neovim -e nvim +new-window
+      - key: "i"
+        desc: IntelliJ IDEA
+        cmd: ~/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea -Dawt.toolkit.name=WLToolkit
+      - key: "c"
+        desc: VS Code
+        cmd: code --enable-features=UseOzonePlatform --ozone-platform=wayland
+      - key: "p"
+        desc: Neovim edit popup
+        cmd: ~/.local/bin/nvim-edit-popup
+      - key: "m"
+        desc: Music (Deezer)
+        cmd: ~/.local/bin/focus-or-spawn-deezer
+      - key: "r"
+        desc: Resources
+        cmd: flatpak run net.nokyan.Resources
+
+  - key: "u"
+    desc: UI
+    submenu:
+      - key: "w"
+        desc: Weekly calendar
+        cmd: qs ipc call plugin:weekly-calendar togglePanel
+      - key: "c"
+        desc: Control center
+        cmd: qs ipc call controlCenter toggle
+      - key: "n"
+        desc: Notification center
+        cmd: qs ipc call notifications toggleHistory
+      - key: "N"
+        desc: Clear notifications
+        cmd: qs ipc call notifications clear
+      - key: "d"
+        desc: Toggle DND
+        cmd: qs ipc call notifications toggleDND
+      - key: "i"
+        desc: Toggle auto suspend (idle inhibitor)
+        cmd: qs ipc call idleInhibitor toggle
+      - key: "b"
+        desc: Toggle bar
+        cmd: qs ipc call bar toggle
+      - key: ","
+        desc: Settings
+        cmd: qs ipc call settings toggle
+
+  - key: "v"
+    desc: Vicinae
+    submenu:
+      - key: "v"
+        desc: Launcher
+        cmd: vicinae toggle
+      - key: "c"
+        desc: Clipboard history
+        cmd: vicinae vicinae://extensions/vicinae/clipboard/history
+      - key: "w"
+        desc: Switch windows
+        cmd: vicinae vicinae://extensions/vicinae/wm/switch-windows
+      - key: "e"
+        desc: Emoji search
+        cmd: vicinae vicinae://extensions/vicinae/core/search-emojis
+
+  - key: "s"
+    desc: System
+    submenu:
+      - key: "l"
+        desc: Lock screen
+        cmd: hyprlock
+      - key: "d"
+        desc: Toggle Dark/Light style
+        cmd: niri msg action do-screen-transition --delay-ms=500; ~/.local/bin/toggle-dark-mode
+      - key: "f"
+        desc: Toggle follow mode
+        cmd: ~/.local/bin/nirius-follow-mode
+
+  - key: "p"
+    desc: Power
+    submenu:
+      - key: "s"
+        desc: Suspend
+        cmd: systemctl suspend
+      - key: "r"
+        desc: Reboot
+        cmd: systemctl reboot
+      - key: "p"
+        desc: Power off
+        cmd: systemctl poweroff
+      - key: "m"
+        desc: Power off monitors
+        cmd: niri msg action power-off-monitors
