@@ -22,6 +22,10 @@ binds {
         spawn "systemctl" "poweroff";
     }
 
+    Mod+Shift+E hotkey-overlay-title="Power Menu" {
+        spawn "qs" "ipc" "call" "sessionMenu" "toggle"
+    }
+
     // UI submenu (u)
     Mod+U hotkey-overlay-title="Which-key: UI" {
         spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "u";
