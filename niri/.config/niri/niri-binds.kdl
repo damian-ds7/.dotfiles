@@ -135,6 +135,26 @@ binds {
     Mod+W { toggle-column-tabbed-display; }
 
     Mod+Shift+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    XF86AudioRaiseVolume                     allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+    XF86AudioLowerVolume                     allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+    XF86AudioMute                            allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute                         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    Alt+XF86AudioMute                        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    ISO_Level3_Shift+XF86AudioMute           allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    ISO_Level3_Shift+XF86AudioRaiseVolume    allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SOURCE@" "0.05+"; }
+    ISO_Level3_Shift+XF86AudioLowerVolume    allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SOURCE@" "0.05-"; }
+
+    XF86AudioPlay                     allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPause                    allow-when-locked=true { spawn "playerctl" "pause"; }
+    XF86TouchpadToggle                allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioNext                     allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPrev                     allow-when-locked=true { spawn "playerctl" "previous"; }
+
+    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "~/.local/bin/brightness-up-down 5"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "~/.local/bin/brightness-up-down -5"; }
+
+    Mod+Shift+S { screenshot show-pointer=false; }
 }
 
 recent-windows {

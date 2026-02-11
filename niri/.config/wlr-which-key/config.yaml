@@ -111,6 +111,21 @@ menu:
   - key: "s"
     desc: System
     submenu:
+      - key: "c"
+        desc: Capture
+        submenu:
+          - key: "r"
+            desc: Toggle screen recorder
+            cmd: qs ipc call plugin:screen-recorder toggle
+          - key: "s"
+            desc: Screenshot (area, no pointer)
+            cmd: niri msg action screenshot --show-pointer=false
+          - key: "f"
+            desc: Screenshot (full screen)
+            cmd: niri msg action screenshot-screen
+          - key: "w"
+            desc: Screenshot (window)
+            cmd: niri msg action screenshot-window
       - key: "l"
         desc: Lock screen
         cmd: hyprlock

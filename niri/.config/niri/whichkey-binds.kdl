@@ -57,4 +57,13 @@ binds {
     Mod+Shift+D hotkey-overlay-title="Toggle Dark/Light" {
         spawn-sh "niri msg action do-screen-transition --delay-ms=500; ~/.local/bin/toggle-dark-mode";
     }
+
+    // Capture submenu (s c)
+    Print hotkey-overlay-title="Which-key: Capture" {
+        spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "s c";
+    }
+
+    Mod+X hotkey-overlay-title="Which-key: Capture" {
+        spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "s c";
+    }
 }

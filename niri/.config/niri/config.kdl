@@ -7,7 +7,7 @@ include "layer-rules.kdl"
 include "window-rules.kdl"
 include "whichkey-binds.kdl"
 // include "binds.kdl"
-include "navigation-binds.kdl"
+include "niri-binds.kdl"
 include "colors.kdl"
 include "layout.kdl"
 
