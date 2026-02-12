@@ -88,6 +88,9 @@ menu:
       - key: "b"
         desc: Toggle bar
         cmd: qs ipc call bar toggle
+      - key: "B"
+        desc: Toggle battery panel
+        cmd: qs ipc call battery togglePanel
       - key: ","
         desc: Settings
         cmd: qs ipc call settings toggle
