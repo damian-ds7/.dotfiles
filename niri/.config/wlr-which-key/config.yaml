@@ -38,7 +38,7 @@ menu:
         cmd: ghostty +new-window
       - key: "b"
         desc: Browser (Zen)
-        cmd: ~/.cargo/bin/nirius focus-or-spawn -a zen ~/.local/bin/zen
+        cmd: ~/.cargo/bin/nirius focus-or-spawn -a zen --workspace-name browser ~/.local/bin/zen
       - key: "e"
         desc: Files (Nautilus)
         cmd: nautilus
