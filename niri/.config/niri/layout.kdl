@@ -32,7 +32,7 @@ layout {
         proportion 1.0
     }
 
-    default-column-display "tabbed"
+    // default-column-display "tabbed"
 
     default-column-width { proportion 0.5; }
 
