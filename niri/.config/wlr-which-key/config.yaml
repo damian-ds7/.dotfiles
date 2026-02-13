@@ -165,9 +165,6 @@ menu:
       - key: "d"
         desc: Toggle Dark/Light style
         cmd: niri msg action do-screen-transition --delay-ms=500; ~/.local/bin/toggle-dark-mode
-      - key: "f"
-        desc: Toggle follow mode
-        cmd: ~/.local/bin/nirius-follow-mode
 
   - key: "p"
     desc: Power
@@ -264,9 +261,9 @@ menu:
           - key: "C"
             desc: Center visible columns
             cmd: niri msg action center-visible-columns
-          - key: "i"
-            desc: Toggle shortcuts inhibit
-            cmd: niri msg action toggle-keyboard-shortcuts-inhibit
+          - key: "f"
+            desc: Toggle follow mode
+            cmd: ~/.local/bin/nirius-follow-mode
 
       - key: "s"
         desc: Sidebar
