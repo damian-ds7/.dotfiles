@@ -1,0 +1,35 @@
+# niri-sidebar configuration
+
+[geometry]
+# Width of the sidebar in pixels
+width = 600
+# Height of the sidebar windows
+height = 400
+# Gap between windows in the stack
+gap = 10
+
+[margins]
+# Space from the top/bottom of the screen
+top = 45
+# Space from the right edge of the screen
+right = 10
+
+[interaction]
+# Width of windows when sidebar is hidden in pixels
+peek = 10
+# Width of window when sidebar is hidden but window is focused in pixels
+# set this equal to peek to disable this feature
+# set this equal to sidebar_width + offset_right to make focused windows "unhide"
+focus_peek = 610
+
+[[window_rule]]
+app_id = "zen"
+width = 700
+height = 400
+focus_peek = 710
+
+[[window_rule]]
+app_id = "gnome.Calculator"
+width = 370
+height = 700
+focus_peek = 380

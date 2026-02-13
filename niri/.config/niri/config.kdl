@@ -11,9 +11,10 @@ include "niri-binds.kdl"
 include "colors.kdl"
 include "layout.kdl"
 
-spawn-sh-at-startup "/usr/libexec/xfce-polkit"
-spawn-sh-at-startup "~/.local/bin/awww-initialize"
-spawn-sh-at-startup "~/.go/bin/niri-float-sticky -app-id zen -title Picture-in-Picture"
+spawn-at-startup "/usr/libexec/xfce-polkit"
+spawn-at-startup "~/.local/bin/awww-initialize"
+spawn-at-startup "~/.go/bin/niri-float-sticky" "-app-id" "zen|calculator|ghostty"
+spawn-at-startup "~/.cargo/bin/niri-sidebar" "listen"
 
 environment {
     EDITOR "nvim"

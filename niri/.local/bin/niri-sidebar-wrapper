@@ -1,0 +1,3 @@
+#/usr/bin/env bash
+
+~/.cargo/bin/niri-sidebar "$1" || notify-send "Niri" "Niri Sidebar is not installed"

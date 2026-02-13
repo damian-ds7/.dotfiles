@@ -132,7 +132,7 @@ binds {
     Mod+Control+V { toggle-window-floating; }
     Mod+Shift+V   { switch-focus-between-floating-and-tiling; }
 
-    Mod+W { toggle-column-tabbed-display; }
+    // Mod+W { toggle-column-tabbed-display; }
 
     Mod+Shift+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
