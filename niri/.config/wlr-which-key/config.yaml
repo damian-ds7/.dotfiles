@@ -39,6 +39,9 @@ menu:
       - key: "b"
         desc: Browser (Zen)
         cmd: ~/.cargo/bin/nirius focus-or-spawn -a zen --workspace-name browser ~/.local/bin/zen
+      - key: "B"
+        desc: Browser (Zen - Private Window)
+        cmd: ~/.local/bin/zen --private-window
       - key: "e"
         desc: Files (Nautilus)
         cmd: nautilus
