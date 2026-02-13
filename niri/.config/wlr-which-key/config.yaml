@@ -181,3 +181,103 @@ menu:
       - key: "m"
         desc: Power off monitors
         cmd: niri msg action power-off-monitors
+
+  - key: "w"
+    desc: Window
+    submenu:
+      - key: "l"
+        desc: Layout
+        submenu:
+          - key: "o"
+            desc: Overview
+            cmd: niri msg action toggle-overview
+          - key: "c"
+            desc: Close window
+            cmd: niri msg action close-window
+          - key: "t"
+            desc: Toggle tabbed columns
+            cmd: niri msg action toggle-column-tabbed-display
+          - key: "f"
+            desc: Toggle floating
+            cmd: niri msg action toggle-window-floating
+          - key: "F"
+            desc: Switch focus floating/tiling
+            cmd: niri msg action switch-focus-between-floating-and-tiling
+          - key: "["
+            desc: Consume/expel left
+            cmd: niri msg action consume-or-expel-window-left
+          - key: "]"
+            desc: Consume/expel right
+            cmd: niri msg action consume-or-expel-window-right
+
+      - key: "r"
+        desc: Resize
+        submenu:
+          - key: "p"
+            desc: Next column width preset
+            cmd: niri msg action switch-preset-column-width
+            keep_open: true
+          - key: "P"
+            desc: Next window height preset
+            cmd: niri msg action switch-preset-window-height
+          - key: "0"
+            desc: Reset window height
+            cmd: niri msg action reset-window-height
+          - key: "-"
+            desc: Column width -10%
+            cmd: niri msg action set-column-width -- "-10%"
+          - key: "="
+            desc: Column width +10%
+            cmd: niri msg action set-column-width -- "+10%"
+          - key: "_"
+            desc: Window height -10%
+            cmd: niri msg action set-window-height -- "-10%"
+          - key: "+"
+            desc: Window height +10%
+            cmd: niri msg action set-window-height -- "+10%"
+
+      - key: "m"
+        desc: Maximize
+        submenu:
+          - key: "c"
+            desc: Maximize column
+            cmd: niri msg action maximize-column
+          - key: "e"
+            desc: Maximize window to edges
+            cmd: niri msg action maximize-window-to-edges
+          - key: "f"
+            desc: Fullscreen window
+            cmd: niri msg action fullscreen-window
+          - key: "x"
+            desc: Expand column to available width
+            cmd: niri msg action expand-column-to-available-width
+
+      - key: "v"
+        desc: View
+        submenu:
+          - key: "c"
+            desc: Center column
+            cmd: niri msg action center-column
+          - key: "C"
+            desc: Center visible columns
+            cmd: niri msg action center-visible-columns
+          - key: "i"
+            desc: Toggle shortcuts inhibit
+            cmd: niri msg action toggle-keyboard-shortcuts-inhibit
+
+      - key: "s"
+        desc: Sidebar
+        submenu:
+          - key: "t"
+            desc: Toggle window in sidebar
+            cmd: ~/.local/bin/niri-sidebar-wrapper toggle-window
+          - key: "v"
+            desc: Toggle sidebar visibility
+            cmd: ~/.local/bin/niri-sidebar-wrapper toggle-visibility
+          - key: "f"
+            desc: Flip sidebar order
+            cmd: ~/.local/bin/niri-sidebar-wrapper flip
+          - key: "r"
+            desc: Reorder sidebar
+            cmd: ~/.local/bin/niri-sidebar-wrapper reorder
+
