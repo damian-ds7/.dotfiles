@@ -24,6 +24,7 @@ focus_peek = 610
 
 [[window_rule]]
 app_id = "zen"
+title = "^Picture-in-Picture$"
 width = 700
 height = 400
 focus_peek = 710
