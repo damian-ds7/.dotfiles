@@ -10,15 +10,15 @@ binds {
         spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "p";
     }
 
-    Mod+Control+Alt+Page_Up hotkey-overlay-title="Suspend" {
+    Mod+Alt+Page_Up hotkey-overlay-title="Suspend" {
         spawn "systemctl" "suspend";
     }
 
-    Control+Alt+BackSpace hotkey-overlay-title="Reboot" {
+    Mod+Alt+BackSpace hotkey-overlay-title="Reboot" {
         spawn "systemctl" "reboot";
     }
 
-    Control+Alt+Home hotkey-overlay-title="Power Off" {
+    Mod+Alt+Home hotkey-overlay-title="Power Off" {
         spawn "systemctl" "poweroff";
     }
 
