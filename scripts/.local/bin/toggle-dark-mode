@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -eu
 
+source "$(readlink -f "$HOME/.env")"
+
 THEME_DIR="$HOME/.config/themes"
 TMUX_CONF_DIR="$HOME/.config/tmux"
 TMUX_THEME_DIR="$TMUX_CONF_DIR/themes"
@@ -32,6 +34,20 @@ apply_wlr_which_key_theme() {
   mv "$tmp" "$WLR_FILE"
 }
 
+apply_nvim_theme() {
+  local scheme
+  read -r scheme <"$THEME_DIR/current/nvim.conf"
+
+  if [[ -d "$NVIM_SOCKET_DIR" ]]; then
+    for sock in "$NVIM_SOCKET_DIR"/*; do
+      if [[ -S "$sock" ]]; then
+        nvim --server "$sock" --remote-send ":silent colorscheme $scheme<CR>"
+        echo "NVIM: theme '$scheme' set for socket '$sock'" >&1
+      fi
+    done
+  fi
+}
+
 apply_theme() {
   mode=$1
   gnome_pref=$2
@@ -45,6 +61,7 @@ apply_theme() {
   echo "$mode" >"$THEME_DIR/mode"
 
   apply_wlr_which_key_theme &
+  apply_nvim_theme &
 
   qs ipc call darkMode "$qs_call" >/dev/null 2>&1 &
   vicinae vicinae://theme/set/"$vicinae_theme" >/dev/null 2>&1 &
