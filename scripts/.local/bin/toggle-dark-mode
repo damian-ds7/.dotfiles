@@ -4,6 +4,7 @@ set -eu
 source "$(readlink -f "$HOME/.env")"
 
 THEME_DIR="$HOME/.config/themes"
+SCHEME=$(cat "$THEME_DIR/scheme" 2>/dev/null || echo "catppuccin")
 TMUX_CONF_DIR="$HOME/.config/tmux"
 TMUX_THEME_DIR="$TMUX_CONF_DIR/themes"
 
@@ -52,19 +53,23 @@ apply_theme() {
   mode=$1
   gnome_pref=$2
   gtk_theme=$3
-  vicinae_theme=$4
+  scheme=$4
   qs_call=$5
 
   dconf write /org/gnome/desktop/interface/color-scheme "$gnome_pref"
   dconf write /org/gnome/desktop/interface/gtk-theme "'$gtk_theme'"
-  ln -sfnr "$THEME_DIR/$vicinae_theme" "$THEME_DIR/current"
+  ln -sfnr "$THEME_DIR/$scheme/$mode" "$THEME_DIR/current"
   echo "$mode" >"$THEME_DIR/mode"
 
   apply_wlr_which_key_theme &
   apply_nvim_theme &
 
   qs ipc call darkMode "$qs_call" >/dev/null 2>&1 &
-  vicinae vicinae://theme/set/"$vicinae_theme" >/dev/null 2>&1 &
+
+  if [ -f "$THEME_DIR/$scheme/$mode/vicinae.conf" ]; then
+    read -r vicinae_scheme <"$THEME_DIR/$scheme/$mode/vicinae.conf"
+    vicinae vicinae://theme/set/"$vicinae_scheme" >/dev/null 2>&1 &
+  fi
 
   {
     [ -x "$TMUX_THEME_DIR/reset.sh" ] && "$TMUX_THEME_DIR/reset.sh"
@@ -78,10 +83,19 @@ apply_theme() {
     waybar.service swayosd-server.service >/dev/null 2>&1 &
 }
 
-if [ "$(get_current_theme)" = "'prefer-light'" ]; then
-  apply_theme "dark" "'prefer-dark'" "adw-gtk3-dark" "catppuccin-mocha" "setDark"
+MODE=${1:-}
+if [ -z "$MODE" ]; then
+  if [ "$(get_current_theme)" = "'prefer-light'" ]; then
+    MODE="dark"
+  else
+    MODE="light"
+  fi
+fi
+
+if [ "$MODE" = "dark" ]; then
+  apply_theme "dark" "'prefer-dark'" "adw-gtk3-dark" "$SCHEME" "setDark"
 else
-  apply_theme "light" "'prefer-light'" "adw-gtk3" "catppuccin-latte" "setLight"
+  apply_theme "light" "'prefer-light'" "adw-gtk3" "$SCHEME" "setLight"
 fi
 
 disown
