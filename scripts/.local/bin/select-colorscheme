@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+set -eu
+
+themes_dir="$HOME/.config/themes"
+
+list_themes() {
+  local any=0
+  shopt -s nullglob
+  for p in "$themes_dir"/*; do
+    if [[ -d "$p" && "$(basename "$p")" != "current" ]]; then
+      echo "- $(basename "$p")"
+      any=1
+    fi
+  done
+
+  if [[ "$any" -eq 0 ]]; then
+    echo "(none found under $themes_dir)"
+  fi
+}
+
+usage() {
+  echo "Usage: $(basename "$0") <scheme>" >&2
+  echo >&2
+  echo "Available schemes:" >&2
+  list_themes >&2
+}
+
+scheme="${1:-}"
+if [[ -z "$scheme" ]]; then
+  usage
+  exit 2
+fi
+
+if [[ ! -d "$themes_dir/$scheme" ]]; then
+  echo "select-colorscheme: scheme not found: $themes_dir/$scheme" >&2
+  echo >&2
+  usage
+  exit 1
+fi
+
+mode_file="$themes_dir/mode"
+if [[ ! -f "$mode_file" ]]; then
+  echo "select-colorscheme: missing mode file: $mode_file" >&2
+  exit 1
+fi
+
+mode="$(tr -d ' \t\r\n' <"$mode_file")"
+case "$mode" in
+dark | light) ;;
+*)
+  echo "select-colorscheme: invalid mode '$mode' in $mode_file (expected dark|light)" >&2
+  exit 1
+  ;;
+esac
+
+src="$themes_dir/$scheme/$mode"
+dest="$themes_dir/current"
+
+if [[ ! -d "$src" ]]; then
+  echo "select-colorscheme: missing theme mode directory: $src" >&2
+  exit 1
+fi
+
+ln -sfnr "$src" "$dest"
+
+echo "$scheme" >"$themes_dir"/scheme
+
+if [[ -d "$themes_dir/$scheme" ]]; then
+  shopt -s nullglob
+  hooks=("$themes_dir/$scheme"/*)
+  if ((${#hooks[@]} > 0)); then
+    mapfile -t hooks_sorted < <(printf '%s\n' "${hooks[@]}" | LC_ALL=C sort)
+    for hook in "${hooks_sorted[@]}"; do
+      if [[ -f "$hook" && -x "$hook" ]]; then
+        "$hook"
+      fi
+    done
+  fi
+fi
+
+"$HOME/.local/bin/toggle-dark-mode" "$mode"

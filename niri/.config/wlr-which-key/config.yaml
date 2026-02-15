@@ -7,9 +7,9 @@ padding: 15 # Defaults to corner_r
 column_padding: 25 # Defaults to padding
 
 # Colors
-background: "#1e1e2ee6"
-color: "#cdd6f4"
-border: "#cba6f7"
+background: "#191724e6"
+color: "#e0def4"
+border: "#ebbcba"
 
 # Anchor and margin
 anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
