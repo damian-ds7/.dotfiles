@@ -168,6 +168,9 @@ menu:
       - key: "d"
         desc: Toggle Dark/Light style
         cmd: niri msg action do-screen-transition --delay-ms=500; ~/.local/bin/toggle-dark-mode
+      - key: "s"
+        desc: Change color scheme
+        cmd: ~/.local/bin/vicinae-colorscheme-selector
 
   - key: "p"
     desc: Power

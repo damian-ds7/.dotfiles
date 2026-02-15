@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Color scheme selector
+StartupNotify=true
+Icon=/home/damian/.local/share/applications/icons/scheme.png
+Terminal=false
+Keywords=Color;Scheme;Select;Selection;Selector
+Exec=sh -c "$HOME/.local/bin/vicinae-colorscheme-selector"
