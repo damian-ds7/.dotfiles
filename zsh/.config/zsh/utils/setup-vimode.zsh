@@ -5,7 +5,7 @@ bindkey -v
 bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
 bindkey -M viins '^W' backward-kill-word
-bindkey -M viins 'df' vi-cmd-mode
+bindkey -M viins 'jj' vi-cmd-mode
 
 # Text Objects: ci', ci", ci`, etc.
 autoload -U select-quoted
