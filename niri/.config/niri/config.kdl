@@ -8,7 +8,7 @@ include "window-rules.kdl"
 include "whichkey-binds.kdl"
 // include "binds.kdl"
 include "niri-binds.kdl"
-include "colors.kdl"
+include "themes/current-theme.kdl"
 include "layout.kdl"
 
 spawn-at-startup "/usr/libexec/xfce-polkit"

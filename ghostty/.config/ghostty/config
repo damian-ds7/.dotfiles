@@ -1,5 +1,5 @@
 # dynamic themes
-config-file = ?"~/.config/themes/current/ghostty.conf"
+config-file = ?"themes/current-theme"
 
 font-family = "JetBrainsMono Nerd Font"
 font-size = 12

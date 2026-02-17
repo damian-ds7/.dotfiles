@@ -1,0 +1,1 @@
+THEMES=("catppuccin" "rose-pine")

@@ -1,52 +1,54 @@
 #!/usr/bin/env bash
-set -eu
+
+# This script toggles themes globally for applications defined in the CONFIGS array.
+# For a config to be compatible, it must have a 'themes/' subdirectory.
+#
+# Integration methods (in order of precedence):
+# 1. 'themes/switch-theme.sh' (Executable):
+#    If present, this script is executed with arguments: <scheme> <mode>
+#    Example: switch-theme.sh rose-pine dark
+#
+# 2. Theme Files (Symlink):
+#    The script looks for a file at 'themes/<scheme>/<mode>' (extensions allowed).
+#    If found, it creates a symlink 'themes/current-theme' pointing to it.
+#    Example: themes/catppuccin/dark.yaml -> themes/current-theme.yaml
 
 source "$(readlink -f "$HOME/.env")"
 
 THEME_DIR="$HOME/.config/themes"
-SCHEME=$(cat "$THEME_DIR/scheme" 2>/dev/null || echo "catppuccin")
-TMUX_CONF_DIR="$HOME/.config/tmux"
-TMUX_THEME_DIR="$TMUX_CONF_DIR/themes"
 
-WLR_FILE="$HOME/.config/wlr-which-key/config.yaml"
+if [ ! -d "$THEME_DIR" ]; then
+  mkdir -p "$THEME_DIR"
+fi
 
-mkdir -p "$THEME_DIR"
+if [ ! -f "$THEME_DIR/scheme" ]; then
+  echo "catppuccin" >"$THEME_DIR/scheme"
+fi
+
+if [ ! -f "$THEME_DIR/mode" ]; then
+  echo "dark" >"$THEME_DIR/mode"
+fi
+
+SCHEME=$(cat "$THEME_DIR/scheme")
+
+CONF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+CONFIGS=(
+  "$CONF_DIR/bat"
+  "$CONF_DIR/ghostty"
+  "$CONF_DIR/lsd"
+  "$CONF_DIR/hypr"
+  "$CONF_DIR/niri"
+  "$CONF_DIR/noctalia"
+  "$CONF_DIR/vicinae"
+  "$CONF_DIR/wlr-which-key"
+  "$CONF_DIR/nvim"
+  "$CONF_DIR/tmux"
+  "$CONF_DIR/yazi"
+)
 
 get_current_theme() {
   dconf read /org/gnome/desktop/interface/color-scheme || echo "'default'"
-}
-
-apply_wlr_which_key_theme() {
-  [ -f "$WLR_FILE" ] || return 0
-  [ -f "$THEME_DIR/current/wlr-which-key" ] || return 0
-
-  line="$(grep -n '^# Colors' "$WLR_FILE" | head -n1 | cut -d: -f1 || true)"
-  [ -n "$line" ] || return 0
-
-  start=$((line + 1))
-  end=$((line + 3))
-
-  tmp="$(mktemp)"
-
-  sed -e "${line}r $THEME_DIR/current/wlr-which-key" \
-    -e "${start},${end}d" \
-    "$WLR_FILE" >"$tmp"
-
-  mv "$tmp" "$WLR_FILE"
-}
-
-apply_nvim_theme() {
-  local scheme
-  read -r scheme <"$THEME_DIR/current/nvim.conf"
-
-  if [[ -d "$NVIM_SOCKET_DIR" ]]; then
-    for sock in "$NVIM_SOCKET_DIR"/*; do
-      if [[ -S "$sock" ]]; then
-        nvim --server "$sock" --remote-send ":silent colorscheme $scheme<CR>"
-        echo "NVIM: theme '$scheme' set for socket '$sock'" >&1
-      fi
-    done
-  fi
 }
 
 apply_theme() {
@@ -54,33 +56,48 @@ apply_theme() {
   gnome_pref=$2
   gtk_theme=$3
   scheme=$4
-  qs_call=$5
 
   dconf write /org/gnome/desktop/interface/color-scheme "$gnome_pref"
   dconf write /org/gnome/desktop/interface/gtk-theme "'$gtk_theme'"
-  ln -sfnr "$THEME_DIR/$scheme/$mode" "$THEME_DIR/current"
   echo "$mode" >"$THEME_DIR/mode"
 
-  apply_wlr_which_key_theme &
-  apply_nvim_theme &
+  for config_dir in "${CONFIGS[@]}"; do
+    (
+      eval config_dir="$config_dir"
+      theme_dir="$config_dir/themes"
 
-  qs ipc call darkMode "$qs_call" >/dev/null 2>&1 &
+      if [ ! -d "$theme_dir" ]; then
+        # echo "Warning: $theme_dir does not exist"
+        exit 0
+      fi
 
-  if [ -f "$THEME_DIR/$scheme/$mode/vicinae.conf" ]; then
-    read -r vicinae_scheme <"$THEME_DIR/$scheme/$mode/vicinae.conf"
-    vicinae vicinae://theme/set/"$vicinae_scheme" >/dev/null 2>&1 &
-  fi
+      if [ -x "$theme_dir/switch-theme.sh" ]; then
+        "$theme_dir/switch-theme.sh" "$scheme" "$mode"
+        exit 0
+      fi
 
-  {
-    [ -x "$TMUX_THEME_DIR/reset.sh" ] && "$TMUX_THEME_DIR/reset.sh"
-    (tmux info >/dev/null 2>&1 && tmux source-file "$TMUX_CONF_DIR/tmux.conf")
-  } &
+      src=""
+      ext=""
 
-  killall -q -SIGUSR2 ghostty &
-  killall -q -SIGUSR1 zsh &
+      if [ -f "$theme_dir/$scheme/$mode" ]; then
+        src="$theme_dir/$scheme/$mode"
+      else
+        match=("$theme_dir/$scheme/$mode".*)
 
-  systemctl --user try-restart \
-    waybar.service swayosd-server.service >/dev/null 2>&1 &
+        if [ -f "${match[0]}" ]; then
+          src="${match[0]}"
+          ext=".${src##*.}"
+        fi
+      fi
+
+      if [ -n "$src" ]; then
+        rel_src=$(realpath --relative-to="$theme_dir" "$src")
+        ln -sf "$rel_src" "$theme_dir/current-theme$ext"
+      else
+        echo "Warning: No theme file found for $scheme/$mode in $theme_dir"
+      fi
+    ) &>/dev/null &
+  done
 }
 
 MODE=${1:-}
@@ -93,9 +110,11 @@ if [ -z "$MODE" ]; then
 fi
 
 if [ "$MODE" = "dark" ]; then
-  apply_theme "dark" "'prefer-dark'" "adw-gtk3-dark" "$SCHEME" "setDark"
+  apply_theme "dark" "'prefer-dark'" "adw-gtk3-dark" "$SCHEME"
 else
-  apply_theme "light" "'prefer-light'" "adw-gtk3" "$SCHEME" "setLight"
+  apply_theme "light" "'prefer-light'" "adw-gtk3" "$SCHEME"
 fi
 
-disown
+killall -q -SIGUSR1 zsh &
+
+disown -a

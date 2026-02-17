@@ -1,23 +1,20 @@
 #!/usr/bin/env bash
 
-set -eu
-
 themes_dir="$HOME/.config/themes"
 select_script="$HOME/.local/bin/select-colorscheme"
+source "$themes_dir/common.sh"
 
 if [[ ! -d "$themes_dir" ]]; then
   echo "Themes directory not found: $themes_dir" >&2
   exit 1
 fi
 
-selected=$(find -L "$themes_dir" -mindepth 1 -maxdepth 1 -type d -not -name 'current' -printf '%P\n' | sort |
+selected=$(printf "%s\n" "${THEMES[@]}" | sort |
   vicinae dmenu --width 800 --no-quick-look -p 'Select colorscheme...')
 
 if [ -n "$selected" ]; then
-  cmd="$select_script \"$selected\""
-
   if command -v niri >/dev/null 2>&1; then
     niri msg action do-screen-transition --delay-ms=500
   fi
-  eval "$cmd"
+  "$select_script" "$selected"
 fi
