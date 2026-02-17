@@ -11,13 +11,13 @@ gap = 10
 [margins]
 # Margins are default to 0 if left out
 # Space from the top of the screen
-top = 10
+top = 45
 # Space from the right edge of the screen
-right = 10
+right = 5
 # Space from the left edge of the screen
-left = 10
+left = 5
 # Space from the bottom of the screen
-bottom = 10 
+bottom = 45
 
 [interaction]
 # Where to put the sidebar, can be "left", "right", "top" or "bottom"
@@ -36,9 +36,9 @@ sticky = true
 [[window_rule]]
 app_id = "zen"
 title = "^Picture-in-Picture$"
-width = 700
+width = 711
 height = 400
-focus_peek = 710
+focus_peek = 716
 auto_add = true
 
 [[window_rule]]
