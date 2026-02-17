@@ -10,6 +10,7 @@ MODE="${2?Error: MODE (argument 2) is required}"
   if [ "$CURRENT_SCHEME" != "$SCHEME" ]; then
     if [ -x "./$SCHEME/noctalia.sh" ]; then
       "./$SCHEME/noctalia.sh"
+      echo "$SCHEME" >current-theme
     else
       echo "Warning: No switch script found for $SCHEME"
     fi
