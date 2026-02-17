@@ -1,0 +1,48 @@
+# niri-sidebar configuration
+
+[geometry]
+# Width of the sidebar in pixels
+width = 600
+# Height of the sidebar windows
+height = 400
+# Gap between windows in the stack
+gap = 10
+
+[margins]
+# Margins are default to 0 if left out
+# Space from the top of the screen
+top = 44
+# Space from the right edge of the screen
+right = 15
+# Space from the left edge of the screen
+left = 5
+# Space from the bottom of the screen
+bottom = 45
+
+[interaction]
+# Where to put the sidebar, can be "left", "right", "top" or "bottom"
+# Defaults to "right"
+position = "right"
+# Width of windows when sidebar is hidden in pixels
+peek = 10
+# Width of window when sidebar is hidden but window is focused in pixels
+# set this equal to peek to disable this feature
+# set this equal to sidebar_width + offset_right to make focused windows "unhide"
+# Optional and defaults to peek if ommitted
+focus_peek = 610
+# If the sidebar is sticky, moving to the active workspace with the user
+sticky = true
+
+[[window_rule]]
+app_id = "zen"
+title = "^Picture-in-Picture$"
+width = 711
+height = 400
+focus_peek = 716
+auto_add = true
+
+[[window_rule]]
+app_id = "gnome.Calculator"
+width = 370
+height = 616
+focus_peek = 380
