@@ -286,4 +286,7 @@ menu:
           - key: "r"
             desc: Reorder sidebar
             cmd: ~/.local/bin/niri-sidebar-wrapper reorder
+          - key: "o"
+            desc: Focus sidebar
+            cmd: ~/.local/bin/niri-sidebar-wrapper focus
 
