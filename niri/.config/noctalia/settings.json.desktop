@@ -87,6 +87,7 @@
                 {
                     "colorizeSystemIcon": "none",
                     "enableColorization": false,
+                    "generalTooltipText": "",
                     "hideMode": "alwaysExpanded",
                     "icon": "niri",
                     "id": "CustomButton",
@@ -102,7 +103,9 @@
                     "parseJson": false,
                     "rightClickExec": "vicinae vicinae://extensions/vicinae/wm/switch-windows",
                     "rightClickUpdateText": false,
+                    "showExecTooltip": true,
                     "showIcon": true,
+                    "showTextTooltip": true,
                     "textCollapse": "",
                     "textCommand": "",
                     "textIntervalMs": 3000,
@@ -129,7 +132,6 @@
                     "labelMode": "none",
                     "occupiedColor": "secondary",
                     "pillSize": 0.6,
-                    "reverseScroll": false,
                     "showApplications": false,
                     "showBadge": true,
                     "showLabelsOnlyWhenOccupied": false,
@@ -222,10 +224,6 @@
             },
             {
                 "enabled": true,
-                "id": "timer-card"
-            },
-            {
-                "enabled": true,
                 "id": "weather-card"
             }
         ]
@@ -263,7 +261,7 @@
                 "id": "media-sysmon-card"
             },
             {
-                "enabled": false,
+                "enabled": true,
                 "id": "brightness-card"
             }
         ],
@@ -308,6 +306,7 @@
         "colorizeIcons": false,
         "deadOpacity": 0.6,
         "displayMode": "always_visible",
+        "dockType": "floating",
         "enabled": false,
         "floatingRatio": 1,
         "inactiveIndicators": false,
@@ -318,6 +317,8 @@
         ],
         "pinnedStatic": false,
         "position": "bottom",
+        "showFrameIndicator": true,
+        "sitOnFrame": false,
         "size": 1
     },
     "general": {
@@ -351,6 +352,9 @@
                 "Left",
                 "H"
             ],
+            "keyRemove": [
+                "Del"
+            ],
             "keyRight": [
                 "Right",
                 "L"
@@ -369,6 +373,7 @@
         ],
         "lockScreenTint": 0,
         "radiusRatio": 0.7000000000000001,
+        "reverseScroll": false,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
         "shadowDirection": "bottom_right",
@@ -406,10 +411,12 @@
         "weatherShowEffects": true
     },
     "network": {
+        "airplaneModeEnabled": false,
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": false,
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
+        "disableDiscoverability": false,
         "wifiDetailsViewMode": "grid",
         "wifiEnabled": false
     },
@@ -424,9 +431,12 @@
     },
     "notifications": {
         "backgroundOpacity": 1,
+        "clearDismissed": true,
         "criticalUrgencyDuration": 10,
+        "density": "default",
         "enableBatteryToast": true,
         "enableKeyboardLayoutToast": true,
+        "enableMarkdown": true,
         "enableMediaToast": false,
         "enabled": true,
         "location": "top",
@@ -435,7 +445,7 @@
         ],
         "normalUrgencyDuration": 5,
         "overlayLayer": true,
-        "respectExpireTimeout": false,
+        "respectExpireTimeout": true,
         "saveToHistory": {
             "critical": true,
             "low": true,
@@ -517,33 +527,35 @@
                 "countdownEnabled": true,
                 "enabled": true,
                 "keybind": "4"
+            },
+            {
+                "action": "rebootToUefi",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": false,
+                "keybind": ""
             }
         ],
-        "showHeader": true
+        "showHeader": true,
+        "showKeybinds": true
     },
     "settingsVersion": 53,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
         "cpuCriticalThreshold": 90,
-        "cpuPollingInterval": 1000,
         "cpuWarningThreshold": 80,
         "criticalColor": "",
         "diskAvailCriticalThreshold": 10,
         "diskAvailWarningThreshold": 20,
         "diskCriticalThreshold": 90,
-        "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
         "enableDgpuMonitoring": false,
         "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor",
         "gpuCriticalThreshold": 90,
-        "gpuPollingInterval": 3000,
         "gpuWarningThreshold": 80,
-        "loadAvgPollingInterval": 3000,
         "memCriticalThreshold": 90,
-        "memPollingInterval": 1000,
         "memWarningThreshold": 80,
-        "networkPollingInterval": 1000,
         "swapCriticalThreshold": 90,
         "swapWarningThreshold": 80,
         "tempCriticalThreshold": 90,
