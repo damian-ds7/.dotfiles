@@ -14,6 +14,8 @@ return {
 
       SnacksWinSeparator = { fg = "base", bg = "base" },
 
+      StatusLineTerm = { fg = "base", bg = "base" },
+
       BufferLineIndicatorSelected = { fg = "gold", bg = "NONE" },
     },
   },
