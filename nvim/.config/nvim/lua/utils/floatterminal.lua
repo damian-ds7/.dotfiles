@@ -44,7 +44,10 @@ local function trigger_terminal(dir)
     if not vim.api.nvim_win_is_valid(state.floating.win) then
       state.floating = create_native_window { buf = state.floating.buf }
       if dir then vim.api.nvim_set_current_dir(dir) end
-      if vim.bo[state.floating.buf].buftype ~= "terminal" then vim.cmd.terminal() end
+      if vim.bo[state.floating.buf].buftype ~= "terminal" then
+        vim.cmd.terminal()
+        vim.bo[state.floating.buf].buflisted = false
+      end
 
       vim.api.nvim_create_autocmd("TermClose", {
         buffer = state.floating.buf,
