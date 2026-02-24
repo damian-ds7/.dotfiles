@@ -6,10 +6,8 @@ return {
   init = function()
     vim.g.lualine_laststatus = vim.o.laststatus
     if vim.fn.argc(-1) > 0 then
-      -- set an empty statusline till lualine loads
       vim.o.statusline = " "
     else
-      -- hide the statusline on the starter page
       vim.o.laststatus = 0
     end
   end,
@@ -66,10 +64,10 @@ return {
             return { fg = string.format("#%06x", hl.fg or 0), gui = "bold" }
           end,
         },
-        -- {
-        --   function() return "  " .. require("dap").status() end,
-        --   cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-        -- },
+        {
+          function() return "  " .. require("dap").status() end,
+          cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+        },
         {
           "diff",
           symbols = {
