@@ -39,10 +39,8 @@ return {
         "yaml",
       }
 
-      local registry = require "core.lang_reg"
-      for _, lang in ipairs(registry.get_all()) do
-        if lang.treesitter then vim.list_extend(ensure_installed, lang.treesitter) end
-      end
+      local registry = require("core.lang_reg").get_all()
+      if registry.treesitter then vim.list_extend(ensure_installed, registry.treesitter) end
 
       ts.setup {}
       -- NOTE: If languages fail to install or compilation hangs,
