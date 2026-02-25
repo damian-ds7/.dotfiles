@@ -140,13 +140,19 @@ function y() {
 }
 
 function nvim() {
-    if [ -z "$NVIM_ADDRESS" ] || [ -z "$TMUX" ]; then
+    if [[ -z "$NVIM_ADDRESS" && -z "$VIMRUNTIME" ]]; then
         command nvim "$@"
         return $?
     fi
 
+    local target_dir="${NVIM_TERM_ORIG_DIR:-}"
+
     if [ $# -eq 0 ]; then
-        tmux detach-client
+        if [[ -n "$TMUX" ]]; then
+            tmux detach-client
+        else
+            command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:lua require('utils.floatterminal').toggle_floating_terminal()<CR>"
+        fi
         return 0
     fi
 
@@ -165,7 +171,14 @@ function nvim() {
         local fp=$(realpath "$arg")
         command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:e $fp<CR>"
     done
-    tmux detach-client
+
+    if [[ -n "$TMUX" ]]; then
+        tmux detach-client
+    else
+        command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:lua require('utils.floatterminal').toggle_floating_terminal()<CR>"
+    fi
+
+    return 0
 }
 
 # -------------------------
