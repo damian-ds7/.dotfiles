@@ -18,15 +18,15 @@ source "$(readlink -f "$HOME/.env")"
 THEME_DIR="$HOME/.config/themes"
 
 if [ ! -d "$THEME_DIR" ]; then
-  mkdir -p "$THEME_DIR"
+    mkdir -p "$THEME_DIR"
 fi
 
 if [ ! -f "$THEME_DIR/scheme" ]; then
-  echo "catppuccin" >"$THEME_DIR/scheme"
+    echo "catppuccin" >"$THEME_DIR/scheme"
 fi
 
 if [ ! -f "$THEME_DIR/mode" ]; then
-  echo "dark" >"$THEME_DIR/mode"
+    echo "dark" >"$THEME_DIR/mode"
 fi
 
 SCHEME=$(cat "$THEME_DIR/scheme")
@@ -34,85 +34,85 @@ SCHEME=$(cat "$THEME_DIR/scheme")
 CONF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 CONFIGS=(
-  "$CONF_DIR/bat"
-  "$CONF_DIR/ghostty"
-  "$CONF_DIR/lsd"
-  "$CONF_DIR/hypr"
-  "$CONF_DIR/niri"
-  "$CONF_DIR/noctalia"
-  "$CONF_DIR/vicinae"
-  "$CONF_DIR/wlr-which-key"
-  "$CONF_DIR/nvim"
-  "$CONF_DIR/tmux"
-  "$CONF_DIR/yazi"
+    "$CONF_DIR/bat"
+    "$CONF_DIR/ghostty"
+    "$CONF_DIR/lsd"
+    "$CONF_DIR/hypr"
+    "$CONF_DIR/niri"
+    "$CONF_DIR/noctalia"
+    "$CONF_DIR/vicinae"
+    "$CONF_DIR/wlr-which-key"
+    "$CONF_DIR/nvim"
+    "$CONF_DIR/tmux"
+    "$CONF_DIR/yazi"
 )
 
 get_current_theme() {
-  dconf read /org/gnome/desktop/interface/color-scheme || echo "'default'"
+    dconf read /org/gnome/desktop/interface/color-scheme || echo "'default'"
 }
 
 apply_theme() {
-  mode=$1
-  gnome_pref=$2
-  gtk_theme=$3
-  scheme=$4
+    mode=$1
+    gnome_pref=$2
+    gtk_theme=$3
+    scheme=$4
 
-  dconf write /org/gnome/desktop/interface/color-scheme "$gnome_pref"
-  dconf write /org/gnome/desktop/interface/gtk-theme "'$gtk_theme'"
-  echo "$mode" >"$THEME_DIR/mode"
+    dconf write /org/gnome/desktop/interface/color-scheme "$gnome_pref"
+    dconf write /org/gnome/desktop/interface/gtk-theme "'$gtk_theme'"
+    echo "$mode" >"$THEME_DIR/mode"
 
-  for config_dir in "${CONFIGS[@]}"; do
-    (
-      eval config_dir="$config_dir"
-      theme_dir="$config_dir/themes"
+    for config_dir in "${CONFIGS[@]}"; do
+        (
+            eval config_dir="$config_dir"
+            theme_dir="$config_dir/themes"
 
-      if [ ! -d "$theme_dir" ]; then
-        # echo "Warning: $theme_dir does not exist"
-        exit 0
-      fi
+            if [ ! -d "$theme_dir" ]; then
+                # echo "Warning: $theme_dir does not exist"
+                exit 0
+            fi
 
-      if [ -x "$theme_dir/switch-theme.sh" ]; then
-        "$theme_dir/switch-theme.sh" "$scheme" "$mode"
-        exit 0
-      fi
+            if [ -x "$theme_dir/switch-theme.sh" ]; then
+                "$theme_dir/switch-theme.sh" "$scheme" "$mode"
+                exit 0
+            fi
 
-      src=""
-      ext=""
+            src=""
+            ext=""
 
-      if [ -f "$theme_dir/$scheme/$mode" ]; then
-        src="$theme_dir/$scheme/$mode"
-      else
-        match=("$theme_dir/$scheme/$mode".*)
+            if [ -f "$theme_dir/$scheme/$mode" ]; then
+                src="$theme_dir/$scheme/$mode"
+            else
+                match=("$theme_dir/$scheme/$mode".*)
 
-        if [ -f "${match[0]}" ]; then
-          src="${match[0]}"
-          ext=".${src##*.}"
-        fi
-      fi
+                if [ -f "${match[0]}" ]; then
+                    src="${match[0]}"
+                    ext=".${src##*.}"
+                fi
+            fi
 
-      if [ -n "$src" ]; then
-        rel_src=$(realpath --relative-to="$theme_dir" "$src")
-        ln -sf "$rel_src" "$theme_dir/current-theme$ext"
-      else
-        echo "Warning: No theme file found for $scheme/$mode in $theme_dir"
-      fi
-    ) &>/dev/null &
-  done
+            if [ -n "$src" ]; then
+                rel_src=$(realpath --relative-to="$theme_dir" "$src")
+                ln -sf "$rel_src" "$theme_dir/current-theme$ext"
+            else
+                echo "Warning: No theme file found for $scheme/$mode in $theme_dir"
+            fi
+        ) &>/dev/null &
+    done
 }
 
 MODE=${1:-}
 if [ -z "$MODE" ]; then
-  if [ "$(get_current_theme)" = "'prefer-light'" ]; then
-    MODE="dark"
-  else
-    MODE="light"
-  fi
+    if [ "$(get_current_theme)" = "'prefer-light'" ]; then
+        MODE="dark"
+    else
+        MODE="light"
+    fi
 fi
 
 if [ "$MODE" = "dark" ]; then
-  apply_theme "dark" "'prefer-dark'" "adw-gtk3-dark" "$SCHEME"
+    apply_theme "dark" "'prefer-dark'" "adw-gtk3-dark" "$SCHEME"
 else
-  apply_theme "light" "'prefer-light'" "adw-gtk3" "$SCHEME"
+    apply_theme "light" "'prefer-light'" "adw-gtk3" "$SCHEME"
 fi
 
 killall -q -SIGUSR1 zsh &
