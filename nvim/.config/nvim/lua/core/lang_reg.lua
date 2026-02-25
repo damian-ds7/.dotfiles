@@ -26,9 +26,17 @@ local M = {
         },
       },
     },
+    bashls = {
+      filetypes = { "bash", "zsh", "sh" },
+      settings = {
+        bashIde = {
+          shellcheckPath = vim.fn.stdpath "data" .. "/mason/bin/shellcheck",
+        },
+      },
+    },
   },
-  tools = { "stylua" },
-  treesitter = { "lua", "luadoc", "luap" },
+  tools = { "stylua", "lua-language-server", "bash-language-server", "shfmt", "shellcheck" },
+  treesitter = { "lua", "luadoc", "luap", "bash", "zsh" },
 }
 
 function M.register(lang)

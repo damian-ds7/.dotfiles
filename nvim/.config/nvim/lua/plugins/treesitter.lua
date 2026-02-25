@@ -37,6 +37,7 @@ return {
         "vue",
         "xml",
         "yaml",
+        "zsh",
       }
 
       local registry = require("core.lang_reg").get_all()

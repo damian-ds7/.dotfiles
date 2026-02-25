@@ -6,6 +6,9 @@ return {
       go = { "gofmt", "goimports", "golines" },
       lua = { "stylua" },
       tex = { "latexindent" },
+      sh = { "shfmt" },
+      zsh = { "shfmt" },
+      bash = { "shfmt" },
       markdown = { "mdformat" },
     },
     formatters = {
