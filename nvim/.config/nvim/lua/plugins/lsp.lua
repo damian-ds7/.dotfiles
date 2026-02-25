@@ -2,40 +2,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
-    -- opts = {
-    --   servers = {
-    --     lua_ls = {
-    --       on_init = function(client)
-    --         if client.workspace_folders then
-    --           local path = client.workspace_folders[1].name
-    --           if path ~= vim.fn.stdpath "config" and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc")) then return end
-    --         end
-    --
-    --         client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-    --           runtime = {
-    --             version = "LuaJIT",
-    --             path = { "lua/?.lua", "lua/?/init.lua" },
-    --           },
-    --           workspace = {
-    --             checkThirdParty = false,
-    --             library = vim.api.nvim_get_runtime_file("", true),
-    --           },
-    --         })
-    --       end,
-    --       settings = {
-    --         Lua = {
-    --           completion = {
-    --             callSnippet = "Replace",
-    --           },
-    --         },
-    --       },
-    --     },
-    --   },
-    --   tools = {
-    --     "stylua",
-    --   },
-    --   setup = {},
-    -- },
     config = function(_, opts)
       local capabilities = require("blink.cmp").get_lsp_capabilities()
       local registry = require("core.lang_reg").get_all()
