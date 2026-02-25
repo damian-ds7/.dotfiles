@@ -27,24 +27,25 @@ local function create_tmux_window(dir)
   local has_session = os.execute("tmux has-session -t " .. session_id .. " 2>/dev/null")
 
   if not has_session then
-    vim.fn.system(string.format('tmux new-session -d -s "%s" -c "%s"', session_id, dir))
+    local cmd = string.format('tmux new-session -d -s "%s" -c "%s" -e "NVIM_ADDRESS=%s"', session_id, dir, nvim_server)
+    vim.fn.system(cmd)
     vim.fn.system(string.format('tmux set-option -t "%s" status off', session_id))
 
-    local cmd = string.format(
-      "export NVIM_ADDRESS=%s; "
-        .. "nv() { "
-        .. "if [ $# -eq 0 ]; then echo 'Usage: nv <file>'; "
-        .. 'elif [ -d "$1" ]; then echo "Error: $1 is a directory."; '
-        .. "else "
-        .. 'local fp=$(realpath "$1"); '
-        .. '(nvim --server "$NVIM_ADDRESS" --remote "$fp" &); '
-        .. "tmux detach-client; "
-        .. "fi; "
-        .. "}; clear",
-      nvim_server
-    )
-
-    vim.fn.system(string.format("tmux send-keys -t %s %s Enter", session_id, vim.fn.shellescape(cmd)))
+    -- local cmd = string.format(
+    --   "export NVIM_ADDRESS=%s; "
+    --     .. "nv() { "
+    --     .. "if [ $# -eq 0 ]; then echo 'Usage: nv <file>'; "
+    --     .. 'elif [ -d "$1" ]; then echo "Error: $1 is a directory."; '
+    --     .. "else "
+    --     .. 'local fp=$(realpath "$1"); '
+    --     .. 'nvim --server "$NVIM_ADDRESS" --remote "$fp"; '
+    --     .. "tmux detach; "
+    --     .. "fi; "
+    --     .. "}; clear",
+    --   nvim_server
+    -- )
+    --
+    -- vim.fn.system(string.format("tmux send-keys -t %s %s Enter", session_id, vim.fn.shellescape(cmd)))
   end
 
   local popup_cmd = string.format('tmux display-popup -d "%s" -xC -yC -w80%% -h80%% -E "tmux attach-session -t %s"', dir, session_id)

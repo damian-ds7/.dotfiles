@@ -3,7 +3,7 @@ CURRENT_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]:-$0}")")
 unset CURRENT_DIR
 
 is_installed() {
-  command -v "$1" >/dev/null 2>&1
+    command -v "$1" >/dev/null 2>&1
 }
 
 # -------------------------
@@ -34,19 +34,19 @@ alias -s git="git clone"
 #  Aliases with fallback to original command
 # -------------------------
 if is_installed rg; then
-  alias grep='rg'
+    alias grep='rg'
 else
-  alias grep='command grep --color=auto'
+    alias grep='command grep --color=auto'
 fi
 
 if is_installed lsd; then
-  alias ls='lsd'
-  alias ll='lsd -lX --group-dirs=first --header --no-symlink'
-  alias la='lsd -lAX --group-dirs=first --header'
+    alias ls='lsd'
+    alias ll='lsd -lX --group-dirs=first --header --no-symlink'
+    alias la='lsd -lAX --group-dirs=first --header'
 else
-  alias ls='command ls --color=always'
-  alias ll='ls -l --color=always'
-  alias la='ls -al --color=always'
+    alias ls='command ls --color=always'
+    alias ll='ls -l --color=always'
+    alias la='ls -al --color=always'
 fi
 
 alias tree='tree -I .git --gitignore --dirsfirst'
@@ -55,9 +55,9 @@ alias tree='tree -I .git --gitignore --dirsfirst'
 #  Editor Shortcuts
 # -------------------------
 
-alias suvi='sudo nvim'
-alias suvim='sudo nvim'
-alias sunano='sudo nano'
+alias suvi='sudo -E nvim'
+alias suvim='sudo -E nvim'
+alias sunano='sudo -E nano'
 
 # -------------------------
 #  Package Management
@@ -127,16 +127,45 @@ alias vsource='source .venv/bin/activate'
 # -------------------------
 
 xopen() {
-  local arg="${1:-.}"
-  xdg-open "$arg"
+    local arg="${1:-.}"
+    xdg-open "$arg"
 }
 
 function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  yazi "$@" --cwd-file="$tmp"
-  IFS= read -r -d '' cwd <"$tmp"
-  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-  rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd <"$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+}
+
+function nvim() {
+    if [ -z "$NVIM_ADDRESS" ] || [ -z "$TMUX" ]; then
+        command nvim "$@"
+        return $?
+    fi
+
+    if [ $# -eq 0 ]; then
+        tmux detach-client
+        return 0
+    fi
+
+    local files=()
+    local dirs=()
+
+    for arg in "$@"; do
+        if [ -d "$arg" ]; then
+            dirs+=("$arg")
+        else
+            files+=("$arg")
+        fi
+    done
+
+    for arg in "${files[@]}" "${dirs[@]}"; do
+        local fp=$(realpath "$arg")
+        command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:e $fp<CR>"
+    done
+    tmux detach-client
 }
 
 # -------------------------
@@ -144,12 +173,12 @@ function y() {
 # -------------------------
 
 listd() {
-  echo -e "${BLD}${RED} --> SYSTEM LEVEL <--${NRM}"
-  tree /etc/systemd/system
-  [[ -d "$HOME"/.config/systemd/user/default.target.wants ]] && {
-    echo -e "${BLD}${RED} --> USER LEVEL <--${NRM}"
-    tree "$HOME"/.config/systemd/user
-  }
+    echo -e "${BLD}${RED} --> SYSTEM LEVEL <--${NRM}"
+    tree /etc/systemd/system
+    [[ -d "$HOME"/.config/systemd/user/default.target.wants ]] && {
+        echo -e "${BLD}${RED} --> USER LEVEL <--${NRM}"
+        tree "$HOME"/.config/systemd/user
+    }
 }
 
 # System-level
