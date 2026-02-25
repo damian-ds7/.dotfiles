@@ -21,18 +21,32 @@ local function create_native_window(opts)
 end
 
 local function create_tmux_window(dir)
-  -- Create a session name based on the directory
-  -- Converts "/home/user/project" to "floating-home-user-project"
-  local session_id = "floating-" .. dir:gsub("[^%a%d]", "-"):gsub("%-+", "-"):lower()
+  local session_id = "floating-nvim-" .. dir:gsub("[^%a%d]", "-"):gsub("%-+", "-"):lower()
+  local nvim_server = vim.v.servername
 
-  -- Create the session if it doesn't exist
   local has_session = os.execute("tmux has-session -t " .. session_id .. " 2>/dev/null")
-  if has_session ~= 0 then
+
+  if not has_session then
     vim.fn.system(string.format('tmux new-session -d -s "%s" -c "%s"', session_id, dir))
     vim.fn.system(string.format('tmux set-option -t "%s" status off', session_id))
+
+    local cmd = string.format(
+      "export NVIM_ADDRESS=%s; "
+        .. "nv() { "
+        .. "if [ $# -eq 0 ]; then echo 'Usage: nv <file>'; "
+        .. 'elif [ -d "$1" ]; then echo "Error: $1 is a directory."; '
+        .. "else "
+        .. 'local fp=$(realpath "$1"); '
+        .. '(nvim --server "$NVIM_ADDRESS" --remote "$fp" &); '
+        .. "tmux detach-client; "
+        .. "fi; "
+        .. "}; clear",
+      nvim_server
+    )
+
+    vim.fn.system(string.format("tmux send-keys -t %s %s Enter", session_id, vim.fn.shellescape(cmd)))
   end
 
-  -- Toggle the popup targeting that specific session
   local popup_cmd = string.format('tmux display-popup -d "%s" -xC -yC -w80%% -h80%% -E "tmux attach-session -t %s"', dir, session_id)
   vim.fn.system(popup_cmd)
 end
