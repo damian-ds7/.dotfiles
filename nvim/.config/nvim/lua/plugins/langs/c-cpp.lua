@@ -95,9 +95,6 @@ return {
           program = function() return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file") end,
           cwd = function() return vim.uv.fs_realpath(vim.fn.getcwd()) end,
           stopOnEntry = false,
-          sourceMap = {
-            ["/home/damian/Projects"] = vim.uv.fs_realpath "/home/damian/Projects",
-          },
         },
         {
           name = "Attach to process",
@@ -106,9 +103,6 @@ return {
           pid = require("dap.utils").pick_process,
           cwd = function() return vim.uv.fs_realpath(vim.fn.getcwd()) end,
           stopOnEntry = false,
-          sourceMap = {
-            ["/home/damian/Projects"] = vim.uv.fs_realpath "/home/damian/Projects",
-          },
         },
       }
 
@@ -141,16 +135,17 @@ return {
       },
 
       cmake_compile_commands_options = {
-        action = "lsp",
+        action = "soft_link",
+        target = vim.loop.cwd() .. "/build",
       },
 
       cmake_executor = {
         name = "quickfix",
         opts = {
-          show = "always",
+          show = "only_on_error",
           position = "belowright",
           size = 10,
-          auto_close_when_success = false,
+          auto_close_when_success = true,
         },
       },
 
@@ -170,9 +165,6 @@ return {
         request = "launch",
         stopOnEntry = false,
         runInTerminal = true,
-        sourceMap = {
-          ["/home/damian/Projects"] = vim.uv.fs_realpath "/home/damian/Projects",
-        },
       },
     },
   },
