@@ -1,12 +1,20 @@
 return {
   "stevearc/oil.nvim",
-  -- event = "VeryLazy",
+  event = "VeryLazy",
   dependencies = { { "nvim-mini/mini.icons", opts = {} }, { "benomahony/oil-git.nvim" } },
   cmd = "Oil",
   opts = {
     default_file_explorer = true,
     delete_to_trash = true,
     skip_confirm_for_simple_edits = true,
+    view_options = {
+      show_hidden = true,
+      natural_order = true,
+      is_always_hidden = function(name, _) return name == ".." or name == ".git" end,
+    },
+    win_options = {
+      wrap = true,
+    },
     float = {
       padding = 2,
       max_width = 0.6,
@@ -41,12 +49,12 @@ return {
   },
   keys = {
     { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
-    { "<leader>e", "<cmd>Oil --float<cr>", desc = "Open parent directory" },
+    { "<leader>E", function() require("oil").toggle_float() end, desc = "Open parent directory" },
     {
-      "<leader>E",
+      "<leader>e",
       function()
         local root = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
-        require("oil").open_float(root)
+        require("oil").toggle_float(root)
       end,
       desc = "Open Project Root",
     },
