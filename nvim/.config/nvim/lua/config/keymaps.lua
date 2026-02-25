@@ -150,5 +150,5 @@ map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-map("n", "<leader>ft", function() require("utils.floatterminal").toggle_file_dir() end, { desc = "Toggle Floating Terminal" })
-map("n", "<leader>fT", function() require("utils.floatterminal").toggle_project_root() end, { desc = "Toggle Floating Terminal (Project root)" })
+map("n", "<leader>fT", function() require("utils.floatterminal").toggle_file_dir() end, { desc = "Toggle Floating Terminal" })
+map("n", "<leader>ft", function() require("utils.floatterminal").toggle_project_root() end, { desc = "Toggle Floating Terminal (Project root)" })
