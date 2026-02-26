@@ -2,7 +2,7 @@
 font: JetBrainsMono Nerd Font 12
 separator: " ➜ "
 border_width: 2
-corner_r: 10
+corner_r: 12
 padding: 15 # Defaults to corner_r
 column_padding: 25 # Defaults to padding
 
