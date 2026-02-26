@@ -1,0 +1,131 @@
+/* Based on moktavizen/floaty-ui */
+
+:root {
+  --floaty-bg-theme: var(--zen-main-browser-background);
+  --floaty-bg-default: light-dark(#ebebeb, #1e1e1e);
+
+  --floaty-blur-radius: 32px;
+  --floaty-blur-saturation: 30%;
+  --floaty-blur-filter: blur(var(--floaty-blur-radius))
+    saturate(var(--floaty-blur-saturation));
+  --floaty-transparency-value: 0.7;
+
+  --floaty-margin: 8px;
+  --floaty-toolbox-padding: 0.35rem;
+
+  --floaty-border-radius: 12px;
+  --floaty-border-radius-medium: calc(
+    var(--floaty-border-radius) * (2 / 3)
+  ) !important;
+  --floaty-border-width: 0.5px;
+  --floaty-border-color: light-dark(
+    rgba(0, 0, 0, 0.15),
+    rgba(255, 255, 255, 0.15)
+  );
+
+  --floaty-border-style: var(--floaty-border-width) solid
+    var(--floaty-border-color);
+  --floaty-border-offset: -2px;
+
+  --floaty-findbar-top-margin: 90%;
+  --floaty-findbar-max-width: 900px;
+  --floaty-toolbox-padding: 0.35rem;
+
+  --floaty-separation-margin: calc(
+    var(--zen-element-separation) + var(--floaty-margin)
+  );
+}
+
+:root:not([zen-should-be-dark-mode]) {
+  --floaty-bg-theme: var(--floaty-bg-default);
+}
+
+/* Respect Zen Browser theme */
+#urlbar,
+findbar,
+#statuspanel-label {
+  color-scheme: unset !important;
+}
+
+/* =========================
+   Findbar Styling
+========================= */
+
+findbar {
+  max-width: var(--floaty-findbar-max-width) !important;
+  position: fixed !important;
+  inset: var(--floaty-findbar-top-margin) var(--floaty-margin) auto !important;
+  margin-inline-start: auto !important;
+  padding: var(--floaty-toolbox-padding) !important;
+  background: none !important;
+  border: none !important;
+  border-radius: var(--floaty-border-radius) !important;
+  backdrop-filter: var(--floaty-blur-filter) !important;
+
+  &::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0px !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    outline: var(--floaty-border-style) !important;
+    outline-offset: var(--floaty-border-offset) !important;
+    border-radius: var(--floaty-border-radius) !important;
+    box-shadow: var(--zen-big-shadow) !important;
+    background: var(--floaty-bg-theme) !important;
+    opacity: var(--floaty-transparency-value) !important;
+    overflow: clip !important;
+  }
+}
+
+.browserSidebarContainer {
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+}
+
+.findbar-textbox {
+  background: var(--zen-toolbar-element-bg) !important;
+  border: var(--toolbarbutton-outline) !important;
+  border-radius: var(--floaty-border-radius-medium) !important;
+  box-shadow: none !important;
+}
+
+.findbar-find-status {
+  display: none !important;
+}
+
+findbar,
+.findbar-container,
+.findbar-closebutton {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
+/* =========================
+   Urlbar Styling
+========================= */
+
+#urlbar[breakout-extend="true"] > .urlbar-background {
+  background: none !important;
+  backdrop-filter: var(--floaty-blur-filter) !important;
+
+  &::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0px !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    outline: var(--floaty-border-style) !important;
+    outline-offset: var(--floaty-border-offset) !important;
+    border-radius: var(--floaty-border-radius) !important;
+    background: var(--floaty-bg-theme) !important;
+    opacity: var(--floaty-transparency-value) !important;
+  }
+}
+
+&[zen-should-be-dark-mode] {
+  .urlbarView-url,
+  .urlbarView-title-separator::before {
+    color: inherit !important;
+  }
+}
