@@ -4,6 +4,11 @@ layer-rule {
 }
 
 layer-rule {
+    match namespace="awww"
+    place-within-backdrop true
+}
+
+layer-rule {
     match namespace="noctalia-notifications"
     block-out-from "screencast"
 }

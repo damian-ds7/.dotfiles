@@ -1,4 +1,5 @@
 layout {
+    background-color "transparent"
     shadow {
         on
         softness 15

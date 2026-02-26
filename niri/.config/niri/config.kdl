@@ -52,6 +52,9 @@ debug {
 
 overview {
     zoom 0.6
+    workspace-shadow {
+        off
+    }
 }
 
 blur {
