@@ -2,6 +2,7 @@
 @import "loading-indicator.css";
 @import "ghost-tabs.css";
 @import "loadbar.css";
+@import "smaller-compact-mode.css";
 
 /* Global UI font */
 * {
@@ -10,8 +11,10 @@
 }
 
 /* Align bar text */
-#urlbar:not([focused]) .urlbar-input {
-  text-align: center !important;
+@media not (-moz-bool-pref: "zen.view.use-single-toolbar") {
+  #urlbar:not([focused]) .urlbar-input {
+    text-align: center !important;
+  }
 }
 
 /* Back/Fwd always hidden */
