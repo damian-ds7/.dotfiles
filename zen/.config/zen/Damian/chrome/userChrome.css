@@ -10,7 +10,7 @@
   font-family: "JetBrainsMono Nerd Font" !important;
 }
 
-/* Align bar text */
+/* URL bar styling */
 @media not (-moz-bool-pref: "zen.view.use-single-toolbar") {
   #urlbar:not([focused]) .urlbar-input {
     text-align: center !important;

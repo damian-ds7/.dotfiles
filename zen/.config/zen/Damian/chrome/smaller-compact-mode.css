@@ -8,12 +8,12 @@
 /* Reduced height */
 @media (-moz-bool-pref: "zen.view.compact.hide-tabbar") {
   :root[zen-compact-mode="true"] #navigator-toolbox {
-    top: calc((100vh - 85vh)/2) !important;
-    height: 85vh) !important;
+    top: calc((100vh - 80vh)/2) !important;
+    height: 80vh !important;
 
     @media not (-moz-bool-pref: "zen.view.compact.hide-toolbar") {
       & {
-        height: 85vh - var(--zen-toolbar-height-with-bookmarks)) !important;
+        height: 80vh - var(--zen-toolbar-height-with-bookmarks)) !important;
       }
     }
   }
