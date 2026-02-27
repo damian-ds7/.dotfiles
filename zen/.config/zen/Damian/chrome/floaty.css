@@ -4,8 +4,8 @@
   --floaty-bg-theme: var(--zen-main-browser-background);
   --floaty-bg-default: light-dark(#ebebeb, #1e1e1e);
 
-  --floaty-blur-radius: 32px;
-  --floaty-blur-saturation: 30%;
+  --floaty-blur-radius: 20px;
+  --floaty-blur-saturation: 200%;
   --floaty-blur-filter: blur(var(--floaty-blur-radius))
     saturate(var(--floaty-blur-saturation));
   --floaty-transparency-value: 0.7;
@@ -43,7 +43,8 @@
 /* Respect Zen Browser theme */
 #urlbar,
 findbar,
-#statuspanel-label {
+#statuspanel-label
+#navigator-toolbox {
   color-scheme: unset !important;
 }
 
@@ -127,5 +128,47 @@ findbar,
   .urlbarView-url,
   .urlbarView-title-separator::before {
     color: inherit !important;
+  }
+}
+
+/* =========================
+   Tab Bar Styling
+========================= */
+
+:root[zen-compact-mode="true"]:not([customizing]):not([inDOMFullscreen="true"]) {
+  @media (-moz-bool-pref: "zen.view.compact.hide-tabbar")
+      or (-moz-bool-pref: "zen.view.use-single-toolbar") {
+
+    &:not([zen-compact-animating]) {
+
+      #titlebar {
+        position: relative !important;
+        background: none !important;
+        backdrop-filter: var(--floaty-blur-filter) !important;
+        border-radius: var(--floaty-border-radius) !important;
+        overflow: hidden !important;
+      }
+
+      #titlebar::before {
+        content: "" !important;
+        position: absolute !important;
+        inset: 0 !important;
+        z-index: -1 !important;
+        pointer-events: none !important;
+
+        outline: var(--floaty-border-style) !important;
+        outline-offset: var(--floaty-border-offset) !important;
+        border-radius: var(--floaty-border-radius) !important;
+
+        background: var(--floaty-bg-theme) !important;
+        opacity: var(--floaty-transparency-value) !important;
+        box-shadow: var(--zen-big-shadow) !important;
+      }
+
+      /* Kill default Zen compact background layer */
+      .zen-browser-generic-background.zen-toolbar-background {
+        display: none !important;
+      }
+    }
   }
 }
