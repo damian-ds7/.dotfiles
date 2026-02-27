@@ -20,20 +20,6 @@ window-rule {
 // -----------------------------
 
 window-rule {
-    match app-id="zen"
-    background-effect {
-        blur true
-    }
-}
-
-window-rule {
-    // match app-id="ghostty"
-    // match app-id="zen"
-    // match app-id="com.damian.yazi"
-    // match app-id="com.nvim.edit"
-    // match app-id="[Nn]eovim"
-    exclude app-id="zen"
-    opacity 0.90
     background-effect {
         blur true
     }
@@ -41,9 +27,7 @@ window-rule {
 
 window-rule {
     match is-floating=true
-    exclude app-id="zen" title="^Picture-in-Picture$"
 
-    opacity 0.90
     background-effect {
         blur true
         xray false
@@ -52,13 +36,24 @@ window-rule {
 
 window-rule {
     match is-active=false
-    exclude app-id="zen" title="^Picture-in-Picture$"
 
-    opacity 0.80
     background-effect {
         blur true
         saturation 0
     }
+}
+
+window-rule {
+    exclude app-id="zen"
+
+    opacity 0.90
+}
+
+window-rule {
+    match is-active=false
+    exclude app-id="zen"
+
+    opacity 0.80
 }
 
 // -----------------------------
