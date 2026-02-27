@@ -1,2 +1,7 @@
 os:
   editPreset: 'nvim'
+customCommands:
+  - key: "G"
+    command: "gh browse"
+    context: "global"
+    description: "Show github repo in browser"
