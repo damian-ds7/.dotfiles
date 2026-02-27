@@ -25,11 +25,14 @@ return {
           },
         },
         menu = {
+          border = "rounded",
+          scrollbar = false,
+          winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:BlinkCmpMenuSelection,Search:None",
           draw = {
             treesitter = { "lsp" },
             columns = {
-              { "label", "label_description", gap = 1 },
-              { "kind_icon", "kind" },
+              { "label", "label_description", gap = 2 },
+              { "kind_icon", "kind", gap = 2 },
             },
           },
         },
@@ -37,6 +40,10 @@ return {
           auto_show = true,
           treesitter_highlighting = true,
           auto_show_delay_ms = 500,
+          window = {
+            border = "rounded",
+            winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:BlinkCmpDocCursorLine,Search:None,BlinkCmpDocSeparator:Normal",
+          },
         },
         ghost_text = {
           enabled = true,

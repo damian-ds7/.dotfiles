@@ -12,11 +12,9 @@ return {
       BufferLineSeparatorVisible = { fg = "base", bg = "base" },
       BufferLineSeparatorSelected = { fg = "base", bg = "base" },
 
-      SnacksWinSeparator = { fg = "base", bg = "base" },
-
       StatusLineTerm = { fg = "base", bg = "base" },
 
-      BufferLineIndicatorSelected = { fg = "gold", bg = "NONE" },
+      -- BufferLineIndicatorSelected = { fg = "gold", bg = "NONE" },
     },
   },
 }
