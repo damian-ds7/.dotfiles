@@ -150,8 +150,14 @@ map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-map("n", "<leader>fT", function() require("utils.floatterminal").toggle_floating_terminal(vim.fn.expand "%:p:h") end, { desc = "Toggle Floating Terminal" })
-map("n", "<leader>ft", function()
-  local root = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
-  require("utils.floatterminal").toggle_floating_terminal(root)
-end, { desc = "Toggle Floating Terminal (Project root)" })
+
+require("utils.floatterminal").setup()
+map("n", "<leader>fT", ":FloatTerm %:p:h<CR>", {
+  desc = "Toggle Floating Terminal (File Dir)",
+  silent = true,
+})
+
+map("n", "<leader>ft", ":FloatTerm<CR>", {
+  desc = "Toggle Floating Terminal (Project Root)",
+  silent = true,
+})

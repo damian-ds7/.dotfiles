@@ -81,4 +81,21 @@ M.toggle_floating_terminal = function(dir)
   end
 end
 
+M.setup = function()
+  vim.api.nvim_create_user_command("FloatTerm", function(opts)
+    local dir
+    if opts.args ~= "" then
+      dir = vim.fn.expand(opts.args)
+    else
+      dir = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
+    end
+
+    M.toggle_floating_terminal(dir)
+  end, {
+    nargs = "?",
+    complete = "dir",
+    desc = "Toggle Floating Terminal (Optional: path)",
+  })
+end
+
 return M
