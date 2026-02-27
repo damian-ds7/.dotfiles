@@ -1,7 +1,12 @@
 return {
   "MagicDuck/grug-far.nvim",
   cmd = "GrugFar",
-  opts = { headerMaxWidth = 80 },
+  opts = {
+    headerMaxWidth = 80,
+    engines = {
+      ripgrep = { defaults = { flags = "--smart-case --multiline" } },
+    },
+  },
   keys = {
     {
       "<leader>sr",
