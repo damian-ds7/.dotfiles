@@ -82,12 +82,6 @@ menu:
       - key: "N"
         desc: Clear notifications
         cmd: qs ipc call notifications clear
-      - key: "d"
-        desc: Toggle DND
-        cmd: qs ipc call notifications toggleDND
-      - key: "i"
-        desc: Toggle auto suspend (idle inhibitor)
-        cmd: qs ipc call idleInhibitor toggle
       - key: "b"
         desc: Toggle bar
         cmd: qs ipc call bar toggle
@@ -117,22 +111,6 @@ menu:
   - key: "s"
     desc: System
     submenu:
-      - key: "n"
-        desc: Network
-        submenu:
-          - key: "n"
-            desc: Network panel
-            cmd: qs ipc call network togglePanel
-          - key: "w"
-            desc: Wi-Fi toggle
-            cmd: qs ipc call wifi toggle
-          - key: "b"
-            desc: Bluetooth toggle
-            cmd: qs ipc call bluetooth toggle
-          - key: "B"
-            desc: Bluetooth panel
-            cmd: qs ipc call bluetooth togglePanel
-
       - key: "a"
         desc: Audio
         submenu:
@@ -162,15 +140,37 @@ menu:
             desc: Screenshot (window)
             cmd: niri msg action screenshot-window
 
+      - key: "n"
+        desc: Network
+        submenu:
+          - key: "n"
+            desc: Network panel
+            cmd: qs ipc call network togglePanel
+          - key: "w"
+            desc: Wi-Fi toggle
+            cmd: qs ipc call wifi toggle
+          - key: "b"
+            desc: Bluetooth toggle
+            cmd: qs ipc call bluetooth toggle
+          - key: "B"
+            desc: Bluetooth panel
+            cmd: qs ipc call bluetooth togglePanel
+
       - key: "l"
         desc: Lock screen
         cmd: hyprlock
-      - key: "d"
-        desc: Toggle Dark/Light style
+      - key: "m"
+        desc: Toggle Dark/Light mode
         cmd: niri msg action do-screen-transition --delay-ms=500; ~/.local/bin/toggle-dark-mode
       - key: "s"
         desc: Change color scheme
         cmd: ~/.local/bin/vicinae-colorscheme-selector
+      - key: "d"
+        desc: Toggle DND
+        cmd: qs ipc call notifications toggleDND
+      - key: "i"
+        desc: Toggle auto suspend (idle inhibitor)
+        cmd: qs ipc call idleInhibitor toggle
 
   - key: "p"
     desc: Power
