@@ -334,6 +334,7 @@
         "compactLockScreen": true,
         "dimmerOpacity": 0,
         "enableLockScreenCountdown": true,
+        "enableLockScreenMediaControls": false,
         "enableShadows": true,
         "forceBlackScreenCorners": false,
         "iRadiusRatio": 1,
