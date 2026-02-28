@@ -76,7 +76,9 @@ bindkey '^x^e' edit-command-line
 # Functions
 autoload -Uz zmv
 
-function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
+function md() { 
+    [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1"
+}
 compdef _directories md
 
 function fancy-ctrl-z () {
@@ -113,22 +115,17 @@ fi
 
 # Source External Files
 ## Aliases
-[[ -f $ZDOTDIR/utils/aliases.zsh ]] && source $ZDOTDIR/utils/aliases.zsh
-[[ -f $ZDOTDIR/utils/custom-git-bindings.zsh ]] && source $ZDOTDIR/utils/custom-git-bindings.zsh
+[[ -f $ZDOTDIR/utils/aliases.zsh ]] && source "$ZDOTDIR/utils/aliases.zsh"
 
-. "$HOME/.cargo/env" 2>/dev/null
 
 # Theme detection
-THEME_MODE_FILE="${HOME}/.config/themes/mode"
-if [[ -f "$THEME_MODE_FILE" ]]; then
-  export THEME_MODE="$(cat "$THEME_MODE_FILE")"
-else
-  export THEME_MODE="dark"
-fi
+THEME_MODE="$(cat "$THEME_MODE_FILE" 2>/dev/null || echo "dark")"
+export THEME_MODE
 
 update_theme_mode() {
   if [[ -f "$THEME_MODE_FILE" ]]; then
-    local new_mode="$(cat "$THEME_MODE_FILE")"
+    local new_mode
+    new_mode="$(cat "$THEME_MODE_FILE")"
     if [[ "$new_mode" != "$THEME_MODE" ]]; then
       export THEME_MODE="$new_mode"
     fi
@@ -141,6 +138,8 @@ TRAPUSR1() {
 }
 
 [[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
+
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 if [[ -n "$ZSH_PROFILE" ]]; then
   zprof
