@@ -17,9 +17,7 @@ layer-rule {
     match namespace="wlr_which_key"
     match namespace="vicinae"
 
-    opacity 0.85
-    geometry-corner-radius 12
-
+    opacity 0.80
     background-effect {
         blur true
         xray false
@@ -28,7 +26,9 @@ layer-rule {
 
 layer-rule {
     match namespace="noctalia-background-.*$"
+
     background-effect {
         xray false
     }
+
 }
