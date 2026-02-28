@@ -18,6 +18,9 @@
          "name": "rose-pine"
       }
    },
+   "launcher_window": {
+      "opacity": 0.9
+   },
    "favorites": [
       "browser-extension:browse-tabs",
       "applications:dev.aunetx.deezer",
