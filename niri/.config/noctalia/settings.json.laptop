@@ -44,13 +44,13 @@
         "autoHideDelay": 200,
         "autoShowDelay": 50,
         "backgroundOpacity": 1,
-        "barType": "floating",
+        "barType": "simple",
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
         "contentPadding": 0,
         "density": "default",
-        "displayMode": "always_visible",
-        "floating": true,
+        "displayMode": "auto_hide",
+        "floating": false,
         "fontScale": 1,
         "frameRadius": 12,
         "frameThickness": 8,
@@ -350,7 +350,8 @@
                 "Down"
             ],
             "keyEnter": [
-                "Return"
+                "Return",
+                "Enter"
             ],
             "keyEscape": [
                 "Esc"
@@ -545,7 +546,7 @@
         "showHeader": true,
         "showKeybinds": true
     },
-    "settingsVersion": 53,
+    "settingsVersion": 54,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
