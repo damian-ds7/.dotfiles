@@ -14,7 +14,7 @@ bell-features = system
 quit-after-last-window-closed = false
 confirm-close-surface = false
 
-shell-integration = detect
+shell-integration = none
 
 window-padding-color = extend
 window-padding-y = 8
