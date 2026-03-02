@@ -143,7 +143,6 @@ window-rule {
 window-rule {
     match app-id="^Code$"
     match app-id="^code$"
-    match title="^Neovim"
     match title="^Project"
     match app-id="jetbrains-idea"
     exclude app-id="jetbrains-idea" title="Welcome to IntelliJ IDEA"
