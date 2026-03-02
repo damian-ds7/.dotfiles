@@ -13,6 +13,11 @@
    "imports": [
       "vicinae.json"
    ],
+   "font": {
+      "normal": {
+         "family": "JetBrainsMono Nerd Font"
+      }
+   },
    "theme": {
       "dark": {
          "name": "rose-pine"
