@@ -70,24 +70,24 @@ menu:
   - key: "u"
     desc: UI
     submenu:
-      - key: "w"
-        desc: Weekly calendar
-        cmd: qs ipc call plugin:weekly-calendar togglePanel
       - key: "c"
         desc: Control center
         cmd: qs ipc call controlCenter toggle
-      - key: "n"
-        desc: Notification center
-        cmd: qs ipc call notifications toggleHistory
-      - key: "N"
-        desc: Clear notifications
-        cmd: qs ipc call notifications clear
       - key: "b"
         desc: Toggle bar
         cmd: qs ipc call bar toggle
       - key: "B"
         desc: Toggle battery panel
         cmd: qs ipc call battery togglePanel
+      - key: "n"
+        desc: Notification center
+        cmd: qs ipc call notifications toggleHistory
+      - key: "N"
+        desc: Clear notifications
+        cmd: qs ipc call notifications clear
+      - key: "w"
+        desc: Weekly calendar
+        cmd: qs ipc call plugin:weekly-calendar togglePanel
       - key: ","
         desc: Settings
         cmd: qs ipc call settings toggle
