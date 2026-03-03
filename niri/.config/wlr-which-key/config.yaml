@@ -156,6 +156,12 @@ menu:
             desc: Bluetooth panel
             cmd: qs ipc call bluetooth togglePanel
 
+      - key: "d"
+        desc: Toggle DND
+        cmd: qs ipc call notifications toggleDND
+      - key: "i"
+        desc: Toggle auto suspend (idle inhibitor)
+        cmd: qs ipc call idleInhibitor toggle
       - key: "l"
         desc: Lock screen
         cmd: hyprlock
@@ -165,12 +171,9 @@ menu:
       - key: "s"
         desc: Change color scheme
         cmd: ~/.local/bin/vicinae-colorscheme-selector
-      - key: "d"
-        desc: Toggle DND
-        cmd: qs ipc call notifications toggleDND
-      - key: "i"
-        desc: Toggle auto suspend (idle inhibitor)
-        cmd: qs ipc call idleInhibitor toggle
+      - key: "w"
+        desc: Change wallpaper
+        cmd: ~/.local/bin/vicinae-wallpaper-selector
 
   - key: "p"
     desc: Power
