@@ -1,7 +1,3 @@
-CURRENT_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]:-$0}")")
-
-unset CURRENT_DIR
-
 is_installed() {
     command -v "$1" >/dev/null 2>&1
 }
@@ -9,7 +5,6 @@ is_installed() {
 # -------------------------
 #  General Aliases
 # -------------------------
-alias reload='exec zsh'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -18,17 +13,6 @@ alias du='du -h --max-depth=1'
 alias df='df -hT'
 
 alias c='clear'
-
-alias update-poweroff='sudo dnf upgrade -y && flatpak update -y && systemctl poweroff'
-
-# -------------------------
-#  Suffix aliases
-# -------------------------
-alias -s json=jless
-alias -s yaml=jless --yaml
-alias -s {md,txt,log}=bat
-alias -s {go,rs,c,cpp,h,hpp}='$EDITOR'
-alias -s git="git clone"
 
 # -------------------------
 #  Aliases with fallback to original command
@@ -63,6 +47,8 @@ alias sunano='sudo -E nano'
 #  Package Management
 # -------------------------
 
+alias update-poweroff='sudo dnf upgrade -y && flatpak update -y && systemctl poweroff'
+
 alias refresh='sudo dnf upgrade --refresh'
 alias upgrade='sudo dnf upgrade'
 alias inst='sudo dnf install'
@@ -89,7 +75,6 @@ alias dsp='docker system prune'
 # -------------------------
 
 alias compress='tar --use-compress-program="pigz -k -5" -cf'
-alias scp='noglob scp'
 
 # -------------------------
 #  Git Aliases
@@ -128,7 +113,7 @@ alias vsource='source .venv/bin/activate'
 
 xopen() {
     local arg="${1:-.}"
-    xdg-open "$arg"
+    (nohup xdg-open "$arg" >/dev/null 2>&1 </dev/null &) >/dev/null 2>&1
 }
 
 function y() {

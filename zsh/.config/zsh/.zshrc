@@ -115,7 +115,8 @@ fi
 
 # Source External Files
 ## Aliases
-[[ -f $ZDOTDIR/utils/aliases.zsh ]] && source "$ZDOTDIR/utils/aliases.zsh"
+[[ -f $HOME/.config/shell/aliases.sh ]] && source "$HOME/.config/shell/aliases.sh"
+[[ -f $ZDOTDIR/utils/zsh-aliases.zsh ]] && source "$ZDOTDIR/utils/zsh-aliases.zsh"
 
 
 # Theme detection
