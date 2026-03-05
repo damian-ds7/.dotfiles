@@ -92,7 +92,12 @@ vim.keymap.set("n", "<leader>bo", function()
   vim.cmd "silent! write"
 
   for _, buf in ipairs(all_bufs) do
-    if buf ~= current_buf and vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted and vim.bo[buf].buftype == "" then
+    if
+      buf ~= current_buf
+      and vim.api.nvim_buf_is_valid(buf)
+      and vim.bo[buf].buflisted
+      and vim.bo[buf].buftype == ""
+    then
       local success = pcall(vim.api.nvim_buf_delete, buf, { force = false })
       if not success then break end
     end
@@ -151,13 +156,20 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-require("utils.floatterminal").setup()
-map("n", "<leader>fT", ":FloatTerm %:p:h<CR>", {
-  desc = "Toggle Floating Terminal (File Dir)",
-  silent = true,
-})
+if not vim.g.vscode then
+  require("utils.floatterminal").setup()
+  map("n", "<leader>fT", ":FloatTerm %:p:h<CR>", {
+    desc = "Toggle Floating Terminal (File Dir)",
+    silent = true,
+  })
 
-map("n", "<leader>ft", ":FloatTerm<CR>", {
-  desc = "Toggle Floating Terminal (Project Root)",
-  silent = true,
-})
+  map("n", "<leader>ft", ":FloatTerm<CR>", {
+    desc = "Toggle Floating Terminal (Project Root)",
+    silent = true,
+  })
+else
+  local vscode = require "vscode"
+  for _, lhs in ipairs { "<leader>ft", "<leader>fT", "<c-/>" } do
+    vim.keymap.set("n", lhs, function() vscode.call "workbench.action.terminal.toggleTerminal" end)
+  end
+end
