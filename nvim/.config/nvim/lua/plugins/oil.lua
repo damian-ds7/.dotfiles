@@ -49,9 +49,9 @@ return {
   },
   keys = {
     { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
-    { "<leader>E", function() require("oil").toggle_float() end, desc = "Open parent directory" },
+    { "<leader>e", function() require("oil").toggle_float() end, desc = "Open parent directory" },
     {
-      "<leader>e",
+      "<leader>E",
       function()
         local root = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
         require("oil").toggle_float(root)
