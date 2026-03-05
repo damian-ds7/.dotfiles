@@ -33,17 +33,17 @@ return {
     end,
     config = function(_, opts)
       require("mini.ai").setup(opts)
-      local wk = require "which-key"
+
+      local ok, wk = pcall(require, "which-key")
+      if not ok then return end
 
       wk.add {
-        -- Around text objects (Operator-pending and Visual modes)
         { "aB", desc = "around buffer", mode = { "o", "x" } },
         { "aI", desc = "around indent", mode = { "o", "x" } },
         { "aL", desc = "around line", mode = { "o", "x" } },
         { "af", desc = "around function", mode = { "o", "x" } },
         { "ac", desc = "around class", mode = { "o", "x" } },
 
-        -- Inside text objects
         { "iB", desc = "inside buffer", mode = { "o", "x" } },
         { "iI", desc = "inside indent", mode = { "o", "x" } },
         { "iL", desc = "inside line", mode = { "o", "x" } },

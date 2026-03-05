@@ -4,4 +4,4 @@ require "config.autocmds"
 require "config.lazy"
 require "config.lsp"
 
-vim.cmd("colorscheme " .. require("utils.colorscheme").get_colorscheme())
+if not vim.g.vscode then vim.cmd("colorscheme " .. require("utils.colorscheme").get_colorscheme()) end

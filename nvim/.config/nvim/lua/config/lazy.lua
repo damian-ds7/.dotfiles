@@ -14,8 +14,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local vscode_plugins = { "mini", "treesitter", "ts-comments" }
+
 require("lazy").setup {
-  spec = {
+  spec = vim.g.vscode and vim.tbl_map(function(name) return { import = "plugins." .. name } end, vscode_plugins) or {
     { import = "plugins" },
     { import = "plugins.colorschemes" },
     { import = "plugins.langs" },
