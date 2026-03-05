@@ -36,7 +36,8 @@ local function create_tmux_window(dir)
     vim.fn.system(string.format('tmux set-option -t "%s" status off', session_id))
   end
 
-  local popup_cmd = string.format('tmux display-popup -d "%s" -xC -yC -w80%% -h80%% -E "tmux attach-session -t %s"', dir, session_id)
+  local popup_cmd =
+    string.format('tmux display-popup -d "%s" -xC -yC -w80%% -h80%% -E "tmux attach-session -t %s"', dir, session_id)
   vim.fn.system(popup_cmd)
 end
 
@@ -47,7 +48,10 @@ M.toggle_floating_terminal = function(dir)
     if not autocmd_created then
       vim.api.nvim_create_autocmd("VimLeavePre", {
         callback = function()
-          local cmd = string.format("tmux list-sessions -F '#S' | grep '^%s' | xargs -I {} tmux kill-session -t {} 2>/dev/null", tmux_prefix)
+          local cmd = string.format(
+            "tmux list-sessions -F '#S' | grep '^%s' | xargs -I {} tmux kill-session -t {} 2>/dev/null",
+            tmux_prefix
+          )
           vim.fn.system(cmd)
         end,
       })
