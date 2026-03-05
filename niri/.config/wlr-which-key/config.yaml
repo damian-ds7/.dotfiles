@@ -70,6 +70,9 @@ menu:
   - key: "u"
     desc: UI
     submenu:
+      - key: "a"
+        desc: Assistant Panel
+        cmd: qs ipc call plugin:assistant-panel toggle
       - key: "c"
         desc: Control center
         cmd: qs ipc call controlCenter toggle

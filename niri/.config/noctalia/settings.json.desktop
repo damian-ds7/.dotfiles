@@ -164,6 +164,9 @@
             ],
             "right": [
                 {
+                    "id": "plugin:privacy-indicator"
+                },
+                {
                     "blacklist": [
                     ],
                     "chevronColor": "none",
@@ -617,7 +620,7 @@
         "fontFixedScale": 1,
         "panelBackgroundOpacity": 0.6,
         "panelsAttachedToBar": true,
-        "settingsPanelMode": "attached",
+        "settingsPanelMode": "window",
         "settingsPanelSideBarCardStyle": false,
         "tooltipsEnabled": true
     },
