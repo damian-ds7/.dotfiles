@@ -1,5 +1,6 @@
 # dynamic themes
-config-file = ?"themes/current-theme"
+# config-file = ?"themes/current-theme"
+theme = current-theme
 
 font-family = "JetBrainsMono Nerd Font"
 font-size = 12
