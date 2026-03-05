@@ -36,6 +36,12 @@ menu:
       - key: "T"
         desc: Terminal (Ghostty)
         cmd: ghostty +new-window
+      - key: "k"
+        desc: Terminal (Kitty + tmux)
+        cmd: kitty -e tmux new-session -A -s "kitty"
+      - key: "K"
+        desc: Terminal (Kitty)
+        cmd: kitty
       - key: "b"
         desc: Browser (Zen)
         cmd: ~/.cargo/bin/nirius focus-or-spawn -a zen --workspace-name browser ~/.local/bin/zen
@@ -47,10 +53,10 @@ menu:
         cmd: nautilus
       - key: "y"
         desc: Files (Yazi)
-        cmd: ~/.local/bin/ghostty-yazi
+        cmd: ~/.local/bin/yazi-window
       - key: "n"
         desc: Neovim
-        cmd: ghostty --title=Neovim -e nvim +new-window
+        cmd: kitty --title=Neovim -e nvim
       - key: "i"
         desc: IntelliJ IDEA
         cmd: ~/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea -Dawt.toolkit.name=WLToolkit

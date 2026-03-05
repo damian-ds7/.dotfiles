@@ -36,6 +36,7 @@ CONF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 CONFIGS=(
     "$CONF_DIR/bat"
     "$CONF_DIR/ghostty"
+    "$CONF_DIR/kitty"
     "$CONF_DIR/lsd"
     "$CONF_DIR/hypr"
     "$CONF_DIR/niri"

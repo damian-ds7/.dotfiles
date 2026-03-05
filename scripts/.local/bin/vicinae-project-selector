@@ -5,37 +5,37 @@ dotfiles_dir="$HOME/.dotfiles"
 cache_file="$HOME/.cache/project-selector-mru"
 
 search_projects() {
-  {
-    find -L "$projects_dir" -maxdepth 3 -name ".git" -printf "%p\n" 2>/dev/null | sed 's/\/\.git$//'
+    {
+        find -L "$projects_dir" -maxdepth 3 -name ".git" -printf "%p\n" 2>/dev/null | sed 's/\/\.git$//'
 
-    if [ -d "$dotfiles_dir/.git" ]; then
-      echo "$dotfiles_dir"
-    fi
-  } |
-    sed -e "s|^$projects_dir/||" -e "s|^$dotfiles_dir$|dotfiles|"
+        if [ -d "$dotfiles_dir/.git" ]; then
+            echo "$dotfiles_dir"
+        fi
+    } |
+        sed -e "s|^$projects_dir/||" -e "s|^$dotfiles_dir$|dotfiles|"
 }
 
 if [ ! -f "$cache_file" ]; then
-  mkdir -p "$(dirname "$cache_file")"
-  search_projects >"$cache_file"
+    mkdir -p "$(dirname "$cache_file")"
+    search_projects >"$cache_file"
 else
-  current_projects=$(search_projects | sort)
-  cached_projects=$(sort "$cache_file")
+    current_projects=$(search_projects | sort)
+    cached_projects=$(sort "$cache_file")
 
-  new_projects=$(comm -13 <(echo "$cached_projects") <(echo "$current_projects"))
-  removed_projects=$(comm -23 <(echo "$cached_projects") <(echo "$current_projects"))
+    new_projects=$(comm -13 <(echo "$cached_projects") <(echo "$current_projects"))
+    removed_projects=$(comm -23 <(echo "$cached_projects") <(echo "$current_projects"))
 
-  if [ -n "$removed_projects" ]; then
-    temp_file="${cache_file}.tmp.$$"
-    while IFS= read -r project; do
-      grep -v -F -x "$project" "$cache_file" >"$temp_file" && mv "$temp_file" "$cache_file"
-    done <<<"$removed_projects"
-    rm -f "$temp_file"
-  fi
+    if [ -n "$removed_projects" ]; then
+        temp_file="${cache_file}.tmp.$$"
+        while IFS= read -r project; do
+            grep -v -F -x "$project" "$cache_file" >"$temp_file" && mv "$temp_file" "$cache_file"
+        done <<<"$removed_projects"
+        rm -f "$temp_file"
+    fi
 
-  if [ -n "$new_projects" ]; then
-    echo "$new_projects" >>"$cache_file"
-  fi
+    if [ -n "$new_projects" ]; then
+        echo "$new_projects" >>"$cache_file"
+    fi
 fi
 
 relative_path=$(cat "$cache_file" | vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick a project...')
@@ -43,36 +43,36 @@ relative_path=$(cat "$cache_file" | vicinae dmenu --width 800 --no-metadata --no
 [[ -z "$relative_path" ]] && exit 0
 
 {
-  temp_file="${cache_file}.tmp.$$"
-  if grep -v -F -x "$relative_path" "$cache_file" >"$temp_file" 2>/dev/null; then
-    {
-      echo "$relative_path"
-      cat "$temp_file"
-    } >"$cache_file"
-  fi
-  rm -f "$temp_file"
+    temp_file="${cache_file}.tmp.$$"
+    if grep -v -F -x "$relative_path" "$cache_file" >"$temp_file" 2>/dev/null; then
+        {
+            echo "$relative_path"
+            cat "$temp_file"
+        } >"$cache_file"
+    fi
+    rm -f "$temp_file"
 } &
 
 if [ "$relative_path" = "dotfiles" ]; then
-  full_path="$dotfiles_dir"
+    full_path="$dotfiles_dir"
 else
-  full_path="$projects_dir/$relative_path"
+    full_path="$projects_dir/$relative_path"
 fi
 
 session_name="${relative_path//[\/\.]/-}"
 window_title="Project - $session_name"
 
 if [[ -f "$full_path/project-launch.sh" ]]; then
-  launch_cmd="tmux new-session -d -s '$session_name' -c '$full_path' && \
+    launch_cmd="tmux new-session -d -s '$session_name' -c '$full_path' && \
               tmux send-keys -t '$session_name' '$full_path/project-launch.sh' Enter && \
               tmux attach -t '$session_name'"
 else
-  launch_cmd="tmux new-session -A -s '$session_name' -c '$full_path' nvim"
+    launch_cmd="tmux new-session -A -s '$session_name' -c '$full_path' nvim"
 fi
 
 if [ -x "$HOME/.cargo/bin/nirius" ]; then
-  exec "$HOME/.cargo/bin/nirius" focus-or-spawn -t "^${window_title}$" -- \
-    ghostty --title="$window_title" -e bash -l -c "$launch_cmd" +new-window
+    exec "$HOME/.cargo/bin/nirius" focus-or-spawn -t "^${window_title}$" -- \
+        kitty --title="$window_title" -e bash -l -c "$launch_cmd"
 else
-  exec ghostty --title="$window_title" -e bash -l -c "$launch_cmd" +new-window
+    exec kitty --title="$window_title" -e bash -l -c "$launch_cmd"
 fi

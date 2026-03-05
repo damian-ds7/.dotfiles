@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-exec ghostty --class='com.damian.yazi' -e yazi +new-window
-

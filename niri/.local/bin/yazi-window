@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec kitty --class='com.damian.yazi' -e yazi
