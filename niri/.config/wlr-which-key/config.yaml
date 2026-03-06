@@ -44,7 +44,7 @@ menu:
         cmd: kitty
       - key: "b"
         desc: Browser (Zen)
-        cmd: ~/.cargo/bin/nirius focus-or-spawn -a zen --workspace-name browser ~/.local/bin/zen
+        cmd: ~/.local/bin/focus-or-spawn zen ~/.local/bin/zen
       - key: "B"
         desc: Browser (Zen - Private Window)
         cmd: ~/.local/bin/zen --private-window
@@ -68,7 +68,7 @@ menu:
         cmd: ~/.local/bin/nvim-edit-popup
       - key: "m"
         desc: Music (Deezer)
-        cmd: ~/.local/bin/focus-or-spawn-deezer
+        cmd: ~/.local/bin/focus-or-spawn "dev.aunetx.deezer" "flatpak run dev.aunetx.deezer"
       - key: "r"
         desc: Resources
         cmd: flatpak run net.nokyan.Resources
@@ -279,9 +279,6 @@ menu:
           - key: "C"
             desc: Center visible columns
             cmd: niri msg action center-visible-columns
-          - key: "f"
-            desc: Toggle follow mode
-            cmd: ~/.local/bin/nirius-follow-mode
 
       - key: "s"
         desc: Sidebar
