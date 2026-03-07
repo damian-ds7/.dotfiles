@@ -57,6 +57,9 @@
         "hideOnOverview": false,
         "marginHorizontal": 4,
         "marginVertical": 5,
+        "middleClickAction": "none",
+        "middleClickCommand": "",
+        "middleClickFollowMouse": false,
         "monitors": [
         ],
         "mouseWheelAction": "none",
@@ -64,6 +67,9 @@
         "outerCorners": true,
         "position": "top",
         "reverseScroll": false,
+        "rightClickAction": "controlCenter",
+        "rightClickCommand": "",
+        "rightClickFollowMouse": true,
         "screenOverrides": [
         ],
         "showCapsule": false,
@@ -164,6 +170,15 @@
             ],
             "right": [
                 {
+                    "defaultSettings": {
+                        "activeColor": "primary",
+                        "enableToast": true,
+                        "hideInactive": false,
+                        "iconSpacing": 4,
+                        "inactiveColor": "none",
+                        "micFilterRegex": "",
+                        "removeMargins": false
+                    },
                     "id": "plugin:privacy-indicator"
                 },
                 {
@@ -276,7 +291,6 @@
             }
         ],
         "diskPath": "/",
-        "openAtMouseOnBarRightClick": true,
         "position": "close_to_bar_button",
         "shortcuts": {
             "left": [
@@ -355,6 +369,7 @@
         "clockStyle": "custom",
         "compactLockScreen": true,
         "dimmerOpacity": 0,
+        "enableBlurBehind": true,
         "enableLockScreenCountdown": true,
         "enableLockScreenMediaControls": false,
         "enableShadows": true,
@@ -451,6 +466,7 @@
     },
     "network": {
         "airplaneModeEnabled": false,
+        "bluetoothAutoConnect": true,
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": false,
         "bluetoothRssiPollIntervalMs": 10000,
@@ -574,12 +590,19 @@
                 "countdownEnabled": true,
                 "enabled": false,
                 "keybind": ""
+            },
+            {
+                "action": "userspaceReboot",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": false,
+                "keybind": ""
             }
         ],
         "showHeader": true,
         "showKeybinds": true
     },
-    "settingsVersion": 54,
+    "settingsVersion": 56,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
