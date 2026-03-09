@@ -78,28 +78,28 @@ menu:
     submenu:
       - key: "a"
         desc: Assistant Panel
-        cmd: qs ipc call plugin:assistant-panel toggle
+        cmd: qs -c Noctalia ipc call plugin:assistant-panel toggle
       - key: "c"
         desc: Control center
-        cmd: qs ipc call controlCenter toggle
+        cmd: qs -c Noctalia ipc call controlCenter toggle
       - key: "b"
         desc: Toggle bar
-        cmd: qs ipc call bar toggle
+        cmd: qs -c Noctalia ipc call bar toggle
       - key: "B"
         desc: Toggle battery panel
-        cmd: qs ipc call battery togglePanel
+        cmd: qs -c Noctalia ipc call battery togglePanel
       - key: "n"
         desc: Notification center
-        cmd: qs ipc call notifications toggleHistory
+        cmd: qs -c Noctalia ipc call notifications toggleHistory
       - key: "N"
         desc: Clear notifications
-        cmd: qs ipc call notifications clear
+        cmd: qs -c Noctalia ipc call notifications clear
       - key: "w"
         desc: Weekly calendar
-        cmd: qs ipc call plugin:weekly-calendar togglePanel
+        cmd: qs -c Noctalia ipc call plugin:weekly-calendar togglePanel
       - key: ","
         desc: Settings
-        cmd: qs ipc call settings toggle
+        cmd: qs -c Noctalia ipc call settings toggle
 
   - key: "v"
     desc: Vicinae
@@ -125,52 +125,55 @@ menu:
         submenu:
           - key: "p"
             desc: Audio panel
-            cmd: qs ipc call volume togglePanel
+            cmd: qs -c Noctalia ipc call volume togglePanel
           - key: "m"
             desc: Mute output
-            cmd: qs ipc call volume muteOutput
+            cmd: qs -c Noctalia ipc call volume muteOutput
           - key: "M"
             desc: Mute input
-            cmd: qs ipc call volume muteInput
+            cmd: qs -c Noctalia ipc call volume muteInput
 
       - key: "c"
         desc: Capture
         submenu:
           - key: "r"
             desc: Toggle screen recorder
-            cmd: qs ipc call plugin:screen-recorder toggle
-          - key: "s"
-            desc: Screenshot (area, no pointer)
-            cmd: niri msg action screenshot --show-pointer=false
+            cmd: qs -c Noctalia ipc call plugin:screen-recorder toggle
           - key: "f"
             desc: Screenshot (full screen)
             cmd: niri msg action screenshot-screen
+          - key: "s"
+            desc: Screenshot (area, no pointer)
+            cmd: niri msg action screenshot --show-pointer=false
           - key: "w"
             desc: Screenshot (window)
             cmd: niri msg action screenshot-window
+          - key: "t"
+            desc: Screnshot (OCR, Google Lens)
+            cmd: qs -c QuickSnip -n
 
       - key: "n"
         desc: Network
         submenu:
           - key: "n"
             desc: Network panel
-            cmd: qs ipc call network togglePanel
+            cmd: qs -c Noctalia ipc call network togglePanel
           - key: "w"
             desc: Wi-Fi toggle
-            cmd: qs ipc call wifi toggle
+            cmd: qs -c Noctalia ipc call wifi toggle
           - key: "b"
             desc: Bluetooth toggle
-            cmd: qs ipc call bluetooth toggle
+            cmd: qs -c Noctalia ipc call bluetooth toggle
           - key: "B"
             desc: Bluetooth panel
-            cmd: qs ipc call bluetooth togglePanel
+            cmd: qs -c Noctalia ipc call bluetooth togglePanel
 
       - key: "d"
         desc: Toggle DND
-        cmd: qs ipc call notifications toggleDND
+        cmd: qs -c Noctalia ipc call notifications toggleDND
       - key: "i"
         desc: Toggle auto suspend (idle inhibitor)
-        cmd: qs ipc call idleInhibitor toggle
+        cmd: qs -c Noctalia ipc call idleInhibitor toggle
       - key: "l"
         desc: Lock screen
         cmd: hyprlock

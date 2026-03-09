@@ -23,7 +23,7 @@ binds {
     }
 
     Mod+Shift+E hotkey-overlay-title="Power Menu" {
-        spawn "qs" "ipc" "call" "sessionMenu" "toggle"
+        spawn "qs" "-c" "Noctalia" "ipc" "call" "sessionMenu" "toggle"
     }
 
     // UI submenu (u)

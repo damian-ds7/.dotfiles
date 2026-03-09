@@ -155,6 +155,10 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn-sh "~/.local/bin/brightness-up-down -5"; }
 
     Mod+Shift+S { screenshot show-pointer=false; }
+
+    Mod+Shift+T hotkey-overlay-title="Screenshot: QuickSnip" {
+        spawn "qs" "-c" "QuickSnip"
+    }
 }
 
 recent-windows {
