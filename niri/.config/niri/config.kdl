@@ -12,7 +12,7 @@ include "layout.kdl"
 
 // spawn-at-startup "/usr/libexec/xfce-polkit"
 spawn-at-startup "~/.local/bin/awww-initialize"
-// spawn-at-startup "~/.cargo/bin/niri-sidebar" "listen"
+spawn-at-startup "~/.cargo/bin/niri-sidebar" "listen"
 
 environment {
     EDITOR "nvim"
