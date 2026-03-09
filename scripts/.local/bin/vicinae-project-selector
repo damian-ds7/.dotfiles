@@ -6,7 +6,9 @@ cache_file="$HOME/.cache/project-selector-mru"
 
 search_projects() {
     {
-        find -L "$projects_dir" -maxdepth 3 -name ".git" -printf "%p\n" 2>/dev/null | sed 's/\/\.git$//'
+        find -L "$projects_dir" -maxdepth 3 \
+            \( -name node_modules -o -name vendor -o -name '.uv' \) -prune -o \
+            -name ".git" -printf "%p\n" 2>/dev/null | sed 's/\/\.git$//'
 
         if [ -d "$dotfiles_dir/.git" ]; then
             echo "$dotfiles_dir"
