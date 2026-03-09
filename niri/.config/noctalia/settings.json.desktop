@@ -27,13 +27,13 @@
         "viewMode": "list"
     },
     "audio": {
-        "cavaFrameRate": 60,
         "mprisBlacklist": [
             "zen",
             "firefox",
             "firefox.instance_1_123"
         ],
         "preferredPlayer": "deezer",
+        "spectrumFrameRate": 60,
         "visualizerType": "linear",
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
@@ -139,6 +139,7 @@
                     "enableScrollWheel": true,
                     "focusedColor": "primary",
                     "followFocusedScreen": false,
+                    "fontWeight": "bold",
                     "groupedBorderOpacity": 1,
                     "hideUnoccupied": false,
                     "iconScale": 0.8,
@@ -485,8 +486,12 @@
         "manualSunset": "18:30",
         "nightTemp": "4000"
     },
+    "noctaliaPerformance": {
+        "disableDesktopWidgets": true,
+        "disableWallpaper": true
+    },
     "notifications": {
-        "backgroundOpacity": 1,
+        "backgroundOpacity": 0.6,
         "clearDismissed": true,
         "criticalUrgencyDuration": 10,
         "density": "default",
@@ -602,7 +607,7 @@
         "showHeader": true,
         "showKeybinds": true
     },
-    "settingsVersion": 56,
+    "settingsVersion": 57,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
