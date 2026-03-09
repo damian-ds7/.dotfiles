@@ -11,7 +11,7 @@
   streak-time 325
   tap-timeout 200
   hold-timeout 400
-  chord-timeout 50
+  chord-timeout 100
 )
 
 (deftemplate flowtap (flow tap)
