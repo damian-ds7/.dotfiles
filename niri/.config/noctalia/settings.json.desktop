@@ -50,6 +50,7 @@
         "contentPadding": 0,
         "density": "default",
         "displayMode": "always_visible",
+        "enableExclusionZoneInset": true,
         "floating": false,
         "fontScale": 1,
         "frameRadius": 12,
@@ -147,7 +148,8 @@
                     "labelMode": "none",
                     "occupiedColor": "secondary",
                     "pillSize": 0.55,
-                    "showApplications": false,
+                    "showApplications": true,
+                    "showApplicationsHover": true,
                     "showBadge": true,
                     "showLabelsOnlyWhenOccupied": false,
                     "unfocusedIconsOpacity": 1
@@ -318,6 +320,7 @@
     "desktopWidgets": {
         "enabled": false,
         "gridSnap": true,
+        "gridSnapScale": false,
         "monitorWidgets": [
             {
                 "name": "DP-1",
@@ -491,7 +494,7 @@
         "disableWallpaper": true
     },
     "notifications": {
-        "backgroundOpacity": 0.6,
+        "backgroundOpacity": 1,
         "clearDismissed": true,
         "criticalUrgencyDuration": 10,
         "density": "default",
@@ -648,9 +651,11 @@
         "fontFixedScale": 1,
         "panelBackgroundOpacity": 0.6,
         "panelsAttachedToBar": true,
-        "settingsPanelMode": "window",
+        "scrollbarAlwaysVisible": true,
+        "settingsPanelMode": "attached",
         "settingsPanelSideBarCardStyle": false,
-        "tooltipsEnabled": true
+        "tooltipsEnabled": true,
+        "translucentWidgets": false
     },
     "wallpaper": {
         "automationEnabled": false,
