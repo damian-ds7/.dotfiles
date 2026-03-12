@@ -47,7 +47,7 @@ alias sunano='sudo -E nano'
 #  Package Management
 # -------------------------
 
-alias update-poweroff='sudo dnf upgrade -y --offline && flatpak update -y && sudo dnf offline reboot --poweroff'
+alias update-poweroff='sudo dnf upgrade -y --offline && flatpak update -y && sudo dnf offline reboot -y --poweroff'
 
 alias refresh='sudo dnf upgrade --refresh'
 alias upgrade='sudo dnf upgrade'
