@@ -5,7 +5,20 @@ local lang = {
     ruff = {
       on_attach = function(client) client.server_capabilities.hoverProvider = false end,
     },
-    pyright = {},
+    pyrefly = {
+      on_attach = function(client, bufnr)
+        if client:supports_method "textDocument/inlayHint" then
+          vim.defer_fn(function() vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end, 100)
+        end
+      end,
+      settings = {
+        python = {
+          pyrefly = {
+            displayTypeErrors = "force-on",
+          },
+        },
+      },
+    },
   },
 
   tools = { "debugpy" },
