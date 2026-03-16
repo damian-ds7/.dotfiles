@@ -41,7 +41,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gS", builtin.lsp_dynamic_workspace_symbols, "Workspace Symbols")
 
     if client and client:supports_method("textDocument/inlayHint", buf) then
-      map("<leader>uh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = buf }) end, "Toggle Inlay Hints")
+      map(
+        "<leader>uh",
+        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = buf }) end,
+        "Toggle Inlay Hints"
+      )
     end
   end,
 })
