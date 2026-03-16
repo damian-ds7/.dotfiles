@@ -43,7 +43,7 @@ return {
       local registry = require("core.lang_reg").get_all()
       if registry.treesitter then vim.list_extend(ensure_installed, registry.treesitter) end
 
-      ts.setup {}
+      ts.install(ensure_installed)
       -- NOTE: If languages fail to install or compilation hangs,
       -- ensure 'tree-sitter-cli' is installed (e.g., :MasonInstall tree-sitter-cli).
       -- If the issue persists, run :checkhealth nvim-treesitter to diagnose.
@@ -61,5 +61,22 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     branch = "main",
+  },
+  {
+    {
+      "MeanderingProgrammer/treesitter-modules.nvim",
+      dependencies = { "nvim-treesitter/nvim-treesitter" },
+      opts = {
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = "<C-S-space>",
+            node_decremental = "<BS>",
+          },
+        },
+      },
+    },
   },
 }
