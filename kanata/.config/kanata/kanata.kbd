@@ -11,7 +11,7 @@
   streak-time 200
   tap-timeout 200
   hold-timeout 400
-  chord-timeout 100
+  chord-timeout 30
 )
 
 (deftemplate flowtap (flow tap)
@@ -45,6 +45,18 @@
   (ralt) ralt
 )
 
+(defchords left-esc $chord-timeout
+  (w  ) w
+  (  e) e
+  (w e) esc
+)
+
+(defchords left-bspc $chord-timeout
+  (i  ) i
+  (  o) o
+  (i o) bspc
+)
+
 (deflayermap (main)
   caps (chord main-chords caps)
   ralt (chord main-chords ralt)
@@ -56,6 +68,10 @@
   k (t! charmod k lmet)
   l (t! charmod l lalt)
   ; (t! charmod ; lsft)
+  w (chord left-esc w)
+  e (chord left-esc e)
+  i (chord left-bspc i)
+  o (chord left-bspc o)
 )
 
 (deflayermap (normal)
