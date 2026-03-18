@@ -30,7 +30,7 @@ local function create_tmux_window(dir)
 
   local has_session = os.execute("tmux has-session -t " .. session_id .. " 2>/dev/null")
 
-  if not has_session then
+  if has_session ~= 0 then
     local cmd = string.format('tmux new-session -d -s "%s" -c "%s" -e "NVIM_ADDRESS=%s"', session_id, dir, nvim_server)
     vim.fn.system(cmd)
     vim.fn.system(string.format('tmux set-option -t "%s" status off', session_id))
