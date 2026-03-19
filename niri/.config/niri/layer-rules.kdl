@@ -16,6 +16,7 @@ layer-rule {
 layer-rule {
     match namespace="wlr_which_key"
 
+    geometry-corner-radius 12
     opacity 0.80
     background-effect {
         blur true
