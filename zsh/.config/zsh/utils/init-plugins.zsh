@@ -23,7 +23,6 @@ zcompile-many "$ZDOTDIR"/plugins/autosuggestions/zsh-autosuggestions.zsh \
 
 zcompile-many "$ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme" \
     "$ZDOTDIR/plugins/ssh-agent/ssh-agent.zsh" \
-    "$ZDOTDIR/plugins/conventional-commits/conventional-commits.zsh" \
     "$ZDOTDIR/utils/setup-vimode.zsh" \
     "$ZDOTDIR/plugins/fzf-tab/fzf-tab.zsh" \
     "$ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
@@ -45,7 +44,6 @@ zstyle :omz:plugins:ssh-agent lazy yes
 zstyle :omz:plugins:ssh-agent quiet yes
 source "$ZDOTDIR/plugins/ssh-agent/ssh-agent.zsh"
 
-source "$ZDOTDIR/plugins/conventional-commits/conventional-commits.zsh"
 source "$ZDOTDIR/utils/setup-vimode.zsh"
 
 source "$ZDOTDIR/plugins/fzf-tab/fzf-tab.zsh"

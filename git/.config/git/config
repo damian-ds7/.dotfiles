@@ -1,14 +1,9 @@
-[safe]
-	directory = /mnt/Studies/c++/PokerLinux/cmake-build-debug/_deps/googletest-src
-	directory = /mnt/Studies/
-	directory = /mnt/Studies/Zen-Themes/
-	
 [user]
-	name = Damian D'Souza
-	email = dsouzadamian189@gmail.com
-	
+    name = Damian D'Souza
+    email = dsouzadamian189@gmail.com
+
 [includeIf "hasconfig:remote.*.url:https://gitlab-stud.elka.pw.edu.pl/**"]
-	path = config.gitlab
+    path = config.gitlab
 
 [includeIf "hasconfig:remote.*.url:git@gitlab.com:*/**"]
     path = config.gitlab
@@ -25,7 +20,7 @@
     showUntrackedFiles = true
 
 [init]
-	defaultBranch = master
+    defaultBranch = master
 
 [url "git@github.com:damian-ds7/"]
     insteadOf = ds:
@@ -40,16 +35,12 @@
     insteadOf = uniall:
 
 [credential]
-	helper = 
-	helper = /usr/local/sbin/git-credential-manager
-	credentialStore = secretservice
+    helper = 
+    helper = /usr/local/sbin/git-credential-manager
+    credentialStore = secretservice
 
 [credential "https://dev.azure.com"]
-	useHttpPath = true
+    useHttpPath = true
 
 [credential "https://gitlab-stud.elka.pw.edu.pl"]
-	provider = generic
-[include]
-	path = /home/damian/.config/git/conventional-commit-aliases.local
-[zsh "conv-commit"]
-	version = 1.0
+    provider = generic
