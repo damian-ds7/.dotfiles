@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-qs ipc call colorScheme set "Catppuccin"
+qs -c Noctalia ipc call colorScheme set "Catppuccin"
