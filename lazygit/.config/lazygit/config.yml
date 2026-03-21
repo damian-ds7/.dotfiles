@@ -1,5 +1,6 @@
 os:
   editPreset: 'nvim'
+  promptToReturnFromSubprocess: false
 customCommands:
   - key: "G"
     command: "gh browse"
