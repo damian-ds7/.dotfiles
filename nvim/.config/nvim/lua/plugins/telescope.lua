@@ -10,7 +10,7 @@ return {
     { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
     { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
     { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Search Diagnostics" },
-    { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Search Resume" },
+    { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Search Resume" },
     { "<leader>s.", "<cmd>Telescope oldfiles<cr>", desc = "Search Recent Files" },
     { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Search Commands" },
 
@@ -23,12 +23,18 @@ return {
     },
     {
       "<leader>.",
-      function() require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown { previewer = false }) end,
+      function()
+        require("telescope.builtin").current_buffer_fuzzy_find(
+          require("telescope.themes").get_dropdown { previewer = false }
+        )
+      end,
       desc = "Fuzzily search in current buffer",
     },
     {
       "<leader>s/",
-      function() require("telescope.builtin").live_grep { grep_open_files = true, prompt_title = "Live Grep in Open Files" } end,
+      function()
+        require("telescope.builtin").live_grep { grep_open_files = true, prompt_title = "Live Grep in Open Files" }
+      end,
       desc = "Search in Open Files",
     },
     {
@@ -39,7 +45,11 @@ return {
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = function() return vim.fn.executable "make" == 1 end },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      cond = function() return vim.fn.executable "make" == 1 end,
+    },
     "nvim-telescope/telescope-ui-select.nvim",
   },
   config = function()
