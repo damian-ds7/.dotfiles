@@ -2,7 +2,21 @@ return {
   "folke/todo-comments.nvim",
   cmd = { "TodoTelescope", "TodoTrouble" },
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-  opts = {},
+  opts = {
+    keywords = {
+      TODO = { alt = { "todo", "unimplemented" } },
+    },
+    highlight = {
+      pattern = {
+        [[.*<(KEYWORDS)\s*:]],
+        [[.*<(KEYWORDS)\s*!\(]],
+      },
+      comments_only = false,
+    },
+    search = {
+      pattern = [[\b(KEYWORDS)(:|!\()]],
+    },
+  },
   keys = {
     {
       "]t",
