@@ -13,7 +13,7 @@ gap = 10
 # Space from the top of the screen
 top = 45
 # Space from the right edge of the screen
-right = 5
+right = 12
 # Space from the left edge of the screen
 left = 5
 # Space from the bottom of the screen
@@ -36,9 +36,9 @@ sticky = true
 [[window_rule]]
 app_id = "zen"
 title = "^Picture-in-Picture$"
-width = 711
-height = 400
-focus_peek = 716
+width = 515
+height = 290
+focus_peek = 525
 auto_add = true
 
 [[window_rule]]
