@@ -53,7 +53,7 @@ window-rule {
     match is-active=false
     exclude app-id="zen"
 
-    opacity 0.80
+    opacity 0.85
 }
 
 // -----------------------------
