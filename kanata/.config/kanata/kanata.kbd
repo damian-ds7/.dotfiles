@@ -1,80 +1,43 @@
+#|
+This minimal config changes Caps Lock to act as Escape on quick tap, but
+if held, it will act as Left Ctrl. It also changes the tab key to
+act as tab on quick tap, but change hjkl keys to arrow keys on hold.
+|#
+
 (defcfg
+  #|
+  This configuration will process all keys pressed inside of kanata, even if
+  they are not mapped in defsrc. This is so that certain actions can activate
+  at the right time for certain input sequences. By default, unmapped keys are
+  not processed through kanata due to a Windows issue related to AltGr. If you
+  use AltGr in your keyboard, you will likely want to follow the simple.kbd
+  file while unmapping lctl and ralt from defsrc.
+  |#
   process-unmapped-keys yes
+
+  ;; Should only affect the laptop keyboard
+  ;; linux-dev /dev/input/by-path/platform-i8042-serio-0-event-kbd
+  ;; External keyboard
+  ;; linux-dev /dev/input/by-path/pci-0000:00:14.0-usb-0:3.2:1.1-event
 )
 
 (defsrc
-  caps ralt a s d f j k l ;
+  tab
+  caps         h    j    k    l
 )
 
-(defvar
-  streak-count 3
-  streak-time 200
-  tap-timeout 200
-  hold-timeout 400
-  chord-timeout 30
+(deflayer default
+  @tab
+  @cap         _    _    _    _
 )
 
-(deftemplate flowtap (flow tap)
-  (switch 
-    ((key-timing $streak-count less-than $streak-time)) $flow break
-    () $tap break
-  )
-)
-
-(deftemplate charmod (char mod)
-  (t! flowtap
-    $char
-    (tap-hold-release-timeout $tap-timeout $hold-timeout $char $mod $char reset-timeout-on-press)
-  )
+(deflayer arrows
+  _
+  _
+              left down up rght
 )
 
 (defalias
-  to-normal (layer-switch normal)
-  to-main   (layer-switch main)
-)
-
-(defchords main-chords $chord-timeout
-  (caps ralt) @to-normal
-  (caps) caps
-  (ralt) ralt
-)
-
-(defchords normal-chords $chord-timeout
-  (caps ralt) @to-main
-  (caps) caps
-  (ralt) ralt
-)
-
-(defchords left-esc $chord-timeout
-  (w  ) w
-  (  e) e
-  (w e) esc
-)
-
-(defchords left-bspc $chord-timeout
-  (i  ) i
-  (  o) o
-  (i o) bspc
-)
-
-(deflayermap (main)
-  caps (chord main-chords caps)
-  ralt (chord main-chords ralt)
-  a (t! charmod a lsft)
-  s (t! charmod s lalt)
-  d (t! charmod d lmet)
-  f (t! charmod f lctl)
-  j (t! charmod j lctl)
-  k (t! charmod k lmet)
-  l (t! charmod l lalt)
-  ; (t! charmod ; lsft)
-  w (chord left-esc w)
-  e (chord left-esc e)
-  i (chord left-bspc i)
-  o (chord left-bspc o)
-)
-
-(deflayermap (normal)
-  caps (chord normal-chords caps)
-  ralt (chord normal-chords ralt)
+  cap (tap-hold-press 200 200 esc lctl)
+  tab (tap-hold-press 200 200 tab (layer-toggle arrows))
 )
