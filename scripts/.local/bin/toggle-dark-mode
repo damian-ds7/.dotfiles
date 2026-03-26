@@ -46,6 +46,7 @@ CONFIGS=(
     "$CONF_DIR/nvim"
     "$CONF_DIR/tmux"
     "$CONF_DIR/yazi"
+    "$HOME/Pictures/Wallpapers"
 )
 
 get_current_theme() {

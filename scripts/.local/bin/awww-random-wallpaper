@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-wallpapers_dir="$HOME/Pictures/Wallpapers"
+wallpapers_dir="$HOME/Pictures/Wallpapers/wallpapers"
 transition="${1:-random}"
 
-random_dir=$(find "$wallpapers_dir" -mindepth 1 -maxdepth 1 -type d ! -name "current" | shuf -n 1)
+random_dir=$(find -L "$wallpapers_dir" -mindepth 1 -maxdepth 1 -type d | shuf -n 1)
 
 dirname=$(basename "$random_dir")
 

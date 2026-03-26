@@ -1,34 +1,33 @@
 #!/usr/bin/env bash
 
-wallpapers_dir="$HOME/Pictures/Wallpapers"
+wallpapers_dir="$HOME/Pictures/Wallpapers/wallpapers"
 
 if [ -z "$1" ]; then
-  echo "Usage: $0 <wallpaper-dir-name>"
-  exit 1
+    echo "Usage: $0 <wallpaper-dir-name>"
+    exit 1
 fi
 
 dirname="$1"
 wallpaper_path="$wallpapers_dir/$dirname"
 
 if [ ! -d "$wallpaper_path" ]; then
-  echo "Error: Directory '$wallpaper_path' not found"
-  exit 1
+    echo "Error: Directory '$wallpaper_path' not found"
+    exit 1
 fi
 
 if [ ! -f "$wallpaper_path/${dirname}-blur.png" ] || [ ! -f "$wallpaper_path/${dirname}-normal.png" ]; then
-  echo "Error: blur or normal wallpaper not found in $dirname"
-  exit 1
+    echo "Error: blur or normal wallpaper not found in $dirname"
+    exit 1
 fi
 
 echo "Setting wallpaper: $dirname"
 
-ln -sf "$wallpaper_path/${dirname}-blur.png" "$wallpapers_dir/current/blur.png"
-ln -sf "$wallpaper_path/${dirname}-normal.png" "$wallpapers_dir/current/normal.png"
+ln -sf "$wallpaper_path/${dirname}-blur.png" "$HOME/Pictures/Wallpapers/current/blur.png"
+ln -sf "$wallpaper_path/${dirname}-normal.png" "$HOME/Pictures/Wallpapers/current/normal.png"
 
 transition="${2:-random}"
 duration="1.5"
 fps="60"
 
 opts="--transition-type $transition --transition-duration $duration --transition-fps $fps"
-"$HOME"/.cargo/bin/awww img $opts --namespace wallpaper "$wallpaper_path/${dirname}-normal.png"
-"$HOME"/.cargo/bin/awww img --transition-type none --namespace overview "$wallpaper_path/${dirname}-blur.png"
+"$HOME"/.cargo/bin/awww img --namespace wallpaper $opts "$HOME/Pictures/Wallpapers/current/normal.png"
