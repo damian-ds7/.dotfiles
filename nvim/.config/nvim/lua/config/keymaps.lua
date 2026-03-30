@@ -156,6 +156,21 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+-- Treesitter incremental selection
+vim.keymap.set(
+  { "n", "x" },
+  "<C-space>",
+  function() require("vim.treesitter._select").select_parent(vim.v.count1) end,
+  { desc = "Expand treesitter selection" }
+)
+
+vim.keymap.set(
+  "x",
+  "<BS>",
+  function() require("vim.treesitter._select").select_child(vim.v.count1) end,
+  { desc = "Shrink treesitter selection" }
+)
+
 if not vim.g.vscode then
   require("utils.floatterminal").setup()
   map("n", "<leader>fT", ":FloatTerm %:p:h<CR>", {
