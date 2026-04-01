@@ -17,9 +17,9 @@ return {
     { "<leader>sw", "<cmd>Telescope grep_string<cr>", mode = { "n", "v" }, desc = "Search current Word" },
 
     {
-      "<leader>,",
+      "<leader>sb",
       function() require("telescope.builtin").buffers { sort_mru = true, sort_lastused = true } end,
-      desc = "Search existing buffers",
+      desc = "Search buffers",
     },
     {
       "<leader>.",
