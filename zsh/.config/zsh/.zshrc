@@ -109,6 +109,10 @@ if command -v fzf >/dev/null 2>&1; then
   eval "$(fzf --zsh)"
 fi
 
+if command -v nvs >/dev/null 2>&1; then
+  eval "$(nvs env --source)"
+fi
+
 if command -v atuin >/dev/null 2>&1; then
   source "$ZDOTDIR/utils/atuin.zsh"
 fi
