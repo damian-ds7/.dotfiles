@@ -9,13 +9,18 @@ registry.register {
   },
 }
 
-utils.add("https://github.com/mrcjkb/rustaceanvim", function()
+utils.add({ src = "https://github.com/mrcjkb/rustaceanvim", version = vim.version.range "8.*" }, function()
   local codelldb = vim.fn.exepath "codelldb"
   local codelldb_lib_ext = io.popen("uname"):read "*l" == "Linux" and ".so" or ".dylib"
   local library_path = vim.fn.expand("$MASON/opt/lldb/lib/liblldb" .. codelldb_lib_ext)
 
   ---@type rustaceanvim.Opts
   local opts = {
+    tools = {
+      float_win_config = {
+        border = "rounded",
+      },
+    },
     server = {
       on_attach = function(_, bufnr)
         if vim.lsp.inlay_hint then vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
@@ -67,4 +72,4 @@ utils.add("https://github.com/mrcjkb/rustaceanvim", function()
   }
 
   vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts)
-end, "filetype:rust")
+end, "later")
