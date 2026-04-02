@@ -1,24 +1,10 @@
-return {
-  "kevinhwang91/nvim-ufo",
-  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-  dependencies = {
-    "kevinhwang91/promise-async",
-  },
-  config = function()
-    vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-    vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+local utils = require "utils.pack"
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.foldingRange = {
-      dynamicRegistration = false,
-      lineFoldingOnly = true,
-    }
-    local language_servers = vim.lsp.get_clients()
-    for _, ls in ipairs(language_servers) do
-      require("lspconfig")[ls].setup {
-        capabilities = capabilities,
-      }
-    end
-    require("ufo").setup()
-  end,
-}
+utils.ensure { src = "https://github.com/kevinhwang91/promise-async", name = "promise" }
+
+utils.add("https://github.com/kevinhwang91/nvim-ufo", function()
+  vim.cmd.packadd "promise"
+  vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+  vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+  require("ufo").setup()
+end, "event:BufReadPost,BufWritePost,BufNewFile")

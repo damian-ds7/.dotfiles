@@ -1,9 +1,10 @@
-return {
-  "stevearc/oil.nvim",
-  event = "VeryLazy",
-  dependencies = { { "nvim-mini/mini.icons", opts = {} }, { "benomahony/oil-git.nvim" } },
-  cmd = "Oil",
-  opts = {
+local utils = require "utils.pack"
+
+utils.ensure "https://github.com/benomahony/oil-git.nvim"
+
+utils.add("https://github.com/stevearc/oil.nvim", function()
+  vim.cmd.packadd "oil-git.nvim"
+  require("oil").setup {
     default_file_explorer = true,
     delete_to_trash = true,
     skip_confirm_for_simple_edits = true,
@@ -46,17 +47,12 @@ return {
       ["g."] = { "actions.toggle_hidden", desc = "Hidden" },
       ["g\\"] = { "actions.toggle_trash", desc = "Trash" },
     },
-  },
-  keys = {
-    { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
-    { "<leader>e", function() require("oil").toggle_float() end, desc = "Open parent directory" },
-    {
-      "<leader>E",
-      function()
-        local root = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
-        require("oil").toggle_float(root)
-      end,
-      desc = "Open Project Root",
-    },
-  },
-}
+  }
+end)
+
+vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<leader>e", function() require("oil").toggle_float() end, { desc = "Open parent directory" })
+vim.keymap.set("n", "<leader>E", function()
+  local root = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
+  require("oil").toggle_float(root)
+end, { desc = "Open Project Root" })

@@ -28,7 +28,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<leader>cr", vim.lsp.buf.rename, "Rename")
     map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
     map("<leader>cl", vim.lsp.codelens.run, "Codelens", { "n", "x" })
-    map("<leader>cL", vim.lsp.codelens.refresh, "Refresh & Display Codelens", { "n", "x" })
     map("grD", vim.lsp.buf.declaration, "Goto Declaration")
     map("gD", vim.lsp.buf.declaration, "Goto Declaration")
 

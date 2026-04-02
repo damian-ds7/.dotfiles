@@ -1,13 +1,14 @@
-return {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  opts = {
+local utils = require "utils.pack"
+
+local config = function()
+  require("which-key").setup {
     preset = "helix",
     defaults = {},
     spec = {
       {
         mode = { "n", "x" },
         { "<leader><tab>", group = "tabs" },
+        { "<leader>a", group = "ai" },
         { "<leader>c", group = "code" },
         { "<leader>d", group = "debug" },
         { "<leader>f", group = "file/find" },
@@ -41,5 +42,7 @@ return {
         },
       },
     },
-  },
-}
+  }
+end
+
+utils.add("https://github.com/folke/which-key.nvim", config, "later")

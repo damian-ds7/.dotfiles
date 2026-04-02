@@ -1,131 +1,109 @@
-return {
-  {
-    "nvim-mini/mini.ai",
-    dependencies = { "nvim-mini/mini.extra" },
-    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    opts = function()
-      local gen_ai_spec = require("mini.extra").gen_ai_spec
-      local spec_treesitter = require("mini.ai").gen_spec.treesitter
-      local ai = require "mini.ai"
-      return {
-        custom_textobjects = {
-          o = spec_treesitter { -- code block
-            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-          },
-          f = spec_treesitter { a = "@function.outer", i = "@function.inner" }, -- function
-          c = spec_treesitter { a = "@class.outer", i = "@class.inner" }, -- class
-          t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" }, -- tags
-          d = { "%f[%d]%d+" }, -- digits
-          e = { -- Word
-            { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
-            "^().*()$",
-          },
-          u = ai.gen_spec.function_call(),
-          U = ai.gen_spec.function_call { name_pattern = "[%w_]" },
-          B = gen_ai_spec.buffer(),
-          D = gen_ai_spec.diagnostic(),
-          I = gen_ai_spec.indent(),
-          L = gen_ai_spec.line(),
-          N = gen_ai_spec.number(),
-        },
-      }
-    end,
-    config = function(_, opts)
-      require("mini.ai").setup(opts)
+local utils = require "utils.pack"
 
-      local ok, wk = pcall(require, "which-key")
-      if not ok then return end
-
-      wk.add {
-        { "aB", desc = "around buffer", mode = { "o", "x" } },
-        { "aI", desc = "around indent", mode = { "o", "x" } },
-        { "aL", desc = "around line", mode = { "o", "x" } },
-        { "af", desc = "around function", mode = { "o", "x" } },
-        { "ac", desc = "around class", mode = { "o", "x" } },
-
-        { "iB", desc = "inside buffer", mode = { "o", "x" } },
-        { "iI", desc = "inside indent", mode = { "o", "x" } },
-        { "iL", desc = "inside line", mode = { "o", "x" } },
-        { "if", desc = "inside function", mode = { "o", "x" } },
-        { "ic", desc = "inside class", mode = { "o", "x" } },
-      }
-    end,
-  },
-  {
-    "nvim-mini/mini.pairs",
-    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    opts = {
-      modes = { insert = true, command = true, terminal = false },
-      skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-      skip_ts = { "string" },
-      skip_unbalanced = true,
-      markdown = true,
-      mappings = {
-        ["("] = { action = "open", pair = "()", neigh_pattern = "^[^\\]" },
-        ["["] = { action = "open", pair = "[]", neigh_pattern = "^[^\\]" },
-        ["{"] = { action = "open", pair = "{}", neigh_pattern = "^[^\\]" },
-
-        [")"] = { action = "close", pair = "()", neigh_pattern = "^[^\\]" },
-        ["]"] = { action = "close", pair = "[]", neigh_pattern = "^[^\\]" },
-        ["}"] = { action = "close", pair = "{}", neigh_pattern = "^[^\\]" },
-
-        ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "^[^\\]", register = { cr = false } },
-        ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "^[^%a\\]", register = { cr = false } },
-        ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "^[^\\]", register = { cr = false } },
+local function config()
+  -- mini.ai
+  local gen_ai_spec = require("mini.extra").gen_ai_spec
+  local spec_treesitter = require("mini.ai").gen_spec.treesitter
+  local ai = require "mini.ai"
+  require("mini.ai").setup {
+    custom_textobjects = {
+      o = spec_treesitter {
+        a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+        i = { "@block.inner", "@conditional.inner", "@loop.inner" },
       },
-    },
-  },
-  {
-    "nvim-mini/mini.surround",
-    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    keys = function(_, keys)
-      local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
-      local opts = require("lazy.core.plugin").values(plugin, "opts", false)
-      local mappings = {
-        { opts.mappings.add, desc = "Add Surrounding" },
-        { opts.mappings.delete, desc = "Delete Surrounding" },
-        { opts.mappings.find, desc = "Find Right Surrounding" },
-        { opts.mappings.find_left, desc = "Find Left Surrounding" },
-        { opts.mappings.highlight, desc = "Highlight Surrounding" },
-        { opts.mappings.replace, desc = "Replace Surrounding" },
-        { opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
-      }
-      mappings = vim.tbl_filter(function(m) return m[1] and #m[1] > 0 end, mappings)
-      return vim.list_extend(mappings, keys)
-    end,
-    opts = {
-      mappings = {
-        add = "gza",
-        delete = "gzd",
-        find = "gzf",
-        find_left = "gzF",
-        highlight = "gzh",
-        replace = "gzr",
-        update_n_lines = "gzn",
+      f = spec_treesitter { a = "@function.outer", i = "@function.inner" },
+      c = spec_treesitter { a = "@class.outer", i = "@class.inner" },
+      t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+      d = { "%f[%d]%d+" },
+      e = {
+        { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
+        "^().*()$",
       },
+      u = ai.gen_spec.function_call(),
+      U = ai.gen_spec.function_call { name_pattern = "[%w_]" },
+      B = gen_ai_spec.buffer(),
+      D = gen_ai_spec.diagnostic(),
+      I = gen_ai_spec.indent(),
+      L = gen_ai_spec.line(),
+      N = gen_ai_spec.number(),
     },
-  },
-  {
-    "nvim-mini/mini.icons",
-    lazy = true,
-    opts = {
-      file = {
-        [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
-        ["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
-      },
-      filetype = {
-        dotenv = { glyph = "", hl = "MiniIconsYellow" },
-      },
+  }
+
+  local ok, wk = pcall(require, "which-key")
+  if ok then
+    wk.add {
+      { "aB", desc = "around buffer", mode = { "o", "x" } },
+      { "aI", desc = "around indent", mode = { "o", "x" } },
+      { "aL", desc = "around line", mode = { "o", "x" } },
+      { "af", desc = "around function", mode = { "o", "x" } },
+      { "ac", desc = "around class", mode = { "o", "x" } },
+
+      { "iB", desc = "inside buffer", mode = { "o", "x" } },
+      { "iI", desc = "inside indent", mode = { "o", "x" } },
+      { "iL", desc = "inside line", mode = { "o", "x" } },
+      { "if", desc = "inside function", mode = { "o", "x" } },
+      { "ic", desc = "inside class", mode = { "o", "x" } },
+    }
+  end
+
+  -- mini.pairs
+  require("mini.pairs").setup {
+    modes = { insert = true, command = true, terminal = false },
+    skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+    skip_ts = { "string" },
+    skip_unbalanced = true,
+    markdown = true,
+    mappings = {
+      ["("] = { action = "open", pair = "()", neigh_pattern = "^[^\\]" },
+      ["["] = { action = "open", pair = "[]", neigh_pattern = "^[^\\]" },
+      ["{"] = { action = "open", pair = "{}", neigh_pattern = "^[^\\]" },
+
+      [")"] = { action = "close", pair = "()", neigh_pattern = "^[^\\]" },
+      ["]"] = { action = "close", pair = "[]", neigh_pattern = "^[^\\]" },
+      ["}"] = { action = "close", pair = "{}", neigh_pattern = "^[^\\]" },
+
+      ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "^[^\\]", register = { cr = false } },
+      ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "^[^%a\\]", register = { cr = false } },
+      ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "^[^\\]", register = { cr = false } },
     },
-    init = function()
-      package.preload["nvim-web-devicons"] = function()
-        require("mini.icons").mock_nvim_web_devicons()
-        return package.loaded["nvim-web-devicons"]
-      end
-    end,
-    specs = {
-      { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+  }
+
+  -- mini.surround
+  require("mini.surround").setup {
+    mappings = {
+      add = "gza",
+      delete = "gzd",
+      find = "gzf",
+      find_left = "gzF",
+      highlight = "gzh",
+      replace = "gzr",
+      update_n_lines = "gzn",
     },
-  },
-}
+  }
+
+  require("mini.diff").setup {
+    view = {
+      style = "sign",
+      signs = { add = "▎", change = "▎", delete = "" },
+    },
+  }
+end
+
+utils.add("https://github.com/nvim-mini/mini.nvim", config, "event:BufReadPost,BufWritePost,BufNewFile")
+
+-- mini.icons
+utils.add("https://github.com/nvim-mini/mini.icons", function()
+  require("mini.icons").setup {
+    file = {
+      [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
+      ["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
+    },
+    filetype = {
+      dotenv = { glyph = "", hl = "MiniIconsYellow" },
+    },
+  }
+  package.preload["nvim-web-devicons"] = function()
+    require("mini.icons").mock_nvim_web_devicons()
+    return package.loaded["nvim-web-devicons"]
+  end
+end)

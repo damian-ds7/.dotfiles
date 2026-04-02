@@ -1,16 +1,18 @@
-return {
-  "stevearc/conform.nvim",
-  event = "BufWritePre",
-  opts = {
-    formatters_by_ft = {
-      go = { "gofmt", "goimports", "golines" },
-      lua = { "stylua" },
-      tex = { "latexindent" },
-      sh = { "shfmt" },
-      zsh = { "shfmt" },
-      bash = { "shfmt" },
-      markdown = { "mdformat" },
-    },
+local utils = require "utils.pack"
+local registry = require "core.lang_reg"
+
+utils.add("https://github.com/stevearc/conform.nvim", function()
+  local formatters_by_ft = registry.get_all().formatters
+  formatters_by_ft = vim.tbl_extend("force", formatters_by_ft, {
+    lua = { "stylua" },
+    tex = { "latexindent" },
+    sh = { "shfmt" },
+    zsh = { "shfmt" },
+    bash = { "shfmt" },
+    markdown = { "mdformat" },
+  })
+  require("conform").setup {
+    formatters_by_ft = formatters_by_ft,
     formatters = {
       mdformat = {
         append_args = { "--wrap", "80" },
@@ -20,12 +22,12 @@ return {
       timeout = 500,
       lsp_format = "fallback",
     },
-  },
-  keys = {
-    {
-      "<leader>cf",
-      function() require("conform").format { lsp_format = "fallback" } end,
-      desc = "Format current file",
-    },
-  },
-}
+  }
+end, "event:BufWritePre")
+
+vim.keymap.set(
+  "n",
+  "<leader>cf",
+  function() require("conform").format { lsp_format = "fallback" } end,
+  { desc = "Format current file" }
+)

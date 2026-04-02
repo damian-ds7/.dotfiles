@@ -1,6 +1,7 @@
 local registry = require "core.lang_reg"
+local utils = require "utils.pack"
 
-local lang = {
+registry.register {
   servers = {
     gopls = {
       settings = {
@@ -38,6 +39,7 @@ local lang = {
         },
       },
       on_attach = function(client, _)
+        -- Workaround for semantic tokens if the server doesn't report them correctly
         if not client.server_capabilities.semanticTokensProvider then
           local semantic = client.config.capabilities.textDocument.semanticTokens
           client.server_capabilities.semanticTokensProvider = {
@@ -53,40 +55,21 @@ local lang = {
     },
     golangci_lint_ls = {},
   },
-
   tools = { "goimports", "golines", "golangci-lint", "delve" },
-
   treesitter = { "go", "gomod", "gosum" },
-}
-
-registry.register(lang)
-
-return {
-  {
-    "leoluz/nvim-dap-go",
-    ft = "go",
-    opts = {},
+  formatters = {
+    go = { "goimports", "golines" },
   },
-  {
-    "fredrikaverpil/neotest-golang",
-    ft = "go",
-  },
-  {
-    "nvim-neotest/neotest",
-    opts = {
-      adapters = {
-        ["neotest-golang"] = {
-          dap_go_enabled = true,
-        },
-      },
-    },
-  },
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        go = { "goimports", "golines" },
-      },
+  neotest_adapters = {
+    ["neotest-golang"] = {
+      dap_go_enabled = true,
     },
   },
 }
+
+utils.add("https://github.com/leoluz/nvim-dap-go", function()
+  pcall(vim.cmd.packadd, "nvim-dap")
+  require("dap-go").setup()
+end, "filetype:go")
+
+utils.add("https://github.com/fredrikaverpil/neotest-golang", nil, "filetype:go")

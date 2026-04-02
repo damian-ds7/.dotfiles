@@ -1,9 +1,7 @@
-return {
-  "catppuccin/nvim",
-  name = "catppuccin",
-  lazy = true,
-  priority = 1000,
-  opts = {
+local utils = require "utils.pack"
+
+local config = function()
+  require("catppuccin").setup {
     transparent_background = true,
     custom_highlights = function(colors)
       return {
@@ -15,5 +13,7 @@ return {
         NoicePopupBorder = { fg = colors.text, bg = colors.base },
       }
     end,
-  },
-}
+  }
+end
+
+utils.add({ src = "https://github.com/catppuccin/nvim", name = "catppuccin" }, config)

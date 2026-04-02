@@ -38,7 +38,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.inccommand = "nosplit"
 opt.wildmode = "longest:full,full"
-opt.shortmess:append { W = true, I = true, c = true, C = true }
+opt.shortmess:append { W = true, c = true, C = true }
 
 opt.splitright = true
 opt.splitbelow = true

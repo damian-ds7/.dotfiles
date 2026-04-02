@@ -5,7 +5,6 @@ map("i", "jj", "<Esc>", { noremap = true })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("x", "p", "P", { desc = "Paste without overwriting register" })
 map("x", "P", "p", { desc = "Paste and overwrite register" })
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 vim.keymap.set("n", "<leader>fn", function()
   local rel_dir = vim.fn.expand "%:h"

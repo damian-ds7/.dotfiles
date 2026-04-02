@@ -1,23 +1,17 @@
 local icons = require "utils.icons"
+local utils = require "utils.pack"
 
-return {
-  "nvim-lualine/lualine.nvim",
-  event = "VeryLazy",
-  init = function()
-    vim.g.lualine_laststatus = vim.o.laststatus
-    if vim.fn.argc(-1) > 0 then
-      vim.o.statusline = " "
-    else
-      vim.o.laststatus = 0
-    end
-  end,
-  opts = {
+utils.add("https://github.com/nvim-lualine/lualine.nvim", function()
+  require("lualine").setup {
     options = {
       theme = "auto",
       component_separators = "",
       section_separators = { left = "", right = "" },
-      globalstatus = vim.o.laststatus == 3,
+      globalstatus = true,
       icons_enabled = true,
+      disabled_filetypes = {
+        statusline = { "" },
+      },
     },
     sections = {
       lualine_a = { { "mode", icon = "", separator = { left = "" }, right_padding = 2 } },
@@ -99,5 +93,5 @@ return {
         },
       },
     },
-  },
-}
+  }
+end, "later")

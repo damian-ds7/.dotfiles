@@ -1,33 +1,15 @@
-return {
-  "folke/snacks.nvim",
-  priority = 1000,
-  lazy = false,
-  opts = {
+local utils = require "utils.pack"
+
+_G.dd = function(...) require("snacks").debug.inspect(...) end
+_G.bt = function() require("snacks").debug.backtrace() end
+
+vim.print = _G.dd
+
+utils.add("https://github.com/folke/snacks.nvim", function()
+  local snacks = require "snacks"
+
+  snacks.setup {
     bigfile = { enabled = true },
-    dashboard = {
-      preset = {
-        header = [[
- ██████   █████                   █████   █████  ███                 
-▒▒██████ ▒▒███                   ▒▒███   ▒▒███  ▒▒▒                  
- ▒███▒███ ▒███   ██████   ██████  ▒███    ▒███  ████  █████████████  
- ▒███▒▒███▒███  ███▒▒███ ███▒▒███ ▒███    ▒███ ▒▒███ ▒▒███▒▒███▒▒███ 
- ▒███ ▒▒██████ ▒███████ ▒███ ▒███ ▒▒███   ███   ▒███  ▒███ ▒███ ▒███ 
- ▒███  ▒▒█████ ▒███▒▒▒  ▒███ ▒███  ▒▒▒█████▒    ▒███  ▒███ ▒███ ▒███ 
- █████  ▒▒█████▒▒██████ ▒▒██████     ▒▒███      █████ █████▒███ █████
-▒▒▒▒▒    ▒▒▒▒▒  ▒▒▒▒▒▒   ▒▒▒▒▒▒       ▒▒▒      ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ 
-]],
-        ---@type snacks.dashboard.Item[]
-        keys = {
-          { icon = " ", key = "f", desc = "Find File", action = function() require("telescope.builtin").find_files() end },
-          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-          { icon = " ", key = "g", desc = "Find Text", action = function() require("telescope.builtin").find_files() end },
-          { icon = " ", key = "c", desc = "Config", action = function() require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" } end },
-          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-          { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
-          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-        },
-      },
-    },
     indent = { enabled = true },
     gitbrowse = { enabled = true },
     lazygit = { enabled = true },
@@ -47,64 +29,78 @@ return {
         },
       },
     },
-  },
-  keys = {
-    -- git
-    { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
-    { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
-    { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
-    { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
-    { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
-    { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
-    { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
-    -- gh
-    { "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
-    { "<leader>gI", function() Snacks.picker.gh_issue { state = "all" } end, desc = "GitHub Issues (all)" },
-    { "<leader>gp", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
-    { "<leader>gP", function() Snacks.picker.gh_pr { state = "all" } end, desc = "GitHub Pull Requests (all)" },
-    -- search
-    { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
-    -- LSP
-    { "<leader>uz", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-    { "<leader>uZ", function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
-    { "<leader>>", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-    { "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
-    { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notification History" },
-    { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-    { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
-    { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-    { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-    { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-    { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
-  },
-  init = function()
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "VeryLazy",
-      callback = function()
-        -- Setup some globals for debugging (lazy-loaded)
-        _G.dd = function(...) Snacks.debug.inspect(...) end
-        _G.bt = function() Snacks.debug.backtrace() end
+  }
 
-        -- Override print to use snacks for `:=` command
-        if vim.fn.has "nvim-0.11" == 1 then
-          vim._print = function(_, ...) dd(...) end
-        else
-          vim.print = _G.dd
-        end
+  snacks.toggle.option("spell", { name = "Spelling" }):map "<leader>us"
+  snacks.toggle.option("wrap", { name = "Wrap" }):map "<leader>uw"
+  snacks.toggle.option("relativenumber", { name = "Relative Number" }):map "<leader>uL"
+  snacks.toggle.diagnostics():map "<leader>ud"
+  snacks.toggle.line_number():map "<leader>ul"
+  snacks.toggle
+    .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+    :map "<leader>uc"
+  snacks.toggle.treesitter():map "<leader>uT"
+  snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map "<leader>ub"
+  snacks.toggle.inlay_hints():map "<leader>uh"
+  snacks.toggle.indent():map "<leader>ug"
+  snacks.toggle.dim():map "<leader>uD"
+end)
 
-        -- Create some toggle mappings
-        Snacks.toggle.option("spell", { name = "Spelling" }):map "<leader>us"
-        Snacks.toggle.option("wrap", { name = "Wrap" }):map "<leader>uw"
-        Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map "<leader>uL"
-        Snacks.toggle.diagnostics():map "<leader>ud"
-        Snacks.toggle.line_number():map "<leader>ul"
-        Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map "<leader>uc"
-        Snacks.toggle.treesitter():map "<leader>uT"
-        Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map "<leader>ub"
-        Snacks.toggle.inlay_hints():map "<leader>uh"
-        Snacks.toggle.indent():map "<leader>ug"
-        Snacks.toggle.dim():map "<leader>uD"
-      end,
-    })
-  end,
-}
+vim.keymap.set("n", "<leader>gb", function() require("snacks").picker.git_branches() end, { desc = "Git Branches" })
+vim.keymap.set("n", "<leader>gl", function() require("snacks").picker.git_log() end, { desc = "Git Log" })
+vim.keymap.set("n", "<leader>gL", function() require("snacks").picker.git_log_line() end, { desc = "Git Log Line" })
+vim.keymap.set("n", "<leader>gs", function() require("snacks").picker.git_status() end, { desc = "Git Status" })
+vim.keymap.set("n", "<leader>gS", function() require("snacks").picker.git_stash() end, { desc = "Git Stash" })
+vim.keymap.set("n", "<leader>gd", function() require("snacks").picker.git_diff() end, { desc = "Git Diff (Hunks)" })
+vim.keymap.set("n", "<leader>gf", function() require("snacks").picker.git_log_file() end, { desc = "Git Log File" })
+vim.keymap.set("n", "<leader>gi", function() require("snacks").picker.gh_issue() end, { desc = "GitHub Issues (open)" })
+vim.keymap.set(
+  "n",
+  "<leader>gI",
+  function() require("snacks").picker.gh_issue { state = "all" } end,
+  { desc = "GitHub Issues (all)" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gp",
+  function() require("snacks").picker.gh_pr() end,
+  { desc = "GitHub Pull Requests (open)" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gP",
+  function() require("snacks").picker.gh_pr { state = "all" } end,
+  { desc = "GitHub Pull Requests (all)" }
+)
+vim.keymap.set("n", '<leader>s"', function() require("snacks").picker.registers() end, { desc = "Registers" })
+vim.keymap.set("n", "<leader>uz", function() require("snacks").zen() end, { desc = "Toggle Zen Mode" })
+vim.keymap.set("n", "<leader>uZ", function() require("snacks").zen.zoom() end, { desc = "Toggle Zoom" })
+vim.keymap.set("n", "<leader>>", function() require("snacks").scratch() end, { desc = "Toggle Scratch Buffer" })
+vim.keymap.set("n", "<leader>S", function() require("snacks").scratch.select() end, { desc = "Select Scratch Buffer" })
+vim.keymap.set(
+  "n",
+  "<leader>n",
+  function() require("snacks").notifier.show_history() end,
+  { desc = "Notification History" }
+)
+vim.keymap.set("n", "<leader>cR", function() require("snacks").rename.rename_file() end, { desc = "Rename File" })
+vim.keymap.set({ "n", "v" }, "<leader>gB", function() require("snacks").gitbrowse() end, { desc = "Git Browse" })
+vim.keymap.set("n", "<leader>gg", function() require("snacks").lazygit() end, { desc = "Lazygit" })
+vim.keymap.set(
+  "n",
+  "<leader>un",
+  function() require("snacks").notifier.hide() end,
+  { desc = "Dismiss All Notifications" }
+)
+vim.keymap.set(
+  { "n", "t" },
+  "]]",
+  function() require("snacks").words.jump(vim.v.count1) end,
+  { desc = "Next Reference" }
+)
+vim.keymap.set(
+  { "n", "t" },
+  "[[",
+  function() require("snacks").words.jump(-vim.v.count1) end,
+  { desc = "Prev Reference" }
+)
