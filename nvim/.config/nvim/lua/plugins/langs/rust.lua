@@ -9,18 +9,16 @@ registry.register {
   },
 }
 
-utils.add({ src = "https://github.com/mrcjkb/rustaceanvim", version = vim.version.range "8.*" }, function()
+local codelldb = vim.fn.exepath "codelldb"
+local codelldb_lib_ext = io.popen("uname"):read "*l" == "Linux" and ".so" or ".dylib"
+local library_path = vim.fn.expand("$MASON/opt/lldb/lib/liblldb" .. codelldb_lib_ext)
+
+vim.g.rustaceanvim = function()
   local codelldb = vim.fn.exepath "codelldb"
   local codelldb_lib_ext = io.popen("uname"):read "*l" == "Linux" and ".so" or ".dylib"
   local library_path = vim.fn.expand("$MASON/opt/lldb/lib/liblldb" .. codelldb_lib_ext)
-
-  ---@type rustaceanvim.Opts
-  local opts = {
-    tools = {
-      float_win_config = {
-        border = "rounded",
-      },
-    },
+  return {
+    tools = { float_win_config = { border = "rounded" } },
     server = {
       on_attach = function(_, bufnr)
         if vim.lsp.inlay_hint then vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
@@ -67,9 +65,20 @@ utils.add({ src = "https://github.com/mrcjkb/rustaceanvim", version = vim.versio
       },
     },
     dap = {
-      adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb, library_path),
+      adapter = {
+        type = "server",
+        port = "${port}",
+        executable = {
+          command = codelldb,
+          args = { "--liblldb", library_path, "--port", "${port}" },
+        },
+      },
     },
   }
+end
 
-  vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts)
-end, "later")
+utils.add(
+  { src = "https://github.com/mrcjkb/rustaceanvim", version = vim.version.range "8.*" },
+  function() end,
+  "later"
+)
