@@ -46,10 +46,16 @@ utils.add("https://github.com/nvim-neotest/neotest", function()
   require("neotest").setup {
     adapters = final_adapters,
     status = { virtual_text = true },
-    output = { open_on_run = true },
+    output = { enabled = true, open_on_run = "short" },
     quickfix = {
       enabled = true,
-      open = true,
+      open = false,
+    },
+    floating = {
+      border = "rounded",
+      max_height = 0.6,
+      max_width = 0.6,
+      options = {},
     },
     consumers = {
       notify = function(client)
