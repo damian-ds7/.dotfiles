@@ -45,6 +45,7 @@ end, "later")
 
 utils.add("https://github.com/jay-babu/mason-nvim-dap.nvim", function()
   vim.cmd.packadd "mason.nvim"
+  vim.cmd.packadd "nvim-dap"
   require("mason-nvim-dap").setup {
     automatic_installation = true,
     ensure_installed = registry.get_all().tools or {},
