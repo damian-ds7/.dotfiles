@@ -31,13 +31,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("grD", vim.lsp.buf.declaration, "Goto Declaration")
     map("gD", vim.lsp.buf.declaration, "Goto Declaration")
 
-    local builtin = require "telescope.builtin"
+    local builtin = lazy.require_on_index "telescope.builtin"
+
     map("grr", function() builtin.lsp_references { reuse_win = true } end, "References")
     map("gd", function() builtin.lsp_definitions { reuse_win = true } end, "Definition")
     map("gri", function() builtin.lsp_implementations { reuse_win = true } end, "Implementation")
     map("grt", function() builtin.lsp_type_definitions { reuse_win = true } end, "Type Definition")
-    map("gs", builtin.lsp_document_symbols, "Document Symbols")
-    map("gS", builtin.lsp_dynamic_workspace_symbols, "Workspace Symbols")
+    map("gs", function() builtin.lsp_document_symbols() end, "Document Symbols")
+    map("gS", function() builtin.lsp_dynamic_workspace_symbols() end, "Workspace Symbols")
 
     if client and client:supports_method("textDocument/inlayHint", buf) then
       map(
@@ -49,24 +50,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-local icons = require "utils.icons"
-
-vim.diagnostic.config {
-  underline = true,
-  update_in_insert = false,
-  virtual_text = {
-    spacing = 4,
-    source = "if_many",
-    prefix = "●",
-  },
-  severity_sort = true,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-      [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
-      [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-      [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
-    },
-  },
-  float = { border = "rounded", source = "if_many" },
-}
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    local icons = require "utils.icons"
+    vim.diagnostic.config {
+      underline = true,
+      update_in_insert = false,
+      virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = "●",
+      },
+      severity_sort = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+          [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+          [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+          [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+        },
+      },
+      float = { border = "rounded", source = "if_many" },
+    }
+  end,
+})

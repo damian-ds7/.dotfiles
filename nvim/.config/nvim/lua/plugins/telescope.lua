@@ -23,7 +23,7 @@ utils.add("https://github.com/nvim-telescope/telescope.nvim", function()
   }
   pcall(require("telescope").load_extension, "fzf")
   pcall(require("telescope").load_extension, "ui-select")
-end)
+end, "later")
 
 utils.on_pack_changed("telescope-fzf-native.nvim", "install", function(data)
   if not data.active then vim.cmd.packadd "telescope-fzf-native.nvim" end

@@ -1,3 +1,6 @@
+vim.loader.enable()
+_G.lazy = require "utils.lazy-require"
+
 require "config.options"
 require "config.keymaps"
 require "config.autocmds"

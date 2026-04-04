@@ -9,10 +9,6 @@ registry.register {
   },
 }
 
-local codelldb = vim.fn.exepath "codelldb"
-local codelldb_lib_ext = io.popen("uname"):read "*l" == "Linux" and ".so" or ".dylib"
-local library_path = vim.fn.expand("$MASON/opt/lldb/lib/liblldb" .. codelldb_lib_ext)
-
 vim.g.rustaceanvim = function()
   local codelldb = vim.fn.exepath "codelldb"
   local codelldb_lib_ext = io.popen("uname"):read "*l" == "Linux" and ".so" or ".dylib"
@@ -80,5 +76,5 @@ end
 utils.add(
   { src = "https://github.com/mrcjkb/rustaceanvim", version = vim.version.range "8.*" },
   function() end,
-  "later"
+  "filetype:rust"
 )
