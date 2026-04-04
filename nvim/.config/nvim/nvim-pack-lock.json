@@ -171,6 +171,10 @@
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
     },
+    "vim-matchup": {
+      "rev": "0fb1e6b7cea34e931a2af50b8ad565c5c4fd8f4d",
+      "src": "https://github.com/andymass/vim-matchup"
+    },
     "vim-tmux-navigator": {
       "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
       "src": "https://github.com/christoomey/vim-tmux-navigator"

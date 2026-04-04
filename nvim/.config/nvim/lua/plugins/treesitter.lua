@@ -65,3 +65,15 @@ utils.add(
   function() vim.g.no_plugin_maps = true end,
   "event:BufReadPost,BufWritePost,BufNewFile"
 )
+
+utils.add(
+  "https://github.com/andymass/vim-matchup",
+  function()
+    require("match-up").setup {
+      treesitter = {
+        stopline = 500,
+      },
+    }
+  end,
+  "event:BufReadPost,BufWritePost,BufNewFile"
+)
