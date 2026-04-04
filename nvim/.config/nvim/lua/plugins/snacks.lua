@@ -10,13 +10,19 @@ utils.add("https://github.com/folke/snacks.nvim", function()
 
   snacks.setup {
     bigfile = { enabled = true },
-    indent = { enabled = true },
+    indent = {
+      indent = {
+        enabled = false,
+      },
+      scope = {
+        enabled = true,
+      },
+    },
     gitbrowse = { enabled = true },
     lazygit = { enabled = true },
     picker = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
-    scope = { enabled = true },
     scroll = { enabled = true },
     image = { enabled = true },
     zen = {
