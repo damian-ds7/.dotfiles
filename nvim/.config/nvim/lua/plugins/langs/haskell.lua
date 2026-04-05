@@ -2,7 +2,7 @@ local registry = require "core.lang_reg"
 
 local lang = {
   servers = {
-    hls = {},
+    hls = { mason_name = "haskell-language-server" },
   },
 
   tools = { "haskell-debug-adapter" },

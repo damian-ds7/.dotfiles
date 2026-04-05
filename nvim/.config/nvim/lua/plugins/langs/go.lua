@@ -53,7 +53,9 @@ registry.register {
         end
       end,
     },
-    golangci_lint_ls = {},
+    golangci_lint_ls = {
+      mason_name = "golangci-lint-langserver",
+    },
   },
   tools = { "goimports", "golines", "golangci-lint", "delve" },
   treesitter = { "go", "gomod", "gosum" },

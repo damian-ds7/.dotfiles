@@ -2,7 +2,7 @@ local registry = require "core.lang_reg"
 local utils = require "utils.pack"
 
 registry.register {
-  tools = { "rust_analyzer" },
+  tools = { "rust-analyzer" },
   treesitter = { "rust", "ron" },
   neotest_adapters = {
     ["rustaceanvim.neotest"] = {},
