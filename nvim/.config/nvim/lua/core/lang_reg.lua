@@ -1,47 +1,7 @@
 local M = {
-  servers = {
-    lua_ls = {
-      on_init = function(client)
-        if client.workspace_folders then
-          local path = client.workspace_folders[1].name
-          if
-            path ~= vim.fn.stdpath "config"
-            and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
-          then
-            return
-          end
-        end
-
-        client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-          runtime = {
-            version = "LuaJIT",
-            path = { "lua/?.lua", "lua/?/init.lua" },
-          },
-          workspace = {
-            checkThirdParty = false,
-            library = vim.api.nvim_get_runtime_file("", true),
-          },
-        })
-      end,
-      settings = {
-        Lua = {
-          completion = {
-            callSnippet = "Replace",
-          },
-        },
-      },
-    },
-    bashls = {
-      filetypes = { "bash", "zsh", "sh" },
-      settings = {
-        bashIde = {
-          shellcheckPath = vim.fn.stdpath "data" .. "/mason/bin/shellcheck",
-        },
-      },
-    },
-  },
-  tools = { "stylua", "lua-language-server", "bash-language-server", "shfmt", "shellcheck" },
-  treesitter = { "lua", "luadoc", "luap", "bash", "zsh" },
+  servers = {},
+  tools = {},
+  treesitter = {},
   formatters = {},
   dap = {
     adapters = {},
