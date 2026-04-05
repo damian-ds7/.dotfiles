@@ -130,15 +130,8 @@ function nvim() {
         return $?
     fi
 
-    local target_dir="${NVIM_TERM_ORIG_DIR:-}"
-
     if [ $# -eq 0 ]; then
-        if [[ -n "$TMUX" ]]; then
-            tmux detach-client
-        else
-            command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:FloatTerm<CR>"
-        fi
-        return 0
+        command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:FloatTerm<CR>"
     fi
 
     local files=()
@@ -157,11 +150,7 @@ function nvim() {
         command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:e $fp<CR>"
     done
 
-    if [[ -n "$TMUX" ]]; then
-        tmux detach-client
-    else
-        command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:FloatTerm<CR>"
-    fi
+    command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:FloatTerm<CR>"
 
     return 0
 }
