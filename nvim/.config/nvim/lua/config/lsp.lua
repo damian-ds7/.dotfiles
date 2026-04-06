@@ -47,6 +47,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         "Toggle Inlay Hints"
       )
     end
+
+    if client and client:supports_method "textDocument/codeLens" then vim.lsp.codelens.enable(true) end
   end,
 })
 
