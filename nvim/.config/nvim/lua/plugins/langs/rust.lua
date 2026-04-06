@@ -71,8 +71,4 @@ vim.g.rustaceanvim = function()
   }
 end
 
-utils.add(
-  { src = "https://github.com/mrcjkb/rustaceanvim", version = vim.version.range "8.*" },
-  function() end,
-  "filetype:rust"
-)
+utils.add({ src = utils.gh "mrcjkb/rustaceanvim", version = vim.version.range "8.*" }, function() end, "filetype:rust")

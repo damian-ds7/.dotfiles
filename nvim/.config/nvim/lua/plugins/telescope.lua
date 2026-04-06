@@ -1,10 +1,10 @@
 local utils = require "utils.pack"
 
-utils.ensure "https://github.com/nvim-lua/plenary.nvim"
-utils.ensure "https://github.com/nvim-telescope/telescope-ui-select.nvim"
-utils.ensure "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+utils.ensure (utils.gh "nvim-lua/plenary.nvim")
+utils.ensure (utils.gh "nvim-telescope/telescope-ui-select.nvim")
+utils.ensure (utils.gh "nvim-telescope/telescope-fzf-native.nvim")
 
-utils.add("https://github.com/nvim-telescope/telescope.nvim", function()
+utils.add(utils.gh "nvim-telescope/telescope.nvim", function()
   vim.cmd.packadd "plenary.nvim"
   vim.cmd.packadd "telescope-ui-select.nvim"
   if vim.fn.executable "make" == 1 then vim.cmd.packadd "telescope-fzf-native.nvim" end

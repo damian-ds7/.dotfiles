@@ -1,7 +1,7 @@
 local utils = require "utils.pack"
 
 utils.add(
-  "https://github.com/folke/todo-comments.nvim",
+  utils.gh "folke/todo-comments.nvim",
   function()
     require("todo-comments").setup {
       keywords = {

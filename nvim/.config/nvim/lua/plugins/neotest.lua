@@ -1,11 +1,11 @@
 local utils = require "utils.pack"
 local registry = require "core.lang_reg"
 
-utils.ensure "https://github.com/nvim-neotest/nvim-nio"
-utils.ensure "https://github.com/nvim-lua/plenary.nvim"
-utils.ensure "https://github.com/nvim-treesitter/nvim-treesitter"
+utils.ensure (utils.gh "nvim-neotest/nvim-nio")
+utils.ensure (utils.gh "nvim-lua/plenary.nvim")
+utils.ensure (utils.gh "nvim-treesitter/nvim-treesitter")
 
-utils.add("https://github.com/nvim-neotest/neotest", function()
+utils.add(utils.gh "nvim-neotest/neotest", function()
   vim.cmd.packadd "nvim-nio"
   vim.cmd.packadd "plenary.nvim"
   vim.cmd.packadd "nvim-treesitter"

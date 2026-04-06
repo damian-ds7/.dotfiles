@@ -69,9 +69,9 @@ registry.register {
   },
 }
 
-utils.add("https://github.com/leoluz/nvim-dap-go", function()
+utils.add(utils.gh "leoluz/nvim-dap-go", function()
   pcall(vim.cmd.packadd, "nvim-dap")
   require("dap-go").setup()
 end, "filetype:go")
 
-utils.add("https://github.com/fredrikaverpil/neotest-golang", nil, "filetype:go")
+utils.add(utils.gh "fredrikaverpil/neotest-golang", nil, "filetype:go")

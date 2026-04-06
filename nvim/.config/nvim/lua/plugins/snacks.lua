@@ -5,7 +5,7 @@ _G.bt = function() require("snacks").debug.backtrace() end
 
 vim.print = _G.dd
 
-utils.add("https://github.com/folke/snacks.nvim", function()
+utils.add(utils.gh "folke/snacks.nvim", function()
   local snacks = require "snacks"
 
   snacks.setup {

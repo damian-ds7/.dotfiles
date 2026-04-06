@@ -18,4 +18,4 @@ local config = function()
   end
 end
 
-utils.add("https://github.com/christoomey/vim-tmux-navigator", config)
+utils.add(utils.gh "christoomey/vim-tmux-navigator", config)

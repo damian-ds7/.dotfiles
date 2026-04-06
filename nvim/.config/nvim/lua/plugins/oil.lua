@@ -1,8 +1,8 @@
 local utils = require "utils.pack"
 
-utils.ensure "https://github.com/benomahony/oil-git.nvim"
+utils.ensure(utils.gh "benomahony/oil-git.nvim")
 
-utils.add("https://github.com/stevearc/oil.nvim", function()
+utils.add(utils.gh "stevearc/oil.nvim", function()
   vim.cmd.packadd "oil-git.nvim"
   require("oil").setup {
     default_file_explorer = true,

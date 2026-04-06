@@ -1,7 +1,7 @@
 local utils = require "utils.pack"
 
 utils.add(
-  "https://github.com/mason-org/mason.nvim",
+  utils.gh "mason-org/mason.nvim",
   function()
     require("mason").setup {
       ui = { border = "rounded" },
@@ -11,7 +11,7 @@ utils.add(
 
 vim.keymap.set("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
 
-utils.add("https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim", function()
+utils.add(utils.gh "WhoIsSethDaniel/mason-tool-installer.nvim", function()
   local registry = require("core.lang_reg").get_all()
   local ensure = {}
   if registry.servers then

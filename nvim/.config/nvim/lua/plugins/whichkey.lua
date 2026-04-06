@@ -45,4 +45,4 @@ local config = function()
   }
 end
 
-utils.add("https://github.com/folke/which-key.nvim", config, "later")
+utils.add(utils.gh "folke/which-key.nvim", config, "later")

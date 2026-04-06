@@ -1,6 +1,6 @@
 local utils = require "utils.pack"
 
-utils.add("https://github.com/NickvanDyke/opencode.nvim", function()
+utils.add(utils.gh "NickvanDyke/opencode.nvim", function()
   vim.cmd.packadd "snacks.nvim"
 
   local opencode_cmd = "opencode --port"

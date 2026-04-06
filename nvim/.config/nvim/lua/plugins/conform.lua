@@ -1,7 +1,7 @@
 local utils = require "utils.pack"
 local registry = require "core.lang_reg"
 
-utils.add("https://github.com/stevearc/conform.nvim", function()
+utils.add(utils.gh "stevearc/conform.nvim", function()
   local formatters_by_ft = registry.get_all().formatters
   formatters_by_ft = vim.tbl_extend("force", formatters_by_ft, {
     lua = { "stylua" },

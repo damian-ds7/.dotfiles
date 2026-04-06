@@ -1,8 +1,8 @@
 local utils = require "utils.pack"
 
-utils.ensure "https://github.com/MunifTanjim/nui.nvim"
+utils.ensure(utils.gh "nvim-neotest/MunifTanjim/nui.nvim")
 
-utils.add("https://github.com/folke/noice.nvim", function()
+utils.add(utils.gh "folke/noice.nvim", function()
   vim.cmd.packadd "nui.nvim"
   require("noice").setup {
     lsp = {

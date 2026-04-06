@@ -60,7 +60,7 @@ local blink_config = function()
   }
 end
 
-utils.ensure "https://github.com/rafamadriz/friendly-snippets"
-utils.ensure { src = "https://github.com/saghen/blink.compat", version = vim.version.range "2.*" }
+utils.ensure (utils.gh "rafamadriz/friendly-snippets")
+utils.ensure { src = utils.gh "saghen/blink.compat", version = vim.version.range "2.*" }
 
-utils.add({ src = "https://github.com/saghen/blink.cmp", version = vim.version.range "1.*" }, blink_config)
+utils.add({ src = utils.gh "saghen/blink.cmp", version = vim.version.range "1.*" }, blink_config)

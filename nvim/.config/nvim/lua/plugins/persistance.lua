@@ -1,6 +1,6 @@
 local utils = require "utils.pack"
 
-utils.add("https://github.com/folke/persistence.nvim", function() require("persistence").setup {} end)
+utils.add(utils.gh "folke/persistence.nvim", function() require("persistence").setup {} end)
 
 vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end, { desc = "Restore Session" })
 

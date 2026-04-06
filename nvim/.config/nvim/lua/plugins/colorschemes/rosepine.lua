@@ -11,4 +11,4 @@ local config = function()
   }
 end
 
-utils.add({ src = "https://github.com/rose-pine/neovim", name = "rose-pine" }, config)
+utils.add({ src = utils.gh "rose-pine/neovim", name = "rose-pine" }, config)

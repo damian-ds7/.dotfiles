@@ -89,10 +89,10 @@ local function config()
   }
 end
 
-utils.add("https://github.com/nvim-mini/mini.nvim", config, "event:BufReadPost,BufWritePost,BufNewFile")
+utils.add(utils.gh "nvim-mini/mini.nvim", config, "event:BufReadPost,BufWritePost,BufNewFile")
 
 -- mini.icons
-utils.add("https://github.com/nvim-mini/mini.icons", function()
+utils.add(utils.gh "nvim-mini/mini.icons", function()
   require("mini.icons").setup {
     file = {
       [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },

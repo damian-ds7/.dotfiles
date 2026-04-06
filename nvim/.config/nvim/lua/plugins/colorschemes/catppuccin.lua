@@ -16,4 +16,4 @@ local config = function()
   }
 end
 
-utils.add({ src = "https://github.com/catppuccin/nvim", name = "catppuccin" }, config)
+utils.add({ src = utils.gh "catppuccin/nvim", name = "catppuccin" }, config)

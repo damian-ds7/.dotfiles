@@ -13,4 +13,4 @@ local function config()
   end
 end
 
-utils.add("https://github.com/neovim/nvim-lspconfig", config, "later")
+utils.add(utils.gh "neovim/nvim-lspconfig", config, "later")

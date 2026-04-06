@@ -1,7 +1,7 @@
 local icons = require "utils.icons"
 local utils = require "utils.pack"
 
-utils.add("https://github.com/nvim-lualine/lualine.nvim", function()
+utils.add(utils.gh "nvim-lualine/lualine.nvim", function()
   require("lualine").setup {
     options = {
       theme = "auto",

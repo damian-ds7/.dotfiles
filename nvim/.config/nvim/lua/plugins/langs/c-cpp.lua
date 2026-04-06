@@ -91,7 +91,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 utils.add(
-  "https://github.com/Civitasv/cmake-tools.nvim",
+  utils.gh "Civitasv/cmake-tools.nvim",
   function()
     require("cmake-tools").setup {
       cmake_command = "cmake",

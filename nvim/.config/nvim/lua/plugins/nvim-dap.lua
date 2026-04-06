@@ -1,12 +1,12 @@
 local utils = require "utils.pack"
 local registry = require "core.lang_reg"
 
-utils.ensure "https://github.com/rcarriga/nvim-dap-ui"
-utils.ensure "https://github.com/nvim-neotest/nvim-nio"
-utils.ensure "https://github.com/theHamsta/nvim-dap-virtual-text"
-utils.ensure "https://github.com/jay-babu/mason-nvim-dap.nvim"
+utils.ensure(utils.gh "rcarriga/nvim-dap-ui")
+utils.ensure(utils.gh "nvim-neotest/nvim-nio")
+utils.ensure(utils.gh "theHamsta/nvim-dap-virtual-text")
+utils.ensure(utils.gh "jay-babu/mason-nvim-dap.nvim")
 
-utils.add("https://github.com/mfussenegger/nvim-dap", function()
+utils.add(utils.gh "mfussenegger/nvim-dap", function()
   vim.cmd.packadd "nvim-nio"
   vim.cmd.packadd "nvim-dap-ui"
   vim.cmd.packadd "nvim-dap-virtual-text"
@@ -43,7 +43,7 @@ utils.add("https://github.com/mfussenegger/nvim-dap", function()
   vscode.json_decode = function(str) return vim.json.decode(json.json_strip_comments(str)) end
 end, "later")
 
-utils.add("https://github.com/jay-babu/mason-nvim-dap.nvim", function()
+utils.add(utils.gh "jay-babu/mason-nvim-dap.nvim", function()
   vim.cmd.packadd "mason.nvim"
   vim.cmd.packadd "nvim-dap"
   require("mason-nvim-dap").setup {

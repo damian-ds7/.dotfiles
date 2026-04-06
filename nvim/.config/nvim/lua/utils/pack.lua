@@ -1,7 +1,10 @@
 local M = {}
 local plugins = {}
 
-vim.pack.add { "https://github.com/echasnovski/mini.misc" }
+---@param package_handle string 'username/repo'
+function M.gh(package_handle) return "https://github.com/" .. package_handle end
+
+vim.pack.add { M.gh "echasnovski/mini.misc" }
 local misc = require "mini.misc"
 
 ---@param f function
