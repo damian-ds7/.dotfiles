@@ -24,15 +24,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
         callback = vim.lsp.buf.clear_references,
       })
     end
+    local builtin = lazy.require_on_index "telescope.builtin"
 
     map("<leader>cr", vim.lsp.buf.rename, "Rename")
     map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
     map("<leader>cl", vim.lsp.codelens.run, "Codelens", { "n", "x" })
+    map("<leader>cD", vim.lsp.buf.declaration, "Goto Declaration")
+    map("<leader>cd", function() builtin.lsp_definitions { reuse_win = true } end, "Definition")
+    map("<leader>crr", function() builtin.lsp_references { reuse_win = true } end, "References")
+    map("<leader>ci", function() builtin.lsp_implementations { reuse_win = true } end, "Implementation")
+    map("<leader>ct", function() builtin.lsp_type_definitions { reuse_win = true } end, "Type Definition")
+    map("<leader>cs", function() builtin.lsp_document_symbols() end, "Document Symbols")
+    map("<leader>cS", function() builtin.lsp_dynamic_workspace_symbols() end, "Workspace Symbols")
+
+
     map("grD", vim.lsp.buf.declaration, "Goto Declaration")
     map("gD", vim.lsp.buf.declaration, "Goto Declaration")
-
-    local builtin = lazy.require_on_index "telescope.builtin"
-
     map("grr", function() builtin.lsp_references { reuse_win = true } end, "References")
     map("gd", function() builtin.lsp_definitions { reuse_win = true } end, "Definition")
     map("gri", function() builtin.lsp_implementations { reuse_win = true } end, "Implementation")
@@ -48,15 +55,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
         function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = buf }) end,
         { buffer = buf, desc = "Toggle Inlay Hints" }
       )
-    end
 
-    vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
-      buffer = buf,
-      once = false,
-      callback = function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = buf }, { bufnr = buf })
-      end,
-    })
+      local hint_state = false
+
+      vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+        buffer = buf,
+        callback = function(args)
+          if args.event == "InsertEnter" then
+            hint_state = vim.lsp.inlay_hint.is_enabled { bufnr = buf }
+            if hint_state then vim.lsp.inlay_hint.enable(false, { bufnr = buf }) end
+          else
+            if hint_state then vim.lsp.inlay_hint.enable(true, { bufnr = buf }) end
+          end
+        end,
+      })
+    end
 
     if client and client:supports_method "textDocument/codeLens" then
       vim.lsp.codelens.enable(true)
