@@ -48,6 +48,13 @@ utils.add("https://github.com/folke/snacks.nvim", function()
   snacks.toggle.treesitter():map "<leader>uT"
   snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map "<leader>ub"
   snacks.toggle.inlay_hints():map "<leader>uh"
+  snacks.toggle
+    .new({
+      name = "Code Lens",
+      get = function() return vim.lsp.codelens.is_enabled { bufnr = buf } end,
+      set = function() vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled { bufnr = buf }) end,
+    })
+    :map "<leader>ue"
   snacks.toggle.indent():map "<leader>ug"
   snacks.toggle.dim():map "<leader>uD"
 end)

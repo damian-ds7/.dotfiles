@@ -41,14 +41,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gS", function() builtin.lsp_dynamic_workspace_symbols() end, "Workspace Symbols")
 
     if client and client:supports_method("textDocument/inlayHint", buf) then
-      map(
+      vim.lsp.inlay_hint.enable(true)
+      vim.keymap.set(
+        "n",
         "<leader>uh",
         function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = buf }) end,
-        "Toggle Inlay Hints"
+        { buffer = buf, desc = "Toggle Inlay Hints" }
       )
     end
 
-    if client and client:supports_method "textDocument/codeLens" then vim.lsp.codelens.enable(true) end
+    if client and client:supports_method "textDocument/codeLens" then
+      vim.lsp.codelens.enable(true)
+      vim.keymap.set(
+        "n",
+        "<leader>ue",
+        function() vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled { bufnr = buf }) end,
+        { buffer = buf, desc = "Toggle Codelens" }
+      )
+    end
   end,
 })
 
