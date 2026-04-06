@@ -41,6 +41,7 @@ vim.keymap.set("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "Se
 vim.keymap.set("n", "<leader>sR", "<cmd>Telescope resume<cr>", { desc = "Search Resume" })
 vim.keymap.set("n", "<leader>s.", "<cmd>Telescope oldfiles<cr>", { desc = "Search Recent Files" })
 vim.keymap.set("n", "<leader>sc", "<cmd>Telescope commands<cr>", { desc = "Search Commands" })
+vim.keymap.set("n", "<leader>sq", "<cmd>Telescope quickfix<cr>", { desc = "Search Quickfix" })
 vim.keymap.set({ "n", "v" }, "<leader>sw", "<cmd>Telescope grep_string<cr>", { desc = "Search current Word" })
 vim.keymap.set(
   "n",
