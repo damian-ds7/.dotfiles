@@ -17,8 +17,6 @@ vim.g.rustaceanvim = function()
     tools = { float_win_config = { border = "rounded" } },
     server = {
       on_attach = function(_, bufnr)
-        if vim.lsp.inlay_hint then vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
-
         vim.keymap.set(
           "n",
           "<leader>ca",
