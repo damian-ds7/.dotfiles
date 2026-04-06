@@ -37,6 +37,9 @@ end
 ---@param trigger string|nil  'now' | 'later' | 'event:Name[,Name2]'
 function M.add(spec, config, trigger)
   spec = type(spec) == "string" and { src = spec } or spec
+
+  if vim.g.vscode and not (spec.data and spec.data.vscode) then return end
+
   table.insert(plugins, {
     spec = spec,
     name = name_from_spec(spec),

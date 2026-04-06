@@ -82,7 +82,7 @@ local function config()
   }
 end
 
-utils.add(utils.gh "nvim-mini/mini.nvim", config, "event:BufReadPost,BufWritePost,BufNewFile")
+utils.add({src = utils.gh "nvim-mini/mini.nvim", data = {vscode = true}}, config, "event:BufReadPost,BufWritePost,BufNewFile")
 
 -- mini.icons
 utils.add(utils.gh "nvim-mini/mini.icons", function()

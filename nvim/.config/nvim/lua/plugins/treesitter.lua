@@ -53,7 +53,7 @@ local config = function()
   })
 end
 
-utils.add(utils.gh "nvim-treesitter/nvim-treesitter", config, "later")
+utils.add({ src = utils.gh "nvim-treesitter/nvim-treesitter", data = { vscode = true } }, config, "later")
 
 utils.on_pack_changed("nvim-treesitter", "update", function(data)
   if not data.active then vim.cmd.packadd "nvim-treesitter" end
@@ -61,13 +61,13 @@ utils.on_pack_changed("nvim-treesitter", "update", function(data)
 end)
 
 utils.add(
-  utils.gh "nvim-treesitter/nvim-treesitter-textobjects",
+  { src = utils.gh "nvim-treesitter/nvim-treesitter-textobjects", data = { vscode = true } },
   function() vim.g.no_plugin_maps = true end,
   "event:BufReadPost,BufWritePost,BufNewFile"
 )
 
 utils.add(
-  utils.gh "andymass/vim-matchup",
+  { src = utils.gh "andymass/vim-matchup", data = { vscode = true } },
   function()
     require("match-up").setup {
       treesitter = {
