@@ -4,6 +4,10 @@ local lang = {
   servers = {
     lua_ls = {
       mason_name = "lua-language-server",
+      on_attach = function(client, buf)
+        -- HACK: enabling inlay hints won't work in LspAttach, needs to be delayed
+        vim.defer_fn(function() vim.lsp.inlay_hint.enable(true, { bufnr = buf }) end, 100)
+      end,
       on_init = function(client)
         if client.workspace_folders then
           local path = client.workspace_folders[1].name
@@ -22,7 +26,13 @@ local lang = {
           },
           workspace = {
             checkThirdParty = false,
-            library = vim.api.nvim_get_runtime_file("", true),
+            library = {
+              vim.env.VIMRUNTIME,
+              -- Depending on the usage, you might want to add additional paths
+              -- here.
+              -- '${3rd}/luv/library',
+              -- '${3rd}/busted/library',
+            },
           },
         })
       end,
