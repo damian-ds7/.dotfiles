@@ -50,6 +50,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
       )
     end
 
+    vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+      buffer = buf,
+      once = false,
+      callback = function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = buf }, { bufnr = buf })
+      end,
+    })
+
     if client and client:supports_method "textDocument/codeLens" then
       vim.lsp.codelens.enable(true)
       vim.keymap.set(
