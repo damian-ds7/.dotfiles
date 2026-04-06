@@ -1,6 +1,6 @@
 local utils = require "utils.pack"
 
-utils.ensure(utils.gh "nvim-neotest/MunifTanjim/nui.nvim")
+utils.ensure(utils.gh "MunifTanjim/nui.nvim")
 
 utils.add(utils.gh "folke/noice.nvim", function()
   vim.cmd.packadd "nui.nvim"
