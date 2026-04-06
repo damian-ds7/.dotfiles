@@ -80,13 +80,6 @@ local function config()
       update_n_lines = "gzn",
     },
   }
-
-  require("mini.diff").setup {
-    view = {
-      style = "sign",
-      signs = { add = "▎", change = "▎", delete = "" },
-    },
-  }
 end
 
 utils.add(utils.gh "nvim-mini/mini.nvim", config, "event:BufReadPost,BufWritePost,BufNewFile")
