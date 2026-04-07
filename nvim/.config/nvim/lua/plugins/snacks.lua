@@ -96,7 +96,7 @@ vim.keymap.set(
   function() require("snacks").notifier.show_history() end,
   { desc = "Notification History" }
 )
-vim.keymap.set("n", "<leader>cR", function() require("snacks").rename.rename_file() end, { desc = "Rename File" })
+vim.keymap.set("n", "<leader>cf", function() require("snacks").rename.rename_file() end, { desc = "Rename File" })
 vim.keymap.set({ "n", "v" }, "<leader>gB", function() require("snacks").gitbrowse() end, { desc = "Git Browse" })
 vim.keymap.set("n", "<leader>gg", function() require("snacks").lazygit() end, { desc = "Lazygit" })
 vim.keymap.set(
