@@ -7,6 +7,7 @@ local lang = {
       on_attach = function(client, buf)
         -- HACK: enabling inlay hints won't work in LspAttach, needs to be delayed
         vim.defer_fn(function() vim.lsp.inlay_hint.enable(true, { bufnr = buf }) end, 100)
+        vim.lsp.codelens.enable(false, { bufnr = buf })
       end,
       on_init = function(client)
         if client.workspace_folders then
