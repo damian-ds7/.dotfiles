@@ -35,7 +35,7 @@ utils.add(utils.gh "folke/noice.nvim", function()
   }
 end, "later")
 
-vim.keymap.set("n", "<leader>sn", "", { desc = "+noice" })
+vim.keymap.set("n", "<leader>n", "", { desc = "+noice" })
 vim.keymap.set(
   "c",
   "<S-Enter>",
@@ -46,7 +46,7 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>nl", function() require("noice").cmd "last" end, { desc = "Noice Last Message" })
 vim.keymap.set("n", "<leader>nh", function() require("noice").cmd "history" end, { desc = "Noice History" })
 vim.keymap.set("n", "<leader>na", function() require("noice").cmd "all" end, { desc = "Noice All" })
-vim.keymap.set("n", "<leader>nd", function() require("noice").cmd "dismiss" end, { desc = "Dismiss All" })
+vim.keymap.set("n", "<leader>nd", function() require("noice").cmd "dismiss" end, { desc = "Noice Dismiss All" })
 vim.keymap.set(
   "n",
   "<leader>nt",

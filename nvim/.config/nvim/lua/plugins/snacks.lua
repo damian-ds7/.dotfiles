@@ -90,12 +90,6 @@ vim.keymap.set("n", "<leader>uz", function() require("snacks").zen() end, { desc
 vim.keymap.set("n", "<leader>uZ", function() require("snacks").zen.zoom() end, { desc = "Toggle Zoom" })
 vim.keymap.set("n", "<leader>>", function() require("snacks").scratch() end, { desc = "Toggle Scratch Buffer" })
 vim.keymap.set("n", "<leader>S", function() require("snacks").scratch.select() end, { desc = "Select Scratch Buffer" })
-vim.keymap.set(
-  "n",
-  "<leader>n",
-  function() require("snacks").notifier.show_history() end,
-  { desc = "Notification History" }
-)
 vim.keymap.set("n", "<leader>cf", function() require("snacks").rename.rename_file() end, { desc = "Rename File" })
 vim.keymap.set({ "n", "v" }, "<leader>gB", function() require("snacks").gitbrowse() end, { desc = "Git Browse" })
 vim.keymap.set("n", "<leader>gg", function() require("snacks").lazygit() end, { desc = "Lazygit" })
