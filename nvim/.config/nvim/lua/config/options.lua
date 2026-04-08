@@ -24,8 +24,9 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
 opt.expandtab = true
-opt.shiftwidth = 4
+opt.shiftwidth = 2
 opt.tabstop = 2
+opt.softtabstop = 2
 opt.shiftround = true
 opt.smartindent = true
 opt.breakindent = true
