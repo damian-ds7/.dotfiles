@@ -24,14 +24,17 @@ act as tab on quick tap, but change hjkl keys to arrow keys on hold.
 (defsrc
   tab
   caps         h    j    k    l
+  ret
 )
 
 (deflayer default
   @tab
   @cap         _    _    _    _
+  @ret
 )
 
 (deflayer arrows
+  _
   _
   _
               left down up rght
@@ -39,5 +42,6 @@ act as tab on quick tap, but change hjkl keys to arrow keys on hold.
 
 (defalias
   cap (tap-hold-press 200 200 esc lctl)
+  ret (tap-hold-press 200 200 ret rsft)
   tab (tap-hold-press 200 200 tab (layer-toggle arrows))
 )
