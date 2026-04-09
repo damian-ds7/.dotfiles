@@ -32,15 +32,15 @@ local function config()
     current_line_blame = true,
     on_attach = function(buffer)
       local gs = package.loaded.gitsigns
-      local wk = require "which-key"
+      local ok, wk = pcall(require, "which-key")
       local icon, hl = MiniIcons.get("filetype", "git")
 
       local function map(mode, l, r, desc)
         vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc, silent = true })
-        wk.add { l, r, desc = desc, icon = { icon = icon, hl = hl } }
+        if ok then wk.add { l, r, desc = desc, icon = { icon = icon, hl = hl } } end
       end
 
-      wk.add { "gh", group = "Hunks", icon = { icon = icon, hl = hl } }
+      if ok then wk.add { "gh", group = "Hunks", icon = { icon = icon, hl = hl } } end
 
       map("n", "]h", function()
         if vim.wo.diff then
