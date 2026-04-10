@@ -114,9 +114,6 @@ map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", {
 -- Writing helpers
 map("i", "<A-.>", " -> ", { silent = true })
 map("v", "<leader>p", '"_dP', { desc = "Paste without yanking" })
-map("i", ",", ",<c-g>u") -- Undo breakpoints
-map("i", ".", ".<c-g>u")
-map("i", ";", ";<c-g>u")
 
 -- Commenting
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Comment Below" })
