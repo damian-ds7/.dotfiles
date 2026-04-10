@@ -82,9 +82,12 @@ local function config()
   }
 end
 
-utils.add({src = utils.gh "nvim-mini/mini.nvim", data = {vscode = true}}, config, "event:BufReadPost,BufWritePost,BufNewFile")
+utils.add(
+  { src = utils.gh "nvim-mini/mini.nvim", data = { vscode = true } },
+  config,
+  "event:BufReadPost,BufWritePost,BufNewFile"
+)
 
--- mini.icons
 utils.add(utils.gh "nvim-mini/mini.icons", function()
   require("mini.icons").setup {
     file = {
@@ -99,4 +102,44 @@ utils.add(utils.gh "nvim-mini/mini.icons", function()
     require("mini.icons").mock_nvim_web_devicons()
     return package.loaded["nvim-web-devicons"]
   end
+end)
+
+utils.add(utils.gh "nvim-mini/mini.sessions", function()
+  local sessions = require "mini.sessions"
+  sessions.setup { force = { read = false, write = true, delete = true } }
+
+  local function encode(path) return path:gsub("/", "-"):gsub("%-+", "-"):gsub("^%-", ""):gsub("%-$", "") end
+
+  local function current_session_name() return encode(vim.fn.getcwd()) end
+
+  local function restore_session()
+    local name = current_session_name()
+    local detected = require("mini.sessions").detected or {}
+
+    if detected[name] then require("mini.sessions").read(name) end
+  end
+
+  vim.keymap.set("n", "<leader>qs", restore_session, { desc = "Restore Session" })
+
+  vim.keymap.set("n", "<leader>ql", function() sessions.select() end, { desc = "Select Session" })
+
+  vim.keymap.set(
+    "n",
+    "<leader>qw",
+    function() sessions.write() end,
+    { desc = "Save Current Session" }
+  )
+
+  vim.keymap.set("n", "<leader>qd", function() sessions.delete() end, { desc = "Delete Current Session" })
+
+  vim.keymap.set("n", "<leader>R", function() sessions.restart() end, { desc = "Restart Neovim" })
+
+  vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+      local name = current_session_name()
+      local detected = sessions.detected or {}
+
+      if not detected[name] then sessions.write(name) end
+    end,
+  })
 end)
