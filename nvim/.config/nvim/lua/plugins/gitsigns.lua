@@ -28,7 +28,7 @@ local function config()
       virt_text_priority = 100,
       use_focus = true,
     },
-    current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
+    current_line_blame_formatter = "    <author>, <author_time:%R> - <summary>",
     current_line_blame = true,
     on_attach = function(buffer)
       local gs = package.loaded.gitsigns
