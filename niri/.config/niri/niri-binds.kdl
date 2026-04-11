@@ -3,7 +3,7 @@ binds {
     Mod+Q repeat=false { close-window; }
     Mod+MouseMiddle { close-window; }
 
-    Mod+U { focus-workspace-previous; }
+    Mod+I { focus-workspace-previous; }
 
     // Focus: columns / windows (arrows + hjkl)
     Mod+Left  { focus-column-left-or-last; }
