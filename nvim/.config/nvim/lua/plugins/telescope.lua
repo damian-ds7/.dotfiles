@@ -1,8 +1,8 @@
 local utils = require "utils.pack"
 
-utils.ensure (utils.gh "nvim-lua/plenary.nvim")
-utils.ensure (utils.gh "nvim-telescope/telescope-ui-select.nvim")
-utils.ensure (utils.gh "nvim-telescope/telescope-fzf-native.nvim")
+utils.ensure(utils.gh "nvim-lua/plenary.nvim")
+utils.ensure(utils.gh "nvim-telescope/telescope-ui-select.nvim")
+utils.ensure(utils.gh "nvim-telescope/telescope-fzf-native.nvim")
 
 utils.add(utils.gh "nvim-telescope/telescope.nvim", function()
   vim.cmd.packadd "plenary.nvim"
@@ -46,6 +46,12 @@ vim.keymap.set({ "n", "v" }, "<leader>sw", "<cmd>Telescope grep_string<cr>", { d
 vim.keymap.set(
   "n",
   "<leader>sb",
+  function() require("telescope.builtin").buffers { sort_mru = true, sort_lastused = true } end,
+  { desc = "Search buffers" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>,",
   function() require("telescope.builtin").buffers { sort_mru = true, sort_lastused = true } end,
   { desc = "Search buffers" }
 )
