@@ -20,8 +20,6 @@ utils.add(utils.gh "folke/snacks.nvim", function()
     },
     gitbrowse = { enabled = true },
     lazygit = { enabled = true },
-    -- picker = { enabled = true },
-    -- notifier = { enabled = true },
     quickfile = { enabled = true },
     scroll = { enabled = true },
     image = { enabled = true },

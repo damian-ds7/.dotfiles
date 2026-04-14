@@ -9,9 +9,7 @@ utils.add(utils.gh "nvim-lualine/lualine.nvim", function()
       section_separators = { left = "", right = "" },
       globalstatus = true,
       icons_enabled = true,
-      disabled_filetypes = {
-        statusline = { "" },
-      },
+      disabled_filetypes = {},
     },
     sections = {
       lualine_a = { { "mode", icon = "", separator = { left = "" }, right_padding = 2 } },
