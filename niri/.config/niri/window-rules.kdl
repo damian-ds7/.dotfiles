@@ -56,6 +56,22 @@ window-rule {
     opacity 0.85
 }
 
+window-rule {
+    match app-id="Nautilus"
+    match app-id="chrome"
+    match app-id="^code$"
+
+    popups {
+        geometry-corner-radius 15
+
+        opacity 0.80
+
+        background-effect {
+            blur true
+        }
+    }
+}
+
 // -----------------------------
 // Floating Rules
 // -----------------------------
