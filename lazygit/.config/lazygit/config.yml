@@ -1,4 +1,8 @@
 promptToReturnFromSubprocess: false
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never --line-numbers
 os:
   editPreset: 'nvim'
 customCommands:
