@@ -26,12 +26,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
     local builtin = lazy.require_on_index "telescope.builtin"
 
-    map("<leader>cR", vim.lsp.buf.rename, "Rename")
+    map("<leader>cr", vim.lsp.buf.rename, "Rename")
     map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
     map("<leader>cl", vim.lsp.codelens.run, "Codelens", { "n", "x" })
     map("<leader>cc", vim.lsp.buf.declaration, "Goto Declaration")
     map("<leader>cD", function() builtin.lsp_definitions { reuse_win = true } end, "Definition")
-    map("<leader>cr", function() builtin.lsp_references { reuse_win = true } end, "References")
+    map("<leader>cR", function() builtin.lsp_references { reuse_win = true } end, "References")
     map("<leader>ci", function() builtin.lsp_implementations { reuse_win = true } end, "Implementation")
     map("<leader>ct", function() builtin.lsp_type_definitions { reuse_win = true } end, "Type Definition")
     map("<leader>cs", function() builtin.lsp_document_symbols() end, "Document Symbols")
