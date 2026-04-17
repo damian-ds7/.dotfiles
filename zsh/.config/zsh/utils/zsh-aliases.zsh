@@ -15,6 +15,7 @@ alias -s git="git clone"
 alias -g H='| head'
 alias -g L='| less'
 alias -g G='| grep'
+alias -g F='| fzf'
 alias -g W='| wc'
 alias -g J='| jq'
 alias -g T="| tr -d '\n' "
