@@ -106,6 +106,7 @@ end)
 
 utils.add(utils.gh "nvim-mini/mini.sessions", function()
   local sessions = require "mini.sessions"
+  local session_loaded = false
   sessions.setup { force = { read = false, write = true, delete = true } }
 
   local function encode(path) return path:gsub("/", "-"):gsub("%-+", "-"):gsub("^%-", ""):gsub("%-$", "") end
@@ -116,30 +117,31 @@ utils.add(utils.gh "nvim-mini/mini.sessions", function()
     local name = current_session_name()
     local detected = require("mini.sessions").detected or {}
 
-    if detected[name] then require("mini.sessions").read(name) end
+    if detected[name] then
+      require("mini.sessions").read(name)
+      session_loaded = true
+    end
   end
 
   vim.keymap.set("n", "<leader>qs", restore_session, { desc = "Restore Session" })
 
   vim.keymap.set("n", "<leader>ql", function() sessions.select() end, { desc = "Select Session" })
 
-  vim.keymap.set(
-    "n",
-    "<leader>qw",
-    function() sessions.write() end,
-    { desc = "Save Current Session" }
-  )
+  vim.keymap.set("n", "<leader>qw", function() sessions.write() end, { desc = "Save Current Session" })
 
   vim.keymap.set("n", "<leader>qd", function() sessions.delete() end, { desc = "Delete Current Session" })
 
   vim.keymap.set("n", "<leader>R", function() sessions.restart() end, { desc = "Restart Neovim" })
 
-  vim.api.nvim_create_autocmd("BufEnter", {
+  vim.api.nvim_create_autocmd("BufReadPost", {
+    once = true,
     callback = function()
+      if vim.bo.buftype ~= "" or vim.fn.expand "%" == "" then return end
+
       local name = current_session_name()
       local detected = sessions.detected or {}
 
-      if not detected[name] then sessions.write(name) end
+      if detected[name] or not session_loaded then sessions.write(name, { verbose = false }) end
     end,
   })
 end)
