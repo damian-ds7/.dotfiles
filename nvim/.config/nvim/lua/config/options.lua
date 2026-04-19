@@ -15,7 +15,7 @@ opt.pumblend = 10
 opt.pumheight = 10
 opt.conceallevel = 2
 vim.g.have_nerd_font = false
-opt.cmdheight = 1
+opt.cmdheight = vim.g.vscode and 0 or 1
 opt.laststatus = 3
 
 vim.o.foldcolumn = "0"
