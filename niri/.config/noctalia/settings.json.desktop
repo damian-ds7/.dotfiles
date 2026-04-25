@@ -152,7 +152,7 @@
             "right": [
                 {
                     "deviceNativePath": "ps-controller-battery-50:ee:32:32:e7:f9",
-                    "displayMode": "icon-hover",
+                    "displayMode": "graphic-clean",
                     "hideIfIdle": false,
                     "hideIfNotDetected": true,
                     "id": "Battery",
@@ -436,7 +436,7 @@
     },
     "location": {
         "analogClockInCalendar": false,
-        "autoLocate": true,
+        "autoLocate": false,
         "firstDayOfWeek": -1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
