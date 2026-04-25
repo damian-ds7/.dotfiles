@@ -5,6 +5,12 @@ local lang = {
   servers = {
     ruff = {
       on_attach = function(client) client.server_capabilities.hoverProvider = false end,
+      init_options = {
+        settings = {
+          configurationPreference = "filesystemFirst",
+          configuration = vim.fn.stdpath "config" .. "/tools/ruff.toml",
+        },
+      },
     },
     ty = {},
   },
