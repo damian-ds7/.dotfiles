@@ -15,8 +15,20 @@
     autocrlf = input
     pager = delta
 
+[interactive]
+    diffFilter = delta --color-only
+
 [delta]
-    side-by-side = true
+    navigate = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+[alias]
+    sdiff = -c delta.features=side-by-side diff
 
 [pull]
    rebase = true
@@ -42,7 +54,6 @@
     insteadOf = uniall:
 
 [credential]
-    helper = 
     helper = /usr/local/sbin/git-credential-manager
     credentialStore = secretservice
 
