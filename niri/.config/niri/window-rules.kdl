@@ -59,6 +59,7 @@ window-rule {
 window-rule {
     match app-id="Nautilus"
     match app-id="chrome"
+    match app-id="chromium"
     match app-id="^code$"
 
     popups {
