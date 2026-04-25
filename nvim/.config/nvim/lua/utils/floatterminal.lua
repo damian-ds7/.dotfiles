@@ -4,15 +4,47 @@ local state = {
   floating = { buf = -1, win = -1 },
 }
 
-local function create_native_window(opts)
-  local function get_dims()
-    local width = math.floor(vim.o.columns * 0.8)
-    local height = math.floor(vim.o.lines * 0.9)
-    local col = math.floor((vim.o.columns - width) / 2)
-    local row = math.floor((vim.o.lines - height) * 0.2)
-    return width, height, col, row
-  end
+local group = vim.api.nvim_create_augroup("float-terminal", { clear = true })
 
+local function get_dims()
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.9)
+  local col = math.floor((vim.o.columns - width) / 2)
+  local row = math.floor((vim.o.lines - height) * 0.2)
+  return width, height, col, row
+end
+
+vim.api.nvim_create_autocmd("VimResized", {
+  group = group,
+  desc = "Resize floating terminal window",
+  callback = function()
+    if not vim.api.nvim_win_is_valid(state.floating.win) then return end
+
+    local w, h, c, r = get_dims()
+
+    vim.api.nvim_win_set_config(state.floating.win, {
+      relative = "editor",
+      width = w,
+      height = h,
+      col = c,
+      row = r,
+    })
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermClose", {
+  group = group,
+  desc = "Close floating terminal window on TermClose",
+  callback = function(ev)
+    if ev.buf ~= state.floating.buf then return end
+
+    if vim.api.nvim_win_is_valid(state.floating.win) then vim.api.nvim_win_close(state.floating.win, true) end
+
+    state.floating.win = -1
+  end,
+})
+
+local function create_native_window(opts)
   local width, height, col, row = get_dims()
 
   local buf = (vim.api.nvim_buf_is_valid(opts.buf)) and opts.buf or vim.api.nvim_create_buf(false, true)
@@ -25,22 +57,6 @@ local function create_native_window(opts)
     row = row,
     style = "minimal",
     border = "rounded",
-  })
-
-  vim.api.nvim_create_autocmd("VimResized", {
-    callback = function()
-      if not vim.api.nvim_win_is_valid(win) then return end
-
-      local w, h, c, r = get_dims()
-
-      vim.api.nvim_win_set_config(win, {
-        relative = "editor",
-        width = w,
-        height = h,
-        col = c,
-        row = r,
-      })
-    end,
   })
 
   return { buf = buf, win = win }
@@ -56,15 +72,6 @@ M.toggle_floating_terminal = function(dir)
       vim.bo[state.floating.buf].buflisted = false
     end
 
-    vim.api.nvim_create_autocmd("TermClose", {
-      buffer = state.floating.buf,
-      callback = function()
-        if vim.api.nvim_win_is_valid(state.floating.win) then
-          vim.api.nvim_win_close(state.floating.win, true)
-          state.floating.win = -1
-        end
-      end,
-    })
     vim.cmd "startinsert"
   else
     vim.api.nvim_win_hide(state.floating.win)
