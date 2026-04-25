@@ -62,7 +62,7 @@ vim.g.autoformat = true
 opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
 
 opt.spell = false
-opt.spelllang = { "en" }
+opt.spelllang = { "en", "pl" }
 
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
