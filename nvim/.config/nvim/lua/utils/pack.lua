@@ -79,6 +79,8 @@ end
 ---@param fn fun(data)
 function M.on_pack_changed(plugin, kind, fn)
   vim.api.nvim_create_autocmd("PackChanged", {
+    desc = "Run callback on matching PackChanged events",
+    group = vim.api.nvim_create_augroup("pack-events", { clear = false }),
     callback = function(ev)
       local data = ev.data
       local name = data.spec.name

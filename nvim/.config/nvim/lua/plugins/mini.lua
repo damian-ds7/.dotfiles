@@ -134,7 +134,9 @@ utils.add(utils.gh "nvim-mini/mini.sessions", function()
   vim.keymap.set("n", "<leader>R", function() sessions.restart() end, { desc = "Restart Neovim" })
 
   vim.api.nvim_create_autocmd("BufReadPost", {
+    group = vim.api.nvim_create_augroup("session-auto-save", { clear = true }),
     once = true,
+    desc = "Auto-save session on first valid buffer read",
     callback = function()
       if vim.bo.buftype ~= "" or vim.fn.expand "%" == "" then return end
 

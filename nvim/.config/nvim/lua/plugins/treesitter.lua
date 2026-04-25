@@ -47,8 +47,11 @@ local config = function()
 
   ts.install(ensure_installed)
 
+  local ts_group = vim.api.nvim_create_augroup("treesitter-auto-start", { clear = true })
   vim.api.nvim_create_autocmd("FileType", {
+    group = ts_group,
     pattern = ensure_installed,
+    desc = "Start Treesitter for installed languages",
     callback = function() vim.treesitter.start() end,
   })
 end

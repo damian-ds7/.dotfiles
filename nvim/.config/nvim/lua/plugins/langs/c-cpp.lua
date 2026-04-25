@@ -77,16 +77,18 @@ registry.register {
   },
 }
 
+local cpp_group = vim.api.nvim_create_augroup("lsp-cpp", { clear = true })
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("user-lsp-cpp", { clear = true }),
+  group = cpp_group,
+  desc = "C/C++ specific LSP bindings",
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client.name == "clangd" then
-      vim.keymap.set("n", "<leader>ch", "<cmd>LspClangdSwitchSourceHeader<cr>", {
-        buffer = event.buf,
-        desc = "LSP: Switch Source/Header (C/C++)",
-      })
-    end
+    if not client or client.name ~= "clangd" then return end
+
+    vim.keymap.set("n", "<leader>ch", "<cmd>LspClangdSwitchSourceHeader<cr>", {
+      buffer = event.buf,
+      desc = "LSP: Switch Source/Header (C/C++)",
+    })
   end,
 })
 
