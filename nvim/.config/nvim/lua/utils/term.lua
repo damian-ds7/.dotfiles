@@ -1,7 +1,7 @@
 local M = {}
 
 local state = {
-  term = { buf = -1, win = -1, mode = nil },
+  term = { buf = -1, win = -1, mode = "floating" },
 }
 
 local group = vim.api.nvim_create_augroup("float-terminal", { clear = true })
@@ -161,5 +161,19 @@ M.setup = function()
     complete = "dir",
     desc = "Terminal (--floating | --bottom) [path]",
   })
+
+  vim.api.nvim_create_user_command("TermToggle", function()
+    local mode = state.term.mode or "floating"
+
+    local dir = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
+
+    M.toggle_terminal {
+      dir = dir,
+      mode = mode,
+    }
+  end, {
+    desc = "Toggle Terminal (last used mode)",
+  })
 end
+
 return M
