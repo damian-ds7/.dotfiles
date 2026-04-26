@@ -51,8 +51,13 @@ utils.add(utils.gh "stevearc/oil.nvim", function()
 end)
 
 vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "(Oil) Open parent directory" })
-vim.keymap.set("n", "<leader>e", function() require("oil").toggle_float() end, { desc = "(Oil) Open parent directory" })
-vim.keymap.set("n", "<leader>E", function()
+vim.keymap.set(
+  "n",
+  "<leader>ee",
+  function() require("oil").toggle_float() end,
+  { desc = "(Oil) Open parent directory" }
+)
+vim.keymap.set("n", "<leader>eE", function()
   local root = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
   require("oil").toggle_float(root)
 end, { desc = "(Oil) Open Project Root" })
@@ -86,9 +91,9 @@ local function prompt_and_open()
   end)
 end
 
-vim.keymap.set("n", "<leader>o", prompt_and_open, { desc = "(Oil) Open location" })
+vim.keymap.set("n", "<leader>el", prompt_and_open, { desc = "(Oil) Open location" })
 
-vim.keymap.set("n", "<leader>O", function()
+vim.keymap.set("n", "<leader>eR", function()
   if last_oil_path then
     open_oil_float(last_oil_path)
   else

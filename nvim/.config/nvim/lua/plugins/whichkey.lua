@@ -11,6 +11,7 @@ local config = function()
         { "<leader>a", group = "ai" },
         { "<leader>c", group = "code" },
         { "<leader>d", group = "debug" },
+        { "<leader>e", group = "explorer" },
         { "<leader>f", group = "file/find" },
         { "<leader>g", group = "git" },
         { "<leader>gh", group = "hunks" },
