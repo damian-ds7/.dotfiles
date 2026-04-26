@@ -168,16 +168,12 @@ vim.keymap.set(
 )
 
 if not vim.g.vscode then
-  require("utils.floatterminal").setup()
-  map("n", "<leader>fT", ":FloatTerm %:p:h<CR>", {
-    desc = "Toggle Floating Terminal (File Dir)",
-    silent = true,
-  })
+  require("utils.term").setup()
+  map("n", "<leader>of", ":Terminal --floating<CR>", { desc = "Float Term" })
+  map("n", "<leader>ob", ":Terminal --bottom<CR>", { desc = "Bottom Term" })
 
-  map("n", "<leader>ft", ":FloatTerm<CR>", {
-    desc = "Toggle Floating Terminal (Project Root)",
-    silent = true,
-  })
+  map("n", "<leader>oF", ":Terminal --floating %:p:h<CR>", { desc = "Float Term (file)" })
+  map("n", "<leader>oB", ":Terminal --bottom %:p:h<CR>", { desc = "Bottom Term (file)" })
 else
   local vscode = require "vscode"
   for _, lhs in ipairs { "<leader>ft", "<leader>fT", "<c-/>" } do
