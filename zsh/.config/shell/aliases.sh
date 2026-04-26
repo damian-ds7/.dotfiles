@@ -150,7 +150,7 @@ function nvim() {
         command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:e $fp<CR>"
     done
 
-    command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:FloatTerm<CR>"
+    command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:TermToggle<CR>"
 
     return 0
 }
