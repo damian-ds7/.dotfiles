@@ -67,10 +67,10 @@ map("n", "<leader>-", "<C-W>s", { desc = "Split Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Width" })
+map({ "n", "t" }, "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Height" })
+map({ "n", "t" }, "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Height" })
+map({ "n", "t" }, "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Width" })
+map({ "n", "t" }, "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Width" })
 
 -- Tabs
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
