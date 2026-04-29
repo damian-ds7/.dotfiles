@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Mute Window
+StartupNotify=true
+Icon=/home/damian/.local/share/applications/icons/audio.png
+Terminal=false
+Keywords=Mute;Audio
+Exec=sh -c "$HOME/.local/bin/vicinae-mute-window"

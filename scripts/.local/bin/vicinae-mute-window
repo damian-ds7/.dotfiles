@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+pairs=$(
+  pactl list sink-inputs | awk '
+    BEGIN { name=""; pid="" }
+
+    /application.name =/ {
+      match($0, /"([^"]+)"/, m)
+      name=m[1]
+    }
+
+    /application.process.id =/ {
+      match($0, /"([^"]+)"/, m)
+      pid=m[1]
+    }
+
+    name && pid {
+      print name "|" pid
+      name=""; pid=""
+    }
+  ' | sort -u
+)
+
+selection=$(printf "%s\n" "$pairs" | cut -d'|' -f1 | \
+  vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick audio app...')
+
+[ -z "$selection" ] && exit 0
+
+pid=$(printf "%s\n" "$pairs" | awk -F'|' -v sel="$selection" '$1 == sel {print $2; exit}')
+
+[ -n "$pid" ] && wpctl set-mute -p "$pid" toggle
