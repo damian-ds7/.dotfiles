@@ -44,7 +44,7 @@ menu:
         cmd: kitty
       - key: "b"
         desc: Browser (Zen)
-        cmd: ~/.local/bin/focus-or-spawn zen ~/.local/bin/zen
+        cmd: ~/.local/bin/focus-or-spawn zen-twilight ~/Downloads/zen/zen
       - key: "B"
         desc: Browser (Zen - Private Window)
         cmd: ~/.local/bin/zen --private-window

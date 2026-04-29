@@ -15,6 +15,13 @@ window-rule {
     draw-border-with-background false
 }
 
+window-rule {
+    match is-floating=true app-id="zen"
+    geometry-corner-radius 18
+    clip-to-geometry true
+    draw-border-with-background false
+}
+
 // -----------------------------
 // Visual Effects
 // -----------------------------
@@ -93,7 +100,6 @@ window-rule {
 }
 
 window-rule {
-    // match app-id="zen" title="^Picture-in-Picture$"
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
 
     default-floating-position x=10 y=10 relative-to="bottom-right"
@@ -150,7 +156,7 @@ window-rule {
 // -----------------------------
 
 window-rule {
-    match app-id="^zen$"
+    match app-id="zen"
     exclude app-id="zen" title="^Picture-in-Picture$"
 
     open-on-workspace "browser"
