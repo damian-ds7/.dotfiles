@@ -15,8 +15,6 @@ spawn-at-startup "~/.local/bin/awww-initialize"
 spawn-at-startup "~/.cargo/bin/niri-sidebar" "listen"
 
 environment {
-    EDITOR "nvim"
-    VISUAL "nvim"
     XCURSOR_SIZE "24"
 }
 
