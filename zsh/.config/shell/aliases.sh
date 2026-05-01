@@ -36,14 +36,6 @@ fi
 alias tree='tree -I .git --gitignore --dirsfirst '
 
 # -------------------------
-#  Editor Shortcuts
-# -------------------------
-
-alias suvi='sudo -E nvim '
-alias suvim='sudo -E nvim '
-alias sunano='sudo -E nano '
-
-# -------------------------
 #  Package Management
 # -------------------------
 
