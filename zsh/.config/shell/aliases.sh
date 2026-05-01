@@ -103,6 +103,10 @@ alias vsource='source .venv/bin/activate '
 #  Custom Functions
 # -------------------------
 
+suv() {
+  sudoedit "$(readlink -f "$1")"
+}
+
 xopen() {
   local arg="${1:-.}"
   (nohup xdg-open "$arg" >/dev/null 2>&1 </dev/null &) >/dev/null 2>&1
