@@ -1,0 +1,4 @@
+[theme]
+builtin = "Catppuccin"
+mode = "dark"
+source = "builtin"

@@ -1,0 +1,128 @@
+[audio]
+enable_overdrive = false
+enable_sounds = false
+notification_sound = ""
+sound_volume = 0.5
+volume_change_sound = ""
+
+[backdrop]
+enabled = false
+
+[bar.main]
+attach_panels = false
+auto_hide = true
+background_opacity = 0.69999999999999996
+capsule = false
+center = [ "clock", "notifications" ]
+end = [ "tray", "bluetooth", "volume", "network", "battery" ]
+margin_h = 180
+margin_v = 10
+padding = 14
+position = "top"
+radius = 12
+reserve_space = false
+scale = 1.0
+shadow = true
+start = [ "workspaces", "media" ]
+thickness = 34
+widget_spacing = 15
+
+[brightness]
+enable_ddcutil = false
+
+[desktop_widgets]
+enabled = false
+
+[dock]
+enabled = false
+
+[hooks]
+battery_low_percent_threshold = 0
+
+[idle.behavior.lock]
+command = "noctalia:screen-lock"
+enabled = false
+timeout = 660
+
+[keybinds]
+cancel = [ "escape" ]
+down = [ "down" ]
+left = [ "left" ]
+right = [ "right" ]
+up = [ "up" ]
+validate = [ "return", "kp_enter" ]
+
+[nightlight]
+enabled = false
+force = false
+temperature_day = 6500
+temperature_night = 4000
+use_weather_location = true
+
+[notification]
+background_opacity = 0.7
+enable_daemon = true
+layer = "top"
+position = "top_right"
+
+[osd]
+position = "bottom_center"
+
+[shell]
+clipboard_auto_paste = "off"
+font_family = "JetBrains Mono Nerd Font"
+lang = "en"
+offline_mode = false
+password_style = "random"
+polkit_agent = true
+settings_show_advanced = false
+show_location = true
+telemetry_enabled = false
+ui_scale = 1.0
+
+[shell.animation]
+enabled = true
+speed = 1.5
+
+[shell.mpris]
+blacklist = ["zen"]
+
+[shell.shadow]
+alpha = 0.55000000000000004
+blur = 12
+offset_x = 2
+offset_y = 2
+
+[system.monitor]
+enabled = true
+
+[theme.templates]
+builtin_ids = []
+enable_builtins = false
+enable_user_templates = false
+user_config = "~/.config/noctalia/user-templates.toml"
+
+[wallpaper]
+enabled = false
+
+[wallpaper.automation]
+enabled = false
+
+[weather]
+enabled = true
+auto_locate = false
+address = "Warsaw"
+refresh_minutes = 30
+unit = "celsius"
+
+[widget.clock]
+format = "{:%e %h %H:%M}"
+
+[widget.network]
+show_label = false
+
+[widget.volume]
+show_label = false
+
+[widget.workspaces]
+display = "none"
