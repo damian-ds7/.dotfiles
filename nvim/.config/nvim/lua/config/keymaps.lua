@@ -113,6 +113,7 @@ map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", {
 
 -- Writing helpers
 map("i", "<A-.>", " -> ", { silent = true })
+map("i", "<A-,>", " <- ", { silent = true })
 map("v", "<leader>p", '"_dP', { desc = "Paste without yanking" })
 
 -- Commenting
