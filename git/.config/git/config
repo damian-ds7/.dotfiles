@@ -54,7 +54,7 @@
     insteadOf = uniall:
 
 [credential]
-    helper = /usr/local/sbin/git-credential-manager
+    helper = /usr/bin/git-credential-manager
     credentialStore = secretservice
 
 [credential "https://dev.azure.com"]
