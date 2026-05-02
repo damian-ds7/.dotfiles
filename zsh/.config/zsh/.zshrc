@@ -76,7 +76,7 @@ bindkey '^x^e' edit-command-line
 # Functions
 autoload -Uz zmv
 
-function md() { 
+function md() {
     [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1"
 }
 compdef _directories md
@@ -143,9 +143,6 @@ TRAPUSR1() {
 }
 
 [[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
-
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 if [[ -n "$ZSH_PROFILE" ]]; then
   zprof
