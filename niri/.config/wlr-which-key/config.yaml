@@ -171,6 +171,9 @@ menu:
       - key: "d"
         desc: Toggle DND
         cmd: qs -c Noctalia ipc call notifications toggleDND
+      - key: "f"
+        desc: Freeze window
+        cmd: ~/.local/opt/wl-freeze/wl-freeze -a
       - key: "i"
         desc: Toggle auto suspend (idle inhibitor)
         cmd: qs -c Noctalia ipc call idleInhibitor toggle

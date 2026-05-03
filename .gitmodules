@@ -34,3 +34,7 @@
 	path = nvim/.lazy-idea
 	url = https://github.com/cufarvid/lazy-idea.git
 	branch = main
+[submodule "niri/.local/opt/wl-freeze"]
+	path = niri/.local/opt/wl-freeze
+	url = https://github.com/Zerodya/wl-freeze
+	branch = main
