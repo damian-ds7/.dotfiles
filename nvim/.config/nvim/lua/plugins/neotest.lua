@@ -3,12 +3,10 @@ local registry = require "core.lang_reg"
 
 utils.ensure (utils.gh "nvim-neotest/nvim-nio")
 utils.ensure (utils.gh "nvim-lua/plenary.nvim")
-utils.ensure (utils.gh "nvim-treesitter/nvim-treesitter")
 
 utils.add(utils.gh "nvim-neotest/neotest", function()
   vim.cmd.packadd "nvim-nio"
   vim.cmd.packadd "plenary.nvim"
-  vim.cmd.packadd "nvim-treesitter"
 
   local neotest_ns = vim.api.nvim_create_namespace "neotest"
   vim.diagnostic.config({
