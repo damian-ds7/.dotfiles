@@ -41,11 +41,11 @@ binds {
     }
 
     Mod+V hotkey-overlay-title="Clipboard history" {
-        spawn "vicinae" "vicinae://extensions/vicinae/clipboard/history";
+        spawn "vicinae" "vicinae://launch/clipboard/history";
     }
 
     Mod+Grave repeat=false hotkey-overlay-title="Switch windows" {
-        spawn "vicinae" "vicinae://extensions/vicinae/wm/switch-windows";
+        spawn "vicinae" "vicinae://launch/wm/switch-windows";
     }
 
     // Apps submenu (a)
