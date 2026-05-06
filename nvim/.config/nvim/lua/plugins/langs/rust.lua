@@ -29,6 +29,8 @@ vim.g.rustaceanvim = function()
           function() vim.cmd.RustLsp "debuggables" end,
           { desc = "Rust Debuggables", buffer = bufnr }
         )
+
+        vim.lsp.codelens.enable(true, { bufnr = bufnr })
       end,
       default_settings = {
         ["rust-analyzer"] = {

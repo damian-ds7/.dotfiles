@@ -87,8 +87,6 @@ autocmd("LspAttach", {
     end
 
     if client:supports_method "textDocument/codeLens" then
-      vim.lsp.codelens.enable(true)
-
       map(
         buf,
         "<leader>ue",
