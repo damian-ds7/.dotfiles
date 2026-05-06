@@ -11,6 +11,9 @@
 [includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
     path = config.github
 
+[commit]
+    gpgsign = true
+
 [core]
     autocrlf = input
     pager = delta
