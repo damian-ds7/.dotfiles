@@ -4,10 +4,6 @@ mkdir -p "$ZSH_CACHE_DIR"
 
 export GPG_TTY=$TTY
 
-if [ -f ~/.env ]; then
-  . "$HOME/.env"
-fi
-
 if ! command -v zsh >/dev/null 2>&1; then
   _zsh_tmp="${TMPDIR:-/tmp}/install-zsh.$$"
 
