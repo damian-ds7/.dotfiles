@@ -41,14 +41,18 @@ map("x", ">", ">gv")
 
 -- Search & View Handling
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear Highlighting" })
-map("n", "<C-d>", "<C-d>zz", { desc = "Jump half page down and center" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Jump half page up and center" })
+if vim.version().minor < 13 then
+  map("n", "<C-d>", "<C-d>zz", { desc = "Jump half page down and center" })
+  map("n", "<C-u>", "<C-u>zz", { desc = "Jump half page up and center" })
+end
 
 -- Center search results
-map("n", "n", "'Nn'[v:searchforward].'zzzv'", { expr = true, desc = "Next Search Result" })
-map("n", "N", "'nN'[v:searchforward].'zzzv'", { expr = true, desc = "Prev Search Result" })
-map({ "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-map({ "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+if vim.version().minor < 13 then
+  map("n", "n", "'Nn'[v:searchforward].'zzzv'", { expr = true, desc = "Next Search Result" })
+  map("n", "N", "'nN'[v:searchforward].'zzzv'", { expr = true, desc = "Prev Search Result" })
+  map({ "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+  map({ "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+end
 
 -- Navigation (CTRL + hjkl)
 map("n", "<C-h>", "<C-w><C-h>", { desc = "Go to left window" })

@@ -45,7 +45,12 @@ opt.splitright = true
 opt.splitbelow = true
 opt.splitkeep = "screen"
 opt.winminwidth = 5
-opt.scrolloff = 10
+if vim.version().minor >= 13 then
+  opt.scrolloff = 99
+  opt.scrolloffpad = 1
+else
+  opt.scrolloff = 10
+end
 opt.sidescrolloff = 8
 opt.smoothscroll = true
 opt.jumpoptions = "view"
