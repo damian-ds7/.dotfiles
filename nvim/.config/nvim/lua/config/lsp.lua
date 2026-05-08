@@ -72,18 +72,18 @@ autocmd("LspAttach", {
 
       local hint_state = false
 
-      autocmd({ "InsertEnter", "InsertLeave" }, {
-        group = lsp_inlay_group,
-        buffer = buf,
-        callback = function(args)
-          if args.event == "InsertEnter" then
-            hint_state = vim.lsp.inlay_hint.is_enabled { bufnr = buf }
-            if hint_state then vim.lsp.inlay_hint.enable(false, { bufnr = buf }) end
-          else
-            if hint_state then vim.lsp.inlay_hint.enable(true, { bufnr = buf }) end
-          end
-        end,
-      })
+      -- autocmd({ "InsertEnter", "InsertLeave" }, {
+      --   group = lsp_inlay_group,
+      --   buffer = buf,
+      --   callback = function(args)
+      --     if args.event == "InsertEnter" then
+      --       hint_state = vim.lsp.inlay_hint.is_enabled { bufnr = buf }
+      --       if hint_state then vim.lsp.inlay_hint.enable(false, { bufnr = buf }) end
+      --     else
+      --       if hint_state then vim.lsp.inlay_hint.enable(true, { bufnr = buf }) end
+      --     end
+      --   end,
+      -- })
     end
 
     if client:supports_method "textDocument/codeLens" then
