@@ -24,7 +24,7 @@ end, {
 })
 
 vim.api.nvim_create_user_command("PackDel", function(opts)
-  local names = vim.split(opts.args, ",", { trimws = true })
+  local names = vim.split(opts.args, " ", { trimws = true })
   vim.pack.del(names, { force = opts.bang })
 end, {
   bang = true,
