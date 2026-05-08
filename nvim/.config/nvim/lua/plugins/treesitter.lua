@@ -56,12 +56,12 @@ local config = function()
   })
 end
 
-utils.add({ src = utils.gh "nvim-treesitter/nvim-treesitter", data = { vscode = true } }, config, "later")
-
 utils.on_pack_changed("nvim-treesitter", "update", function(data)
   if not data.active then vim.cmd.packadd "nvim-treesitter" end
   vim.cmd "TSUpdate"
 end)
+
+utils.add({ src = utils.gh "nvim-treesitter/nvim-treesitter", data = { vscode = true } }, config, "later")
 
 utils.add(
   { src = utils.gh "nvim-treesitter/nvim-treesitter-textobjects", data = { vscode = true } },
