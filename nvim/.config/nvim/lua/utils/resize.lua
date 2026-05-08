@@ -7,9 +7,13 @@ local function is_floating() return vim.api.nvim_win_get_config(0).relative ~= "
 local function resize_floating(direction, amount)
   local cfg = vim.api.nvim_win_get_config(0)
   if direction == "left" or direction == "right" then
-    cfg.width = cfg.width + (direction == "right" and amount or -amount)
+    local diff = direction == "right" and amount or -amount
+    cfg.width = cfg.width + diff
+    cfg.col = cfg.col - (diff / 2)
   else
-    cfg.height = cfg.height + (direction == "down" and amount or -amount)
+    local diff = direction == "up" and amount or -amount
+    cfg.height = cfg.height + diff
+    cfg.row = cfg.row - (diff / 2)
   end
   vim.api.nvim_win_set_config(0, cfg)
 end
