@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.o.timeoutlen = vim.g.vscode and 1000 or 300
 
-local opt = vim.opt
+local opt = vim.o
 
 opt.termguicolors = true
 opt.number = true
@@ -39,7 +39,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.inccommand = "nosplit"
 opt.wildmode = "longest:full,full"
-opt.shortmess:append { W = true, c = true, C = true }
+opt.shortmess = opt.shortmess .. "WcC"
 
 opt.splitright = true
 opt.splitbelow = true
@@ -62,16 +62,15 @@ opt.updatetime = 200
 opt.confirm = true
 opt.autowrite = true
 opt.completeopt = "menu,menuone,noselect"
-vim.g.autoformat = true
 
 opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
 
 opt.spell = false
-opt.spelllang = { "en", "pl" }
+opt.spelllang = "en,pl"
 
 opt.list = true
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-opt.fillchars = { eob = " " }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.fillchars = { eob = " " }
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -79,4 +78,4 @@ opt.virtualedit = "block"
 
 opt.grepprg = "rg --vimgrep"
 opt.grepformat = "%f:%l:%c:%m"
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+opt.sessionoptions = "buffers,curdir,tabpages,winsize,help,globals,skiprtp,folds"
