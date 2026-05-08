@@ -1,18 +1,12 @@
 local M = {}
 
+local get_dims = require("utils.float").floating_window_dims
+
 local state = {
   term = { buf = -1, win = -1, mode = "floating" },
 }
 
 local group = vim.api.nvim_create_augroup("float-terminal", { clear = true })
-
-local function get_dims()
-  local width = math.floor(vim.o.columns * 0.8)
-  local height = math.floor(vim.o.lines * 0.9)
-  local col = math.floor((vim.o.columns - width) / 2)
-  local row = math.floor((vim.o.lines - height) * 0.2)
-  return width, height, col, row
-end
 
 vim.api.nvim_create_autocmd("VimResized", {
   group = group,
