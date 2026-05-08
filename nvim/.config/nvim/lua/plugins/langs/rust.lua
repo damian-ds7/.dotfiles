@@ -20,7 +20,7 @@ local setup_keymaps = function(bufnr)
     "n",
     "<leader>cd",
     function() vim.cmd.RustLsp { "renderDiagnostic", "current" } end,
-    { desc = "LSP: Explain Error", buffer = bufnr }
+    { desc = "LSP: Line Diagnostics", buffer = bufnr }
   )
   vim.keymap.set(
     "n",
