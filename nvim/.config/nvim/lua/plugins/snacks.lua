@@ -93,8 +93,8 @@ vim.keymap.set(
   { desc = "GitHub Pull Requests (all)" }
 )
 vim.keymap.set("n", '<leader>s"', function() require("snacks").picker.registers() end, { desc = "Registers" })
-vim.keymap.set("n", "<leader>uz", function() require("snacks").zen() end, { desc = "Toggle Zen Mode" })
-vim.keymap.set("n", "<leader>uZ", function() require("snacks").zen.zoom() end, { desc = "Toggle Zoom" })
+vim.keymap.set("n", "<leader>uZ", function() require("snacks").zen() end, { desc = "Toggle Zen Mode" })
+vim.keymap.set("n", "<leader>uz", function() require("snacks").zen.zoom() end, { desc = "Toggle Zoom" })
 vim.keymap.set("n", "<leader>>", function() require("snacks").scratch() end, { desc = "Toggle Scratch Buffer" })
 vim.keymap.set("n", "<leader>S", function() require("snacks").scratch.select() end, { desc = "Select Scratch Buffer" })
 vim.keymap.set("n", "<leader>cf", function() require("snacks").rename.rename_file() end, { desc = "Rename File" })
