@@ -71,10 +71,12 @@ map("n", "<leader>-", "<C-W>s", { desc = "Split Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 
-map({ "n", "t" }, "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Height" })
-map({ "n", "t" }, "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Height" })
-map({ "n", "t" }, "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Width" })
-map({ "n", "t" }, "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Width" })
+local resize = require("utils.resize").resize
+
+map({ "n", "t" }, "<C-Up>", function() resize("up", 2) end, { desc = "Increase Height" })
+map({ "n", "t" }, "<C-Down>", function() resize("down", 2) end, { desc = "Decrease Height" })
+map({ "n", "t" }, "<C-Left>", function() resize("left", 2) end, { desc = "Decrease Width" })
+map({ "n", "t" }, "<C-Right>", function() resize("right", 2) end, { desc = "Increase Width" })
 
 -- Tabs
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
