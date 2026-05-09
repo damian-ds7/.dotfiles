@@ -1,5 +1,4 @@
 local utils = require "utils.pack"
-local cli
 local get_dims = require("utils.float").floating_window_dims
 
 utils.ensure(utils.gh "nvim-lua/plenary.nvim")
@@ -90,7 +89,6 @@ utils.add({ src = utils.gh "olimorris/codecompanion.nvim", version = vim.version
     },
   }
   vim.cmd [[cab cc CodeCompanion]]
-  cli = require "codecompanion.interactions.cli"
 end, "later")
 
 local map = vim.keymap.set
@@ -127,10 +125,15 @@ local function toggle_chat(layout)
 end
 
 map("n", "<leader>at", function()
+  local cli = require "codecompanion.interactions.cli"
   if cli and cli.is_visible() then
     require("codecompanion").toggle()
   else
-    vim.cmd "CodeCompanionCLI"
+    require("codecompanion").cli {
+      layout = "vertical",
+      position = "right",
+      width = 0.4,
+    }
   end
 end, { desc = "CodeCompanion: Toggle CLI" })
 
