@@ -23,3 +23,12 @@ autocmd("BufWritePre", {
     vim.fn.winrestview(view)
   end,
 })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  desc = "Remove scrolloff in terminal buffers",
+  group = augroup("term-scrolloff", { clear = true }),
+  callback = function()
+    vim.opt_local.scrolloff = 0
+    if vim.version().minor >= 13 then vim.opt_local.scrolloffpad = 0 end
+  end,
+})
