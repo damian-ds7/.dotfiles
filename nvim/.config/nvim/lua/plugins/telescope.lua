@@ -6,11 +6,9 @@ utils.ensure(utils.gh "nvim-telescope/telescope-fzf-native.nvim")
 utils.ensure(utils.gh "nvim-telescope/telescope-frecency.nvim")
 
 utils.on_pack_changed("telescope-fzf-native.nvim", { "install", "update" }, function(data)
-  vim.notify(vim.inspect(data), vim.log.levels.INFO)
-
   if not data.active then vim.cmd.packadd "telescope-fzf-native.nvim" end
 
-  local out = vim.fn.system { "make", "-C", data.spec.dir }
+  local out = vim.fn.system { "make", "-C", data.path }
 
   vim.notify(out)
   vim.notify("exit code: " .. vim.v.shell_error)
