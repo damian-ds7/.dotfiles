@@ -24,7 +24,9 @@ utils.add(utils.gh "nvim-telescope/telescope.nvim", function()
     extensions = {
       ["ui-select"] = { require("telescope.themes").get_dropdown() },
       frecency = {
+        show_scores = true,
         show_filter_column = false,
+        db_safe_mode = false,
       },
     },
     defaults = {
