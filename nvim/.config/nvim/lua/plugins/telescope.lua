@@ -3,15 +3,31 @@ local utils = require "utils.pack"
 utils.ensure(utils.gh "nvim-lua/plenary.nvim")
 utils.ensure(utils.gh "nvim-telescope/telescope-ui-select.nvim")
 utils.ensure(utils.gh "nvim-telescope/telescope-fzf-native.nvim")
+utils.ensure(utils.gh "nvim-telescope/telescope-frecency.nvim")
+
+utils.on_pack_changed("telescope-fzf-native.nvim", { "install", "update" }, function(data)
+  vim.notify(vim.inspect(data), vim.log.levels.INFO)
+
+  if not data.active then vim.cmd.packadd "telescope-fzf-native.nvim" end
+
+  local out = vim.fn.system { "make", "-C", data.spec.dir }
+
+  vim.notify(out)
+  vim.notify("exit code: " .. vim.v.shell_error)
+end)
 
 utils.add(utils.gh "nvim-telescope/telescope.nvim", function()
   vim.cmd.packadd "plenary.nvim"
   vim.cmd.packadd "telescope-ui-select.nvim"
+  vim.cmd.packadd "telescope-frecency.nvim"
   if vim.fn.executable "make" == 1 then vim.cmd.packadd "telescope-fzf-native.nvim" end
 
   require("telescope").setup {
     extensions = {
       ["ui-select"] = { require("telescope.themes").get_dropdown() },
+      frecency = {
+        show_filter_column = false,
+      },
     },
     defaults = {
       mappings = {
@@ -21,17 +37,13 @@ utils.add(utils.gh "nvim-telescope/telescope.nvim", function()
       },
     },
   }
-  pcall(require("telescope").load_extension, "fzf")
-  pcall(require("telescope").load_extension, "ui-select")
-end, "later")
-
-utils.on_pack_changed("telescope-fzf-native.nvim", "install", function(data)
-  if not data.active then vim.cmd.packadd "telescope-fzf-native.nvim" end
-  vim.fn.system { "make", "-C", data.spec.dir }
+  require("telescope").load_extension "fzf"
+  require("telescope").load_extension "ui-select"
+  require("telescope").load_extension "frecency"
 end)
 
-vim.keymap.set("n", "<leader>sf", "<cmd>Telescope find_files<cr>", { desc = "Search Files" })
-vim.keymap.set("n", "<leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Search Files" })
+vim.keymap.set("n", "<leader>sf", "<cmd>Telescope frecency workspace=CWD<cr>", { desc = "Search Files" })
+vim.keymap.set("n", "<leader><space>", "<cmd>Telescope frecency workspace=CWD<cr>", { desc = "Search Files" })
 vim.keymap.set("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Search Help" })
 vim.keymap.set("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Search Keymaps" })
 vim.keymap.set("n", "<leader>ss", "<cmd>Telescope builtin<cr>", { desc = "Search Select Telescope" })
