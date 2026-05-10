@@ -45,7 +45,7 @@ if [ -n "${ZSH_VERSION-}" ] && [ ! -f "${ZSH_CACHE_DIR:-$HOME/.cache}/shell-chan
           return 1
         fi
       else
-        return 2  # chsh not available
+        return 2 # chsh not available
       fi
     }
 
@@ -55,16 +55,16 @@ if [ -n "${ZSH_VERSION-}" ] && [ ! -f "${ZSH_CACHE_DIR:-$HOME/.cache}/shell-chan
       if gum confirm "Change login shell to zsh?"; then
         _change_shell
         case $? in
-          0)
-            gum style --foreground 212 "Login shell changed to $_zsh_path"
-            _mark_shell_changed
-            ;;
-          1)
-            gum style --foreground 196 "Failed to change shell. You may need to run: chsh -s $_zsh_path"
-            ;;
-          2)
-            gum style --foreground 220 "chsh not available. Contact your system administrator."
-            ;;
+        0)
+          gum style --foreground 212 "Login shell changed to $_zsh_path"
+          _mark_shell_changed
+          ;;
+        1)
+          gum style --foreground 196 "Failed to change shell. You may need to run: chsh -s $_zsh_path"
+          ;;
+        2)
+          gum style --foreground 220 "chsh not available. Contact your system administrator."
+          ;;
         esac
       else
         gum style "Keeping current shell. Change later with: chsh -s $_zsh_path"
@@ -76,25 +76,25 @@ if [ -n "${ZSH_VERSION-}" ] && [ ! -f "${ZSH_CACHE_DIR:-$HOME/.cache}/shell-chan
       read -r _answer
 
       case "$_answer" in
-        [Yy]*)
-          _change_shell
-          case $? in
-            0)
-              >&2 printf '\033[32mzsh\033[0m: Login shell changed to %s\n' "$_zsh_path"
-              _mark_shell_changed
-              ;;
-            1)
-              >&2 printf '\033[31mzsh\033[0m: Failed to change shell. You may need to run: chsh -s %s\n' "$_zsh_path"
-              ;;
-            2)
-              >&2 printf '\033[33mzsh\033[0m: chsh not available. Contact your system administrator.\n'
-              ;;
-          esac
-          ;;
-        *)
-          >&2 printf 'Keeping current shell. You can change it later with: chsh -s %s\n' "$_zsh_path"
+      [Yy]*)
+        _change_shell
+        case $? in
+        0)
+          >&2 printf '\033[32mzsh\033[0m: Login shell changed to %s\n' "$_zsh_path"
           _mark_shell_changed
           ;;
+        1)
+          >&2 printf '\033[31mzsh\033[0m: Failed to change shell. You may need to run: chsh -s %s\n' "$_zsh_path"
+          ;;
+        2)
+          >&2 printf '\033[33mzsh\033[0m: chsh not available. Contact your system administrator.\n'
+          ;;
+        esac
+        ;;
+      *)
+        >&2 printf 'Keeping current shell. You can change it later with: chsh -s %s\n' "$_zsh_path"
+        _mark_shell_changed
+        ;;
       esac
 
       unset _answer

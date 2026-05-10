@@ -10,3 +10,6 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+
+# Added by Toolbox App
+export PATH="$PATH:/home/damian/.local/share/JetBrains/Toolbox/scripts"
