@@ -1,6 +1,6 @@
 local utils = require "utils.pack"
 
-utils.ensure(utils.gh "benomahony/oil-git.nvim")
+utils.ensure(utils.gh "malewicz1337/oil-git.nvim")
 
 utils.add(utils.gh "stevearc/oil.nvim", function()
   vim.cmd.packadd "oil-git.nvim"
