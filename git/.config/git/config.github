@@ -1,3 +1,6 @@
 [user]
-	name = Damian D'Souza
-	email = dsouzadamian189@gmail.com
+    name = Damian D'Souza
+    email = dsouzadamian189@gmail.com
+
+[commit]
+    gpgsign = true
