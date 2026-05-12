@@ -26,6 +26,9 @@ utils.add(utils.gh "folke/snacks.nvim", function()
         return { preset = "telescope" }
       end,
       sources = {
+        smart = {
+          filter = { cwd = true },
+        },
         zoxide = {
           finder = "files_zoxide",
           format = "file",
