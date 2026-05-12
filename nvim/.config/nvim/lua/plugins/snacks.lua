@@ -60,6 +60,16 @@ utils.add(utils.gh "folke/snacks.nvim", function()
   snacks.toggle.inlay_hints():map "<leader>uh"
   snacks.toggle.indent():map "<leader>ug"
   snacks.toggle.dim():map "<leader>uD"
+  Snacks.toggle
+    .new({
+      name = "Centered Cursor",
+      get = function() return vim.o.scrolloff >= 10 end,
+      set = function(state)
+        vim.o.scrolloff = state and 99 or 7
+        if vim.version().minor >= 13 then vim.o.scrolloffpad = state and 1 or 0 end
+      end,
+    })
+    :map "<leader>uS"
 end)
 
 local map = vim.keymap.set
