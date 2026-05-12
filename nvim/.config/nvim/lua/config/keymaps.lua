@@ -34,8 +34,18 @@ vim.keymap.set("n", "<leader>fn", function()
 end, { desc = "New File (Relative Path)" })
 
 -- Better Movement & Indenting
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map(
+  { "n", "x" },
+  "j",
+  "v:count == 0 ? 'gj' : 'j'",
+  { desc = "Down", expr = true, silent = true }
+)
+map(
+  { "n", "x" },
+  "k",
+  "v:count == 0 ? 'gk' : 'k'",
+  { desc = "Up", expr = true, silent = true }
+)
 map("x", "<", "<gv")
 map("x", ">", ">gv")
 
@@ -48,10 +58,30 @@ end
 
 -- Center search results
 if vim.version().minor < 13 then
-  map("n", "n", "'Nn'[v:searchforward].'zzzv'", { expr = true, desc = "Next Search Result" })
-  map("n", "N", "'nN'[v:searchforward].'zzzv'", { expr = true, desc = "Prev Search Result" })
-  map({ "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-  map({ "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+  map(
+    "n",
+    "n",
+    "'Nn'[v:searchforward].'zzzv'",
+    { expr = true, desc = "Next Search Result" }
+  )
+  map(
+    "n",
+    "N",
+    "'nN'[v:searchforward].'zzzv'",
+    { expr = true, desc = "Prev Search Result" }
+  )
+  map(
+    { "x", "o" },
+    "n",
+    "'Nn'[v:searchforward]",
+    { expr = true, desc = "Next Search Result" }
+  )
+  map(
+    { "x", "o" },
+    "N",
+    "'nN'[v:searchforward]",
+    { expr = true, desc = "Prev Search Result" }
+  )
 end
 
 -- Navigation (CTRL + hjkl)
@@ -73,10 +103,30 @@ map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 
 local resize = require("utils.resize").resize
 
-map({ "n", "t" }, "<C-Up>", function() resize("up", 2) end, { desc = "Increase Height" })
-map({ "n", "t" }, "<C-Down>", function() resize("down", 2) end, { desc = "Decrease Height" })
-map({ "n", "t" }, "<C-Left>", function() resize("left", 2) end, { desc = "Decrease Width" })
-map({ "n", "t" }, "<C-Right>", function() resize("right", 2) end, { desc = "Increase Width" })
+map(
+  { "n", "t" },
+  "<C-Up>",
+  function() resize("up", 2) end,
+  { desc = "Increase Height" }
+)
+map(
+  { "n", "t" },
+  "<C-Down>",
+  function() resize("down", 2) end,
+  { desc = "Decrease Height" }
+)
+map(
+  { "n", "t" },
+  "<C-Left>",
+  function() resize("left", 2) end,
+  { desc = "Decrease Width" }
+)
+map(
+  { "n", "t" },
+  "<C-Right>",
+  function() resize("right", 2) end,
+  { desc = "Increase Width" }
+)
 
 -- Tabs
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
@@ -114,8 +164,18 @@ map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down
 map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+map(
+  "v",
+  "<A-j>",
+  ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv",
+  { desc = "Move Down" }
+)
+map(
+  "v",
+  "<A-k>",
+  ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv",
+  { desc = "Move Up" }
+)
 
 -- Writing helpers
 map("i", "<A-.>", " -> ", { silent = true })
@@ -128,12 +188,16 @@ map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Comment Ab
 
 -- Quickfix & Location List
 map("n", "<leader>xq", function()
-  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  local success, err = pcall(
+    vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen
+  )
   if not success and err then vim.notify(err, vim.log.levels.ERROR) end
 end, { desc = "Quickfix List" })
 
 map("n", "<leader>xl", function()
-  local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+  local success, err = pcall(
+    vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen
+  )
   if not success and err then vim.notify(err, vim.log.levels.ERROR) end
 end, { desc = "Location List" })
 
@@ -151,7 +215,12 @@ local diagnostic_goto = function(next, severity)
   end
 end
 
-map("n", "<leader>cd", function() vim.diagnostic.open_float() end, { desc = "Line Diagnostics" })
+map(
+  "n",
+  "<leader>cd",
+  function() vim.diagnostic.open_float() end,
+  { desc = "Line Diagnostics" }
+)
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
@@ -179,16 +248,38 @@ if not vim.g.vscode then
   map("n", "<leader>of", ":Terminal --floating<CR>", { desc = "Float Term" })
   map("n", "<leader>ob", ":Terminal --bottom<CR>", { desc = "Bottom Term" })
 
-  map("n", "<leader>oF", ":Terminal --floating %:p:h<CR>", { desc = "Float Term (file)" })
-  map("n", "<leader>oB", ":Terminal --bottom %:p:h<CR>", { desc = "Bottom Term (file)" })
+  map(
+    "n",
+    "<leader>oF",
+    ":Terminal --floating %:p:h<CR>",
+    { desc = "Float Term (file)" }
+  )
+  map(
+    "n",
+    "<leader>oB",
+    ":Terminal --bottom %:p:h<CR>",
+    { desc = "Bottom Term (file)" }
+  )
 else
   local vscode = require "vscode"
   for _, lhs in ipairs { "<leader>ft", "<leader>fT", "<c-/>" } do
-    vim.keymap.set("n", lhs, function() vscode.call "workbench.action.terminal.toggleTerminal" end)
+    vim.keymap.set(
+      "n",
+      lhs,
+      function() vscode.call "workbench.action.terminal.toggleTerminal" end
+    )
   end
   vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
-  vim.keymap.set("n", "<leader>/", function() vscode.call "workbench.action.findInFiles" end)
+  vim.keymap.set(
+    "n",
+    "<leader>/",
+    function() vscode.call "workbench.action.findInFiles" end
+  )
 
-  vim.keymap.set("n", "<S-h>", function() vscode.call "workbench.action.previousEditor" end)
+  vim.keymap.set(
+    "n",
+    "<S-h>",
+    function() vscode.call "workbench.action.previousEditor" end
+  )
   vim.keymap.set("n", "<S-l>", function() vscode.call "workbench.action.nextEditor" end)
 end

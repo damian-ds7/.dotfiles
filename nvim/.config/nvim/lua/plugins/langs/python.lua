@@ -28,7 +28,11 @@ local lang = {
 
 registry.register(lang)
 
-utils.add(utils.gh "nvim-neotest/neotest-python", function() require "neotest-python" end, "filetype:python")
+utils.add(
+  utils.gh "nvim-neotest/neotest-python",
+  function() require "neotest-python" end,
+  "filetype:python"
+)
 
 utils.add(
   utils.gh "mfussenegger/nvim-dap-python",

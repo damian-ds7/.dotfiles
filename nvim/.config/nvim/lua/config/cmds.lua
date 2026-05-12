@@ -1,4 +1,8 @@
-vim.api.nvim_create_user_command("PackInfo", function() vim.cmd "checkhealth vim.pack" end, {})
+vim.api.nvim_create_user_command(
+  "PackInfo",
+  function() vim.cmd "checkhealth vim.pack" end,
+  {}
+)
 
 vim.api.nvim_create_user_command("PackUpdate", function(opts)
   local names, pack_opts = {}, { force = opts.bang }

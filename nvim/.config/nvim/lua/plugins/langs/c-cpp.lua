@@ -6,7 +6,9 @@ local cpp_dap_config = {
     name = "Launch file",
     type = "codelldb",
     request = "launch",
-    program = function() return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file") end,
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
     cwd = function() return vim.uv.fs_realpath(vim.fn.getcwd()) end,
     stopOnEntry = false,
   },

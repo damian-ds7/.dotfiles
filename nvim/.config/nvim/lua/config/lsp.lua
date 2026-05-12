@@ -30,21 +30,76 @@ autocmd("LspAttach", {
     map(buf, "<leader>cl", vim.lsp.codelens.run, "Codelens", { "n", "x" })
     map(buf, "<leader>cc", vim.lsp.buf.declaration, "Goto Declaration")
 
-    map(buf, "<leader>cD", function() builtin.lsp_definitions { reuse_win = true } end, "Definition")
-    map(buf, "<leader>cR", function() builtin.lsp_references { reuse_win = true } end, "References")
-    map(buf, "<leader>ci", function() builtin.lsp_implementations { reuse_win = true } end, "Implementation")
-    map(buf, "<leader>ct", function() builtin.lsp_type_definitions { reuse_win = true } end, "Type Definition")
-    map(buf, "<leader>cs", function() builtin.lsp_document_symbols() end, "Document Symbols")
-    map(buf, "<leader>cS", function() builtin.lsp_dynamic_workspace_symbols() end, "Workspace Symbols")
+    map(
+      buf,
+      "<leader>cD",
+      function() builtin.lsp_definitions { reuse_win = true } end,
+      "Definition"
+    )
+    map(
+      buf,
+      "<leader>cR",
+      function() builtin.lsp_references { reuse_win = true } end,
+      "References"
+    )
+    map(
+      buf,
+      "<leader>ci",
+      function() builtin.lsp_implementations { reuse_win = true } end,
+      "Implementation"
+    )
+    map(
+      buf,
+      "<leader>ct",
+      function() builtin.lsp_type_definitions { reuse_win = true } end,
+      "Type Definition"
+    )
+    map(
+      buf,
+      "<leader>cs",
+      function() builtin.lsp_document_symbols() end,
+      "Document Symbols"
+    )
+    map(
+      buf,
+      "<leader>cS",
+      function() builtin.lsp_dynamic_workspace_symbols() end,
+      "Workspace Symbols"
+    )
 
     map(buf, "grD", vim.lsp.buf.declaration, "Goto Declaration")
     map(buf, "gD", vim.lsp.buf.declaration, "Goto Declaration")
-    map(buf, "grr", function() builtin.lsp_references { reuse_win = true } end, "References")
-    map(buf, "gd", function() builtin.lsp_definitions { reuse_win = true } end, "Definition")
-    map(buf, "gri", function() builtin.lsp_implementations { reuse_win = true } end, "Implementation")
-    map(buf, "grt", function() builtin.lsp_type_definitions { reuse_win = true } end, "Type Definition")
+    map(
+      buf,
+      "grr",
+      function() builtin.lsp_references { reuse_win = true } end,
+      "References"
+    )
+    map(
+      buf,
+      "gd",
+      function() builtin.lsp_definitions { reuse_win = true } end,
+      "Definition"
+    )
+    map(
+      buf,
+      "gri",
+      function() builtin.lsp_implementations { reuse_win = true } end,
+      "Implementation"
+    )
+    map(
+      buf,
+      "grt",
+      function() builtin.lsp_type_definitions { reuse_win = true } end,
+      "Type Definition"
+    )
     map(buf, "gs", function() builtin.lsp_document_symbols() end, "Document Symbols")
-    map(buf, "gS", function() builtin.lsp_dynamic_workspace_symbols() end, "Workspace Symbols")
+    map(
+      buf,
+      "gS",
+      function() builtin.lsp_dynamic_workspace_symbols() end,
+      "Workspace Symbols"
+    )
 
     if client.server_capabilities.documentHighlightProvider then
       autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -66,7 +121,12 @@ autocmd("LspAttach", {
       map(
         buf,
         "<leader>uh",
-        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = buf }, { bufnr = buf }) end,
+        function()
+          vim.lsp.inlay_hint.enable(
+            not vim.lsp.inlay_hint.is_enabled { bufnr = buf },
+            { bufnr = buf }
+          )
+        end,
         "Toggle Inlay Hints"
       )
 
@@ -90,7 +150,9 @@ autocmd("LspAttach", {
       map(
         buf,
         "<leader>ue",
-        function() vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled { bufnr = buf }) end,
+        function()
+          vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled { bufnr = buf })
+        end,
         "Toggle Codelens"
       )
     end

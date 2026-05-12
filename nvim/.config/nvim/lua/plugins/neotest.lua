@@ -1,8 +1,8 @@
 local utils = require "utils.pack"
 local registry = require "core.lang_reg"
 
-utils.ensure (utils.gh "nvim-neotest/nvim-nio")
-utils.ensure (utils.gh "nvim-lua/plenary.nvim")
+utils.ensure(utils.gh "nvim-neotest/nvim-nio")
+utils.ensure(utils.gh "nvim-lua/plenary.nvim")
 
 utils.add(utils.gh "nvim-neotest/neotest", function()
   vim.cmd.packadd "nvim-nio"
@@ -12,7 +12,11 @@ utils.add(utils.gh "nvim-neotest/neotest", function()
   vim.diagnostic.config({
     virtual_text = {
       format = function(diagnostic)
-        return diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+        return diagnostic.message
+          :gsub("\n", " ")
+          :gsub("\t", " ")
+          :gsub("%s+", " ")
+          :gsub("^%s+", "")
       end,
     },
   }, neotest_ns)
@@ -76,7 +80,12 @@ end, "event:BufReadPost,BufWritePost,BufNewFile")
 
 -- Keymaps (Wrapped in require to trigger loading)
 vim.keymap.set("n", "<leader>t", "", { desc = "+test" })
-vim.keymap.set("n", "<leader>ta", function() require("neotest").run.attach() end, { desc = "Attach to Test (Neotest)" })
+vim.keymap.set(
+  "n",
+  "<leader>ta",
+  function() require("neotest").run.attach() end,
+  { desc = "Attach to Test (Neotest)" }
+)
 vim.keymap.set(
   "n",
   "<leader>tt",
@@ -89,8 +98,18 @@ vim.keymap.set(
   function() require("neotest").run.run(vim.uv.cwd()) end,
   { desc = "Run All Test Files (Neotest)" }
 )
-vim.keymap.set("n", "<leader>tr", function() require("neotest").run.run() end, { desc = "Run Nearest (Neotest)" })
-vim.keymap.set("n", "<leader>tl", function() require("neotest").run.run_last() end, { desc = "Run Last (Neotest)" })
+vim.keymap.set(
+  "n",
+  "<leader>tr",
+  function() require("neotest").run.run() end,
+  { desc = "Run Nearest (Neotest)" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>tl",
+  function() require("neotest").run.run_last() end,
+  { desc = "Run Last (Neotest)" }
+)
 vim.keymap.set(
   "n",
   "<leader>ts",
@@ -109,7 +128,12 @@ vim.keymap.set(
   function() require("neotest").output_panel.toggle() end,
   { desc = "Toggle Output Panel (Neotest)" }
 )
-vim.keymap.set("n", "<leader>tS", function() require("neotest").run.stop() end, { desc = "Stop (Neotest)" })
+vim.keymap.set(
+  "n",
+  "<leader>tS",
+  function() require("neotest").run.stop() end,
+  { desc = "Stop (Neotest)" }
+)
 vim.keymap.set(
   "n",
   "<leader>tw",

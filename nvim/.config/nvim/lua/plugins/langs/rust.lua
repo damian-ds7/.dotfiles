@@ -28,7 +28,12 @@ local setup_keymaps = function(bufnr)
     function() vim.cmd.RustLsp { "explainError", "current" } end,
     { desc = "LSP: Explain Error", buffer = bufnr }
   )
-  vim.keymap.set("n", "K", function() vim.cmd.RustLsp { "hover", "actions" } end, { silent = true, buffer = bufnr })
+  vim.keymap.set(
+    "n",
+    "K",
+    function() vim.cmd.RustLsp { "hover", "actions" } end,
+    { silent = true, buffer = bufnr }
+  )
   vim.keymap.set(
     "n",
     "<leader>dr",
@@ -89,4 +94,8 @@ vim.g.rustaceanvim = function()
   }
 end
 
-utils.add({ src = utils.gh "mrcjkb/rustaceanvim", version = vim.version.range "8.*" }, function() end, "filetype:rust")
+utils.add(
+  { src = utils.gh "mrcjkb/rustaceanvim", version = vim.version.range "8.*" },
+  function() end,
+  "filetype:rust"
+)

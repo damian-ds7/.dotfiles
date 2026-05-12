@@ -11,7 +11,9 @@ local M = {
 }
 
 function M.register(lang)
-  if lang.servers then M.servers = vim.tbl_deep_extend("force", M.servers, lang.servers) end
+  if lang.servers then
+    M.servers = vim.tbl_deep_extend("force", M.servers, lang.servers)
+  end
 
   if lang.tools then
     for _, tool in ipairs(lang.tools) do
@@ -25,17 +27,23 @@ function M.register(lang)
     end
   end
 
-  if lang.formatters then M.formatters = vim.tbl_deep_extend("force", M.formatters, lang.formatters) end
+  if lang.formatters then
+    M.formatters = vim.tbl_deep_extend("force", M.formatters, lang.formatters)
+  end
 
   if lang.dap then
-    if lang.dap.adapters then M.dap.adapters = vim.tbl_deep_extend("force", M.dap.adapters, lang.dap.adapters) end
+    if lang.dap.adapters then
+      M.dap.adapters = vim.tbl_deep_extend("force", M.dap.adapters, lang.dap.adapters)
+    end
     if lang.dap.configurations then
-      M.dap.configurations = vim.tbl_deep_extend("force", M.dap.configurations, lang.dap.configurations)
+      M.dap.configurations =
+        vim.tbl_deep_extend("force", M.dap.configurations, lang.dap.configurations)
     end
   end
 
   if lang.neotest_adapters then
-    M.neotest_adapters = vim.tbl_deep_extend("force", M.neotest_adapters, lang.neotest_adapters)
+    M.neotest_adapters =
+      vim.tbl_deep_extend("force", M.neotest_adapters, lang.neotest_adapters)
   end
 end
 

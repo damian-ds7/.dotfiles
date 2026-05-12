@@ -47,7 +47,8 @@ local config = function()
 
   ts.install(ensure_installed)
 
-  local ts_group = vim.api.nvim_create_augroup("treesitter-auto-start", { clear = true })
+  local ts_group =
+    vim.api.nvim_create_augroup("treesitter-auto-start", { clear = true })
   vim.api.nvim_create_autocmd("FileType", {
     group = ts_group,
     pattern = ensure_installed,
@@ -61,10 +62,17 @@ utils.on_pack_changed("nvim-treesitter", "update", function(data)
   vim.cmd "TSUpdate"
 end)
 
-utils.add({ src = utils.gh "nvim-treesitter/nvim-treesitter", data = { vscode = true } }, config, "later")
+utils.add(
+  { src = utils.gh "nvim-treesitter/nvim-treesitter", data = { vscode = true } },
+  config,
+  "later"
+)
 
 utils.add(
-  { src = utils.gh "nvim-treesitter/nvim-treesitter-textobjects", data = { vscode = true } },
+  {
+    src = utils.gh "nvim-treesitter/nvim-treesitter-textobjects",
+    data = { vscode = true },
+  },
   function() vim.g.no_plugin_maps = true end,
   "event:BufReadPost,BufWritePost,BufNewFile"
 )

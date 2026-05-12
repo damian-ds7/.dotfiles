@@ -32,7 +32,9 @@ vim.api.nvim_create_autocmd("TermClose", {
   callback = function(ev)
     if ev.buf ~= state.term.buf then return end
 
-    if vim.api.nvim_win_is_valid(state.term.win) then vim.api.nvim_win_close(state.term.win, true) end
+    if vim.api.nvim_win_is_valid(state.term.win) then
+      vim.api.nvim_win_close(state.term.win, true)
+    end
 
     state.term.win = -1
   end,
@@ -41,7 +43,8 @@ vim.api.nvim_create_autocmd("TermClose", {
 local function create_floating_window(opts)
   local width, height, col, row = get_dims()
 
-  local buf = (vim.api.nvim_buf_is_valid(opts.buf)) and opts.buf or vim.api.nvim_create_buf(false, true)
+  local buf = (vim.api.nvim_buf_is_valid(opts.buf)) and opts.buf
+    or vim.api.nvim_create_buf(false, true)
 
   local win = vim.api.nvim_open_win(buf, true, {
     relative = "editor",
@@ -59,7 +62,8 @@ end
 local function create_bottom_window(opts)
   local height = math.floor(vim.o.lines * 0.3)
 
-  local buf = vim.api.nvim_buf_is_valid(opts.buf) and opts.buf or vim.api.nvim_create_buf(false, true)
+  local buf = vim.api.nvim_buf_is_valid(opts.buf) and opts.buf
+    or vim.api.nvim_create_buf(false, true)
 
   vim.cmd "botright split"
 
@@ -138,7 +142,11 @@ M.setup = function()
       mode = "floating"
     end
 
-    local dir = args:gsub("%-%-bottom", ""):gsub("%-%-floating", ""):gsub("^%s+", ""):gsub("%s+$", "")
+    local dir = args
+      :gsub("%-%-bottom", "")
+      :gsub("%-%-floating", "")
+      :gsub("^%s+", "")
+      :gsub("%s+$", "")
 
     if dir ~= "" then
       dir = vim.fn.expand(dir)

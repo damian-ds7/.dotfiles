@@ -82,4 +82,8 @@ local function config()
   }
 end
 
-utils.add(utils.gh "lewis6991/gitsigns.nvim", config, "event:BufReadPost,BufWritePost,BufNewFile")
+utils.add(
+  utils.gh "lewis6991/gitsigns.nvim",
+  config,
+  "event:BufReadPost,BufWritePost,BufNewFile"
+)

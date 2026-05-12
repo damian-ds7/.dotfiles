@@ -41,10 +41,15 @@ utils.add(utils.gh "folke/snacks.nvim", function()
   snacks.toggle.diagnostics():map "<leader>ud"
   snacks.toggle.line_number():map "<leader>ul"
   snacks.toggle
-    .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+    .option(
+      "conceallevel",
+      { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
+    )
     :map "<leader>uc"
   snacks.toggle.treesitter():map "<leader>uT"
-  snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map "<leader>ub"
+  snacks.toggle
+    .option("background", { off = "light", on = "dark", name = "Dark Background" })
+    :map "<leader>ub"
   snacks.toggle.inlay_hints():map "<leader>uh"
   snacks.toggle
     .new({
@@ -55,7 +60,10 @@ utils.add(utils.gh "folke/snacks.nvim", function()
       end,
       set = function()
         local bufnr = vim.api.nvim_get_current_buf()
-        vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
+        vim.lsp.codelens.enable(
+          not vim.lsp.codelens.is_enabled { bufnr = bufnr },
+          { bufnr = bufnr }
+        )
       end,
     })
     :map "<leader>ue"
@@ -63,14 +71,54 @@ utils.add(utils.gh "folke/snacks.nvim", function()
   snacks.toggle.dim():map "<leader>uD"
 end)
 
-vim.keymap.set("n", "<leader>gb", function() require("snacks").picker.git_branches() end, { desc = "Git Branches" })
-vim.keymap.set("n", "<leader>gl", function() require("snacks").picker.git_log() end, { desc = "Git Log" })
-vim.keymap.set("n", "<leader>gL", function() require("snacks").picker.git_log_line() end, { desc = "Git Log Line" })
-vim.keymap.set("n", "<leader>gs", function() require("snacks").picker.git_status() end, { desc = "Git Status" })
-vim.keymap.set("n", "<leader>gS", function() require("snacks").picker.git_stash() end, { desc = "Git Stash" })
-vim.keymap.set("n", "<leader>gd", function() require("snacks").picker.git_diff() end, { desc = "Git Diff (Hunks)" })
-vim.keymap.set("n", "<leader>gf", function() require("snacks").picker.git_log_file() end, { desc = "Git Log File" })
-vim.keymap.set("n", "<leader>gi", function() require("snacks").picker.gh_issue() end, { desc = "GitHub Issues (open)" })
+vim.keymap.set(
+  "n",
+  "<leader>gb",
+  function() require("snacks").picker.git_branches() end,
+  { desc = "Git Branches" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gl",
+  function() require("snacks").picker.git_log() end,
+  { desc = "Git Log" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gL",
+  function() require("snacks").picker.git_log_line() end,
+  { desc = "Git Log Line" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gs",
+  function() require("snacks").picker.git_status() end,
+  { desc = "Git Status" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gS",
+  function() require("snacks").picker.git_stash() end,
+  { desc = "Git Stash" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gd",
+  function() require("snacks").picker.git_diff() end,
+  { desc = "Git Diff (Hunks)" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gf",
+  function() require("snacks").picker.git_log_file() end,
+  { desc = "Git Log File" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gi",
+  function() require("snacks").picker.gh_issue() end,
+  { desc = "GitHub Issues (open)" }
+)
 vim.keymap.set(
   "n",
   "<leader>gI",
@@ -89,14 +137,54 @@ vim.keymap.set(
   function() require("snacks").picker.gh_pr { state = "all" } end,
   { desc = "GitHub Pull Requests (all)" }
 )
-vim.keymap.set("n", '<leader>s"', function() require("snacks").picker.registers() end, { desc = "Registers" })
-vim.keymap.set("n", "<leader>uZ", function() require("snacks").zen() end, { desc = "Toggle Zen Mode" })
-vim.keymap.set("n", "<leader>uz", function() require("snacks").zen.zoom() end, { desc = "Toggle Zoom" })
-vim.keymap.set("n", "<leader>>", function() require("snacks").scratch() end, { desc = "Toggle Scratch Buffer" })
-vim.keymap.set("n", "<leader>S", function() require("snacks").scratch.select() end, { desc = "Select Scratch Buffer" })
-vim.keymap.set("n", "<leader>cf", function() require("snacks").rename.rename_file() end, { desc = "Rename File" })
-vim.keymap.set({ "n", "v" }, "<leader>gB", function() require("snacks").gitbrowse() end, { desc = "Git Browse" })
-vim.keymap.set("n", "<leader>gg", function() require("snacks").lazygit() end, { desc = "Lazygit" })
+vim.keymap.set(
+  "n",
+  '<leader>s"',
+  function() require("snacks").picker.registers() end,
+  { desc = "Registers" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>uZ",
+  function() require("snacks").zen() end,
+  { desc = "Toggle Zen Mode" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>uz",
+  function() require("snacks").zen.zoom() end,
+  { desc = "Toggle Zoom" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>>",
+  function() require("snacks").scratch() end,
+  { desc = "Toggle Scratch Buffer" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>S",
+  function() require("snacks").scratch.select() end,
+  { desc = "Select Scratch Buffer" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>cf",
+  function() require("snacks").rename.rename_file() end,
+  { desc = "Rename File" }
+)
+vim.keymap.set(
+  { "n", "v" },
+  "<leader>gB",
+  function() require("snacks").gitbrowse() end,
+  { desc = "Git Browse" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gg",
+  function() require("snacks").lazygit() end,
+  { desc = "Lazygit" }
+)
 vim.keymap.set(
   "n",
   "<leader>un",

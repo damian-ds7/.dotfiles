@@ -12,12 +12,16 @@ utils.add(utils.gh "nvim-lualine/lualine.nvim", function()
       disabled_filetypes = {},
     },
     sections = {
-      lualine_a = { { "mode", icon = "", separator = { left = "" }, right_padding = 2 } },
+      lualine_a = {
+        { "mode", icon = "", separator = { left = "" }, right_padding = 2 },
+      },
       lualine_b = {
         {
           "branch",
           fmt = function(str)
-            if vim.api.nvim_strwidth(str) > 40 then return ("%s…"):format(str:sub(1, 39)) end
+            if vim.api.nvim_strwidth(str) > 40 then
+              return ("%s…"):format(str:sub(1, 39))
+            end
             return str
           end,
         },
@@ -32,17 +36,29 @@ utils.add(utils.gh "nvim-lualine/lualine.nvim", function()
             hint = icons.diagnostics.hint,
           },
         },
-        { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+        {
+          "filetype",
+          icon_only = true,
+          separator = "",
+          padding = { left = 1, right = 0 },
+        },
         {
           "filename",
           path = 1,
-          symbols = { modified = " ●", readonly = " ", unnamed = "", separator = "" },
+          symbols = {
+            modified = " ●",
+            readonly = " ",
+            unnamed = "",
+            separator = "",
+          },
         },
       },
       lualine_x = {
         {
           function() return require("noice").api.status.command.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+          cond = function()
+            return package.loaded["noice"] and require("noice").api.status.command.has()
+          end,
           color = function()
             local hl = vim.api.nvim_get_hl(0, { name = "Statement" })
             return { fg = string.format("#%06x", hl.fg or 0) }
@@ -50,7 +66,9 @@ utils.add(utils.gh "nvim-lualine/lualine.nvim", function()
         },
         {
           function() return require("noice").api.status.mode.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+          cond = function()
+            return package.loaded["noice"] and require("noice").api.status.mode.has()
+          end,
           color = function()
             local hl = vim.api.nvim_get_hl(0, { name = "Constant" })
             return { fg = string.format("#%06x", hl.fg or 0), gui = "bold" }
@@ -58,7 +76,9 @@ utils.add(utils.gh "nvim-lualine/lualine.nvim", function()
         },
         {
           function() return "  " .. require("dap").status() end,
-          cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+          cond = function()
+            return package.loaded["dap"] and require("dap").status() ~= ""
+          end,
         },
         {
           "diff",

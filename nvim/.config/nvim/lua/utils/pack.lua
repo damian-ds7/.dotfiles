@@ -50,7 +50,10 @@ end
 
 --- Install all plugins and wire up triggers
 function M.sync()
-  vim.pack.add(vim.tbl_map(function(p) return p.spec end, plugins), { load = function() end })
+  vim.pack.add(
+    vim.tbl_map(function(p) return p.spec end, plugins),
+    { load = function() end }
+  )
 
   for _, item in ipairs(plugins) do
     if item.ensure_only then goto continue end

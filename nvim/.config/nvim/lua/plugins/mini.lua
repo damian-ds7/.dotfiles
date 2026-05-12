@@ -16,7 +16,12 @@ local function config()
       t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
       d = { "%f[%d]%d+" },
       e = {
-        { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
+        {
+          "%u[%l%d]+%f[^%l%d]",
+          "%f[%S][%l%d]+%f[^%l%d]",
+          "%f[%P][%l%d]+%f[^%l%d]",
+          "^[%l%d]+%f[^%l%d]",
+        },
         "^().*()$",
       },
       u = ai.gen_spec.function_call(),
@@ -62,9 +67,24 @@ local function config()
       ["]"] = { action = "close", pair = "[]", neigh_pattern = "^[^\\]" },
       ["}"] = { action = "close", pair = "{}", neigh_pattern = "^[^\\]" },
 
-      ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "^[^\\]", register = { cr = false } },
-      ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "^[^%a\\]", register = { cr = false } },
-      ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "^[^\\]", register = { cr = false } },
+      ['"'] = {
+        action = "closeopen",
+        pair = '""',
+        neigh_pattern = "^[^\\]",
+        register = { cr = false },
+      },
+      ["'"] = {
+        action = "closeopen",
+        pair = "''",
+        neigh_pattern = "^[^%a\\]",
+        register = { cr = false },
+      },
+      ["`"] = {
+        action = "closeopen",
+        pair = "``",
+        neigh_pattern = "^[^\\]",
+        register = { cr = false },
+      },
     },
   }
 
@@ -117,7 +137,9 @@ utils.add(utils.gh "nvim-mini/mini.sessions", function()
     },
   }
 
-  local function encode(path) return path:gsub("/", "-"):gsub("%-+", "-"):gsub("^%-", ""):gsub("%-$", "") end
+  local function encode(path)
+    return path:gsub("/", "-"):gsub("%-+", "-"):gsub("^%-", ""):gsub("%-$", "")
+  end
 
   local function current_session_name() return encode(vim.fn.getcwd()) end
 
@@ -146,7 +168,12 @@ utils.add(utils.gh "nvim-mini/mini.sessions", function()
     desc = "Delete Session",
   })
 
-  vim.keymap.set("n", "<leader>R", function() sessions.restart() end, { desc = "Restart Neovim" })
+  vim.keymap.set(
+    "n",
+    "<leader>R",
+    function() sessions.restart() end,
+    { desc = "Restart Neovim" }
+  )
 
   vim.api.nvim_create_autocmd("BufReadPost", {
     group = vim.api.nvim_create_augroup("session-auto-save", { clear = true }),
