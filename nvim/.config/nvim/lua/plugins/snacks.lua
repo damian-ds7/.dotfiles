@@ -51,22 +51,6 @@ utils.add(utils.gh "folke/snacks.nvim", function()
     .option("background", { off = "light", on = "dark", name = "Dark Background" })
     :map "<leader>ub"
   snacks.toggle.inlay_hints():map "<leader>uh"
-  snacks.toggle
-    .new({
-      name = "Code Lens",
-      get = function()
-        local bufnr = vim.api.nvim_get_current_buf()
-        return vim.lsp.codelens.is_enabled { bufnr = bufnr }
-      end,
-      set = function()
-        local bufnr = vim.api.nvim_get_current_buf()
-        vim.lsp.codelens.enable(
-          not vim.lsp.codelens.is_enabled { bufnr = bufnr },
-          { bufnr = bufnr }
-        )
-      end,
-    })
-    :map "<leader>ue"
   snacks.toggle.indent():map "<leader>ug"
   snacks.toggle.dim():map "<leader>uD"
 end)
@@ -184,12 +168,6 @@ vim.keymap.set(
   "<leader>gg",
   function() require("snacks").lazygit() end,
   { desc = "Lazygit" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>un",
-  function() require("snacks").notifier.hide() end,
-  { desc = "Dismiss All Notifications" }
 )
 vim.keymap.set(
   { "n", "t" },

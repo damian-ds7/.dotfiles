@@ -131,14 +131,22 @@ autocmd("LspAttach", {
     end
 
     if client:supports_method "textDocument/codeLens" then
-      map(
-        buf,
-        "<leader>ue",
-        function()
-          vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled { bufnr = buf })
-        end,
-        "Toggle Codelens"
-      )
+      require("snacks").toggle
+        .new({
+          name = "Code Lens",
+          get = function()
+            local bufnr = vim.api.nvim_get_current_buf()
+            return vim.lsp.codelens.is_enabled { bufnr = bufnr }
+          end,
+          set = function()
+            local bufnr = vim.api.nvim_get_current_buf()
+            vim.lsp.codelens.enable(
+              not vim.lsp.codelens.is_enabled { bufnr = bufnr },
+              { bufnr = bufnr }
+            )
+          end,
+        })
+        :map "<leader>ue"
     end
   end,
 })
