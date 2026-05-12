@@ -6,7 +6,6 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local lsp_attach_group = augroup("lsp-attach", { clear = true })
 local lsp_highlight_group = augroup("lsp-highlight", { clear = false })
-local lsp_inlay_group = augroup("lsp-inlay-hints", { clear = false })
 local lsp_diagnostics_group = augroup("lsp-diagnostics", { clear = false })
 
 local function map(buf, keys, func, desc, mode)
@@ -129,21 +128,6 @@ autocmd("LspAttach", {
         end,
         "Toggle Inlay Hints"
       )
-
-      local hint_state = false
-
-      -- autocmd({ "InsertEnter", "InsertLeave" }, {
-      --   group = lsp_inlay_group,
-      --   buffer = buf,
-      --   callback = function(args)
-      --     if args.event == "InsertEnter" then
-      --       hint_state = vim.lsp.inlay_hint.is_enabled { bufnr = buf }
-      --       if hint_state then vim.lsp.inlay_hint.enable(false, { bufnr = buf }) end
-      --     else
-      --       if hint_state then vim.lsp.inlay_hint.enable(true, { bufnr = buf }) end
-      --     end
-      --   end,
-      -- })
     end
 
     if client:supports_method "textDocument/codeLens" then
