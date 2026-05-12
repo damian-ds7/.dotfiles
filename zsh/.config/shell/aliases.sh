@@ -127,26 +127,21 @@ function nvim() {
   fi
 
   if [ $# -eq 0 ]; then
-    command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:FloatTerm<CR>"
+    command nvim --server "$NVIM_ADDRESS" --remote-expr "execute('FloatTerm')"
+    return 0
   fi
 
   local files=()
-  local dirs=()
-
   for arg in "$@"; do
-    if [ -d "$arg" ]; then
-      dirs+=("$arg")
-    else
-      files+=("$arg")
-    fi
+    [[ -f "$arg" ]] && files+=("$(realpath "$arg")")
   done
 
-  for arg in "${files[@]}" "${dirs[@]}"; do
+  for arg in "${files[@]}"; do
     local fp=$(realpath "$arg")
     command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:e $fp<CR>"
   done
 
-  command nvim --server "$NVIM_ADDRESS" --remote-send "<C-\><C-N>:TermToggle<CR>"
+  command nvim --server "$NVIM_ADDRESS" --remote-expr "execute('TermToggle')"
 
   return 0
 }

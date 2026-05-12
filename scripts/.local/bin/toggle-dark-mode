@@ -13,7 +13,7 @@
 #    If found, it creates a symlink 'themes/current-theme' pointing to it.
 #    Example: themes/catppuccin/dark.yaml -> themes/current-theme.yaml
 
-source "$(readlink -f "$HOME/.env")"
+source "$(readlink -f "$HOME/.profile")"
 
 THEME_DIR="$HOME/.config/themes"
 
