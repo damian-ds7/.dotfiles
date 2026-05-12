@@ -25,6 +25,35 @@ utils.add(utils.gh "folke/snacks.nvim", function()
         if vim.o.columns < 120 then return { preset = "vertical", reverse = true } end
         return { preset = "telescope" }
       end,
+      sources = {
+        zoxide = {
+          finder = "files_zoxide",
+          format = "file",
+          confirm = "load_session",
+          win = { preview = { minimal = true } },
+        },
+        projects = {
+          finder = "recent_projects",
+          format = "file",
+          dev = { "~/Projects" },
+          confirm = "load_session",
+          patterns = { ".git", "package.json", "Makefile", "Cargo.toml" },
+          recent = true,
+          matcher = {
+            frecency = true,
+            sort_empty = true,
+            cwd_bonus = false,
+          },
+          sort = { fields = { "score:desc", "idx" } },
+        },
+      },
+      actions = {
+        load_session = function(picker, item)
+          picker:close()
+          vim.cmd.cd(item.file)
+          vim.schedule(function() require("utils.session").restore_session() end)
+        end,
+      },
     },
     lazygit = { enabled = true },
     quickfile = { enabled = true },
@@ -255,4 +284,16 @@ map(
   "<leader>sn",
   function() Snacks.picker.files { cwd = vim.fn.stdpath "config" } end,
   { desc = "Search Neovim files" }
+)
+map(
+  "n",
+  "<leader>sz",
+  function() Snacks.picker.zoxide() end,
+  { desc = "Search Zoxide" }
+)
+map(
+  "n",
+  "<leader>sp",
+  function() Snacks.picker.projects() end,
+  { desc = "Search Projects" }
 )
