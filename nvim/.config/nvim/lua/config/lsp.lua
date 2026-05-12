@@ -1,5 +1,4 @@
 local icons = require "utils.icons"
-local builtin = lazy.require_on_index "telescope.builtin"
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
@@ -29,74 +28,53 @@ autocmd("LspAttach", {
     map(buf, "<leader>cl", vim.lsp.codelens.run, "Codelens", { "n", "x" })
     map(buf, "<leader>cc", vim.lsp.buf.declaration, "Goto Declaration")
 
-    map(
-      buf,
-      "<leader>cD",
-      function() builtin.lsp_definitions { reuse_win = true } end,
-      "Definition"
-    )
-    map(
-      buf,
-      "<leader>cR",
-      function() builtin.lsp_references { reuse_win = true } end,
-      "References"
-    )
+    map(buf, "<leader>cD", function() Snacks.picker.lsp_definitions() end, "Definition")
+    map(buf, "<leader>cR", function() Snacks.picker.lsp_references() end, "References")
     map(
       buf,
       "<leader>ci",
-      function() builtin.lsp_implementations { reuse_win = true } end,
+      function() Snacks.picker.lsp_implementations() end,
       "Implementation"
     )
     map(
       buf,
       "<leader>ct",
-      function() builtin.lsp_type_definitions { reuse_win = true } end,
+      function() Snacks.picker.lsp_type_definitions() end,
       "Type Definition"
     )
     map(
       buf,
       "<leader>cs",
-      function() builtin.lsp_document_symbols() end,
+      function() Snacks.picker.lsp_symbols() end,
       "Document Symbols"
     )
     map(
       buf,
       "<leader>cS",
-      function() builtin.lsp_dynamic_workspace_symbols() end,
+      function() Snacks.picker.lsp_workspace_symbols() end,
       "Workspace Symbols"
     )
-
     map(buf, "grD", vim.lsp.buf.declaration, "Goto Declaration")
     map(buf, "gD", vim.lsp.buf.declaration, "Goto Declaration")
-    map(
-      buf,
-      "grr",
-      function() builtin.lsp_references { reuse_win = true } end,
-      "References"
-    )
-    map(
-      buf,
-      "gd",
-      function() builtin.lsp_definitions { reuse_win = true } end,
-      "Definition"
-    )
+    map(buf, "grr", function() Snacks.picker.lsp_references() end, "References")
+    map(buf, "gd", function() Snacks.picker.lsp_definitions() end, "Definition")
     map(
       buf,
       "gri",
-      function() builtin.lsp_implementations { reuse_win = true } end,
+      function() Snacks.picker.lsp_implementations() end,
       "Implementation"
     )
     map(
       buf,
       "grt",
-      function() builtin.lsp_type_definitions { reuse_win = true } end,
+      function() Snacks.picker.lsp_type_definitions() end,
       "Type Definition"
     )
-    map(buf, "gs", function() builtin.lsp_document_symbols() end, "Document Symbols")
+    map(buf, "gs", function() Snacks.picker.lsp_symbols() end, "Document Symbols")
     map(
       buf,
       "gS",
-      function() builtin.lsp_dynamic_workspace_symbols() end,
+      function() Snacks.picker.lsp_workspace_symbols() end,
       "Workspace Symbols"
     )
 

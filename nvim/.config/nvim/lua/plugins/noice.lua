@@ -67,12 +67,6 @@ vim.keymap.set(
   function() require("noice").cmd "dismiss" end,
   { desc = "Noice Dismiss All" }
 )
-vim.keymap.set(
-  "n",
-  "<leader>nt",
-  function() require("noice").cmd "pick" end,
-  { desc = "Noice Picker (Telescope/FzfLua)" }
-)
 
 vim.keymap.set({ "i", "n", "s" }, "<c-f>", function()
   if not require("noice.lsp").scroll(4) then return "<c-f>" end

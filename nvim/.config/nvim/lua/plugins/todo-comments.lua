@@ -4,9 +4,6 @@ utils.add(
   utils.gh "folke/todo-comments.nvim",
   function()
     require("todo-comments").setup {
-      keywords = {
-        TODO = { alt = { "todo", "unimplemented" } },
-      },
       highlight = {
         pattern = {
           [[.*<(KEYWORDS)\s*:]],
@@ -36,10 +33,15 @@ vim.keymap.set(
   { desc = "Previous todo comment" }
 )
 
-vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "Todo" })
+vim.keymap.set(
+  "n",
+  "<leader>st",
+  function() Snacks.picker.todo_comments() end,
+  { desc = "Todo" }
+)
 vim.keymap.set(
   "n",
   "<leader>sT",
-  "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
+  function() Snacks.picker.todo_comments { keywords = { "TODO", "FIX", "FIXME" } } end,
   { desc = "Todo/Fix/Fixme" }
 )

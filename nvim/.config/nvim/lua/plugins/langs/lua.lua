@@ -31,6 +31,7 @@ local lang = {
               version = "LuaJIT",
               path = { "lua/?.lua", "lua/?/init.lua" },
             },
+            diagnostics = { globals = { "vim", "Snacks" } },
             workspace = {
               checkThirdParty = false,
               library = {

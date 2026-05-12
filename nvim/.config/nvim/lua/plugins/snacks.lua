@@ -19,6 +19,13 @@ utils.add(utils.gh "folke/snacks.nvim", function()
       },
     },
     gitbrowse = { enabled = true },
+    picker = {
+      enabled = true,
+      layout = function()
+        if vim.o.columns < 120 then return { preset = "vertical", reverse = true } end
+        return { preset = "telescope" }
+      end,
+    },
     lazygit = { enabled = true },
     quickfile = { enabled = true },
     scroll = { enabled = true },
@@ -55,129 +62,187 @@ utils.add(utils.gh "folke/snacks.nvim", function()
   snacks.toggle.dim():map "<leader>uD"
 end)
 
-vim.keymap.set(
+local map = vim.keymap.set
+
+map(
   "n",
   "<leader>gb",
-  function() require("snacks").picker.git_branches() end,
+  function() Snacks.picker.git_branches() end,
   { desc = "Git Branches" }
 )
-vim.keymap.set(
-  "n",
-  "<leader>gl",
-  function() require("snacks").picker.git_log() end,
-  { desc = "Git Log" }
-)
-vim.keymap.set(
+map("n", "<leader>gl", function() Snacks.picker.git_log() end, { desc = "Git Log" })
+map(
   "n",
   "<leader>gL",
-  function() require("snacks").picker.git_log_line() end,
+  function() Snacks.picker.git_log_line() end,
   { desc = "Git Log Line" }
 )
-vim.keymap.set(
+map(
   "n",
   "<leader>gs",
-  function() require("snacks").picker.git_status() end,
+  function() Snacks.picker.git_status() end,
   { desc = "Git Status" }
 )
-vim.keymap.set(
-  "n",
-  "<leader>gS",
-  function() require("snacks").picker.git_stash() end,
-  { desc = "Git Stash" }
-)
-vim.keymap.set(
+map("n", "<leader>gS", function() Snacks.picker.git_stash() end, { desc = "Git Stash" })
+map(
   "n",
   "<leader>gd",
-  function() require("snacks").picker.git_diff() end,
+  function() Snacks.picker.git_diff() end,
   { desc = "Git Diff (Hunks)" }
 )
-vim.keymap.set(
+map(
   "n",
   "<leader>gf",
-  function() require("snacks").picker.git_log_file() end,
+  function() Snacks.picker.git_log_file() end,
   { desc = "Git Log File" }
 )
-vim.keymap.set(
+map(
   "n",
   "<leader>gi",
-  function() require("snacks").picker.gh_issue() end,
+  function() Snacks.picker.gh_issue() end,
   { desc = "GitHub Issues (open)" }
 )
-vim.keymap.set(
+map(
   "n",
   "<leader>gI",
-  function() require("snacks").picker.gh_issue { state = "all" } end,
+  function() Snacks.picker.gh_issue { state = "all" } end,
   { desc = "GitHub Issues (all)" }
 )
-vim.keymap.set(
+map(
   "n",
   "<leader>gp",
-  function() require("snacks").picker.gh_pr() end,
+  function() Snacks.picker.gh_pr() end,
   { desc = "GitHub Pull Requests (open)" }
 )
-vim.keymap.set(
+map(
   "n",
   "<leader>gP",
-  function() require("snacks").picker.gh_pr { state = "all" } end,
+  function() Snacks.picker.gh_pr { state = "all" } end,
   { desc = "GitHub Pull Requests (all)" }
 )
-vim.keymap.set(
-  "n",
-  '<leader>s"',
-  function() require("snacks").picker.registers() end,
-  { desc = "Registers" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>uZ",
-  function() require("snacks").zen() end,
-  { desc = "Toggle Zen Mode" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>uz",
-  function() require("snacks").zen.zoom() end,
-  { desc = "Toggle Zoom" }
-)
-vim.keymap.set(
+map("n", '<leader>s"', function() Snacks.picker.registers() end, { desc = "Registers" })
+map("n", "<leader>uZ", function() Snacks.zen() end, { desc = "Toggle Zen Mode" })
+map("n", "<leader>uz", function() Snacks.zen.zoom() end, { desc = "Toggle Zoom" })
+map(
   "n",
   "<leader>>",
-  function() require("snacks").scratch() end,
+  function() Snacks.scratch() end,
   { desc = "Toggle Scratch Buffer" }
 )
-vim.keymap.set(
+map(
   "n",
   "<leader>S",
-  function() require("snacks").scratch.select() end,
+  function() Snacks.scratch.select() end,
   { desc = "Select Scratch Buffer" }
 )
-vim.keymap.set(
+map(
   "n",
   "<leader>cf",
-  function() require("snacks").rename.rename_file() end,
+  function() Snacks.rename.rename_file() end,
   { desc = "Rename File" }
 )
-vim.keymap.set(
+map(
   { "n", "v" },
   "<leader>gB",
-  function() require("snacks").gitbrowse() end,
+  function() Snacks.gitbrowse() end,
   { desc = "Git Browse" }
 )
-vim.keymap.set(
-  "n",
-  "<leader>gg",
-  function() require("snacks").lazygit() end,
-  { desc = "Lazygit" }
-)
-vim.keymap.set(
+map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
+map(
   { "n", "t" },
   "]]",
-  function() require("snacks").words.jump(vim.v.count1) end,
+  function() Snacks.words.jump(vim.v.count1) end,
   { desc = "Next Reference" }
 )
-vim.keymap.set(
+map(
   { "n", "t" },
   "[[",
-  function() require("snacks").words.jump(-vim.v.count1) end,
+  function() Snacks.words.jump(-vim.v.count1) end,
   { desc = "Prev Reference" }
+)
+map("n", "<leader>sf", function() Snacks.picker.smart() end, { desc = "Search Files" })
+map(
+  "n",
+  "<leader><space>",
+  function() Snacks.picker.smart() end,
+  { desc = "Search Files" }
+)
+map("n", "<leader>sh", function() Snacks.picker.help() end, { desc = "Search Help" })
+map(
+  "n",
+  "<leader>sk",
+  function() Snacks.picker.keymaps() end,
+  { desc = "Search Keymaps" }
+)
+map(
+  "n",
+  "<leader>ss",
+  function() Snacks.picker.pickers() end,
+  { desc = "Search Select Picker" }
+)
+map("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Grep" })
+map("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
+map(
+  "n",
+  "<leader>sd",
+  function() Snacks.picker.diagnostics() end,
+  { desc = "Search Diagnostics" }
+)
+map(
+  "n",
+  "<leader>sR",
+  function() Snacks.picker.resume() end,
+  { desc = "Search Resume" }
+)
+map(
+  "n",
+  "<leader>s.",
+  function() Snacks.picker.recent() end,
+  { desc = "Search Recent Files" }
+)
+map(
+  "n",
+  "<leader>sc",
+  function() Snacks.picker.commands() end,
+  { desc = "Search Commands" }
+)
+map(
+  { "n", "v" },
+  "<leader>sw",
+  function() Snacks.picker.grep_word() end,
+  { desc = "Search current Word" }
+)
+map(
+  "n",
+  "<leader>sb",
+  function() Snacks.picker.buffers() end,
+  { desc = "Search Buffers" }
+)
+map(
+  "n",
+  "<leader>,",
+  function() Snacks.picker.buffers() end,
+  { desc = "Search Buffers" }
+)
+map(
+  "n",
+  "<leader>.",
+  function()
+    Snacks.picker.lines {
+      layout = { preset = "dropdown" },
+    }
+  end,
+  { desc = "Fuzzily search in current buffer" }
+)
+map(
+  "n",
+  "<leader>s/",
+  function() Snacks.picker.grep { buf = true } end,
+  { desc = "Search in Open Files" }
+)
+map(
+  "n",
+  "<leader>sn",
+  function() Snacks.picker.files { cwd = vim.fn.stdpath "config" } end,
+  { desc = "Search Neovim files" }
 )
