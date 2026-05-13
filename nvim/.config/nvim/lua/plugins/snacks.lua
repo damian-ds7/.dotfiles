@@ -28,6 +28,7 @@ utils.add(utils.gh "folke/snacks.nvim", function()
       sources = {
         smart = {
           filter = { cwd = true },
+          matcher = { frecency = true, sort_empty = true },
         },
         zoxide = {
           finder = "files_zoxide",
