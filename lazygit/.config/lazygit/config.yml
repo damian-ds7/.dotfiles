@@ -11,3 +11,7 @@ customCommands:
     command: "gh browse"
     context: "global"
     description: "Show github repo in browser"
+keybinding:
+  universal:
+    scrollUpMain: <c-u>
+    scrollDownMain: <c-d>
