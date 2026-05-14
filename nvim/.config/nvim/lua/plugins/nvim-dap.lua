@@ -203,6 +203,10 @@ return {
   },
   plugin {
     src = "jay-babu/mason-nvim-dap.nvim",
+    dependencies = {
+      "mason-org/mason.nvim",
+      { src = "mfussenegger/nvim-dap", name = "dap" },
+    },
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     config = function()
       require("mason-nvim-dap").setup {
