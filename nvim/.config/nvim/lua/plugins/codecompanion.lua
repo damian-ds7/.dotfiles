@@ -1,104 +1,5 @@
-local utils = require "utils.pack"
-local get_dims = require("utils.float").floating_window_dims
-
-utils.ensure(utils.gh "nvim-lua/plenary.nvim")
-utils.ensure(utils.gh "nvim-treesitter/nvim-treesitter")
-
-utils.add(
-  {
-    src = utils.gh "olimorris/codecompanion.nvim",
-    version = vim.version.range "^19.0.0",
-  },
-  function()
-    vim.cmd.packadd "plenary.nvim"
-    vim.cmd.packadd "nvim-treesitter"
-    local w, h, c, r = get_dims()
-    require("codecompanion").setup {
-      display = {
-        chat = {
-          window = {
-            border = "rounded",
-            opts = {
-              number = false,
-              relativenumber = false,
-              signcolumn = "no",
-              foldcolumn = "0",
-              statuscolumn = "",
-            },
-          },
-          floating_window = {
-            border = "rounded",
-          },
-        },
-        input = {
-          window = {
-            border = "rounded",
-          },
-        },
-        diff = {
-          window = {
-            border = "rounded",
-            width = w,
-            height = h,
-            col = c,
-            row = r,
-          },
-        },
-        cli = {
-          window = {
-            opts = {
-              number = false,
-              relativenumber = false,
-              signcolumn = "no",
-              foldcolumn = "0",
-              statuscolumn = "",
-            },
-          },
-        },
-      },
-      interactions = {
-        chat = {
-          adapter = "gemini_cli",
-        },
-        cli = {
-          agent = "gemini_cli",
-          agents = {
-            gemini_cli = {
-              cmd = "gemini",
-              args = {},
-              description = "Gemini CLI",
-              provider = "terminal",
-            },
-          },
-        },
-        inline = {
-          adapter = "gemini_cli",
-        },
-      },
-      adapters = {
-        acp = {
-          gemini_cli = function()
-            return require("codecompanion.adapters").extend("gemini_cli", {
-              defaults = {
-                auth_method = "oauth-personal", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
-              },
-            })
-          end,
-        },
-      },
-      triggers = {
-        acp_slash_commands = "\\",
-        editor_context = "#",
-        slash_commands = "/",
-        tools = "@",
-      },
-    }
-    vim.cmd [[cab cc CodeCompanion]]
-  end,
-  "later"
-)
-
 local map = vim.keymap.set
+local get_dims = require("utils.float").floating_window_dims()
 
 local function toggle_chat(layout)
   local chat = require("codecompanion.interactions.chat").last_chat()
@@ -176,3 +77,90 @@ map(
   "<cmd>CodeCompanionActions<cr>",
   { desc = "CodeCompanion: Actions Palette" }
 )
+
+return plugin {
+  src = "olimorris/codecompanion.nvim",
+  version = vim.version.range "^19.0.0",
+  dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+  lazy = true,
+  config = function(opts)
+    require("codecompanion").setup(opts)
+    vim.cmd [[cab cc CodeCompanion]]
+  end,
+  opts = {
+    display = {
+      chat = {
+        window = {
+          border = "rounded",
+          opts = {
+            number = false,
+            relativenumber = false,
+            signcolumn = "no",
+            foldcolumn = "0",
+            statuscolumn = "",
+          },
+        },
+        floating_window = {
+          border = "rounded",
+        },
+      },
+      input = {
+        window = {
+          border = "rounded",
+        },
+      },
+      diff = {
+        window = {
+          border = "rounded",
+        },
+      },
+      cli = {
+        window = {
+          opts = {
+            number = false,
+            relativenumber = false,
+            signcolumn = "no",
+            foldcolumn = "0",
+            statuscolumn = "",
+          },
+        },
+      },
+    },
+    interactions = {
+      chat = {
+        adapter = "gemini_cli",
+      },
+      cli = {
+        agent = "gemini_cli",
+        agents = {
+          gemini_cli = {
+            cmd = "gemini",
+            args = {},
+            description = "Gemini CLI",
+            provider = "terminal",
+          },
+        },
+      },
+      inline = {
+        adapter = "gemini_cli",
+      },
+    },
+    adapters = {
+      acp = {
+        gemini_cli = function()
+          return require("codecompanion.adapters").extend("gemini_cli", {
+            defaults = {
+              auth_method = "oauth-personal", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
+            },
+          })
+        end,
+      },
+    },
+    triggers = {
+      acp_slash_commands = "\\",
+      editor_context = "#",
+      slash_commands = "/",
+      tools = "@",
+    },
+  },
+}

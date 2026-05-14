@@ -1,9 +1,11 @@
-local utils = require "utils.pack"
-
-local blink_config = function()
-  vim.cmd.packadd "friendly-snippets"
-  vim.cmd.packadd "blink.compat"
-  require("blink.cmp").setup {
+return plugin {
+  src = "saghen/blink.cmp",
+  version = vim.version.range "1.*",
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+    { src = "saghen/blink.compat", version = vim.version.range "2.*" },
+  },
+  opts = {
     appearance = {
       nerd_font_variant = "mono",
       kind_icons = require("utils.icons").kinds,
@@ -57,13 +59,5 @@ local blink_config = function()
         ghost_text = { enabled = true },
       },
     },
-  }
-end
-
-utils.ensure(utils.gh "rafamadriz/friendly-snippets")
-utils.ensure { src = utils.gh "saghen/blink.compat", version = vim.version.range "2.*" }
-
-utils.add(
-  { src = utils.gh "saghen/blink.cmp", version = vim.version.range "1.*" },
-  blink_config
-)
+  },
+}

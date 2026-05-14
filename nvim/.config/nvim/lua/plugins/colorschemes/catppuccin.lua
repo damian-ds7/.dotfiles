@@ -1,7 +1,7 @@
-local utils = require "utils.pack"
-
-local config = function()
-  require("catppuccin").setup {
+return plugin {
+  src = "catppuccin/nvim",
+  name = "catppuccin",
+  opts = {
     transparent_background = true,
     custom_highlights = function(colors)
       return {
@@ -13,7 +13,5 @@ local config = function()
         NoicePopupBorder = { fg = colors.text, bg = colors.base },
       }
     end,
-  }
-end
-
-utils.add({ src = utils.gh "catppuccin/nvim", name = "catppuccin" }, config)
+  },
+}

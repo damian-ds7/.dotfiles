@@ -75,9 +75,11 @@ registry.register {
   },
 }
 
-utils.add(utils.gh "leoluz/nvim-dap-go", function()
-  pcall(vim.cmd.packadd, "nvim-dap")
-  require("dap-go").setup()
-end, "filetype:go")
-
-utils.add(utils.gh "fredrikaverpil/neotest-golang", nil, "filetype:go")
+return plugin {
+  src = "leoluz/nvim-dap-go",
+  filetype = "go",
+  config = function()
+    pcall(vim.cmd.packadd, "nvim-dap")
+    require("nvim-dap-go").setup()
+  end,
+}

@@ -1,60 +1,4 @@
-local utils = require "utils.pack"
 local registry = require "core.lang_reg"
-
-utils.ensure(utils.gh "rcarriga/nvim-dap-ui")
-utils.ensure(utils.gh "nvim-neotest/nvim-nio")
-utils.ensure(utils.gh "theHamsta/nvim-dap-virtual-text")
-utils.ensure(utils.gh "jay-babu/mason-nvim-dap.nvim")
-
-utils.add(utils.gh "mfussenegger/nvim-dap", function()
-  vim.cmd.packadd "nvim-nio"
-  vim.cmd.packadd "nvim-dap-ui"
-  vim.cmd.packadd "nvim-dap-virtual-text"
-  vim.cmd.packadd "plenary.nvim"
-
-  local dap = require "dap"
-  local dapui = require "dapui"
-  local icons = require "utils.icons"
-  local reg_data = registry.get_all().dap
-
-  dapui.setup {}
-  require("nvim-dap-virtual-text").setup {}
-
-  dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open {} end
-  dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close {} end
-  dap.listeners.before.event_exited["dapui_config"] = function() dapui.close {} end
-
-  vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-  for name, sign in pairs(icons.dap or {}) do
-    sign = type(sign) == "table" and sign or { sign }
-    vim.fn.sign_define("Dap" .. name, {
-      text = sign[1],
-      texthl = sign[2] or "DiagnosticInfo",
-      linehl = sign[3],
-      numhl = sign[3],
-    })
-  end
-
-  dap.adapters = vim.tbl_deep_extend("force", dap.adapters, reg_data.adapters or {})
-  dap.configurations =
-    vim.tbl_deep_extend("force", dap.configurations, reg_data.configurations or {})
-
-  local vscode = require "dap.ext.vscode"
-  local json = require "plenary.json"
-  vscode.json_decode = function(str)
-    return vim.json.decode(json.json_strip_comments(str))
-  end
-end, "later")
-
-utils.add(utils.gh "jay-babu/mason-nvim-dap.nvim", function()
-  vim.cmd.packadd "mason.nvim"
-  vim.cmd.packadd "nvim-dap"
-  require("mason-nvim-dap").setup {
-    automatic_installation = true,
-    ensure_installed = registry.get_all().tools or {},
-    handlers = {},
-  }
-end, "event:BufReadPost,BufWritePost,BufNewFile")
 
 local dap = function() return require "dap" end
 local dapui = function() return require "dapui" end
@@ -200,3 +144,72 @@ vim.keymap.set(
   function() dap().continue { before = get_args } end,
   { desc = "Run with Args" }
 )
+
+return {
+  plugin {
+    src = "mfussenegger/nvim-dap",
+    name = "dap",
+    lazy = true,
+    dependencies = {
+      { src = "rcarriga/nvim-dap-ui", name = "dapui" },
+      "nvim-neotest/nvim-nio",
+      "theHamsta/nvim-dap-virtual-text",
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      local nvim_dap = require "dap"
+      local nvim_dapui = require "dapui"
+      local icons = require "utils.icons"
+      local reg_data = registry.get_all().dap
+
+      nvim_dapui.setup {}
+      require("nvim-dap-virtual-text").setup {}
+
+      nvim_dap.listeners.after.event_initialized["dapui_config"] = function()
+        nvim_dapui.open {}
+      end
+      nvim_dap.listeners.before.event_terminated["dapui_config"] = function()
+        nvim_dapui.close {}
+      end
+      nvim_dap.listeners.before.event_exited["dapui_config"] = function()
+        nvim_dapui.close {}
+      end
+
+      vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
+      for name, sign in pairs(icons.dap or {}) do
+        sign = type(sign) == "table" and sign or { sign }
+        vim.fn.sign_define("Dap" .. name, {
+          text = sign[1],
+          texthl = sign[2] or "DiagnosticInfo",
+          linehl = sign[3],
+          numhl = sign[3],
+        })
+      end
+
+      nvim_dap.adapters =
+        vim.tbl_deep_extend("force", nvim_dap.adapters, reg_data.adapters or {})
+      nvim_dap.configurations = vim.tbl_deep_extend(
+        "force",
+        nvim_dap.configurations,
+        reg_data.configurations or {}
+      )
+
+      local vscode = require "dap.ext.vscode"
+      local json = require "plenary.json"
+      vscode.json_decode = function(str)
+        return vim.json.decode(json.json_strip_comments(str))
+      end
+    end,
+  },
+  plugin {
+    src = "jay-babu/mason-nvim-dap.nvim",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    config = function()
+      require("mason-nvim-dap").setup {
+        automatic_installation = true,
+        ensure_installed = registry.get_all().tools or {},
+        handlers = {},
+      }
+    end,
+  },
+}

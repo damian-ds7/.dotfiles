@@ -1,8 +1,9 @@
 local icons = require "utils.icons"
-local utils = require "utils.pack"
 
-utils.add(utils.gh "nvim-lualine/lualine.nvim", function()
-  require("lualine").setup {
+return plugin {
+  src = "nvim-lualine/lualine.nvim",
+  lazy = true,
+  opts = {
     options = {
       theme = "auto",
       component_separators = "",
@@ -111,5 +112,5 @@ utils.add(utils.gh "nvim-lualine/lualine.nvim", function()
         },
       },
     },
-  }
-end, "later")
+  },
+}

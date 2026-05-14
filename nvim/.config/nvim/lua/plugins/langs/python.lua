@@ -1,5 +1,4 @@
 local registry = require "core.lang_reg"
-local utils = require "utils.pack"
 
 local lang = {
   servers = {
@@ -28,14 +27,15 @@ local lang = {
 
 registry.register(lang)
 
-utils.add(
-  utils.gh "nvim-neotest/neotest-python",
-  function() require "neotest-python" end,
-  "filetype:python"
-)
-
-utils.add(
-  utils.gh "mfussenegger/nvim-dap-python",
-  function() require("dap-python").setup "debugpy-adapter" end,
-  "filetype:python"
-)
+return {
+  plugin {
+    src = "nvim-neotest/neotest-python",
+    filetype = "python",
+  config = function() require "neotest-python" end,
+  },
+  plugin {
+    src = "mfussenegger/nvim-dap-python",
+    filetype = "python",
+    config = function() require("nvim-dap-python").setup "debugpy-adapter" end,
+  }
+}

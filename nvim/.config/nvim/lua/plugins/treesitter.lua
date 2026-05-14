@@ -1,90 +1,83 @@
-local utils = require "utils.pack"
+return {
+  plugin {
+    src = "nvim-treesitter/nvim-treesitter",
+    lazy = true,
+    vscode = true,
+    pack_changed = { kind = "update", action = "TSUpdate" },
+    config = function()
+      local ts = require "nvim-treesitter"
 
-local config = function()
-  local ts = require "nvim-treesitter"
+      local ensure_installed = {
+        "bash",
+        "c",
+        "cpp",
+        "css",
+        "diff",
+        "dockerfile",
+        "go",
+        "html",
+        "javascript",
+        "jsdoc",
+        "json",
+        "latex",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "printf",
+        "python",
+        "query",
+        "regex",
+        "sql",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "vue",
+        "xml",
+        "yaml",
+        "zsh",
+      }
 
-  local ensure_installed = {
-    "bash",
-    "c",
-    "cpp",
-    "css",
-    "diff",
-    "dockerfile",
-    "go",
-    "html",
-    "javascript",
-    "jsdoc",
-    "json",
-    "latex",
-    "lua",
-    "luadoc",
-    "luap",
-    "markdown",
-    "markdown_inline",
-    "printf",
-    "python",
-    "query",
-    "regex",
-    "sql",
-    "toml",
-    "tsx",
-    "typescript",
-    "vim",
-    "vimdoc",
-    "vue",
-    "xml",
-    "yaml",
-    "zsh",
-  }
+      local registry = require("core.lang_reg").get_all()
+      if registry.treesitter then
+        vim.list_extend(ensure_installed, registry.treesitter)
+      end
 
-  local registry = require("core.lang_reg").get_all()
-  if registry.treesitter then vim.list_extend(ensure_installed, registry.treesitter) end
+      ts.install(ensure_installed)
+      -- NOTE: If languages fail to install or compilation hangs,
+      -- ensure 'tree-sitter-cli' is installed (e.g., :MasonInstall tree-sitter-cli).
+      -- If the issue persists, run :checkhealth nvim-treesitter to diagnose.
 
-  ts.install(ensure_installed)
-  -- NOTE: If languages fail to install or compilation hangs,
-  -- ensure 'tree-sitter-cli' is installed (e.g., :MasonInstall tree-sitter-cli).
-  -- If the issue persists, run :checkhealth nvim-treesitter to diagnose.
+      ts.install(ensure_installed)
 
-  ts.install(ensure_installed)
-
-  local ts_group =
-    vim.api.nvim_create_augroup("treesitter-auto-start", { clear = true })
-  vim.api.nvim_create_autocmd("FileType", {
-    group = ts_group,
-    pattern = ensure_installed,
-    desc = "Start Treesitter for installed languages",
-    callback = function() vim.treesitter.start() end,
-  })
-end
-
-utils.on_pack_changed("nvim-treesitter", "update", function(data)
-  if not data.active then vim.cmd.packadd "nvim-treesitter" end
-  vim.cmd "TSUpdate"
-end)
-
-utils.add(
-  { src = utils.gh "nvim-treesitter/nvim-treesitter", data = { vscode = true } },
-  config,
-  "later"
-)
-
-utils.add(
-  {
-    src = utils.gh "nvim-treesitter/nvim-treesitter-textobjects",
-    data = { vscode = true },
+      local ts_group =
+        vim.api.nvim_create_augroup("treesitter-auto-start", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = ts_group,
+        pattern = ensure_installed,
+        desc = "Start Treesitter for installed languages",
+        callback = function() vim.treesitter.start() end,
+      })
+    end,
   },
-  function() vim.g.no_plugin_maps = true end,
-  "event:BufReadPost,BufWritePost,BufNewFile"
-)
-
-utils.add(
-  { src = utils.gh "andymass/vim-matchup", data = { vscode = true } },
-  function()
-    require("match-up").setup {
+  plugin {
+    src = "nvim-treesitter/nvim-treesitter-textobjects",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    vscode = true,
+    config = function() vim.g.no_plugin_maps = true end,
+  },
+  plugin {
+    src = "andymass/vim-matchup",
+    name = "match-up",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    vscode = true,
+    opts = {
       treesitter = {
         stopline = 500,
       },
-    }
-  end,
-  "event:BufReadPost,BufWritePost,BufNewFile"
-)
+    },
+  },
+}

@@ -1,5 +1,7 @@
 vim.loader.enable()
 _G.lazy = require "utils.lazy-require"
+_G.plugin = require("utils.pack").plugin
+_G.pack = require "utils.pack"
 
 require "config.options"
 require "config.keymaps"

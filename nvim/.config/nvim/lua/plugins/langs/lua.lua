@@ -60,3 +60,5 @@ local lang = {
 }
 
 registry.register(lang)
+
+return {}

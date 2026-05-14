@@ -1,5 +1,4 @@
 local registry = require "core.lang_reg"
-local utils = require "utils.pack"
 
 local cpp_dap_config = {
   {
@@ -16,7 +15,6 @@ local cpp_dap_config = {
     name = "Attach to process",
     type = "codelldb",
     request = "attach",
-    -- Wrapped in function to lazy-load dap.utils
     pid = function() return require("dap.utils").pick_process() end,
     cwd = function() return vim.uv.fs_realpath(vim.fn.getcwd()) end,
     stopOnEntry = false,
@@ -94,46 +92,44 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-utils.add(
-  utils.gh "Civitasv/cmake-tools.nvim",
-  function()
-    require("cmake-tools").setup {
-      cmake_command = "cmake",
-      ctest_command = "ctest",
-      cmake_build_directory = "build/${variant:buildType}",
-      cmake_use_preset = true,
-      cmake_regenerate_on_save = true,
-      cmake_generate_options = { "-G", "Ninja", "-DCMAKE_EXPORT_COMPILE_COMMANDS=1" },
-      cmake_compile_commands_options = {
-        action = "soft_link",
-        target = vim.uv.cwd() .. "/build",
+return plugin {
+  src = "Civitasv/cmake-tools.nvim",
+  filetype = { "cpp", "c", "cmake" },
+  opts = {
+    cmake_command = "cmake",
+    ctest_command = "ctest",
+    cmake_build_directory = "build/${variant:buildType}",
+    cmake_use_preset = true,
+    cmake_regenerate_on_save = true,
+    cmake_generate_options = { "-G", "Ninja", "-DCMAKE_EXPORT_COMPILE_COMMANDS=1" },
+    cmake_compile_commands_options = {
+      action = "soft_link",
+      target = vim.uv.cwd() .. "/build",
+    },
+    cmake_executor = {
+      name = "quickfix",
+      opts = {
+        show = "only_on_error",
+        position = "belowright",
+        size = 10,
+        auto_close_when_success = true,
       },
-      cmake_executor = {
-        name = "quickfix",
-        opts = {
-          show = "only_on_error",
-          position = "belowright",
-          size = 10,
-          auto_close_when_success = true,
-        },
+    },
+    cmake_runner = {
+      name = "terminal",
+      opts = {
+        name = "CMake Run",
+        split_direction = "horizontal",
+        split_size = 11,
+        focus = true,
       },
-      cmake_runner = {
-        name = "terminal",
-        opts = {
-          name = "CMake Run",
-          split_direction = "horizontal",
-          split_size = 11,
-          focus = true,
-        },
-      },
-      cmake_dap_configuration = {
-        name = "cpp",
-        type = "codelldb",
-        request = "launch",
-        stopOnEntry = false,
-        runInTerminal = true,
-      },
-    }
-  end,
-  "filetype:cpp,c,cmake"
-)
+    },
+    cmake_dap_configuration = {
+      name = "cpp",
+      type = "codelldb",
+      request = "launch",
+      stopOnEntry = false,
+      runInTerminal = true,
+    },
+  },
+}

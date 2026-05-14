@@ -1,24 +1,3 @@
-local utils = require "utils.pack"
-
-utils.add(
-  utils.gh "folke/todo-comments.nvim",
-  function()
-    require("todo-comments").setup {
-      highlight = {
-        pattern = {
-          [[.*<(KEYWORDS)\s*:]],
-          [[.*<(KEYWORDS)\s*!\(]],
-        },
-        comments_only = false,
-      },
-      search = {
-        pattern = [[\b(KEYWORDS)(:|!\()]],
-      },
-    }
-  end,
-  "event:BufReadPost,BufWritePost,BufNewFile"
-)
-
 vim.keymap.set(
   "n",
   "]t",
@@ -45,3 +24,20 @@ vim.keymap.set(
   function() Snacks.picker.todo_comments { keywords = { "TODO", "FIX", "FIXME" } } end,
   { desc = "Todo/Fix/Fixme" }
 )
+
+return plugin {
+  src = "folke/todo-comments.nvim",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  opts = {
+    highlight = {
+      pattern = {
+        [[.*<(KEYWORDS)\s*:]],
+        [[.*<(KEYWORDS)\s*!\(]],
+      },
+      comments_only = false,
+    },
+    search = {
+      pattern = [[\b(KEYWORDS)(:|!\()]],
+    },
+  },
+}

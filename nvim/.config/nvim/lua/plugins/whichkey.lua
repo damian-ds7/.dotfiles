@@ -1,7 +1,7 @@
-local utils = require "utils.pack"
-
-local config = function()
-  require("which-key").setup {
+return plugin {
+  src = "folke/which-key.nvim",
+  lazy = true,
+  opts = {
     preset = "helix",
     defaults = {},
     spec = {
@@ -43,7 +43,5 @@ local config = function()
         },
       },
     },
-  }
-end
-
-utils.add(utils.gh "folke/which-key.nvim", config, "later")
+  },
+}

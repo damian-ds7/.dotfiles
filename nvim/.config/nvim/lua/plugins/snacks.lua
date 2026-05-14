@@ -1,109 +1,7 @@
-local utils = require "utils.pack"
-
 _G.dd = function(...) require("snacks").debug.inspect(...) end
 _G.bt = function() require("snacks").debug.backtrace() end
 
 vim.print = _G.dd
-
-utils.add(utils.gh "folke/snacks.nvim", function()
-  local snacks = require "snacks"
-
-  snacks.setup {
-    bigfile = { enabled = true },
-    indent = {
-      indent = {
-        enabled = false,
-      },
-      scope = {
-        enabled = true,
-      },
-    },
-    gitbrowse = { enabled = true },
-    picker = {
-      enabled = true,
-      layout = function()
-        if vim.o.columns < 120 then return { preset = "vertical", reverse = true } end
-        return { preset = "telescope" }
-      end,
-      sources = {
-        smart = {
-          filter = { cwd = true },
-          matcher = { frecency = true, sort_empty = true },
-        },
-        zoxide = {
-          finder = "files_zoxide",
-          format = "file",
-          confirm = "load_session",
-          win = { preview = { minimal = true } },
-        },
-        projects = {
-          finder = "recent_projects",
-          format = "file",
-          dev = { "~/Projects" },
-          confirm = "load_session",
-          patterns = { ".git", "package.json", "Makefile", "Cargo.toml" },
-          recent = true,
-          matcher = {
-            frecency = true,
-            sort_empty = true,
-            cwd_bonus = false,
-          },
-          sort = { fields = { "score:desc", "idx" } },
-        },
-      },
-      actions = {
-        load_session = function(picker, item)
-          picker:close()
-          vim.cmd.cd(item.file)
-          vim.schedule(function() require("utils.session").restore_session() end)
-        end,
-      },
-    },
-    lazygit = { enabled = true },
-    quickfile = { enabled = true },
-    scroll = { enabled = true },
-    image = { enabled = true },
-    zen = {
-      zoom = {
-        center = true,
-        show = { statusline = true, tabline = true },
-        win = {
-          backdrop = { transparent = true, blend = 40 },
-          width = 150,
-        },
-      },
-    },
-  }
-
-  snacks.toggle.option("spell", { name = "Spelling" }):map "<leader>us"
-  snacks.toggle.option("wrap", { name = "Wrap" }):map "<leader>uw"
-  snacks.toggle.option("relativenumber", { name = "Relative Number" }):map "<leader>uL"
-  snacks.toggle.diagnostics():map "<leader>ud"
-  snacks.toggle.line_number():map "<leader>ul"
-  snacks.toggle
-    .option(
-      "conceallevel",
-      { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
-    )
-    :map "<leader>uc"
-  snacks.toggle.treesitter():map "<leader>uT"
-  snacks.toggle
-    .option("background", { off = "light", on = "dark", name = "Dark Background" })
-    :map "<leader>ub"
-  snacks.toggle.inlay_hints():map "<leader>uh"
-  snacks.toggle.indent():map "<leader>ug"
-  snacks.toggle.dim():map "<leader>uD"
-  Snacks.toggle
-    .new({
-      name = "Centered Cursor",
-      get = function() return vim.o.scrolloff >= 10 end,
-      set = function(state)
-        vim.o.scrolloff = state and 99 or 7
-        if vim.version().minor >= 13 then vim.o.scrolloffpad = state and 1 or 0 end
-      end,
-    })
-    :map "<leader>uS"
-end)
 
 local map = vim.keymap.set
 
@@ -301,3 +199,106 @@ map(
   function() Snacks.picker.projects() end,
   { desc = "Search Projects" }
 )
+
+return plugin {
+  src = "folke/snacks.nvim",
+  config = function(opts)
+    local snacks = require "snacks"
+    snacks.setup(opts)
+
+    snacks.toggle.option("spell", { name = "Spelling" }):map "<leader>us"
+    snacks.toggle.option("wrap", { name = "Wrap" }):map "<leader>uw"
+    snacks.toggle.option("relativenumber", { name = "Relative Number" }):map "<leader>uL"
+    snacks.toggle.diagnostics():map "<leader>ud"
+    snacks.toggle.line_number():map "<leader>ul"
+    snacks.toggle
+      .option(
+        "conceallevel",
+        { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
+      )
+      :map "<leader>uc"
+    snacks.toggle.treesitter():map "<leader>uT"
+    snacks.toggle
+      .option("background", { off = "light", on = "dark", name = "Dark Background" })
+      :map "<leader>ub"
+    snacks.toggle.inlay_hints():map "<leader>uh"
+    snacks.toggle.indent():map "<leader>ug"
+    snacks.toggle.dim():map "<leader>uD"
+    Snacks.toggle
+      .new({
+        name = "Centered Cursor",
+        get = function() return vim.o.scrolloff >= 10 end,
+        set = function(state)
+          vim.o.scrolloff = state and 99 or 7
+          if vim.version().minor >= 13 then vim.o.scrolloffpad = state and 1 or 0 end
+        end,
+      })
+      :map "<leader>uS"
+  end,
+  opts = {
+    bigfile = { enabled = true },
+    indent = {
+      indent = {
+        enabled = false,
+      },
+      scope = {
+        enabled = true,
+      },
+    },
+    gitbrowse = { enabled = true },
+    picker = {
+      enabled = true,
+      layout = function()
+        if vim.o.columns < 120 then return { preset = "vertical", reverse = true } end
+        return { preset = "telescope" }
+      end,
+      sources = {
+        smart = {
+          filter = { cwd = true },
+          matcher = { frecency = true, sort_empty = true },
+        },
+        zoxide = {
+          finder = "files_zoxide",
+          format = "file",
+          confirm = "load_session",
+          win = { preview = { minimal = true } },
+        },
+        projects = {
+          finder = "recent_projects",
+          format = "file",
+          dev = { "~/Projects" },
+          confirm = "load_session",
+          patterns = { ".git", "package.json", "Makefile", "Cargo.toml" },
+          recent = true,
+          matcher = {
+            frecency = true,
+            sort_empty = true,
+            cwd_bonus = false,
+          },
+          sort = { fields = { "score:desc", "idx" } },
+        },
+      },
+      actions = {
+        load_session = function(picker, item)
+          picker:close()
+          vim.cmd.cd(item.file)
+          vim.schedule(function() require("utils.session").restore_session() end)
+        end,
+      },
+    },
+    lazygit = { enabled = true },
+    quickfile = { enabled = true },
+    scroll = { enabled = true },
+    image = { enabled = true },
+    zen = {
+      zoom = {
+        center = true,
+        show = { statusline = true, tabline = true },
+        win = {
+          backdrop = { transparent = true, blend = 40 },
+          width = 150,
+        },
+      },
+    },
+  },
+}

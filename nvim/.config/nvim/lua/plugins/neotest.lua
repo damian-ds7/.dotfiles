@@ -1,84 +1,5 @@
-local utils = require "utils.pack"
 local registry = require "core.lang_reg"
 
-utils.ensure(utils.gh "nvim-neotest/nvim-nio")
-utils.ensure(utils.gh "nvim-lua/plenary.nvim")
-
-utils.add(utils.gh "nvim-neotest/neotest", function()
-  vim.cmd.packadd "nvim-nio"
-  vim.cmd.packadd "plenary.nvim"
-
-  local neotest_ns = vim.api.nvim_create_namespace "neotest"
-  vim.diagnostic.config({
-    virtual_text = {
-      format = function(diagnostic)
-        return diagnostic.message
-          :gsub("\n", " ")
-          :gsub("\t", " ")
-          :gsub("%s+", " ")
-          :gsub("^%s+", "")
-      end,
-    },
-  }, neotest_ns)
-
-  local raw_adapters = registry.get_all().neotest_adapters or {}
-  local final_adapters = {}
-
-  for key, value in pairs(raw_adapters) do
-    local module_name = type(key) == "number" and value or key
-    local opts = type(value) == "table" and value or {}
-
-    if value ~= false then
-      local plugin_name = vim.split(module_name, ".", { plain = true })[1]
-      pcall(vim.cmd.packadd, plugin_name)
-
-      local ok, adapter = pcall(require, module_name)
-      if ok then
-        if type(adapter) == "function" then
-          adapter = adapter(opts)
-        elseif type(adapter) == "table" and adapter.setup then
-          adapter.setup(opts)
-        end
-
-        table.insert(final_adapters, adapter)
-      end
-    end
-  end
-
-  require("neotest").setup {
-    adapters = final_adapters,
-    status = { virtual_text = true },
-    output = { enabled = true, open_on_run = "short" },
-    quickfix = {
-      enabled = true,
-      open = false,
-    },
-    floating = {
-      border = "rounded",
-      max_height = 0.6,
-      max_width = 0.6,
-      options = {},
-    },
-    consumers = {
-      notify = function(client)
-        client.listeners.results = function(_, results, partial)
-          if partial then return end
-
-          local total = 0
-          local passed = 0
-          for _, r in pairs(results) do
-            total = total + 1
-            if r.status == "passed" then passed = passed + 1 end
-          end
-
-          vim.notify(passed .. "/" .. total .. " tests passed.")
-        end
-      end,
-    },
-  }
-end, "event:BufReadPost,BufWritePost,BufNewFile")
-
--- Keymaps (Wrapped in require to trigger loading)
 vim.keymap.set("n", "<leader>t", "", { desc = "+test" })
 vim.keymap.set(
   "n",
@@ -141,8 +62,83 @@ vim.keymap.set(
   { desc = "Toggle Watch (Neotest)" }
 )
 
--- Debug Keymap (DAP Integration)
 vim.keymap.set("n", "<leader>td", function()
   pcall(vim.cmd.packadd, "nvim-dap")
   require("neotest").run.run { strategy = "dap" }
 end, { desc = "Debug Nearest" })
+
+return plugin {
+  src = "nvim-neotest/neotest",
+  dependencies = { "nvim-neotest/nvim-nio", "nvim-lua/plenary.nvim" },
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  config = function()
+    local neotest_ns = vim.api.nvim_create_namespace "neotest"
+    vim.diagnostic.config({
+      virtual_text = {
+        format = function(diagnostic)
+          return diagnostic.message
+            :gsub("\n", " ")
+            :gsub("\t", " ")
+            :gsub("%s+", " ")
+            :gsub("^%s+", "")
+        end,
+      },
+    }, neotest_ns)
+
+    local raw_adapters = registry.get_all().neotest_adapters or {}
+    local final_adapters = {}
+
+    for key, value in pairs(raw_adapters) do
+      local module_name = type(key) == "number" and value or key
+      local opts = type(value) == "table" and value or {}
+
+      if value ~= false then
+        local plugin_name = vim.split(module_name, ".", { plain = true })[1]
+        pcall(vim.cmd.packadd, plugin_name)
+
+        local ok, adapter = pcall(require, module_name)
+        if ok then
+          if type(adapter) == "function" then
+            adapter = adapter(opts)
+          elseif type(adapter) == "table" and adapter.setup then
+            adapter.setup(opts)
+          end
+
+          table.insert(final_adapters, adapter)
+        end
+      end
+    end
+
+    require("neotest").setup {
+      adapters = final_adapters,
+      status = { virtual_text = true },
+      output = { enabled = true, open_on_run = "short" },
+      quickfix = {
+        enabled = true,
+        open = false,
+      },
+      floating = {
+        border = "rounded",
+        max_height = 0.6,
+        max_width = 0.6,
+        options = {},
+      },
+      consumers = {
+        notify = function(client)
+          client.listeners.results = function(_, results, partial)
+            if partial then return end
+
+            local total = 0
+            local passed = 0
+            for _, r in pairs(results) do
+              total = total + 1
+              if r.status == "passed" then passed = passed + 1 end
+            end
+
+            vim.notify(passed .. "/" .. total .. " tests passed.")
+          end
+        end,
+      },
+    }
+  end,
+}

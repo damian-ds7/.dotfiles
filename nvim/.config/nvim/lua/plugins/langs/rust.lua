@@ -1,5 +1,4 @@
 local registry = require "core.lang_reg"
-local utils = require "utils.pack"
 
 registry.register {
   tools = { "rust-analyzer" },
@@ -94,8 +93,9 @@ vim.g.rustaceanvim = function()
   }
 end
 
-utils.add(
-  { src = utils.gh "mrcjkb/rustaceanvim", version = vim.version.range "8.*" },
-  function() end,
-  "filetype:rust"
-)
+return plugin {
+  src = "mrcjkb/rustaceanvim",
+  version = vim.version.range "8.*",
+  filetype = "rust",
+  config = function() end,
+}

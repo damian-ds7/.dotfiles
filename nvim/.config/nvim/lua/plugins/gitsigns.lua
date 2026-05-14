@@ -1,7 +1,7 @@
-local utils = require "utils.pack"
-
-local function config()
-  require("gitsigns").setup {
+return plugin {
+  src = "lewis6991/gitsigns.nvim",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  opts = {
     signs = {
       add = { text = "▎" },
       change = { text = "▎" },
@@ -79,11 +79,5 @@ local function config()
         })
         :map "<leader>ub"
     end,
-  }
-end
-
-utils.add(
-  utils.gh "lewis6991/gitsigns.nvim",
-  config,
-  "event:BufReadPost,BufWritePost,BufNewFile"
-)
+  },
+}
