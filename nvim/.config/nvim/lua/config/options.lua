@@ -8,6 +8,7 @@ opt.termguicolors = true
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
+opt.cursorlineopt = "number"
 opt.signcolumn = "yes"
 opt.showmode = false
 opt.ruler = false
@@ -53,7 +54,7 @@ else
 end
 opt.sidescrolloff = 8
 opt.smoothscroll = true
-opt.jumpoptions = "view"
+opt.jumpoptions = "stack,view"
 
 opt.mouse = "a"
 opt.undofile = true
