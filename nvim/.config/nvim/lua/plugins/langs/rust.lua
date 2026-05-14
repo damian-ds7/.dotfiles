@@ -95,7 +95,7 @@ end
 
 return plugin {
   src = "mrcjkb/rustaceanvim",
-  version = vim.version.range "8.*",
+  version = vim.version.range "9.*",
   filetype = "rust",
   config = function() end,
 }
