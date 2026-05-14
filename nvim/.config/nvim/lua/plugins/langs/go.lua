@@ -2,6 +2,7 @@ return {
   lang {
     servers = {
       gopls = {
+        ---@type lspconfig.settings.gopls
         settings = {
           gopls = {
             codelenses = {

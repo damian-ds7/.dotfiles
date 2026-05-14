@@ -2,15 +2,13 @@ local pack = require "utils.pack"
 local lang_reg = require "core.lang_reg"
 
 --- Wrap a plugin spec for declarative registration.
----@generic T : PluginSpec
----@param spec T Plugin definition.
----@return { plugin: T }
+---@param spec PluginSpec
+---@return { plugin: PluginSpec }
 _G.plugin = function(spec) return { plugin = spec } end
 
 --- Wrap a language config for declarative registration.
----@generic T : LangConfig
----@param spec T Language definition.
----@return { lang: T }
+---@param spec LangConfig
+---@return { lang: LangConfig }
 _G.lang = function(spec) return { lang = spec } end
 
 ---Process a returned configuration item (plugin or lang).
