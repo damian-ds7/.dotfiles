@@ -11,19 +11,19 @@ fi
 _detect_arch() {
   local arch="$(uname -m)"
   case "$arch" in
-    x86_64|amd64) echo "amd64" ;;
-    aarch64|arm64) echo "arm64" ;;
-    armv7l) echo "armv7" ;;
-    *) echo "unknown" ;;
+  x86_64 | amd64) echo "amd64" ;;
+  aarch64 | arm64) echo "arm64" ;;
+  armv7l) echo "armv7" ;;
+  *) echo "unknown" ;;
   esac
 }
 
 _detect_os() {
   local os="$(uname -s | tr '[:upper:]' '[:lower:]')"
   case "$os" in
-    linux*) echo "linux" ;;
-    darwin*) echo "darwin" ;;
-    *) echo "unknown" ;;
+  linux*) echo "linux" ;;
+  darwin*) echo "darwin" ;;
+  *) echo "unknown" ;;
   esac
 }
 
@@ -47,17 +47,17 @@ else
     echo
 
     case "$response" in
-      y|Y|$'\n')
-        echo "Proceeding with installation..."
-        break
-        ;;
-      n|N)
-        echo "Skipping fzf installation."
-        return 0 2>/dev/null || exit 0
-        ;;
-      *)
-        echo "Invalid input. Please press 'y' or 'n'."
-        ;;
+    y | Y | $'\n')
+      echo "Proceeding with installation..."
+      break
+      ;;
+    n | N)
+      echo "Skipping fzf installation."
+      return 0 2>/dev/null || exit 0
+      ;;
+    *)
+      echo "Invalid input. Please press 'y' or 'n'."
+      ;;
     esac
   done
 fi
@@ -124,3 +124,15 @@ else
 fi
 
 unset _download_cmd _extract_cmd _install_cmd
+
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --ansi"
+FZF_CTRL_T_COMMAND="bfs -color -mindepth 1 -exclude \( -name .git \) -printf '%P\n' 2>/dev/null"
+FZF_ALT_C_COMMAND="bfs -color -mindepth 1 -exclude \( -name .git \) -type d -printf '%P\n' 2>/dev/null"
+
+_fzf_compgen_path() {
+  bfs -H "$1" -color -exclude \( -name .git \) 2>/dev/null
+}
+
+_fzf_compgen_dir() {
+  bfs -H "$1" -color -exclude \( -name .git \) -type d 2>/dev/null
+}
