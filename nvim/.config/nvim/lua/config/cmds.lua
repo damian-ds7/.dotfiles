@@ -4,6 +4,12 @@ vim.api.nvim_create_user_command(
   {}
 )
 
+vim.api.nvim_create_user_command(
+  "PackSync",
+  function() vim.pack.update(nil, { target = "lockfile" }) end,
+  {}
+)
+
 vim.api.nvim_create_user_command("PackUpdate", function(opts)
   local names, pack_opts = {}, { force = opts.bang }
   for _, arg in ipairs(opts.fargs) do

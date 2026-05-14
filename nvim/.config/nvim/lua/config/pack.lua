@@ -4,8 +4,8 @@ for _, path in ipairs(vim.fn.globpath(base, "**/*.lua", false, true)) do
   local rel = vim.fs.relpath(base, path)
   if rel and not rel:match "^_" and not rel:match "/_" then
     local pack_spec = require("plugins." .. rel:gsub("/", "."):gsub("%.lua$", ""))
-    pack.handle_spec_table(pack_spec)
+    require("utils.pack").handle_spec_table(pack_spec)
   end
 end
 
-pack.sync()
+require("utils.pack").sync()
