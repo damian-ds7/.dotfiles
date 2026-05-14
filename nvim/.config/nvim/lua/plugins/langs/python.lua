@@ -31,6 +31,6 @@ return {
   plugin {
     src = "mfussenegger/nvim-dap-python",
     filetype = "python",
-    config = function() require("nvim-dap-python").setup "debugpy-adapter" end,
+    config = function() require("dap-python").setup "debugpy-adapter" end,
   },
 }

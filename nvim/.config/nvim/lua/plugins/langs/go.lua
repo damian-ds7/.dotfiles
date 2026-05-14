@@ -78,7 +78,7 @@ return {
     filetype = "go",
     config = function()
       pcall(vim.cmd.packadd, "nvim-dap")
-      require("nvim-dap-go").setup()
+      require("dap-go").setup()
     end,
   },
 }
