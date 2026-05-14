@@ -2,20 +2,19 @@ if [[ -n "$ZSH_PROFILE" ]]; then
   zmodload zsh/zprof
 fi
 
-(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
+((${+commands[direnv]})) && emulate zsh -c "$(direnv export zsh)"
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
+((${+commands[direnv]})) && emulate zsh -c "$(direnv hook zsh)"
 
 # History Configuration
 HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/history"
 HISTSIZE=10000
-SAVEHIST=10000
 mkdir -p "$(dirname "$HISTFILE")"
-DIRSTACKSIZE=1000
+export DIRSTACKSIZE=1000
 
 # Check deps
 ## fzf
@@ -60,10 +59,10 @@ bindkey '^E' end-of-line
 bindkey '^F' open-yazi
 
 # Directory stack navigation
-bindkey -M viins '^[[1;3D' cd-back     # Alt+Left
-bindkey -M viins '^[[1;3C' cd-forward  # Alt+Right
-bindkey -M viins '^[^H' cd-back        # Ctrl+Alt+Shift+H
-bindkey -M viins '^[^L' cd-forward     # Ctrl+Alt+Shift+L
+bindkey -M viins '^[[1;3D' cd-back    # Alt+Left
+bindkey -M viins '^[[1;3C' cd-forward # Alt+Right
+bindkey -M viins '^[^H' cd-back       # Ctrl+Alt+Shift+H
+bindkey -M viins '^[^L' cd-forward    # Ctrl+Alt+Shift+L
 bindkey -M vicmd 'H' cd-back
 bindkey -M vicmd 'L' cd-forward
 bindkey -M visual 'H' cd-back
@@ -77,11 +76,11 @@ bindkey '^x^e' edit-command-line
 autoload -Uz zmv
 
 function md() {
-    [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1"
+  [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1"
 }
 compdef _directories md
 
-function fancy-ctrl-z () {
+function fancy-ctrl-z() {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
     zle accept-line -w
@@ -122,7 +121,6 @@ fi
 [[ -f $HOME/.config/shell/aliases.sh ]] && source "$HOME/.config/shell/aliases.sh"
 [[ -f $ZDOTDIR/utils/zsh-aliases.zsh ]] && source "$ZDOTDIR/utils/zsh-aliases.zsh"
 
-
 # Theme detection
 THEME_MODE="$(cat "$THEME_MODE_FILE" 2>/dev/null || echo "dark")"
 export THEME_MODE
@@ -147,4 +145,3 @@ TRAPUSR1() {
 if [[ -n "$ZSH_PROFILE" ]]; then
   zprof
 fi
-
