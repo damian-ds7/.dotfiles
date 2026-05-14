@@ -14,6 +14,6 @@ zstyle ':fzf-tab:*' accept-line enter
 zstyle ':fzf-tab:*' continuous-trigger '/'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --color=always --icon=always -- $realpath'
 zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview \
-  'SYSTEMD_COLORS=1 systemctl status $word 2>/dev/null || SYSTEMD_COLORS=1 systemctl --user status $word 2>/dev/null'
+	'SYSTEMD_COLORS=1 systemctl status $word 2>/dev/null || SYSTEMD_COLORS=1 systemctl --user status $word 2>/dev/null'
 zstyle ':fzf-tab:*' fzf-flags --ansi
 zstyle ':fzf-tab:*' switch-group '<' '>'
