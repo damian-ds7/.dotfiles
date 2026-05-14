@@ -1,6 +1,4 @@
-local registry = require "core.lang_reg"
-
-local lang = {
+return lang {
   servers = {
     hls = { mason_name = "haskell-language-server" },
   },
@@ -9,7 +7,3 @@ local lang = {
 
   treesitter = { "haskell" },
 }
-
-registry.register(lang)
-
-return {}

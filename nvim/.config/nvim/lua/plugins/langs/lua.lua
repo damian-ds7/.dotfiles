@@ -1,10 +1,8 @@
-local registry = require "core.lang_reg"
-
-local lang = {
+return lang {
   servers = {
     lua_ls = {
       mason_name = "lua-language-server",
-      on_attach = function(client, buf)
+      on_attach = function(_, buf)
         -- HACK: enabling inlay hints won't work in LspAttach, needs to be delayed
         vim.defer_fn(
           function() vim.lsp.inlay_hint.enable(true, { bufnr = buf }) end,
@@ -58,7 +56,3 @@ local lang = {
 
   treesitter = { "lua", "luadoc", "luap" },
 }
-
-registry.register(lang)
-
-return {}

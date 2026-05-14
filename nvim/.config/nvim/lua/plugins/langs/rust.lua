@@ -1,13 +1,3 @@
-local registry = require "core.lang_reg"
-
-registry.register {
-  tools = { "rust-analyzer" },
-  treesitter = { "rust", "ron" },
-  neotest_adapters = {
-    ["rustaceanvim.neotest"] = {},
-  },
-}
-
 local setup_keymaps = function(bufnr)
   vim.keymap.set(
     "n",
@@ -93,9 +83,18 @@ vim.g.rustaceanvim = function()
   }
 end
 
-return plugin {
-  src = "mrcjkb/rustaceanvim",
-  version = vim.version.range "9.*",
-  filetype = "rust",
-  config = function() end,
+return {
+  lang {
+    tools = { "rust-analyzer" },
+    treesitter = { "rust", "ron" },
+    neotest_adapters = {
+      ["rustaceanvim.neotest"] = {},
+    },
+  },
+  plugin {
+    src = "mrcjkb/rustaceanvim",
+    version = vim.version.range "9.*",
+    filetype = "rust",
+    config = function() end,
+  },
 }

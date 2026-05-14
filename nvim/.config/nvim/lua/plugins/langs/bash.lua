@@ -1,6 +1,4 @@
-local registry = require "core.lang_reg"
-
-local lang = {
+return lang {
   servers = {
     bashls = {
       mason_name = "bash-language-server",
@@ -17,7 +15,3 @@ local lang = {
 
   treesitter = { "bash", "zsh" },
 }
-
-registry.register(lang)
-
-return {}

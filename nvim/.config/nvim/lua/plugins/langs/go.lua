@@ -1,85 +1,83 @@
-local registry = require "core.lang_reg"
-local utils = require "utils.pack"
-
-registry.register {
-  servers = {
-    gopls = {
-      settings = {
-        gopls = {
-          codelenses = {
-            gc_details = false,
-            generate = true,
-            regenerate_cgo = true,
-            run_govulncheck = true,
-            test = true,
-            tidy = true,
-            upgrade_dependency = true,
-            vendor = true,
-          },
-          hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            constantValues = true,
-            functionTypeParameters = true,
-            parameterNames = true,
-            rangeVariableTypes = true,
-          },
-          analyses = {
-            nilness = true,
-            unusedparams = true,
-            unusedwrite = true,
-            useany = true,
-          },
-          usePlaceholders = true,
-          completeUnimported = true,
-          staticcheck = true,
-          directoryFilters = {
-            "-.git",
-            "-.vscode",
-            "-.idea",
-            "-.vscode-test",
-            "-node_modules",
-          },
-          semanticTokens = true,
-        },
-      },
-      on_attach = function(client, _)
-        -- Workaround for semantic tokens if the server doesn't report them correctly
-        if not client.server_capabilities.semanticTokensProvider then
-          local semantic = client.config.capabilities.textDocument.semanticTokens
-          client.server_capabilities.semanticTokensProvider = {
-            full = true,
-            range = true,
-            legend = {
-              tokenTypes = semantic.tokenTypes,
-              tokenModifiers = semantic.tokenModifiers,
+return {
+  lang {
+    servers = {
+      gopls = {
+        settings = {
+          gopls = {
+            codelenses = {
+              gc_details = false,
+              generate = true,
+              regenerate_cgo = true,
+              run_govulncheck = true,
+              test = true,
+              tidy = true,
+              upgrade_dependency = true,
+              vendor = true,
             },
-          }
-        end
-      end,
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+            analyses = {
+              nilness = true,
+              unusedparams = true,
+              unusedwrite = true,
+              useany = true,
+            },
+            usePlaceholders = true,
+            completeUnimported = true,
+            staticcheck = true,
+            directoryFilters = {
+              "-.git",
+              "-.vscode",
+              "-.idea",
+              "-.vscode-test",
+              "-node_modules",
+            },
+            semanticTokens = true,
+          },
+        },
+        on_attach = function(client, _)
+          -- Workaround for semantic tokens if the server doesn't report them correctly
+          if not client.server_capabilities.semanticTokensProvider then
+            local semantic = client.config.capabilities.textDocument.semanticTokens
+            client.server_capabilities.semanticTokensProvider = {
+              full = true,
+              range = true,
+              legend = {
+                tokenTypes = semantic.tokenTypes,
+                tokenModifiers = semantic.tokenModifiers,
+              },
+            }
+          end
+        end,
+      },
+      golangci_lint_ls = {
+        mason_name = "golangci-lint-langserver",
+      },
     },
-    golangci_lint_ls = {
-      mason_name = "golangci-lint-langserver",
+    tools = { "goimports", "golines", "golangci-lint", "delve" },
+    treesitter = { "go", "gomod", "gosum" },
+    formatters = {
+      go = { "goimports", "golines" },
+    },
+    neotest_adapters = {
+      ["neotest-golang"] = {
+        dap_go_enabled = true,
+      },
     },
   },
-  tools = { "goimports", "golines", "golangci-lint", "delve" },
-  treesitter = { "go", "gomod", "gosum" },
-  formatters = {
-    go = { "goimports", "golines" },
+  plugin {
+    src = "leoluz/nvim-dap-go",
+    filetype = "go",
+    config = function()
+      pcall(vim.cmd.packadd, "nvim-dap")
+      require("nvim-dap-go").setup()
+    end,
   },
-  neotest_adapters = {
-    ["neotest-golang"] = {
-      dap_go_enabled = true,
-    },
-  },
-}
-
-return plugin {
-  src = "leoluz/nvim-dap-go",
-  filetype = "go",
-  config = function()
-    pcall(vim.cmd.packadd, "nvim-dap")
-    require("nvim-dap-go").setup()
-  end,
 }

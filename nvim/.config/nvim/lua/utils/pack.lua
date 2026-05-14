@@ -241,11 +241,6 @@ local function handle_config(name, opts, config, deps)
   end
 end
 
----Identity function for plugin specifications to provide type hints.
----@param spec PluginSpec
----@return PluginSpec
-function M.plugin(spec) return spec end
-
 ---Process a plugin specification table and register it for loading.
 ---@param spec PluginSpec
 local function handle_single_spec(spec)

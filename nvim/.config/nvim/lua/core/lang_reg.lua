@@ -1,3 +1,12 @@
+---@class LangConfig
+---@field servers? table<string, vim.lsp.Config>
+---@field tools? string[]
+---@field treesitter? string[]
+---@field formatters? table<string, string[]>
+---@field dap? { adapters?: table<string, any>, configurations?: table<string, any> }
+---@field neotest_adapters? table<string, any>
+
+---@class LangRestistry : LangConfig
 local M = {
   servers = {},
   tools = {},
@@ -10,6 +19,8 @@ local M = {
   neotest_adapters = {},
 }
 
+---Register a language configuration.
+---@param lang LangConfig The configuration to register.
 function M.register(lang)
   if lang.servers then
     M.servers = vim.tbl_deep_extend("force", M.servers, lang.servers)
@@ -47,6 +58,8 @@ function M.register(lang)
   end
 end
 
+---Get all registered language configurations.
+---@return LangConfig
 function M.get_all() return M end
 
 return M
