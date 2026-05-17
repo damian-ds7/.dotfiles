@@ -7,9 +7,9 @@ local setup_keymaps = function(bufnr)
   )
   vim.keymap.set(
     "n",
-    "<leader>cd",
+    "<leader>cx",
     function() vim.cmd.RustLsp { "renderDiagnostic", "current" } end,
-    { desc = "LSP: Line Diagnostics", buffer = bufnr }
+    { desc = "LSP: Line Diagnostics (Rustaceanvim)", buffer = bufnr }
   )
   vim.keymap.set(
     "n",
