@@ -51,7 +51,7 @@ end, { desc = "(Oil) Reopen last" })
 
 return plugin {
   src = "stevearc/oil.nvim",
-  dependencies = { "malewicz1337/oil-git.nvim" },
+  dependencies = { "malewicz1337/oil-git.nvim", "JezerM/oil-lsp-diagnostics.nvim" },
   opts = {
     default_file_explorer = true,
     delete_to_trash = true,
@@ -96,4 +96,8 @@ return plugin {
       ["g\\"] = { "actions.toggle_trash", desc = "Trash" },
     },
   },
+  config = function(opts)
+    require("oil-lsp-diagnostics").setup()
+    require("oil").setup(opts)
+  end,
 }
