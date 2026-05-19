@@ -6,32 +6,45 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("x", "p", "P", { desc = "Paste without overwriting register" })
 map("x", "P", "p", { desc = "Paste and overwrite register" })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-vim.keymap.set("n", "<leader>fn", function()
-  local rel_dir = vim.fn.expand "%:h"
 
-  if rel_dir == "." or rel_dir == "" then
-    rel_dir = ""
-  else
-    rel_dir = rel_dir .. "/"
-  end
+---@param path string
+local create_and_open = function(path)
+  local dir = vim.fs.dirname(path)
+  local name = vim.fs.basename(path)
 
+  if vim.uv.fs_stat(dir).type == "directory" then vim.fn.mkdir(dir, "p") end
+
+  vim.cmd("edit " .. vim.fn.fnameescape(path))
+  vim.cmd "write"
+
+  vim.notify("Created: " .. name, vim.log.levels.INFO, { title = "File System" })
+end
+
+---@param opts { base_dir?: string, prompt?: string }
+local new_file_prompt = function(opts)
   vim.ui.input({
-    prompt = "New File (relative to CWD): ",
-    default = rel_dir,
+    prompt = opts.prompt,
   }, function(input)
     if not input or input == "" then return end
 
-    local full_path = vim.fn.getcwd() .. "/" .. input
-    local dir = vim.fn.fnamemodify(full_path, ":h")
-
-    if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, "p") end
-
-    vim.cmd("edit " .. vim.fn.fnameescape(full_path))
-    vim.cmd "write"
-
-    vim.notify("Created: " .. input, vim.log.levels.INFO, { title = "File System" })
+    local full_path = opts.base_dir .. "/" .. input
+    create_and_open(full_path)
   end)
-end, { desc = "New File (Relative Path)" })
+end
+
+map("n", "<leader>fn", function()
+  local rel_dir = vim.fn.expand "%:h"
+
+  if rel_dir == "." or rel_dir == "" then rel_dir = "" end
+
+  new_file_prompt { base_dir = rel_dir, prompt = "New File (Relative)" }
+end, { desc = "New File (Relative)" })
+map(
+  "n",
+  "<leader>fN",
+  function() new_file_prompt { base_dir = vim.uv.cwd(), prompt = "New File (Root)" } end,
+  { desc = "New File (Root)" }
+)
 
 -- Better Movement & Indenting
 map(
