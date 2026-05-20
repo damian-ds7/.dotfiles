@@ -1,0 +1,1 @@
+[{"id":"snp-5badd90197de","name":"YouTube playlist RSS feed","data":{"text":"https://www.youtube.com/feeds/videos.xml?playlist_id={argument name=\"url\"}"},"createdAt":1779298234,"updatedAt":1779299136,"expansion":{"keyword":"!ytfeed","apps":["zen.desktop","zen-twilight.desktop"],"word":true}}]
