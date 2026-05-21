@@ -19,7 +19,7 @@ vim.g.have_nerd_font = false
 opt.cmdheight = vim.g.vscode and 0 or 1
 opt.laststatus = 3
 
-vim.o.foldcolumn = "0"
+vim.o.foldcolumn = "1"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
@@ -71,7 +71,14 @@ opt.spelllang = "en,pl"
 
 opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-vim.opt.fillchars = { eob = " " }
+vim.opt.fillchars = {
+  eob = " ",
+  fold = " ",
+  foldopen = "",
+  foldsep = " ",
+  foldinner = " ",
+  foldclose = "",
+}
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
