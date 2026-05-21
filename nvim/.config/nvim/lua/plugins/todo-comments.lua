@@ -27,7 +27,7 @@ vim.keymap.set(
 
 return plugin {
   src = "folke/todo-comments.nvim",
-  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  lazy = true,
   opts = {
     highlight = {
       pattern = {
