@@ -4,6 +4,9 @@ git:
   pagers:
     - colorArg: always
       pager: delta --paging=never --line-numbers
+  branchLogCmd: git log --graph --color=always --pretty=format:"%C(magenta)%h %C(white) %an  %ah%C(auto)  %D%n%s%n" {{branchName}} --
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --pretty=format:"%C(magenta)%h %C(white) %an  %ah%C(auto)  %D%n%s%n"
 os:
   editPreset: 'nvim'
 customCommands:
