@@ -19,7 +19,7 @@ vim.g.have_nerd_font = false
 opt.cmdheight = vim.g.vscode and 0 or 1
 opt.laststatus = 3
 
-vim.o.foldcolumn = "1"
+vim.o.foldcolumn = "0"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
