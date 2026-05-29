@@ -39,3 +39,37 @@ vim.api.nvim_create_autocmd("TermOpen", {
     if vim.version().minor >= 13 then vim.opt_local.scrolloffpad = 0 end
   end,
 })
+
+local cursorline_augroup = augroup("cursorline-active-window", { clear = true })
+autocmd("WinEnter", {
+  desc = "Enable cursorline on active window",
+  group = cursorline_augroup,
+  callback = function()
+    local win = vim.api.nvim_get_current_win()
+    -- Schedule to preserve the correct order of events when synchronously
+    -- changing between windows a bunch of times (like in `<c-w>t`)
+    vim.schedule(function()
+      if not vim.api.nvim_win_is_valid(win) then return end
+      if not vim.w[win].cached_cursorline then return end
+
+      vim.wo[win].cursorline = vim.w[win].cached_cursorline
+      vim.w[win].cached_cursorline = nil
+    end)
+  end,
+})
+
+autocmd("WinLeave", {
+  group = cursorline_augroup,
+  desc = "Disable cursorline for inactive window",
+  callback = function()
+    local win = vim.api.nvim_get_current_win()
+    -- Copying the current window options seems to be done after `WinLeave`
+    -- when opening a new tab. Delay setting `cursorline` to `false` until
+    -- after the options are copied
+    vim.schedule(function()
+      if not vim.api.nvim_win_is_valid(win) then return end
+      vim.w[win].cached_cursorline = vim.wo[win].cursorline
+      vim.wo[win].cursorline = false
+    end)
+  end,
+})
