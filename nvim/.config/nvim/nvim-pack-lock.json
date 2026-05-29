@@ -11,7 +11,7 @@
       "version": "2.0.0 - 3.0.0"
     },
     "catppuccin": {
-      "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
+      "rev": "0303a7208dba448c459767486a38a6ec05c4216b",
       "src": "https://github.com/catppuccin/nvim"
     },
     "cmake-tools": {
@@ -24,11 +24,11 @@
       "version": "19.0.0 - 20.0.0"
     },
     "conform": {
-      "rev": "dca1a190aa85f9065979ef35802fb77131911106",
+      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "dap": {
-      "rev": "45a69eba683a2c448dd9ecfc4de89511f0646b5f",
+      "rev": "531771530d4f82ad2d21e436e3cc052d68d7aebb",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "dapui": {
@@ -52,7 +52,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason": {
-      "rev": "e54f5bf5f12c560da31c17eee5b3e1bd369f3ff9",
+      "rev": "bb639d4bf385a4d89f478b83af4d770be05ab7eb",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mason-nvim-dap": {
@@ -64,19 +64,19 @@
       "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
     },
     "match-up": {
-      "rev": "dccb2d12ef2a703d2f076b3cda36a3339449d1eb",
+      "rev": "a2d618496223386844acb5a6763cfc3cc1357af1",
       "src": "https://github.com/andymass/vim-matchup"
     },
     "mini": {
-      "rev": "17c448b0f3f29c0857a3436fc64e1d7cb9267ec3",
+      "rev": "9d0b9b7188d5c24b5a87f0d8b383ec8bda7a0de4",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.icons": {
-      "rev": "9c7b1b90b15bdd69c52f6e31889dbc9987c30ec4",
+      "rev": "520995f1d75da0e4cc901ee95080b1ff2bc46b94",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.misc": {
-      "rev": "37b585358662a90c360060da6c5e61810524542e",
+      "rev": "eb2246ede307fc863a12e9d9b0fa4b7ca9b88188",
       "src": "https://github.com/echasnovski/mini.misc"
     },
     "mini.sessions": {
@@ -112,7 +112,7 @@
       "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
     },
     "nvim-lspconfig": {
-      "rev": "75e49cfa588a89ca667d767c0afef3ceac205faa",
+      "rev": "9573948c38bfabeec353ae7dd7d3ffec4c506a6b",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -132,11 +132,11 @@
       "src": "https://github.com/kevinhwang91/nvim-ufo"
     },
     "oil": {
-      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "rev": "b91ee5a77a6a9605d9c1aaf4fda74b66082c8297",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "oil-git": {
-      "rev": "85731c6e0deb6da473ca627f09b7de6ca0f07435",
+      "rev": "54de208323d00c519e26280f8b5b4b821d32f955",
       "src": "https://github.com/malewicz1337/oil-git.nvim"
     },
     "oil-lsp-diagnostics": {
@@ -152,7 +152,7 @@
       "src": "https://github.com/kevinhwang91/promise-async"
     },
     "rose-pine": {
-      "rev": "6a961effd67f6130d36df6d1c05c48c739796dd2",
+      "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
       "src": "https://github.com/rose-pine/neovim"
     },
     "rustaceanvim": {
@@ -161,7 +161,7 @@
       "version": "9.0.0 - 10.0.0"
     },
     "snacks": {
-      "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
+      "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "todo-comments": {
