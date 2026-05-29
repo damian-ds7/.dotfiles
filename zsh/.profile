@@ -1,6 +1,7 @@
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # export MANROFFOPT="-c"
 export MANPAGER="nvim +Man!"
+export PAGER="less -RFK"
 export SUDO_EDITOR="$HOME/.local/bin/nvim"
 export VISUAL="$HOME/.local/bin/nvim"
 export EDITOR="$HOME/.local/bin/nvim"
