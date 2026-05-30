@@ -1,6 +1,5 @@
 local map = vim.keymap.set
 
--- Essentials
 map("i", "jj", "<Esc>", { noremap = true })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("x", "p", "P", { desc = "Paste without overwriting register" })
@@ -46,7 +45,6 @@ map(
   { desc = "New File (Root)" }
 )
 
--- Better Movement & Indenting
 map(
   { "n", "x" },
   "j",
@@ -62,14 +60,12 @@ map(
 map("x", "<", "<gv")
 map("x", ">", ">gv")
 
--- Search & View Handling
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear Highlighting" })
 if vim.version().minor < 13 then
   map("n", "<C-d>", "<C-d>zz", { desc = "Jump half page down and center" })
   map("n", "<C-u>", "<C-u>zz", { desc = "Jump half page up and center" })
 end
 
--- Center search results
 if vim.version().minor < 13 then
   map(
     "n",
@@ -97,19 +93,16 @@ if vim.version().minor < 13 then
   )
 end
 
--- Navigation (CTRL + hjkl)
 map("n", "<C-h>", "<C-w><C-h>", { desc = "Go to left window" })
 map("n", "<C-l>", "<C-w><C-l>", { desc = "Go to right window" })
 map("n", "<C-j>", "<C-w><C-j>", { desc = "Go to lower window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Go to upper window" })
 
--- Moving Windows (CTRL + SHIFT + hjkl)
 map("n", "<C-S-h>", "<C-w>H", { desc = "Move window left" })
 map("n", "<C-S-l>", "<C-w>L", { desc = "Move window right" })
 map("n", "<C-S-j>", "<C-w>J", { desc = "Move window down" })
 map("n", "<C-S-k>", "<C-w>K", { desc = "Move window up" })
 
--- Splits & Resizing
 map("n", "<leader>-", "<C-W>s", { desc = "Split Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
@@ -141,14 +134,11 @@ map(
   { desc = "Increase Width" }
 )
 
--- Tabs
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
--- map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
--- map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
@@ -172,7 +162,6 @@ vim.keymap.set("n", "<leader>bo", function()
   end
 end, { desc = "Close All Other Listed Buffers" })
 
--- Move Lines
 map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
 map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
@@ -190,16 +179,13 @@ map(
   { desc = "Move Up" }
 )
 
--- Writing helpers
 map("i", "<A-.>", " -> ", { silent = true })
 map("i", "<A-,>", " <- ", { silent = true })
 map("v", "<leader>p", '"_dP', { desc = "Paste without yanking" })
 
--- Commenting
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Comment Above" })
 
--- Quickfix & Location List
 map("n", "<leader>xq", function()
   local success, err = pcall(
     vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen
@@ -217,7 +203,6 @@ end, { desc = "Location List" })
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
--- Diagnostic Jumps
 local diagnostic_goto = function(next, severity)
   return function()
     vim.diagnostic.jump {
@@ -243,7 +228,6 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Treesitter incremental selection
 vim.keymap.set(
   { "n", "x" },
   "<C-space>",
