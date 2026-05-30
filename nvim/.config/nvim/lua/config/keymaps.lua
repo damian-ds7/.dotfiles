@@ -183,6 +183,40 @@ map("i", "<A-.>", " -> ", { silent = true })
 map("i", "<A-,>", " <- ", { silent = true })
 map("v", "<leader>p", '"_dP', { desc = "Paste without yanking" })
 
+local function yank_as_codeblock(lang)
+  vim.cmd 'normal! "zy'
+
+  local text = vim.fn.getreg "z"
+  local lines = vim.split(text, "\n", { plain = true })
+
+  local fence = "```" .. (lang or "")
+  table.insert(lines, 1, fence)
+  table.insert(lines, "```")
+
+  local result = table.concat(lines, "\n") .. "\n"
+
+  vim.fn.setreg("+", result)
+  vim.fn.setreg('"', result)
+
+  vim.notify(
+    "Copied as code block" .. ((lang or "") ~= "" and (" [" .. lang .. "]") or ""),
+    vim.log.levels.INFO
+  )
+end
+
+vim.keymap.set(
+  "v",
+  "<leader>yc",
+  function() yank_as_codeblock "" end,
+  { desc = "Yank as code block" }
+)
+
+vim.keymap.set("v", "<leader>yC", function()
+  vim.ui.input({ prompt = "Language: " }, function(input)
+    if input ~= nil then yank_as_codeblock(input) end
+  end)
+end, { desc = "Yank as code block (with language)" })
+
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Comment Above" })
 
