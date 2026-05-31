@@ -37,8 +37,18 @@ vim.api.nvim_create_autocmd("TermClose", {
     end
 
     state.term.win = -1
+    state.term.buf = -1
   end,
 })
+
+local function setup_terminal_keymaps(buf)
+  vim.keymap.set(
+    "n",
+    "q",
+    function() M.toggle_terminal { mode = state.term.mode } end,
+    { buffer = buf, silent = true, desc = "Close terminal" }
+  )
+end
 
 local function create_floating_window(opts)
   local width, height, col, row = get_dims()
@@ -123,6 +133,7 @@ M.toggle_terminal = function(opts)
     if vim.bo[state.term.buf].buftype ~= "terminal" then
       vim.cmd.terminal()
       vim.bo[state.term.buf].buflisted = false
+      setup_terminal_keymaps(state.term.buf)
     end
 
     vim.cmd "startinsert"
