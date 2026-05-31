@@ -298,19 +298,31 @@ vim.keymap.set(
 
 if not vim.g.vscode then
   require("utils.term").setup()
-  map("n", "<leader>of", ":Terminal --floating<CR>", { desc = "Float Term" })
-  map("n", "<leader>ob", ":Terminal --bottom<CR>", { desc = "Bottom Term" })
+
+  local term = require "utils.term"
 
   map(
     "n",
+    "<leader>of",
+    function() term.toggle_terminal { mode = "floating" } end,
+    { desc = "Float Term" }
+  )
+  map(
+    "n",
+    "<leader>ob",
+    function() term.toggle_terminal { mode = "bottom" } end,
+    { desc = "Bottom Term" }
+  )
+  map(
+    "n",
     "<leader>oF",
-    ":Terminal --floating %:p:h<CR>",
+    function() term.toggle_terminal { mode = "floating", dir = vim.fn.expand "%:p:h" } end,
     { desc = "Float Term (file)" }
   )
   map(
     "n",
     "<leader>oB",
-    ":Terminal --bottom %:p:h<CR>",
+    function() term.toggle_terminal { mode = "bottom", dir = vim.fn.expand "%:p:h" } end,
     { desc = "Bottom Term (file)" }
   )
 else
