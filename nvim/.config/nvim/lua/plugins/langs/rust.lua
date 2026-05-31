@@ -13,6 +13,24 @@ local setup_keymaps = function(bufnr)
   )
   vim.keymap.set(
     "n",
+    "<leader>cj",
+    function() vim.cmd.RustLsp { "relatedDiagnostics" } end,
+    { desc = "LSP: Related Diagnostics (Rustaceanvim)", buffer = bufnr }
+  )
+  vim.keymap.set(
+    "n",
+    "]d",
+    function() vim.cmd.RustLsp { "renderDiagnostic", "cycle" } end,
+    { desc = "Next Diagnostic", buffer = bufnr }
+  )
+  vim.keymap.set(
+    "n",
+    "[d",
+    function() vim.cmd.RustLsp { "renderDiagnostic", "cycle_prev" } end,
+    { desc = "Prev Diagnostic", buffer = bufnr }
+  )
+  vim.keymap.set(
+    "n",
     "<leader>ce",
     function() vim.cmd.RustLsp { "explainError", "current" } end,
     { desc = "LSP: Explain Error", buffer = bufnr }
