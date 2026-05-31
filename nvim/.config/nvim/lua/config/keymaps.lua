@@ -162,22 +162,42 @@ vim.keymap.set("n", "<leader>bo", function()
   end
 end, { desc = "Close All Other Listed Buffers" })
 
-map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
-map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map(
-  "v",
-  "<A-j>",
-  ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv",
-  { desc = "Move Down" }
-)
-map(
-  "v",
-  "<A-k>",
-  ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv",
-  { desc = "Move Up" }
-)
+local function move(direction)
+  local count = vim.v.count1
+  if direction == "down" then
+    vim.cmd("move .+" .. count)
+  else
+    vim.cmd("move .-" .. (count + 1))
+  end
+  vim.cmd "normal! =="
+end
+
+local function move_visual(direction)
+  local count = vim.v.count1
+  vim.cmd("normal! " .. vim.keycode "<Esc>")
+  if direction == "down" then
+    vim.cmd("'<,'>move '>+" .. count)
+  else
+    vim.cmd("'<,'>move '<-" .. (count + 1))
+  end
+  vim.cmd "normal! gv=gv"
+end
+
+map("n", "<A-j>", function() move "down" end, { desc = "Move Line Down" })
+map("n", "<A-k>", function() move "up" end, { desc = "Move Line Up" })
+map("i", "<A-j>", function()
+  vim.cmd "stopinsert"
+  move "down"
+  vim.cmd "startinsert"
+end, { desc = "Move Line Down" })
+
+map("i", "<A-k>", function()
+  vim.cmd "stopinsert"
+  move "up"
+  vim.cmd "startinsert"
+end, { desc = "Move Line Up" })
+map("v", "<A-j>", function() move_visual "down" end, { desc = "Move Line Down" })
+map("v", "<A-k>", function() move_visual "up" end, { desc = "Move Line Up" })
 
 map("i", "<A-.>", " -> ", { silent = true })
 map("i", "<A-,>", " <- ", { silent = true })
