@@ -41,6 +41,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 local cursorline_augroup = augroup("cursorline-active-window", { clear = true })
+
+local function is_regular_win(win)
+  if not vim.api.nvim_win_is_valid(win) then return false end
+  local buf = vim.api.nvim_win_get_buf(win)
+  local bt = vim.bo[buf].buftype
+  return bt ~= "terminal" and bt ~= "nofile"
+end
+
 autocmd("WinEnter", {
   desc = "Enable cursorline on active window",
   group = cursorline_augroup,
@@ -49,6 +57,7 @@ autocmd("WinEnter", {
     -- Schedule to preserve the correct order of events when synchronously
     -- changing between windows a bunch of times (like in `<c-w>t`)
     vim.schedule(function()
+      if not is_regular_win(win) then return end
       if not vim.api.nvim_win_is_valid(win) then return end
       if not vim.w[win].cached_cursorline then return end
 
@@ -67,9 +76,24 @@ autocmd("WinLeave", {
     -- when opening a new tab. Delay setting `cursorline` to `false` until
     -- after the options are copied
     vim.schedule(function()
+      if not is_regular_win(win) then return end
       if not vim.api.nvim_win_is_valid(win) then return end
       vim.w[win].cached_cursorline = vim.wo[win].cursorline
       vim.wo[win].cursorline = false
+    end)
+  end,
+})
+
+autocmd("TermClose", {
+  group = cursorline_augroup,
+  desc = "Restore cursorline after lazygit closes",
+  callback = function(ev)
+    if not vim.api.nvim_buf_is_valid(ev.buf) then return end
+    if not vim.api.nvim_buf_get_name(ev.buf):find "lazygit" then return end
+    vim.schedule(function()
+      local win = vim.api.nvim_get_current_win()
+      if not is_regular_win(win) then return end
+      vim.wo[win].cursorline = true
     end)
   end,
 })
