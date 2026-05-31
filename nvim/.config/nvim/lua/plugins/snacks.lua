@@ -153,18 +153,27 @@ map(
   function() Snacks.picker.grep_word() end,
   { desc = "Search current Word" }
 )
-map(
-  "n",
-  "<leader>sb",
-  function() Snacks.picker.buffers() end,
-  { desc = "Search Buffers" }
-)
-map(
-  "n",
-  "<leader>,",
-  function() Snacks.picker.buffers() end,
-  { desc = "Search Buffers" }
-)
+
+local function search_buffers()
+  Snacks.picker.buffers {
+    finder = "buffers",
+    format = "buffer",
+    hidden = false,
+    unloaded = true,
+    current = false,
+    sort_lastused = true,
+    win = {
+      input = {
+        keys = {
+          ["<c-x>"] = { "bufdelete", mode = { "n", "i" } },
+        },
+      },
+    },
+  }
+end
+
+map("n", "<leader>sb", search_buffers, { desc = "Search Buffers" })
+map("n", "<leader>,", search_buffers, { desc = "Search Buffers" })
 map(
   "n",
   "<leader>.",
@@ -208,7 +217,9 @@ return plugin {
 
     snacks.toggle.option("spell", { name = "Spelling" }):map "<leader>us"
     snacks.toggle.option("wrap", { name = "Wrap" }):map "<leader>uw"
-    snacks.toggle.option("relativenumber", { name = "Relative Number" }):map "<leader>uL"
+    snacks.toggle
+      .option("relativenumber", { name = "Relative Number" })
+      :map "<leader>uL"
     snacks.toggle.diagnostics():map "<leader>ud"
     snacks.toggle.line_number():map "<leader>ul"
     snacks.toggle
@@ -286,7 +297,12 @@ return plugin {
         end,
       },
     },
-    lazygit = { enabled = true },
+    lazygit = {
+      enabled = true,
+      win = {
+        border = true,
+      },
+    },
     quickfile = { enabled = true },
     scroll = { enabled = true },
     image = { enabled = true },
