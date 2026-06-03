@@ -109,13 +109,13 @@ menu:
         cmd: vicinae toggle
       - key: "c"
         desc: Clipboard history
-        cmd: vicinae vicinae://extensions/vicinae/clipboard/history
+        cmd: vicinae vicinae://launch/clipboard/history
       - key: "w"
         desc: Switch windows
-        cmd: vicinae vicinae://extensions/vicinae/wm/switch-windows
+        cmd: vicinae vicinae://launch/wm/switch-windows
       - key: "e"
         desc: Emoji search
-        cmd: vicinae vicinae://extensions/vicinae/core/search-emojis
+        cmd: vicinae vicinae://launch/core/search-emojis
 
   - key: "s"
     desc: System
