@@ -1,18 +1,63 @@
 local M = {}
 
-local get_dims = require("utils.float").floating_window_dims
+local last_editor_size = { cols = vim.o.columns, lines = vim.o.lines }
 
 local state = {
   term = { buf = -1, win = -1, mode = "floating" },
+  float_dims = nil,
+  split_dims = { h_ratio = 0.3 },
 }
 
+local function get_dims()
+  local d = state.float_dims
+  if not d then return require("utils.float").floating_window_dims() end
+  local ew = vim.o.columns
+  local eh = vim.o.lines
+  return math.floor(d.w_ratio * ew),
+    math.floor(d.h_ratio * eh),
+    math.floor(d.col_ratio * ew),
+    math.floor(d.row_ratio * eh)
+end
+
 local group = vim.api.nvim_create_augroup("float-terminal", { clear = true })
+
+vim.api.nvim_create_autocmd("WinResized", {
+  group = group,
+  desc = "Save new window size as ratios",
+  callback = function()
+    local cols, lines = vim.o.columns, vim.o.lines
+    local is_vim_resize = cols ~= last_editor_size.cols
+      or lines ~= last_editor_size.lines
+    last_editor_size = { cols = cols, lines = lines }
+
+    if is_vim_resize then return end
+
+    if not vim.api.nvim_win_is_valid(state.term.win) then return end
+
+    local win = state.term.win
+    local ew = vim.o.columns
+    local eh = vim.o.lines
+
+    if state.term.mode == "floating" then
+      local cfg = vim.api.nvim_win_get_config(win)
+      state.float_dims = {
+        w_ratio = cfg.width / ew,
+        h_ratio = cfg.height / eh,
+        col_ratio = cfg.col / ew,
+        row_ratio = cfg.row / eh,
+      }
+    elseif state.term.mode == "bottom" then
+      state.split_dims.h_ratio = vim.api.nvim_win_get_height(win) / eh
+    end
+  end,
+})
 
 vim.api.nvim_create_autocmd("VimResized", {
   group = group,
   desc = "Resize floating terminal window",
   callback = function()
     if not vim.api.nvim_win_is_valid(state.term.win) then return end
+    if state.term.mode ~= "floating" then return end -- add this
 
     local w, h, c, r = get_dims()
 
@@ -38,6 +83,8 @@ vim.api.nvim_create_autocmd("TermClose", {
 
     state.term.win = -1
     state.term.buf = -1
+    state.split_dims = { h_ratio = 0.3 }
+    state.float_dims = nil
   end,
 })
 
@@ -70,7 +117,7 @@ local function create_floating_window(opts)
 end
 
 local function create_bottom_window(opts)
-  local height = math.floor(vim.o.lines * 0.3)
+  local height = math.floor(state.split_dims.h_ratio * vim.o.lines)
 
   local buf = vim.api.nvim_buf_is_valid(opts.buf) and opts.buf
     or vim.api.nvim_create_buf(false, true)
