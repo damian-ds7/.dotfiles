@@ -1,72 +1,5 @@
 local registry = require "core.lang_reg"
 
-vim.keymap.set("n", "<leader>t", "", { desc = "+test" })
-vim.keymap.set(
-  "n",
-  "<leader>ta",
-  function() require("neotest").run.attach() end,
-  { desc = "Attach to Test (Neotest)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>tt",
-  function() require("neotest").run.run(vim.fn.expand "%") end,
-  { desc = "Run File (Neotest)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>tT",
-  function() require("neotest").run.run(vim.uv.cwd()) end,
-  { desc = "Run All Test Files (Neotest)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>tr",
-  function() require("neotest").run.run() end,
-  { desc = "Run Nearest (Neotest)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>tl",
-  function() require("neotest").run.run_last() end,
-  { desc = "Run Last (Neotest)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>ts",
-  function() require("neotest").summary.toggle() end,
-  { desc = "Toggle Summary (Neotest)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>to",
-  function() require("neotest").output.open { enter = true, auto_close = true } end,
-  { desc = "Show Output (Neotest)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>tO",
-  function() require("neotest").output_panel.toggle() end,
-  { desc = "Toggle Output Panel (Neotest)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>tS",
-  function() require("neotest").run.stop() end,
-  { desc = "Stop (Neotest)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>tw",
-  function() require("neotest").watch.toggle(vim.fn.expand "%") end,
-  { desc = "Toggle Watch (Neotest)" }
-)
-
-vim.keymap.set("n", "<leader>td", function()
-  pcall(vim.cmd.packadd, "nvim-dap")
-  require("neotest").run.run { strategy = "dap" }
-end, { desc = "Debug Nearest" })
-
 return plugin {
   src = "nvim-neotest/neotest",
   dependencies = { "nvim-neotest/nvim-nio", "nvim-lua/plenary.nvim" },
@@ -141,4 +74,76 @@ return plugin {
       },
     }
   end,
+  keys = {
+    { "n", "<leader>t", "", desc = "+test" },
+    {
+      "n",
+      "<leader>ta",
+      function() require("neotest").run.attach() end,
+      desc = "Attach to Test (Neotest)",
+    },
+    {
+      "n",
+      "<leader>tt",
+      function() require("neotest").run.run(vim.fn.expand "%") end,
+      desc = "Run File (Neotest)",
+    },
+    {
+      "n",
+      "<leader>tT",
+      function() require("neotest").run.run(vim.uv.cwd()) end,
+      desc = "Run All Test Files (Neotest)",
+    },
+    {
+      "n",
+      "<leader>tr",
+      function() require("neotest").run.run() end,
+      desc = "Run Nearest (Neotest)",
+    },
+    {
+      "n",
+      "<leader>tl",
+      function() require("neotest").run.run_last() end,
+      desc = "Run Last (Neotest)",
+    },
+    {
+      "n",
+      "<leader>ts",
+      function() require("neotest").summary.toggle() end,
+      desc = "Toggle Summary (Neotest)",
+    },
+    {
+      "n",
+      "<leader>to",
+      function() require("neotest").output.open { enter = true, auto_close = true } end,
+      desc = "Show Output (Neotest)",
+    },
+    {
+      "n",
+      "<leader>tO",
+      function() require("neotest").output_panel.toggle() end,
+      desc = "Toggle Output Panel (Neotest)",
+    },
+    {
+      "n",
+      "<leader>tS",
+      function() require("neotest").run.stop() end,
+      desc = "Stop (Neotest)",
+    },
+    {
+      "n",
+      "<leader>tw",
+      function() require("neotest").watch.toggle(vim.fn.expand "%") end,
+      desc = "Toggle Watch (Neotest)",
+    },
+    {
+      "n",
+      "<leader>td",
+      function()
+        pcall(vim.cmd.packadd, "nvim-dap")
+        require("neotest").run.run { strategy = "dap" }
+      end,
+      desc = "Debug Nearest",
+    },
+  },
 }

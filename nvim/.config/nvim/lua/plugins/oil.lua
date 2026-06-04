@@ -1,15 +1,3 @@
-vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "(Oil) Open parent directory" })
-vim.keymap.set(
-  "n",
-  "<leader>ee",
-  function() require("oil").toggle_float() end,
-  { desc = "(Oil) Open parent directory" }
-)
-vim.keymap.set("n", "<leader>eE", function()
-  local root = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
-  require("oil").toggle_float(root)
-end, { desc = "(Oil) Open Project Root" })
-
 local last_oil_path = nil
 
 local function open_oil_float(path)
@@ -38,16 +26,6 @@ local function prompt_and_open()
     open_oil_float(target)
   end)
 end
-
-vim.keymap.set("n", "<leader>el", prompt_and_open, { desc = "(Oil) Open location" })
-
-vim.keymap.set("n", "<leader>eR", function()
-  if last_oil_path then
-    open_oil_float(last_oil_path)
-  else
-    prompt_and_open()
-  end
-end, { desc = "(Oil) Reopen last" })
 
 return plugin {
   src = "stevearc/oil.nvim",
@@ -100,4 +78,35 @@ return plugin {
     require("oil-lsp-diagnostics").setup()
     require("oil").setup(opts)
   end,
+  keys = {
+    { "n", "-", "<cmd>Oil<cr>", desc = "(Oil) Open parent directory" },
+    {
+      "n",
+      "<leader>ee",
+      function() require("oil").toggle_float() end,
+      desc = "(Oil) Open parent directory",
+    },
+    {
+      "n",
+      "<leader>eE",
+      function()
+        local root = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
+        require("oil").toggle_float(root)
+      end,
+      desc = "(Oil) Open Project Root",
+    },
+    { "n", "<leader>el", prompt_and_open, desc = "(Oil) Open location" },
+    {
+      "n",
+      "<leader>eR",
+      function()
+        if last_oil_path then
+          open_oil_float(last_oil_path)
+        else
+          prompt_and_open()
+        end
+      end,
+      desc = "(Oil) Reopen last",
+    },
+  },
 }

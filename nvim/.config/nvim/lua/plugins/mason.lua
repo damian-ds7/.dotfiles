@@ -1,5 +1,3 @@
-vim.keymap.set("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
-
 return {
   plugin {
     src = "mason-org/mason.nvim",
@@ -23,5 +21,8 @@ return {
         run_on_start = true,
       }
     end,
+  },
+  keys = {
+    { "n", "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
   },
 }

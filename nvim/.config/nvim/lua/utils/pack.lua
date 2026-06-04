@@ -7,6 +7,12 @@
 ---@field kind PackChangedKind | table<PackChangedKind>
 ---@field action string|fun(data: any)
 
+---@class KeymapArgs
+---@field [1] string|string[]  # modes
+---@field [2] string           # lhs
+---@field [3] string|function  # rhs
+---@field [string] any         # extra opts passed to vim.keymap.set
+
 ---@class PluginSpec
 ---@field src string
 ---@field name? string
@@ -15,6 +21,7 @@
 ---@field event? string|string[]
 ---@field filetype? string|string[]
 ---@field opts? table
+---@field keys? KeymapArgs[]
 ---@field config? fun(opts?: table)
 ---@field dependencies? PackSpec|PackSpec[]
 ---@field pack_changed? PackHook|PackHook[]
@@ -152,6 +159,28 @@ local function plugin_spec_to_pack_spec(plugin_spec)
   return pack_spec
 end
 
+---Sets a keymap from a compact positional+named args table.
+---@param args KeymapArgs
+local function map(args)
+  local modes, lhs, rhs = args[1], args[2], args[3]
+
+  local opts = {}
+
+  for k, v in pairs(args) do
+    if type(k) == "string" then opts[k] = v end
+  end
+
+  vim.keymap.set(modes, lhs, rhs, opts --[[@as vim.keymap.set.Opts]])
+end
+
+---@param mappings KeymapArgs[]?
+local function set_keymaps(mappings)
+  if not mappings then return end
+  for _, args in ipairs(mappings) do
+    map(args)
+  end
+end
+
 ---Resolve the load trigger string from lazy, event, or filetype flags.
 ---@param lazy? boolean
 ---@param event? string|string[]
@@ -233,8 +262,7 @@ local function handle_config(name, opts, config, deps)
 
     if config then
       config(opts)
-    else
-      -- local ok, mod = pcall(require, name)
+    elseif opts then
       local mod = require(name)
       if type(mod.setup) == "function" then mod.setup(opts) end
     end
@@ -266,6 +294,8 @@ local function handle_single_spec(spec)
     config = config,
     name = pack_spec.name,
   })
+
+  set_keymaps(spec.keys)
 end
 
 ---Process one or multiple plugin specification tables and register them for loading.

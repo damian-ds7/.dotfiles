@@ -3,157 +3,6 @@ _G.bt = function() require("snacks").debug.backtrace() end
 
 vim.print = _G.dd
 
-local map = vim.keymap.set
-
-map(
-  "n",
-  "<leader>gb",
-  function() Snacks.picker.git_branches() end,
-  { desc = "Git Branches" }
-)
-map("n", "<leader>gl", function() Snacks.picker.git_log() end, { desc = "Git Log" })
-map(
-  "n",
-  "<leader>gL",
-  function() Snacks.picker.git_log_line() end,
-  { desc = "Git Log Line" }
-)
-map(
-  "n",
-  "<leader>gs",
-  function() Snacks.picker.git_status() end,
-  { desc = "Git Status" }
-)
-map("n", "<leader>gS", function() Snacks.picker.git_stash() end, { desc = "Git Stash" })
-map(
-  "n",
-  "<leader>gd",
-  function() Snacks.picker.git_diff() end,
-  { desc = "Git Diff (Hunks)" }
-)
-map(
-  "n",
-  "<leader>gf",
-  function() Snacks.picker.git_log_file() end,
-  { desc = "Git Log File" }
-)
-map(
-  "n",
-  "<leader>gi",
-  function() Snacks.picker.gh_issue() end,
-  { desc = "GitHub Issues (open)" }
-)
-map(
-  "n",
-  "<leader>gI",
-  function() Snacks.picker.gh_issue { state = "all" } end,
-  { desc = "GitHub Issues (all)" }
-)
-map(
-  "n",
-  "<leader>gp",
-  function() Snacks.picker.gh_pr() end,
-  { desc = "GitHub Pull Requests (open)" }
-)
-map(
-  "n",
-  "<leader>gP",
-  function() Snacks.picker.gh_pr { state = "all" } end,
-  { desc = "GitHub Pull Requests (all)" }
-)
-map("n", '<leader>s"', function() Snacks.picker.registers() end, { desc = "Registers" })
-map("n", "<leader>uZ", function() Snacks.zen() end, { desc = "Toggle Zen Mode" })
-map("n", "<leader>uz", function() Snacks.zen.zoom() end, { desc = "Toggle Zoom" })
-map(
-  "n",
-  "<leader>>",
-  function() Snacks.scratch() end,
-  { desc = "Toggle Scratch Buffer" }
-)
-map(
-  "n",
-  "<leader>S",
-  function() Snacks.scratch.select() end,
-  { desc = "Select Scratch Buffer" }
-)
-map(
-  "n",
-  "<leader>cf",
-  function() Snacks.rename.rename_file() end,
-  { desc = "Rename File" }
-)
-map(
-  { "n", "v" },
-  "<leader>gB",
-  function() Snacks.gitbrowse() end,
-  { desc = "Git Browse" }
-)
-map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
-map(
-  { "n", "t" },
-  "]]",
-  function() Snacks.words.jump(vim.v.count1) end,
-  { desc = "Next Reference" }
-)
-map(
-  { "n", "t" },
-  "[[",
-  function() Snacks.words.jump(-vim.v.count1) end,
-  { desc = "Prev Reference" }
-)
-map("n", "<leader>sf", function() Snacks.picker.smart() end, { desc = "Search Files" })
-map(
-  "n",
-  "<leader><space>",
-  function() Snacks.picker.smart() end,
-  { desc = "Search Files" }
-)
-map("n", "<leader>sh", function() Snacks.picker.help() end, { desc = "Search Help" })
-map(
-  "n",
-  "<leader>sk",
-  function() Snacks.picker.keymaps() end,
-  { desc = "Search Keymaps" }
-)
-map(
-  "n",
-  "<leader>ss",
-  function() Snacks.picker.pickers() end,
-  { desc = "Search Select Picker" }
-)
-map("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Grep" })
-map("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
-map(
-  "n",
-  "<leader>sd",
-  function() Snacks.picker.diagnostics() end,
-  { desc = "Search Diagnostics" }
-)
-map(
-  "n",
-  "<leader>sR",
-  function() Snacks.picker.resume() end,
-  { desc = "Search Resume" }
-)
-map(
-  "n",
-  "<leader>s.",
-  function() Snacks.picker.recent() end,
-  { desc = "Search Recent Files" }
-)
-map(
-  "n",
-  "<leader>sc",
-  function() Snacks.picker.commands() end,
-  { desc = "Search Commands" }
-)
-map(
-  { "n", "v" },
-  "<leader>sw",
-  function() Snacks.picker.grep_word() end,
-  { desc = "Search current Word" }
-)
-
 local function search_buffers()
   Snacks.picker.buffers {
     finder = "buffers",
@@ -171,43 +20,6 @@ local function search_buffers()
     },
   }
 end
-
-map("n", "<leader>sb", search_buffers, { desc = "Search Buffers" })
-map("n", "<leader>,", search_buffers, { desc = "Search Buffers" })
-map(
-  "n",
-  "<leader>.",
-  function()
-    Snacks.picker.lines {
-      layout = { preset = "dropdown" },
-    }
-  end,
-  { desc = "Fuzzily search in current buffer" }
-)
-map(
-  "n",
-  "<leader>s/",
-  function() Snacks.picker.grep { buf = true } end,
-  { desc = "Search in Open Files" }
-)
-map(
-  "n",
-  "<leader>sn",
-  function() Snacks.picker.files { cwd = vim.fn.stdpath "config" } end,
-  { desc = "Search Neovim files" }
-)
-map(
-  "n",
-  "<leader>sz",
-  function() Snacks.picker.zoxide() end,
-  { desc = "Search Zoxide" }
-)
-map(
-  "n",
-  "<leader>sp",
-  function() Snacks.picker.projects() end,
-  { desc = "Search Projects" }
-)
 
 return plugin {
   src = "folke/snacks.nvim",
@@ -315,6 +127,188 @@ return plugin {
           width = 150,
         },
       },
+    },
+  },
+  keys = {
+    {
+      "n",
+      "<leader>gb",
+      function() Snacks.picker.git_branches() end,
+      desc = "Git Branches",
+    },
+    { "n", "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+    {
+      "n",
+      "<leader>gL",
+      function() Snacks.picker.git_log_line() end,
+      desc = "Git Log Line",
+    },
+    {
+      "n",
+      "<leader>gs",
+      function() Snacks.picker.git_status() end,
+      desc = "Git Status",
+    },
+    { "n", "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+    {
+      "n",
+      "<leader>gd",
+      function() Snacks.picker.git_diff() end,
+      desc = "Git Diff (Hunks)",
+    },
+    {
+      "n",
+      "<leader>gf",
+      function() Snacks.picker.git_log_file() end,
+      desc = "Git Log File",
+    },
+    {
+      "n",
+      "<leader>gi",
+      function() Snacks.picker.gh_issue() end,
+      desc = "GitHub Issues (open)",
+    },
+    {
+      "n",
+      "<leader>gI",
+      function() Snacks.picker.gh_issue { state = "all" } end,
+      desc = "GitHub Issues (all)",
+    },
+    {
+      "n",
+      "<leader>gp",
+      function() Snacks.picker.gh_pr() end,
+      desc = "GitHub Pull Requests (open)",
+    },
+    {
+      "n",
+      "<leader>gP",
+      function() Snacks.picker.gh_pr { state = "all" } end,
+      desc = "GitHub Pull Requests (all)",
+    },
+    { "n", '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
+    { "n", "<leader>uZ", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+    { "n", "<leader>uz", function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+    {
+      "n",
+      "<leader>>",
+      function() Snacks.scratch() end,
+      desc = "Toggle Scratch Buffer",
+    },
+    {
+      "n",
+      "<leader>S",
+      function() Snacks.scratch.select() end,
+      desc = "Select Scratch Buffer",
+    },
+    {
+      "n",
+      "<leader>cf",
+      function() Snacks.rename.rename_file() end,
+      desc = "Rename File",
+    },
+    {
+      { "n", "v" },
+      "<leader>gB",
+      function() Snacks.gitbrowse() end,
+      desc = "Git Browse",
+    },
+    { "n", "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+    {
+      { "n", "t" },
+      "]]",
+      function() Snacks.words.jump(vim.v.count1) end,
+      desc = "Next Reference",
+    },
+    {
+      { "n", "t" },
+      "[[",
+      function() Snacks.words.jump(-vim.v.count1) end,
+      desc = "Prev Reference",
+    },
+    { "n", "<leader>sf", function() Snacks.picker.smart() end, desc = "Search Files" },
+    {
+      "n",
+      "<leader><space>",
+      function() Snacks.picker.smart() end,
+      desc = "Search Files",
+    },
+    { "n", "<leader>sh", function() Snacks.picker.help() end, desc = "Search Help" },
+    {
+      "n",
+      "<leader>sk",
+      function() Snacks.picker.keymaps() end,
+      desc = "Search Keymaps",
+    },
+    {
+      "n",
+      "<leader>ss",
+      function() Snacks.picker.pickers() end,
+      desc = "Search Select Picker",
+    },
+    { "n", "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+    { "n", "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+    {
+      "n",
+      "<leader>sd",
+      function() Snacks.picker.diagnostics() end,
+      desc = "Search Diagnostics",
+    },
+    {
+      "n",
+      "<leader>sR",
+      function() Snacks.picker.resume() end,
+      desc = "Search Resume",
+    },
+    {
+      "n",
+      "<leader>s.",
+      function() Snacks.picker.recent() end,
+      desc = "Search Recent Files",
+    },
+    {
+      "n",
+      "<leader>sc",
+      function() Snacks.picker.commands() end,
+      desc = "Search Commands",
+    },
+    {
+      { "n", "v" },
+      "<leader>sw",
+      function() Snacks.picker.grep_word() end,
+      desc = "Search current Word",
+    },
+    { "n", "<leader>sb", search_buffers, desc = "Search Buffers" },
+    { "n", "<leader>,", search_buffers, desc = "Search Buffers" },
+    {
+      "n",
+      "<leader>.",
+      function() Snacks.picker.lines { layout = { preset = "dropdown" } } end,
+      desc = "Fuzzily search in current buffer",
+    },
+    {
+      "n",
+      "<leader>s/",
+      function() Snacks.picker.grep { buf = true } end,
+      desc = "Search in Open Files",
+    },
+    {
+      "n",
+      "<leader>sn",
+      function() Snacks.picker.files { cwd = vim.fn.stdpath "config" } end,
+      desc = "Search Neovim files",
+    },
+    {
+      "n",
+      "<leader>sz",
+      function() Snacks.picker.zoxide() end,
+      desc = "Search Zoxide",
+    },
+    {
+      "n",
+      "<leader>sp",
+      function() Snacks.picker.projects() end,
+      desc = "Search Projects",
     },
   },
 }

@@ -1,4 +1,3 @@
-local map = vim.keymap.set
 local get_dims = require("utils.float").floating_window_dims()
 
 local function toggle_chat(layout)
@@ -33,50 +32,6 @@ local function toggle_chat(layout)
     }
   end
 end
-
-map("n", "<leader>at", function()
-  local cli = require "codecompanion.interactions.cli"
-  if cli and cli.is_visible() then
-    require("codecompanion").toggle()
-  else
-    require("codecompanion").cli {
-      layout = "vertical",
-      position = "right",
-      width = 0.4,
-    }
-  end
-end, { desc = "CodeCompanion: Toggle CLI" })
-
-map(
-  "n",
-  "<leader>aa",
-  "<cmd>CodeCompanionCLI! Ask<cr>",
-  { desc = "CodeCompanion: CLI Ask" }
-)
-map(
-  "v",
-  "<leader>aa",
-  ":CodeCompanionChat Add<cr>",
-  { desc = "CodeCompanion: Chat Add" }
-)
-map(
-  "n",
-  "<leader>ac",
-  function() toggle_chat "vertical" end,
-  { desc = "CodeCompanion: Toggle Chat (Split)" }
-)
-map(
-  "n",
-  "<leader>aC",
-  function() toggle_chat "float" end,
-  { desc = "CodeCompanion: Toggle Chat (Float)" }
-)
-map(
-  "n",
-  "<leader>ap",
-  "<cmd>CodeCompanionActions<cr>",
-  { desc = "CodeCompanion: Actions Palette" }
-)
 
 return plugin {
   src = "olimorris/codecompanion.nvim",
@@ -161,6 +116,55 @@ return plugin {
       editor_context = "#",
       slash_commands = "/",
       tools = "@",
+    },
+  },
+  keys = {
+    {
+      "n",
+      "<leader>at",
+      function()
+        local cli = require "codecompanion.interactions.cli"
+        if cli and cli.is_visible() then
+          require("codecompanion").toggle()
+        else
+          require("codecompanion").cli {
+            layout = "vertical",
+            position = "right",
+            width = 0.4,
+          }
+        end
+      end,
+      desc = "CodeCompanion: Toggle CLI",
+    },
+    {
+      "n",
+      "<leader>aa",
+      "<cmd>CodeCompanionCLI! Ask<cr>",
+      desc = "CodeCompanion: CLI Ask",
+    },
+    {
+      "v",
+      "<leader>aa",
+      ":CodeCompanionChat Add<cr>",
+      desc = "CodeCompanion: Chat Add",
+    },
+    {
+      "n",
+      "<leader>ac",
+      function() toggle_chat "vertical" end,
+      desc = "CodeCompanion: Toggle Chat (Split)",
+    },
+    {
+      "n",
+      "<leader>aC",
+      function() toggle_chat "float" end,
+      desc = "CodeCompanion: Toggle Chat (Float)",
+    },
+    {
+      "n",
+      "<leader>ap",
+      "<cmd>CodeCompanionActions<cr>",
+      desc = "CodeCompanion: Actions Palette",
     },
   },
 }

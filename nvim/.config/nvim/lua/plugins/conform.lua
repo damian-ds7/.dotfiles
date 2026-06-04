@@ -1,12 +1,5 @@
 local registry = require "core.lang_reg"
 
-vim.keymap.set(
-  "n",
-  "<leader>cf",
-  function() require("conform").format { lsp_format = "fallback" } end,
-  { desc = "Format current file" }
-)
-
 return plugin {
   src = "stevearc/conform.nvim",
   event = "BufWritePre",
@@ -33,6 +26,14 @@ return plugin {
     format_on_save = {
       timeout = 500,
       lsp_format = "fallback",
+    },
+  },
+  keys = {
+    {
+      "n",
+      "<leader>cf",
+      function() require("conform").format { lsp_format = "fallback" } end,
+      desc = "Format current file",
     },
   },
 }
