@@ -43,10 +43,6 @@
       "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
-    "lazydev": {
-      "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
-      "src": "https://github.com/folke/lazydev.nvim"
-    },
     "lspeek": {
       "rev": "48999134df6e8076dde079094c81b07fb7b56559",
       "src": "https://github.com/r4ppz/lspeek.nvim"
