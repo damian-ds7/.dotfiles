@@ -9,7 +9,6 @@ return lang {
           100
         )
       end,
-      ---@type lspconfig.settings.lua_ls
       settings = {
         Lua = {
           runtime = {
