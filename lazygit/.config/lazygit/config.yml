@@ -11,7 +11,7 @@ os:
   editPreset: 'nvim'
 customCommands:
   - key: "G"
-    command: "gh browse"
+    command: "gh browse --branch $(git rev-parse --abbrev-ref HEAD)"
     context: "global"
     description: "Show github repo in browser"
 keybinding:
