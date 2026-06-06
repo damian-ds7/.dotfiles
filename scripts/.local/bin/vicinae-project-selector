@@ -8,8 +8,13 @@ search_projects() {
   {
     find -L "$projects_dir" -maxdepth 3 \
       \( -name node_modules -o -name vendor -o -name '.uv' \) -prune -o \
-      -name ".git" -printf "%p\n" 2>/dev/null | sed 's/\/\.git$//'
-
+      -name ".git" -printf "%h\n" 2>/dev/null |
+      while read -r repo; do
+        if [ "$(git -C "$repo" rev-parse --is-bare-repository 2>/dev/null)" = "true" ]; then
+          continue
+        fi
+        echo "$repo"
+      done
     if [ -d "$dotfiles_dir/.git" ]; then
       echo "$dotfiles_dir"
     fi
