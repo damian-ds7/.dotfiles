@@ -59,6 +59,13 @@ return plugin {
         end,
       })
       :map "<leader>uS"
+    snacks.toggle
+      .new({
+        name = "Auto Format",
+        get = function() return vim.g.autoformat ~= false end,
+        set = function(state) vim.g.autoformat = state end,
+      })
+      :map "<leader>cF"
   end,
   opts = {
     bigfile = { enabled = true },

@@ -8,14 +8,6 @@ return plugin {
     opts.formatters_by_ft =
       vim.tbl_extend("force", formatters_by_ft, opts.formatters_by_ft or {})
     require("conform").setup(opts)
-
-    Snacks.toggle
-      .new({
-        name = "Auto Format",
-        get = function() return vim.g.autoformat ~= false end,
-        set = function(state) vim.g.autoformat = state end,
-      })
-      :map "<leader>cF"
   end,
   opts = {
     formatters_by_ft = {
