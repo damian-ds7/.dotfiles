@@ -1,10 +1,9 @@
 local registry = require "core.lang_reg"
 
 local dap = function() return require "dap" end
-local dapui = function() return require "dapui" end
-local widgets = function() return require "dap.ui.widgets" end
+local dap_view = function() return require "dap-view" end
 
-local function get_args(config)
+local function get_args()
   local args = vim.fn.input "Args: "
   return vim.split(args, " ")
 end
@@ -15,28 +14,29 @@ return {
     name = "dap",
     lazy = true,
     dependencies = {
-      { src = "rcarriga/nvim-dap-ui", name = "dapui" },
+      { src = "igorlfs/nvim-dap-view", version = vim.version.range "1.*" },
       "nvim-neotest/nvim-nio",
-      "theHamsta/nvim-dap-virtual-text",
       "nvim-lua/plenary.nvim",
     },
     config = function()
       local nvim_dap = require "dap"
-      local nvim_dapui = require "dapui"
+      local dapview = require "dap-view"
       local icons = require "utils.icons"
       local reg_data = registry.get_all().dap
 
-      nvim_dapui.setup {}
-      require("nvim-dap-virtual-text").setup {}
+      dapview.setup {
+        winbar = { default_section = "scopes", controls = { enabled = true } },
+      }
+      dapview.virtual_text_enable()
 
       nvim_dap.listeners.after.event_initialized["dapui_config"] = function()
-        nvim_dapui.open {}
+        dapview.open()
       end
       nvim_dap.listeners.before.event_terminated["dapui_config"] = function()
-        nvim_dapui.close {}
+        dapview.close()
       end
       nvim_dap.listeners.before.event_exited["dapui_config"] = function()
-        nvim_dapui.close {}
+        dapview.close()
       end
 
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
@@ -50,13 +50,15 @@ return {
         })
       end
 
-      nvim_dap.adapters =
-        vim.tbl_deep_extend("force", nvim_dap.adapters, reg_data.adapters or {})
-      nvim_dap.configurations = vim.tbl_deep_extend(
-        "force",
-        nvim_dap.configurations,
-        reg_data.configurations or {}
-      )
+      if reg_data then
+        nvim_dap.adapters =
+          vim.tbl_deep_extend("force", nvim_dap.adapters, reg_data.adapters or {})
+        nvim_dap.configurations = vim.tbl_deep_extend(
+          "force",
+          nvim_dap.configurations,
+          reg_data.configurations or {}
+        )
+      end
 
       local vscode = require "dap.ext.vscode"
       local json = require "plenary.json"
@@ -112,9 +114,13 @@ return {
       { "n", "<leader>dr", function() dap().repl.toggle() end, desc = "Toggle REPL" },
       { "n", "<leader>ds", function() dap().session() end, desc = "Session" },
       { "n", "<leader>dt", function() dap().terminate() end, desc = "Terminate" },
-      { "n", "<leader>dw", function() widgets().hover() end, desc = "Widgets" },
-      { "n", "<leader>du", function() dapui().toggle {} end, desc = "Dap UI" },
-      { { "n", "x" }, "<leader>de", function() dapui().eval() end, desc = "Eval" },
+      { "n", "<leader>du", function() dap_view().toggle {} end, desc = "Dap UI" },
+      {
+        "n",
+        "<leader>dv",
+        function() dap_view().virtual_text_toggle() end,
+        desc = "Toggle Virtual Text",
+      },
       {
         "n",
         "<leader>da",
