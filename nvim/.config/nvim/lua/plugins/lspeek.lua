@@ -13,25 +13,13 @@ return plugin {
       "n",
       "gp",
       function() require("lspeek").peek_definition() end,
-      desc = "Peek Definition (lspeek)",
-    },
-    {
-      "n",
-      "<leader>cp",
-      function() require("lspeek").peek_definition() end,
-      desc = "Peek Definition (lspeek)",
+      desc = "LSP: Peek Definition (lspeek)",
     },
     {
       "n",
       "gP",
       function() require("lspeek").peek_type_definition() end,
-      desc = "Peek Type Definition (lspeek)",
-    },
-    {
-      "n",
-      "<leader>cP",
-      function() require("lspeek").peek_type_definition() end,
-      desc = "Peek Type Definition (lspeek)",
+      desc = "LSP: Peek Type Definition (lspeek)",
     },
   },
 }

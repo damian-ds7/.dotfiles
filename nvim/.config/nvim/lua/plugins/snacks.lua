@@ -47,7 +47,9 @@ return plugin {
     snacks.toggle.inlay_hints():map "<leader>uh"
     snacks.toggle.indent():map "<leader>ug"
     snacks.toggle.dim():map "<leader>uD"
-    Snacks.toggle
+    snacks.toggle.zen():map "<leader>uZ"
+    snacks.toggle.zoom():map "<leader>uz"
+    snacks.toggle
       .new({
         name = "Centered Cursor",
         get = function() return vim.o.scrolloff >= 10 end,
@@ -187,8 +189,6 @@ return plugin {
       desc = "GitHub Pull Requests (all)",
     },
     { "n", '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
-    { "n", "<leader>uZ", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-    { "n", "<leader>uz", function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
     {
       "n",
       "<leader>>",
@@ -203,7 +203,7 @@ return plugin {
     },
     {
       "n",
-      "<leader>cf",
+      "<leader>ce",
       function() Snacks.rename.rename_file() end,
       desc = "Rename File",
     },

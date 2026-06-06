@@ -26,38 +26,10 @@ autocmd("LspAttach", {
     map(buf, "<leader>cr", vim.lsp.buf.rename, "Rename")
     map(buf, "<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
     map(buf, "<leader>cl", vim.lsp.codelens.run, "Codelens", { "n", "x" })
-    map(buf, "<leader>cc", vim.lsp.buf.declaration, "Goto Declaration")
 
-    map(buf, "<leader>cD", function() Snacks.picker.lsp_definitions() end, "Definition")
-    map(buf, "<leader>cR", function() Snacks.picker.lsp_references() end, "References")
-    map(
-      buf,
-      "<leader>ci",
-      function() Snacks.picker.lsp_implementations() end,
-      "Implementation"
-    )
-    map(
-      buf,
-      "<leader>ct",
-      function() Snacks.picker.lsp_type_definitions() end,
-      "Type Definition"
-    )
-    map(
-      buf,
-      "<leader>cs",
-      function() Snacks.picker.lsp_symbols() end,
-      "Document Symbols"
-    )
-    map(
-      buf,
-      "<leader>cS",
-      function() Snacks.picker.lsp_workspace_symbols() end,
-      "Workspace Symbols"
-    )
-    map(buf, "grD", vim.lsp.buf.declaration, "Goto Declaration")
-    map(buf, "gD", vim.lsp.buf.declaration, "Goto Declaration")
-    map(buf, "grr", function() Snacks.picker.lsp_references() end, "References")
+    map(buf, "gD", vim.lsp.buf.declaration, "Declaration")
     map(buf, "gd", function() Snacks.picker.lsp_definitions() end, "Definition")
+    map(buf, "grr", function() Snacks.picker.lsp_references() end, "References")
     map(
       buf,
       "gri",
@@ -109,7 +81,7 @@ autocmd("LspAttach", {
     end
 
     if client:supports_method "textDocument/codeLens" then
-      require("snacks").toggle
+      Snacks.toggle
         .new({
           name = "Code Lens",
           get = function()

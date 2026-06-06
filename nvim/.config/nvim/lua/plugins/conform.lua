@@ -8,6 +8,14 @@ return plugin {
     opts.formatters_by_ft =
       vim.tbl_extend("force", formatters_by_ft, opts.formatters_by_ft or {})
     require("conform").setup(opts)
+
+    Snacks.toggle
+      .new({
+        name = "Auto Format",
+        get = function() return vim.g.autoformat ~= false end,
+        set = function(state) vim.g.autoformat = state end,
+      })
+      :map "<leader>cF"
   end,
   opts = {
     formatters_by_ft = {
@@ -23,10 +31,10 @@ return plugin {
         append_args = { "--wrap", "80" },
       },
     },
-    format_on_save = {
-      timeout = 500,
-      lsp_format = "fallback",
-    },
+    format_on_save = function(bufnr)
+      if vim.g.autoformat == false then return end
+      return { timeout_ms = 500, lsp_format = "fallback" }
+    end,
   },
   keys = {
     {
