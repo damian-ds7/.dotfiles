@@ -97,3 +97,31 @@ autocmd("TermClose", {
     end)
   end,
 })
+
+autocmd("VimEnter", {
+  group = augroup("makrdown-codeblock-conceal", { clear = true }),
+  callback = function()
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "markdown",
+      callback = function()
+        vim.fn.matchadd("Conceal", "```", 10, -1, { conceal = "⋯" })
+      end,
+    })
+  end,
+})
+
+-- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+--   pattern = "*.md",
+--   callback = function()
+--     local node = vim.treesitter.get_node()
+--     local in_block = false
+--     while node do
+--       if node:type() == "fenced_code_block" then
+--         in_block = true
+--         break
+--       end
+--       node = node:parent()
+--     end
+--     vim.wo.conceallevel = in_block and 0 or 1
+--   end,
+-- })

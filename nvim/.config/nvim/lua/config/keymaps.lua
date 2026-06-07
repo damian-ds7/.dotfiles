@@ -199,6 +199,8 @@ end, { desc = "Move Line Up" })
 map("v", "<A-j>", function() move_visual "down" end, { desc = "Move Line Down" })
 map("v", "<A-k>", function() move_visual "up" end, { desc = "Move Line Up" })
 
+map("i", "<C-`>", "```", { buffer = true, remap = true })
+map("i", "```", "```\n\n```<Esc>ki", { buffer = true })
 map("i", "<A-.>", " -> ", { silent = true })
 map("i", "<A-,>", " <- ", { silent = true })
 map("v", "<leader>p", '"_dP', { desc = "Paste without yanking" })
