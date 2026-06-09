@@ -63,7 +63,7 @@ return {
     },
     tools = { "goimports", "golines", "golangci-lint", "delve" },
     treesitter = { "go", "gomod", "gosum" },
-    formatters = {
+    formatters_by_ft = {
       go = { "goimports", "golines" },
     },
     neotest_adapters = {

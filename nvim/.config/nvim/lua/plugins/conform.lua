@@ -4,7 +4,7 @@ return plugin {
   src = "stevearc/conform.nvim",
   event = "BufWritePre",
   config = function(opts)
-    local formatters_by_ft = registry.get_all().formatters
+    local formatters_by_ft = registry.get_all().formatters_by_ft
     opts.formatters_by_ft =
       vim.tbl_extend("force", formatters_by_ft, opts.formatters_by_ft or {})
     require("conform").setup(opts)
