@@ -3,6 +3,7 @@
 ---@field tools? string[]
 ---@field treesitter? string[]
 ---@field formatters_by_ft? table<string, string[]>
+---@field formatters? table<string, table<string, string[]>>
 ---@field dap? { adapters?: table<string, any>, configurations?: table<string, any> }
 ---@field neotest_adapters? table<string, any>
 
@@ -12,6 +13,7 @@ local M = {
   tools = {},
   treesitter = {},
   formatters_by_ft = {},
+  formatters = {},
   dap = {
     adapters = {},
     configurations = {},
@@ -41,6 +43,10 @@ function M.register(lang)
   if lang.formatters_by_ft then
     M.formatters_by_ft =
       vim.tbl_deep_extend("force", M.formatters_by_ft, lang.formatters_by_ft)
+  end
+
+  if lang.formatters then
+    M.formatters = vim.tbl_deep_extend("force", M.formatters, lang.formatters)
   end
 
   if lang.dap then
