@@ -4,6 +4,9 @@ return {
     opts = {
       ui = { border = "rounded" },
     },
+    keys = {
+      { "n", "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+    },
   },
   plugin {
     src = "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -21,8 +24,5 @@ return {
         run_on_start = true,
       }
     end,
-  },
-  keys = {
-    { "n", "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
   },
 }
