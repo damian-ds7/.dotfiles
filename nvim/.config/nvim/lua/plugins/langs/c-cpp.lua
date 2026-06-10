@@ -67,7 +67,7 @@ return {
       },
     },
     tools = { "codelldb", "clang-format" },
-    treesitter = { "cpp", "cmake" },
+    treesitter = { "c", "cpp", "cmake" },
     formatters_by_ft = {
       c = { "clang-format" },
       cpp = { "clang-format" },

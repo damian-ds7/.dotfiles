@@ -1,4 +1,5 @@
 return lang {
+  eager = true,
   servers = {
     lua_ls = {
       mason_name = "lua-language-server",

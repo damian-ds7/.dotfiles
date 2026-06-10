@@ -6,60 +6,49 @@ return {
     pack_changed = { kind = "update", action = "TSUpdate" },
     config = function()
       local ts = require "nvim-treesitter"
+      local reg = require "core.lang_reg"
+      local misc = require "mini.misc"
 
+      -- Base parsers always installed (language-agnostic / infra).
       local ensure_installed = {
-        "bash",
-        "c",
-        "cpp",
-        "css",
+        "regex",
         "diff",
         "dockerfile",
-        "go",
         "html",
         "javascript",
-        "jsdoc",
         "json",
-        "latex",
-        "lua",
-        "luadoc",
-        "luap",
         "markdown",
         "markdown_inline",
-        "printf",
-        "python",
-        "query",
-        "regex",
         "sql",
         "toml",
-        "tsx",
-        "typescript",
         "vim",
         "vimdoc",
-        "vue",
         "xml",
         "yaml",
-        "zsh",
       }
 
-      local registry = require("core.lang_reg").get_all()
-      if registry.treesitter then
-        vim.list_extend(ensure_installed, registry.treesitter)
-      end
-
+      vim.list_extend(ensure_installed, reg.get_eager_parsers())
       ts.install(ensure_installed)
       -- NOTE: If languages fail to install or compilation hangs,
       -- ensure 'tree-sitter-cli' is installed (e.g., :MasonInstall tree-sitter-cli).
       -- If the issue persists, run :checkhealth nvim-treesitter to diagnose.
 
-      ts.install(ensure_installed)
+      for _, ft in ipairs(reg.get_lazy_filetypes()) do
+        misc.safely("filetype:" .. ft, function()
+          local entry = reg.get_lazy_entry(ft)
+          if not entry or #entry.parsers == 0 then return end
+          ts.install(entry.parsers)
+          pcall(vim.treesitter.start)
+        end)
+      end
 
       local ts_group =
         vim.api.nvim_create_augroup("treesitter-auto-start", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         group = ts_group,
-        pattern = ensure_installed,
-        desc = "Start Treesitter for installed languages",
-        callback = function() vim.treesitter.start() end,
+        pattern = "*",
+        desc = "Start Treesitter when parser is available",
+        callback = function() pcall(vim.treesitter.start) end,
       })
     end,
   },

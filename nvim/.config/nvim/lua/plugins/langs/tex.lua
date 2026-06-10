@@ -1,5 +1,6 @@
 return {
   lang {
+    eager = true,
     servers = {
       texlab = {
         settings = {

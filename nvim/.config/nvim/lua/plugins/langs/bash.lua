@@ -1,4 +1,6 @@
 return lang {
+  eager = true,
+  filetype = { "bash", "sh", "zsh" },
   servers = {
     bashls = {
       mason_name = "bash-language-server",

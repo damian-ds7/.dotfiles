@@ -103,7 +103,7 @@ end
 
 return {
   lang {
-    tools = { "rust-analyzer" },
+    tools = { "rust-analyzer", "codelldb" },
     treesitter = { "rust", "ron" },
     neotest_adapters = {
       ["rustaceanvim.neotest"] = {},
