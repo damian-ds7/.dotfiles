@@ -28,9 +28,9 @@ if ! command -v zsh >/dev/null 2>&1; then
   unset _install_cmd
 fi
 
-if [ -n "${ZSH_VERSION-}" ] \
-  && [ -t 0 ] \
-  && [ ! -f "${ZSH_CACHE_DIR:-$HOME/.cache}/shell-changed" ]; then
+if [ -n "${ZSH_VERSION-}" ] &&
+  [ -t 0 ] &&
+  [ ! -f "${ZSH_CACHE_DIR:-$HOME/.cache}/shell-changed" ]; then
   _current_shell="${SHELL:-/bin/sh}"
   _zsh_path="$(command -v zsh 2>/dev/null)"
 
