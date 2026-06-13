@@ -33,8 +33,7 @@ fi
 
 mode_file="$THEMES_DIR/mode"
 if [[ ! -f "$mode_file" ]]; then
-  echo "select-colorscheme: missing mode file: $mode_file" >&2
-  exit 1
+  echo "dark" >"$mode_file"
 fi
 
 mode="$(tr -d ' \t\r\n' <"$mode_file")"

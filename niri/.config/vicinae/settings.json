@@ -11,69 +11,7 @@
 {
    "$schema": "https://vicinae.com/schemas/config.json",
    "imports": [
-      "vicinae.json"
-   ],
-   "activate_on_single_click": true,
-   "font": {
-      "rendering": "native",
-      "normal": {
-         "family": "JetBrainsMono Nerd Font"
-      }
-   },
-   "theme": {
-      "dark": {
-         "name": "rose-pine"
-      }
-   },
-   "launcher_window": {},
-   "favorites": [
-      "browser-extension:browse-tabs",
-      "applications:dev.aunetx.deezer",
-      "applications:com.mitchellh.ghostty",
-      "applications:zen",
-      "applications:nvim",
-      "clipboard:history"
-   ],
-   "fallbacks": [
-      "shortcuts:4881d8a4-6def-44d6-8080-0e5266d60ee5",
-      "files:search"
-   ],
-   "providers": {
-      "applications": {
-         "preferences": {
-            "paths": [
-               "/home/damian/.local/share/applications",
-               "/var/lib/flatpak/exports/share/applications",
-               "/usr/local/share/applications",
-               "/usr/share/applications"
-            ]
-         }
-      },
-      "clipboard": {
-         "preferences": {
-            "eraseOnStartup": false
-         }
-      },
-      "core": {
-         "entrypoints": {
-            "manage-fallback": {
-               "enabled": true
-            }
-         }
-      },
-      "power": {
-         "enabled": false
-      },
-      "raycast-compat": {
-         "enabled": true,
-         "entrypoints": {
-            "store": {
-               "enabled": true
-            }
-         }
-      },
-      "wm": {
-         "enabled": false
-      }
-   }
+      "vicinae.json",
+      "themes/current-theme.json"
+   ]
 }

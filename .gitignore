@@ -4,3 +4,4 @@ _git-*
 .zcompdump
 hypridle.conf
 hyprlock.conf
+**/themes/current-theme*

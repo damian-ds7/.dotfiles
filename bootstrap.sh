@@ -161,6 +161,15 @@ if [[ $RUN_RESTORE -eq 1 ]]; then
     fi
 fi
 
+THEME_SCRIPT="$REPO_ROOT/scripts/.local/bin/toggle-dark-mode"
+if [[ $DRY_RUN -eq 0 && -z "$STOW_ACTION" && -x "$THEME_SCRIPT" ]]; then
+    echo "Initializing themes..."
+    MODE_FILE="$HOME/.config/themes/mode"
+    INIT_MODE="dark"
+    [[ -f "$MODE_FILE" ]] && INIT_MODE="$(cat "$MODE_FILE")"
+    bash "$THEME_SCRIPT" "$INIT_MODE"
+fi
+
 SSH_SCRIPT="$REPO_ROOT/ssh-setup.sh"
 if [[ $RUN_SSH -eq 1 ]]; then
     if [[ -f "$SSH_SCRIPT" ]]; then

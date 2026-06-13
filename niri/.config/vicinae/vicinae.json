@@ -1,18 +1,19 @@
 {
+  "activate_on_single_click": true,
   "close_on_focus_loss": true,
   "pop_to_root_on_close": true,
   "escape_key_behavior": "close_window",
   "search_files_in_root": true,
+  "theme": {
+    "dark": {
+      "icon_theme": "Adwaita"
+    }
+  },
   "font": {
+    "rendering": "native",
     "normal": {
       "family": "JetBrainsMono Nerd Font",
       "size": 12.5
-    }
-  },
-  "theme": {
-    "dark": {
-      "name": "catppuccin-mocha",
-      "icon_theme": "Adwaita"
     }
   },
   "launcher_window": {
@@ -26,13 +27,9 @@
       "enabled": true
     }
   },
-  "favorites": [
-    "applications:dev.aunetx.deezer",
-    "applications:com.mitchellh.ghostty",
-    "applications:zen",
-    "applications:Claude",
-    "applications:nvim",
-    "clipboard:history"
+  "fallbacks": [
+    "shortcuts:4881d8a4-6def-44d6-8080-0e5266d60ee5",
+    "files:search"
   ],
   "providers": {
     "@ajaypremshankar/bd66a1ad-75d7-4b26-8ea7-92fcc9adf473": {
@@ -44,13 +41,19 @@
     },
     "applications": {
       "preferences": {
+        "paths": [
+          "/home/damian/.local/share/applications",
+          "/var/lib/flatpak/exports/share/applications",
+          "/usr/local/share/applications",
+          "/usr/share/applications"
+        ],
         "defaultAction": "focus"
       }
     },
     "clipboard": {
       "preferences": {
         "encryption": true,
-        "eraseOnStartup": true,
+        "eraseOnStartup": false,
         "monitoring": true
       },
       "entrypoints": {
@@ -80,6 +83,9 @@
         }
       }
     },
+    "power": {
+      "enabled": false
+    },
     "font": {
       "enabled": false
     },
@@ -87,6 +93,9 @@
       "enabled": false
     },
     "theme": {
+      "enabled": false
+    },
+    "wm": {
       "enabled": false
     }
   }
