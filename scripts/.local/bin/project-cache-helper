@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# project-cache-helper - shared project discovery + MRU cache management
+#
+# Usage:
+#   project-cache-helper list              # refresh cache, print full paths (MRU order)
+#   project-cache-helper select <path>     # move <path> to top of MRU cache
+#
+# Cache file stores full absolute paths, one per line, MRU order.
+
+projects_dir="${PROJECTS_DIR:-$HOME/Projects}"
+cache_file="${PROJECT_CACHE_FILE:-$HOME/.cache/project-selector-mru}"
+
+_search_projects_fullpaths() {
+  find -L "$projects_dir" -maxdepth 3 \
+    \( -name node_modules -o -name vendor -o -name '.uv' \) -prune -o \
+    -name ".git" -printf "%h\n" 2>/dev/null |
+    while read -r repo; do
+      if [ "$(git -C "$repo" rev-parse --is-bare-repository 2>/dev/null)" = "true" ]; then
+        continue
+      fi
+      echo "$repo"
+    done
+}
+
+_refresh_cache() {
+  mkdir -p "$(dirname "$cache_file")"
+
+  if [ ! -f "$cache_file" ]; then
+    _search_projects_fullpaths >"$cache_file"
+    return
+  fi
+
+  current_projects=$(_search_projects_fullpaths | sort)
+  cached_projects=$(sort "$cache_file")
+
+  new_projects=$(comm -13 <(echo "$cached_projects") <(echo "$current_projects"))
+  removed_projects=$(comm -23 <(echo "$cached_projects") <(echo "$current_projects"))
+
+  if [ -n "$removed_projects" ]; then
+    temp_file="${cache_file}.tmp.$$"
+    if grep -v -F -x -f <(echo "$removed_projects") "$cache_file" >"$temp_file"; then
+      mv "$temp_file" "$cache_file"
+    else
+      rm -f "$temp_file"
+    fi
+  fi
+
+  if [ -n "$new_projects" ]; then
+    echo "$new_projects" >>"$cache_file"
+  fi
+}
+
+cmd_list() {
+  _refresh_cache
+  cat "$cache_file"
+}
+
+cmd_select() {
+  local selected="$1"
+  [[ -z "$selected" ]] && {
+    echo "Usage: project-cache-helper select <full-path>" >&2
+    exit 1
+  }
+
+  mkdir -p "$(dirname "$cache_file")"
+  [[ ! -f "$cache_file" ]] && touch "$cache_file"
+
+  temp_file="${cache_file}.tmp.$$"
+  if grep -v -F -x "$selected" "$cache_file" >"$temp_file" 2>/dev/null; then
+    {
+      echo "$selected"
+      cat "$temp_file"
+    } >"$cache_file"
+  fi
+  rm -f "$temp_file"
+}
+
+case "${1:-list}" in
+list) cmd_list ;;
+select) cmd_select "$2" ;;
+*)
+  echo "Unknown command: $1" >&2
+  exit 1
+  ;;
+esac

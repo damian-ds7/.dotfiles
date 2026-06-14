@@ -1,72 +1,20 @@
 #!/usr/bin/env bash
+# project-selector - launch a project in nvim via vicinae + tmux/kitty
+# Uses project-cache-helper for discovery and MRU management.
+projects_dir="${PROJECTS_DIR:-$HOME/Projects}"
+helper="${PROJECT_CACHE_HELPER:-$HOME/.local/bin/project-cache-helper}"
 
-projects_dir="$HOME/Projects"
-dotfiles_dir="$HOME/.dotfiles"
-cache_file="$HOME/.cache/project-selector-mru"
+project=$(
+  "$helper" list |
+    sed "s|^$projects_dir/||" |
+    vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick a project...'
+)
+[[ -z "$project" ]] && exit 0
 
-search_projects() {
-  {
-    find -L "$projects_dir" -maxdepth 3 \
-      \( -name node_modules -o -name vendor -o -name '.uv' \) -prune -o \
-      -name ".git" -printf "%h\n" 2>/dev/null |
-      while read -r repo; do
-        if [ "$(git -C "$repo" rev-parse --is-bare-repository 2>/dev/null)" = "true" ]; then
-          continue
-        fi
-        echo "$repo"
-      done
-    if [ -d "$dotfiles_dir/.git" ]; then
-      echo "$dotfiles_dir"
-    fi
-  } |
-    sed -e "s|^$projects_dir/||" -e "s|^$dotfiles_dir$|dotfiles|"
-}
+full_path="$projects_dir/$project"
+"$helper" select "$full_path" &
 
-if [ ! -f "$cache_file" ]; then
-  mkdir -p "$(dirname "$cache_file")"
-  search_projects >"$cache_file"
-else
-  current_projects=$(search_projects | sort)
-  cached_projects=$(sort "$cache_file")
-
-  new_projects=$(comm -13 <(echo "$cached_projects") <(echo "$current_projects"))
-  removed_projects=$(comm -23 <(echo "$cached_projects") <(echo "$current_projects"))
-
-  if [ -n "$removed_projects" ]; then
-    temp_file="${cache_file}.tmp.$$"
-    while IFS= read -r project; do
-      grep -v -F -x "$project" "$cache_file" >"$temp_file" && mv "$temp_file" "$cache_file"
-    done <<<"$removed_projects"
-    rm -f "$temp_file"
-  fi
-
-  if [ -n "$new_projects" ]; then
-    echo "$new_projects" >>"$cache_file"
-  fi
-fi
-
-relative_path=$(cat "$cache_file" | vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick a project...')
-
-[[ -z "$relative_path" ]] && exit 0
-
-{
-  temp_file="${cache_file}.tmp.$$"
-  if grep -v -F -x "$relative_path" "$cache_file" >"$temp_file" 2>/dev/null; then
-    {
-      echo "$relative_path"
-      cat "$temp_file"
-    } >"$cache_file"
-  fi
-  rm -f "$temp_file"
-} &
-
-if [ "$relative_path" = "dotfiles" ]; then
-  full_path="$dotfiles_dir"
-else
-  full_path="$projects_dir/$relative_path"
-fi
-
-session_name="${relative_path//[\/\.]/-}"
+session_name="${project//[\/\.]/-}"
 window_id="project.$session_name"
 window_title="project-$session_name"
 
