@@ -17,12 +17,43 @@ function M.restore_session()
     local cwd = vim.fn.getcwd()
     sessions.read(name)
     vim.cmd.cd(cwd)
+    return true
   end
+  return false
 end
 
 function M.write_session()
   local name = current_session_name()
   sessions.write(name, { verbose = false })
+end
+
+local function register_auto_save()
+  vim.api.nvim_create_autocmd("BufReadPost", {
+    group = vim.api.nvim_create_augroup("session-auto-save", { clear = true }),
+    once = true,
+    callback = function()
+      -- vim.notify(
+      --   string.format(
+      --     "this_session='%s' session_loaded=%s buftype='%s' file='%s'",
+      --     vim.v.this_session,
+      --     tostring(session_loaded),
+      --     vim.bo.buftype,
+      --     vim.fn.expand "%"
+      --   ),
+      --   vim.log.levels.INFO
+      -- )
+      if vim.v.this_session ~= "" then return end
+      if session_loaded then return end
+      if vim.bo.buftype ~= "" or vim.fn.expand "%" == "" then return end
+      sessions.write(current_session_name(), { verbose = false })
+    end,
+  })
+end
+
+function M.reset()
+  session_loaded = false
+  vim.v.this_session = ""
+  register_auto_save()
 end
 
 function M.setup()
@@ -52,16 +83,7 @@ function M.setup()
     { desc = "Restart Neovim" }
   )
 
-  vim.api.nvim_create_autocmd("BufReadPost", {
-    group = vim.api.nvim_create_augroup("session-auto-save", { clear = true }),
-    once = true,
-    callback = function()
-      if vim.v.this_session ~= "" then return end
-      if session_loaded then return end
-      if vim.bo.buftype ~= "" or vim.fn.expand "%" == "" then return end
-      sessions.write(current_session_name(), { verbose = false })
-    end,
-  })
+  register_auto_save()
 end
 
 return M

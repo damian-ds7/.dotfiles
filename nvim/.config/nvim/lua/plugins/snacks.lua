@@ -114,7 +114,15 @@ return plugin {
         load_session = function(picker, item)
           picker:close()
           vim.cmd.cd(item.file)
-          vim.schedule(function() require("utils.session").restore_session() end)
+          vim.schedule(function()
+            local session = require "utils.session"
+            session.reset()
+            local restored = session.restore_session()
+            if not restored then
+              vim.cmd "silent! %bdelete!"
+              session.write_session()
+            end
+          end)
         end,
       },
     },
@@ -314,7 +322,7 @@ return plugin {
     {
       "n",
       "<leader>sp",
-      function() Snacks.picker.projects() end,
+      function() require("utils.project-selector").pick() end,
       desc = "Search Projects",
     },
   },
