@@ -65,30 +65,21 @@ menu:
   - key: "u"
     desc: UI
     submenu:
-      - key: "a"
-        desc: Assistant Panel
-        cmd: qs -c Noctalia ipc call plugin:assistant-panel toggle
       - key: "c"
         desc: Control center
-        cmd: qs -c Noctalia ipc call controlCenter toggle
+        cmd: noctalia msg panel-toggle control-center
       - key: "b"
         desc: Toggle bar
-        cmd: qs -c Noctalia ipc call bar toggle
-      - key: "B"
-        desc: Toggle battery panel
-        cmd: qs -c Noctalia ipc call battery togglePanel
-      - key: "n"
-        desc: Notification center
-        cmd: qs -c Noctalia ipc call notifications toggleHistory
+        cmd: noctalia msg bar-toggle
       - key: "N"
         desc: Clear notifications
-        cmd: qs -c Noctalia ipc call notifications clear
-      - key: "w"
-        desc: Weekly calendar
-        cmd: qs -c Noctalia ipc call plugin:weekly-calendar togglePanel
+        cmd: noctalia msg notification-clear-history
+      # - key: "w"
+      #   desc: Weekly calendar
+      #   cmd: noctalia msg plugin:weekly-calendar togglePanel
       - key: ","
         desc: Settings
-        cmd: qs -c Noctalia ipc call settings toggle
+        cmd: noctalia msg settings-toggle
 
   - key: "v"
     desc: Vicinae
@@ -112,22 +103,19 @@ menu:
       - key: "a"
         desc: Audio
         submenu:
-          - key: "p"
-            desc: Audio panel
-            cmd: qs -c Noctalia ipc call volume togglePanel
           - key: "m"
             desc: Mute output
-            cmd: qs -c Noctalia ipc call volume muteOutput
+            cmd: wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
           - key: "M"
             desc: Mute input
-            cmd: qs -c Noctalia ipc call volume muteInput
+            cmd: wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
       - key: "c"
         desc: Capture
         submenu:
           - key: "r"
             desc: Toggle screen recorder
-            cmd: qs -c Noctalia ipc call plugin:screen-recorder toggle
+            cmd: noctalia msg plugin noctalia/screen_recorder:service all start
           - key: "f"
             desc: Screenshot (full screen)
             cmd: niri msg action screenshot-screen
@@ -144,28 +132,22 @@ menu:
       - key: "n"
         desc: Network
         submenu:
-          - key: "n"
-            desc: Network panel
-            cmd: qs -c Noctalia ipc call network togglePanel
           - key: "w"
             desc: Wi-Fi toggle
-            cmd: qs -c Noctalia ipc call wifi toggle
+            cmd: noctalia msg wifi-toggle
           - key: "b"
             desc: Bluetooth toggle
-            cmd: qs -c Noctalia ipc call bluetooth toggle
-          - key: "B"
-            desc: Bluetooth panel
-            cmd: qs -c Noctalia ipc call bluetooth togglePanel
+            cmd: noctalia msg bluetooth-toggle
 
       - key: "d"
         desc: Toggle DND
-        cmd: qs -c Noctalia ipc call notifications toggleDND
+        cmd: noctalia msg notification-dnd-toggle
       - key: "f"
         desc: Freeze window
         cmd: ~/.local/opt/wl-freeze/wl-freeze -a
       - key: "i"
         desc: Toggle auto suspend (idle inhibitor)
-        cmd: qs -c Noctalia ipc call idleInhibitor toggle
+        cmd: noctalia msg caffeine-toggle
       - key: "l"
         desc: Lock screen
         cmd: hyprlock
