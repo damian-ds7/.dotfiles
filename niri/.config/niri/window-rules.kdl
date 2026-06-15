@@ -126,11 +126,9 @@ window-rule {
 }
 
 window-rule {
-    match app-id="org.quickshell"
     match title="Noctalia"
-    open-floating true
-    default-column-width { fixed 900; }
-    default-window-height { fixed 400; }
+    open-floating false
+    default-column-width { proportion 0.6666; }
 }
 
 // -----------------------------
