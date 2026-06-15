@@ -6,11 +6,6 @@ corner_r: 12
 padding: 15 # Defaults to corner_r
 column_padding: 25 # Defaults to padding
 
-# Colors
-background: "#191724e6"
-color: "#e0def4"
-border: "#ebbcba"
-
 # Anchor and margin
 anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
 # Only relevant when anchor is not center
@@ -30,12 +25,6 @@ menu:
   - key: "a"
     desc: Apps
     submenu:
-      - key: "t"
-        desc: Terminal (Ghostty + tmux)
-        cmd: ghostty -e ~/.local/bin/ghostty-default-tmux +new-window
-      - key: "T"
-        desc: Terminal (Ghostty)
-        cmd: ghostty +new-window
       - key: "k"
         desc: Terminal (Kitty + tmux)
         cmd: kitty -e tmux new-session -A -s "kitty"
