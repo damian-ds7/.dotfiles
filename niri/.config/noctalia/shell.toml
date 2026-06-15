@@ -31,3 +31,20 @@ open_near_click_session = true
 
 [shell.mpris]
 blacklist = ["zen", "zen-twilight"]
+
+[[shell.session.actions]]
+action = "logout"
+shortcut = "1"
+
+[[shell.session.actions]]
+action = "suspend"
+shortcut = "2"
+
+[[shell.session.actions]]
+action = "reboot"
+shortcut = "3"
+
+[[shell.session.actions]]
+action = "shutdown"
+shortcut = "4"
+destructive = true
