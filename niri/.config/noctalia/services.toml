@@ -1,0 +1,8 @@
+[calendar]
+enabled = true
+refresh_minutes = 15
+
+# Google Calendar (authorized via Settings → Services → Calendar → Connect)
+[calendar.account.work_google]
+type = "google"
+name = "Work"
