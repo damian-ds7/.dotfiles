@@ -1,0 +1,8 @@
+[[plugins.source]]
+name = "official"
+kind = "git"
+location = "https://github.com/noctalia-dev/official-plugins"
+auto_update = false   # opt-in background pull on startup (off by default)
+
+[plugins]
+enabled = ["noctalia/screen_recorder"]
