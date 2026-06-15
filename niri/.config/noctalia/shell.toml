@@ -1,0 +1,33 @@
+[shell]
+clipboard_auto_paste = "off"
+font_family = "JetBrains Mono Nerd Font"
+lang = "en"
+offline_mode = false
+password_style = "random"
+polkit_agent = true
+settings_show_advanced = false
+show_location = true
+telemetry_enabled = false
+ui_scale = 1.1
+avatar_path = "~/.face"
+
+[shell.animation]
+enabled = true
+speed = 1.5
+
+[shell.shadow]
+alpha = 0.55000000000000004
+blur = 12
+offset_x = 2
+offset_y = 2
+
+[shell.panel]
+transparency_mode = "glass"
+borders = true
+shadow = true
+session_placement = "centered"
+open_near_click_control_center = true
+open_near_click_session = true
+
+[shell.mpris]
+blacklist = ["zen", "zen-twilight"]

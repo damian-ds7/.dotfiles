@@ -1,0 +1,57 @@
+[bar]
+order = ["main"]
+
+[bar.main]
+position = "top"
+enabled = true
+auto_hide = true
+reserve_space = false
+layer = "top"
+
+thickness = 44
+background_opacity = 0.7
+shadow = true
+contact_shadow = false
+panel_overlap = 1
+radius = 12
+radius_top_left = 12
+radius_top_right = 12
+radius_bottom_left = 12
+radius_bottom_right = 12
+margin_ends = 180
+margin_edge = 10
+padding = 14
+widget_spacing = 13
+scale = 1.1
+font_weight = "regular"
+font_family = ""
+
+capsule = false
+capsule_fill = "surface_variant"
+capsule_thickness = 0.76
+capsule_radius = 8.0
+capsule_opacity = 1.0
+
+start = ["workspaces", "media"]
+center = ["clock", "notifications"]
+end = ["tray", "network", "bluetooth", "volume", "battery"]
+
+[widget.clock]
+format = "{:%e %h %H:%M}"
+
+[widget.network]
+show_label = false
+
+[widget.volume]
+show_label = false
+
+[widget.workspaces]
+display = "none"
+pill_scale = 0.9
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.battery]
+display_mode = "glyph"
+warning_threshold = 20
