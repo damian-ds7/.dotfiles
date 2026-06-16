@@ -26,7 +26,6 @@ return {
   plugin {
     src = "nvim-neotest/neotest-python",
     filetype = "python",
-    config = function() require "neotest-python" end,
   },
   plugin {
     src = "mfussenegger/nvim-dap-python",
