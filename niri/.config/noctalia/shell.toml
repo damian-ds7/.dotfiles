@@ -1,5 +1,6 @@
 [shell]
 clipboard_auto_paste = "off"
+clipboard_enabled = false
 font_family = "JetBrains Mono Nerd Font"
 lang = "en"
 offline_mode = false
@@ -47,4 +48,4 @@ shortcut = "3"
 [[shell.session.actions]]
 action = "shutdown"
 shortcut = "4"
-destructive = true
+variant = "destructive"

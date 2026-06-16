@@ -24,7 +24,7 @@ enabled = false
 [dock]
 enabled = false
 
-[idle.behavior.lock]
+[lockscreen]
 enabled = false
 
 [keybinds]
@@ -50,6 +50,7 @@ position = "top_center"
 
 [osd]
 position = "bottom_center"
+background_opacity = 0.7
 
 [system.monitor]
 enabled = true
