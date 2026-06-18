@@ -126,9 +126,10 @@ window-rule {
 }
 
 window-rule {
-    match title="Noctalia"
-    open-floating false
-    default-column-width { proportion 0.6666; }
+  match app-id="dev.noctalia.Noctalia.Settings"
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 920; }
 }
 
 // -----------------------------
@@ -165,7 +166,7 @@ window-rule {
 window-rule {
     match app-id="^Code$"
     match app-id="^code$"
-    match app-id="project."
+    match app-id="Neovim" title="project"
     match app-id="jetbrains-idea"
     exclude app-id="jetbrains-idea" title="Welcome to IntelliJ IDEA"
     exclude app-id="page.codeberg.libre_menu_editor.LibreMenuEditor"
