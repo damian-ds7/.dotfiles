@@ -19,9 +19,6 @@ enable_ddcutil = false
 [desktop_widgets]
 enabled = false
 
-[dock]
-enabled = false
-
 [lockscreen]
 enabled = false
 
