@@ -1,9 +1,0 @@
-[Unit]
-PartOf=graphical-session.target
-After=graphical-session.target
-Requisite=graphical-session.target
-
-[Service]
-ExecStart=%h/.cargo/bin/awww-daemon
-ExecStartPost=%h/.cargo/bin/awww img %h/Pictures/Wallpapers/blur/Rainnight.png
-Restart=on-failure

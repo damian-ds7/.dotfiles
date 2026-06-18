@@ -10,9 +10,10 @@ include "niri-binds.kdl"
 include optional=true "themes/current-theme.kdl"
 include "layout.kdl"
 
-// spawn-at-startup "/usr/libexec/xfce-polkit"
 spawn-at-startup "~/.local/bin/awww-initialize"
 spawn-at-startup "~/.cargo/bin/niri-sidebar" "listen"
+spawn-sh-at-startup "noctalia"
+spawn-sh-at-startup "vicinae server --replace"
 
 environment {
     XCURSOR_SIZE "24"
