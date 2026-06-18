@@ -15,7 +15,7 @@ full_path="$projects_dir/$project"
 "$helper" select "$full_path" &
 
 session_name="${project//[\/\.]/-}"
-window_id="project.$session_name"
+window_id="Neovim"
 window_title="project-$session_name"
 
 if [[ -f "$full_path/project-launch.sh" ]]; then
@@ -27,7 +27,7 @@ else
 fi
 
 if [ -x "$HOME/.local/bin/focus-or-spawn" ]; then
-  exec "$HOME/.local/bin/focus-or-spawn" "$window_id" "kitty --title=$window_title --app-id=$window_id -e bash -l -c '$launch_cmd'"
+  exec "$HOME/.local/bin/focus-or-spawn" "-t" "$window_title" "$window_id" "kitty --title=$window_title --app-id=$window_id -e bash -l -c '$launch_cmd'"
 else
   exec kitty --title="$window_title" --app-id="$window_id" -e bash -l -c "$launch_cmd"
 fi
