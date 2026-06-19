@@ -150,7 +150,7 @@ menu:
         cmd: noctalia msg caffeine-toggle
       - key: "l"
         desc: Lock screen
-        cmd: hyprlock
+        cmd: noctalia msg session lock
       - key: "m"
         desc: Toggle Dark/Light mode
         cmd: niri msg action do-screen-transition --delay-ms=500; ~/.local/bin/toggle-dark-mode

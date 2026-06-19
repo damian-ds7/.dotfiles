@@ -32,7 +32,7 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 switch-events {
-    lid-close {spawn "hyprlock";}
+    lid-close { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
 }
 
 recent-windows {

@@ -38,7 +38,8 @@ action = "logout"
 shortcut = "1"
 
 [[shell.session.actions]]
-action = "suspend"
+action = "lock_and_suspend"
+label = "Suspend"
 shortcut = "2"
 
 [[shell.session.actions]]
