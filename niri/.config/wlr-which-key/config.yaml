@@ -45,7 +45,7 @@ menu:
         cmd: ~/.local/bin/yazi-window
       - key: "n"
         desc: Neovim
-        cmd: kitty --title=Neovim -e nvim
+        cmd: gtk-launch neovim
       - key: "i"
         desc: IntelliJ IDEA
         cmd: ~/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea -Dawt.toolkit.name=WLToolkit
