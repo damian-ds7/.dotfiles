@@ -42,7 +42,6 @@ setopt inc_append_history
 setopt interactivecomments
 
 WORDCHARS=${WORDCHARS//\//}
-WORDCHARS=${WORDCHARS//-/}
 WORDCHARS=${WORDCHARS//./}
 
 # Binds
