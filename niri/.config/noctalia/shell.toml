@@ -14,7 +14,7 @@ avatar_path = "~/.face"
 
 [shell.animation]
 enabled = true
-speed = 1.5
+speed = 2
 
 [shell.shadow]
 alpha = 0.55000000000000004
