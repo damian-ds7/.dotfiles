@@ -1,7 +1,7 @@
 [bar]
-order = ["main"]
+order = ["top"]
 
-[bar.main]
+[bar.top]
 position = "top"
 enabled = true
 auto_hide = true
