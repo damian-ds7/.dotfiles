@@ -26,9 +26,9 @@ offset_y = 2
 transparency_mode = "glass"
 borders = true
 shadow = true
-session_placement = "centered"
+session_placement = "floating"
+session_position = "center"
 open_near_click_control_center = true
-open_near_click_session = true
 
 [shell.mpris]
 blacklist = ["zen", "zen-twilight"]
