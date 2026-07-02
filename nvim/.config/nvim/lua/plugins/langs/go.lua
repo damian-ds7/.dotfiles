@@ -46,6 +46,7 @@ return {
           -- Workaround for semantic tokens if the server doesn't report them correctly
           if not client.server_capabilities.semanticTokensProvider then
             local semantic = client.config.capabilities.textDocument.semanticTokens
+            if not semantic then return end
             client.server_capabilities.semanticTokensProvider = {
               full = true,
               range = true,
