@@ -5,3 +5,4 @@ _git-*
 hypridle.conf
 hyprlock.conf
 **/themes/current-theme*
+tmux/.config/tmux/plugins/
