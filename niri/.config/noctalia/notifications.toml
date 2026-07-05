@@ -1,7 +1,7 @@
 [notification]
 background_opacity = 0.7
 enable_daemon = true
-layer = "top"
+layer = "layer"
 position = "top_center"
 offset_y = 25
 
