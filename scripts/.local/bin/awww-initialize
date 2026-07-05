@@ -1,5 +1,36 @@
 #!/usr/bin/env bash
 
-"$HOME/.cargo/bin/awww-daemon" --namespace "wallpaper" &
-# "$HOME/.cargo/bin/awww-daemon" --namespace "overview" &
+"$HOME/.cargo/bin/awww-daemon" --namespace wallpaper &
+
 "$HOME/.local/bin/awww-random-wallpaper" simple &
+wallpaper_pid=$!
+
+wait "$wallpaper_pid"
+
+get_outputs() {
+  niri msg --json outputs | jq -r '.[].name'
+}
+
+previous_outputs=$(get_outputs)
+
+niri msg --json event-stream | while IFS= read -r event; do
+  if jq -e '.WorkspacesChanged' >/dev/null <<<"$event"; then
+    current_outputs=$(get_outputs)
+
+    while IFS= read -r new_output; do
+      [[ -z $new_output ]] && continue
+
+      awww img \
+        -o "$new_output" \
+        -t none \
+        --namespace wallpaper \
+        ~/Pictures/Wallpapers/current/normal.png
+    done < <(
+      comm -13 \
+        <(printf '%s\n' "$previous_outputs" | sort) \
+        <(printf '%s\n' "$current_outputs" | sort)
+    )
+
+    previous_outputs=$current_outputs
+  fi
+done
