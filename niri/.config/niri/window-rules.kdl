@@ -16,7 +16,7 @@ window-rule {
 }
 
 window-rule {
-    match is-floating=true app-id="zen"
+    match is-floating=true app-id="^(zen|zen-twilight)$"
     geometry-corner-radius 18
     clip-to-geometry true
     draw-border-with-background false
@@ -51,14 +51,14 @@ window-rule {
 }
 
 window-rule {
-    exclude app-id="zen"
+    exclude app-id="^(zen|zen-twilight)$"
 
     opacity 0.90
 }
 
 window-rule {
     match is-active=false
-    exclude app-id="zen"
+    exclude app-id="^(zen|zen-twilight)$"
 
     opacity 0.85
 }
@@ -86,21 +86,21 @@ window-rule {
 // -----------------------------
 
 window-rule {
-    match app-id="zen" title="^Picture-in-Picture$"
+    match app-id="^(zen|zen-twilight)$" title="^Picture-in-Picture$"
     match app-id="org.gnome.Calculator"
     match app-id="xfce-polkit"
     match app-id="io.github.nozwock.Packet"
     match title="impala"
     match title="Discord Updater"
-    match app-id="steam" title="Friends List"
-    match app-id="steam" title="Steam Settings"
+    match app-id="^steam$" title="Friends List"
+    match app-id="^steam$" title="Steam Settings"
     match app-id="jetbrains-idea" title="Welcome to IntelliJ IDEA"
 
     open-floating true
 }
 
 window-rule {
-    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    match app-id="^steam$" title=r#"^notificationtoasts_\d+_desktop$"#
 
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
@@ -147,6 +147,7 @@ window-rule {
 window-rule {
     match app-id="mpv"
     match app-id="vlc"
+    match app-id="steam_app"
     open-maximized true
 }
 
@@ -155,7 +156,7 @@ window-rule {
 // -----------------------------
 
 window-rule {
-    match app-id="zen"
+    match app-id="^(zen|zen-twilight)$"
     exclude app-id="zen" title="^Picture-in-Picture$"
 
     open-on-workspace "browser"
@@ -189,7 +190,7 @@ window-rule {
     match app-id="Deezer"
     match app-id="dev.aunetx.deezer"
     match app-id="discord"
-    match app-id="steam"
+    match app-id="^steam$"
     match app-id="heroic"
 
     open-on-workspace "other"
