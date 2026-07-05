@@ -1,11 +1,6 @@
-#!/usr/bin/env bash
-
 "$HOME/.cargo/bin/awww-daemon" --namespace wallpaper &
 
-"$HOME/.local/bin/awww-random-wallpaper" simple &
-wallpaper_pid=$!
-
-wait "$wallpaper_pid"
+"$HOME/.local/bin/awww-random-wallpaper" simple
 
 get_outputs() {
   niri msg --json outputs | jq -r '.[].name'
@@ -19,12 +14,13 @@ niri msg --json event-stream | while IFS= read -r event; do
 
     while IFS= read -r new_output; do
       [[ -z $new_output ]] && continue
+      echo "$new_output"
 
-      awww img \
+      "$HOME/.cargo/bin/awww" img \
         -o "$new_output" \
         -t none \
         --namespace wallpaper \
-        ~/Pictures/Wallpapers/current/normal.png
+        "$HOME/Pictures/Wallpapers/current/normal.png"
     done < <(
       comm -13 \
         <(printf '%s\n' "$previous_outputs" | sort) \
