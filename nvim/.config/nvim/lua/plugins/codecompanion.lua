@@ -86,12 +86,12 @@ return plugin {
         adapter = "gemini_cli",
       },
       cli = {
-        agent = "gemini_cli",
+        agent = "antigravity_cli",
         agents = {
-          gemini_cli = {
-            cmd = "gemini",
+          antigravity_cli = {
+            cmd = "agy",
             args = {},
-            description = "Gemini CLI",
+            description = "Antigravity CLI",
             provider = "terminal",
           },
         },
