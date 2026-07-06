@@ -40,6 +40,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
+autocmd({ "BufWinEnter", "WinEnter" }, {
+  group = augroup("term-insert", { clear = true }),
+  pattern = "term://*",
+  command = "startinsert",
+})
+
 local cursorline_augroup = augroup("cursorline-active-window", { clear = true })
 
 local function is_regular_win(win)
