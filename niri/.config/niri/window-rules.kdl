@@ -183,8 +183,6 @@ window-rule {
     match app-id="Deezer"
     match app-id="dev.aunetx.deezer"
     match app-id="discord"
-    match app-id="^steam$"
-    match app-id="heroic"
 
     open-on-workspace "other"
     open-maximized true
