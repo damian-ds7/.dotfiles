@@ -141,7 +141,13 @@ window-rule {
     match app-id="mpv"
     match app-id="vlc"
     match app-id="steam_app"
-    open-maximized true
+    open-fullscreen true
+}
+
+window-rule {
+    match title="Switchfin"
+    open-fullscreen true
+    open-focused true
 }
 
 // -----------------------------
