@@ -283,6 +283,12 @@ return plugin {
     },
     {
       "n",
+      "<leader>sm",
+      function() Snacks.picker.marks() end,
+      desc = "Search Marks",
+    },
+    {
+      "n",
       "<leader>sc",
       function() Snacks.picker.commands() end,
       desc = "Search Commands",
