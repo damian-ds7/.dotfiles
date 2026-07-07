@@ -5,7 +5,7 @@
 ---@field tools?             string[]
 ---@field treesitter?        string[]
 ---@field formatters_by_ft?  table<string, string[]>
----@field formatters?        table<string, table<string, string[]>>
+---@field formatters?        table<string, table<string, any>>
 ---@field dap?               { adapters?: table<string, any>, configurations?: table<string, any> }
 ---@field neotest_adapters?  table<string, any>
 
