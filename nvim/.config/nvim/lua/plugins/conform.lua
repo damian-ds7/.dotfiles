@@ -13,10 +13,6 @@ return plugin {
   end,
   opts = {
     formatters_by_ft = {
-      lua = { "stylua" },
-      sh = { "shfmt" },
-      zsh = { "shfmt" },
-      bash = { "shfmt" },
       markdown = { "mdformat" },
     },
     formatters = {
@@ -24,7 +20,7 @@ return plugin {
         append_args = { "--wrap", "80" },
       },
     },
-    format_on_save = function(bufnr)
+    format_on_save = function(_)
       if vim.g.autoformat == false then return end
       return { timeout_ms = 500, lsp_format = "fallback" }
     end,

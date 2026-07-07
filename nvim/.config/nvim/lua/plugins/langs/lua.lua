@@ -31,6 +31,10 @@ return lang {
     },
   },
 
+  formatters_by_ft = {
+    lua = { "stylua" },
+  },
+
   tools = { "stylua" },
 
   treesitter = { "lua", "luadoc", "luap" },

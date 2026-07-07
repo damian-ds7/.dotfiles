@@ -13,6 +13,12 @@ return lang {
     },
   },
 
+  formatters_by_ft = {
+    sh = { "shfmt" },
+    zsh = { "shfmt" },
+    bash = { "shfmt" },
+  },
+
   tools = { "shfmt", "shellcheck" },
 
   treesitter = { "bash", "zsh" },
