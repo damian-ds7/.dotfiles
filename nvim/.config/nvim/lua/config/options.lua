@@ -87,3 +87,5 @@ opt.virtualedit = "block"
 opt.grepprg = "rg --vimgrep"
 opt.grepformat = "%f:%l:%c:%m"
 opt.sessionoptions = "buffers,curdir,tabpages,winsize,help,folds,skiprtp"
+opt.exrc = true
+
