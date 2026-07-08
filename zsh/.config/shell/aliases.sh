@@ -39,12 +39,18 @@ alias tree='tree -I .git --gitignore --dirsfirst '
 #  Package Management
 # -------------------------
 
-alias update-poweroff='sudo dnf upgrade -y --offline && flatpak update -y && sudo dnf offline reboot -y --poweroff '
-
-alias refresh='sudo dnf upgrade --refresh '
-alias upgrade='sudo dnf upgrade '
-alias inst='sudo dnf install '
-alias remove='sudo dnf remove '
+if is_installed dnf; then
+  alias update-poweroff='sudo dnf upgrade -y --offline && flatpak update -y && sudo dnf offline reboot -y --poweroff '
+  alias refresh='sudo dnf upgrade --refresh '
+  alias upgrade='sudo dnf upgrade '
+  alias inst='sudo dnf install '
+  alias remove='sudo dnf remove '
+elif is_installed apt; then
+  alias refresh='sudo apt update '
+  alias upgrade='sudo apt upgrade '
+  alias inst='sudo apt install '
+  alias remove='sudo apt remove '
+fi
 
 alias chme='sudo chown -R damian:damian '
 
