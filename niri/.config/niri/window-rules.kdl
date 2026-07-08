@@ -10,14 +10,7 @@ workspace "other"
 // Global Window Behavior
 // -----------------------------
 window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
-    draw-border-with-background false
-}
-
-window-rule {
-    match is-floating=true app-id="^(zen|zen-twilight)$"
-    geometry-corner-radius 18
+    geometry-corner-radius 20
     clip-to-geometry true
     draw-border-with-background false
 }

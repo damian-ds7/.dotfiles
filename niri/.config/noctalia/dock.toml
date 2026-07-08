@@ -9,7 +9,7 @@ cross_axis_padding = 8
 item_spacing = 6
 background_opacity = 0.7
 shadow = true
-radius = 16
+radius = 20
 margin_ends = 0
 margin_edge = 8
 

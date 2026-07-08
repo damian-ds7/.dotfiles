@@ -11,6 +11,7 @@ show_location = true
 telemetry_enabled = false
 ui_scale = 1.1
 avatar_path = "~/.face"
+corner_radius_scale = 1.8
 
 [shell.animation]
 enabled = true

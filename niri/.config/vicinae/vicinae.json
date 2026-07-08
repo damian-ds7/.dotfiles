@@ -25,6 +25,11 @@
     },
     "compact_mode": {
       "enabled": true
+    },
+    "client_side_decorations": {
+      "enabled": true,
+      "rounding": 20,
+      "shadow_size": 12
     }
   },
   "fallbacks": [
