@@ -207,7 +207,7 @@ return plugin {
     {
       "n",
       "<leader>>",
-      function() Snacks.scratch() end,
+      function() Snacks.scratch { ft = "md" } end,
       desc = "Toggle Scratch Buffer",
     },
     {
