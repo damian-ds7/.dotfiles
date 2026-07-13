@@ -78,6 +78,7 @@ return {
     },
     neotest_adapters = {
       ["neotest-golang"] = {
+        runner = "gotestsum",
         dap_go_enabled = true,
       },
     },
@@ -89,5 +90,16 @@ return {
       pcall(vim.cmd.packadd, "nvim-dap")
       require("dap-go").setup()
     end,
+  },
+  plugin {
+    src = "fredrikaverpil/neotest-golang",
+    filetype = "go",
+    version = vim.version.range "2.*",
+    pack_changed = {
+      kind = "install",
+      action = function()
+        vim.system({ "go", "install", "gotest.tools/gotestsum@latest" }):wait()
+      end,
+    },
   },
 }
