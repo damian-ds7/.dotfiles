@@ -9,9 +9,11 @@ polkit_agent = true
 settings_show_advanced = false
 show_location = true
 telemetry_enabled = false
-ui_scale = 1.1
 avatar_path = "~/.face"
 corner_radius_scale = 1.8
+
+[accessibility]
+ui_scale = 1.1
 
 [shell.animation]
 enabled = true
@@ -19,9 +21,7 @@ speed = 2
 
 [shell.shadow]
 alpha = 0.55000000000000004
-blur = 12
-offset_x = 2
-offset_y = 2
+direction = "down"
 
 [shell.panel]
 transparency_mode = "glass"

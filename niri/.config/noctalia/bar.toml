@@ -45,8 +45,9 @@ shadow = true
 contact_shadow = false
 panel_overlap = 1
 radius = 0
-radius_top_right = -12
-radius_bottom_right = -12
+concave_edge_corners = true
+radius_top_right = 12
+radius_bottom_right = 12
 margin_ends = 0
 margin_edge = 0
 padding = 14
@@ -91,4 +92,3 @@ hide_when_no_media = true
 
 [widget.battery]
 display_mode = "glyph"
-warning_threshold = 20
