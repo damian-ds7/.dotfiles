@@ -1,3 +1,12 @@
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function()
+    local listchars = vim.opt.listchars:get()
+    listchars.tab = "  "
+    vim.opt_local.listchars = listchars
+  end,
+})
+
 return {
   lang {
     servers = {
