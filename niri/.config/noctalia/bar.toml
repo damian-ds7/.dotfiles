@@ -4,7 +4,7 @@ order = ["top"]
 [bar.top]
 position = "top"
 enabled = true
-auto_hide = true
+smart_auto_hide = true
 reserve_space = false
 layer = "top"
 
