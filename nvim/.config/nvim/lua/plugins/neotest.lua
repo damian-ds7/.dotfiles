@@ -31,7 +31,9 @@ return plugin {
 
         local ok, adapter = pcall(require, module_name)
         if ok then
-          if type(adapter) == "function" then
+          local is_callable = type(adapter) == "function"
+            or (type(adapter) == "table" and getmetatable(adapter) and type(getmetatable(adapter).__call) == "function")
+          if is_callable then
             adapter = adapter(opts)
           elseif type(adapter) == "table" and adapter.setup then
             adapter.setup(opts)
