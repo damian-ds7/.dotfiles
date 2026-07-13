@@ -141,7 +141,7 @@ return plugin {
         show = { statusline = true, tabline = true },
         win = {
           backdrop = { transparent = true, blend = 40 },
-          width = 120,
+          width = 150,
         },
       },
     },
