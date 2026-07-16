@@ -38,3 +38,7 @@
 	path = niri/.local/opt/wl-freeze
 	url = https://github.com/Zerodya/wl-freeze
 	branch = main
+[submodule "zsh/.config/zsh/plugins/zsh-system-clipboard"]
+	path = zsh/.config/zsh/plugins/zsh-system-clipboard
+	url = https://github.com/kutsan/zsh-system-clipboard
+	branch = master
