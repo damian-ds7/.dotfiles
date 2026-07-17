@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Parse a remote URL into "host" and "path" (without .git suffix).
+# Supports SSH (git@host:path.git) and HTTPS (https://host/path[.git]).
+parse_remote() {
+  local remote_url="$1"
+
+  if [[ "$remote_url" =~ ^git@([^:]+):(.+)\.git$ ]]; then
+    echo "${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}"
+  elif [[ "$remote_url" =~ ^https?://([^/]+)/(.+)\.git$ ]]; then
+    echo "${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}"
+  elif [[ "$remote_url" =~ ^https?://([^/]+)/(.+)$ ]]; then
+    echo "${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}"
+  else
+    echo "git-browse: unrecognized remote URL: $remote_url" >&2
+    exit 1
+  fi
+}
+
+# Build a branch/tree URL for a given host + path + branch.
+build_url() {
+  local host="$1" path="$2" branch="$3"
+
+  case "$host" in
+  gitlab*)
+    echo "https://${host}/${path}/-/tree/${branch}"
+    ;;
+  *)
+    echo "https://${host}/${path}/tree/${branch}"
+    ;;
+  esac
+}
+
+open_url() {
+  local url="$1"
+
+  if command -v xdg-open &>/dev/null; then
+    xdg-open "$url" &>/dev/null &
+  else
+    echo "git-browse: no way to open a browser found; URL is:" >&2
+    echo "$url"
+    exit 1
+  fi
+}
+
+main() {
+  local remote_url branch host path
+
+  remote_url=$(git remote get-url origin)
+  branch=$(git rev-parse --abbrev-ref HEAD)
+
+  # Prefer gh for GitHub remotes, if available.
+  if [[ "$remote_url" == *github.com* ]] && command -v gh &>/dev/null; then
+    gh browse --branch "$branch"
+    return
+  fi
+
+  read -r host path < <(parse_remote "$remote_url")
+  open_url "$(build_url "$host" "$path" "$branch")"
+}
+
+main "$@"
