@@ -10,7 +10,7 @@ if [[ ! -d "$themes_dir" ]]; then
 fi
 
 selected=$(printf "%s\n" "${THEMES[@]}" | sort |
-  vicinae dmenu --width 800 --no-quick-look -p 'Select colorscheme...')
+  dmenu-picker --no-quick-look -p 'Select colorscheme...')
 
 if [ -n "$selected" ]; then
   if command -v niri >/dev/null 2>&1; then

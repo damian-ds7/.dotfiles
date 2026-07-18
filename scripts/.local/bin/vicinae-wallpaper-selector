@@ -3,10 +3,10 @@
 wallpapers_dir="$HOME/Pictures/Wallpapers/wallpapers"
 
 selected=$(find -L "$wallpapers_dir" -name "*-normal.png" -type f |
-    vicinae dmenu --width 800 --no-metadata -p 'Pick a wallpaper...')
+  dmenu-picker -p 'Pick a wallpaper...')
 
 if [ -n "$selected" ]; then
-    wallpaper_name=$(basename "$selected" | sed 's/-normal\.png$//')
+  wallpaper_name=$(basename "$selected" | sed 's/-normal\.png$//')
 
-    "$HOME/.local/bin/awww-set-wallpaper" "$wallpaper_name"
+  "$HOME/.local/bin/awww-set-wallpaper" "$wallpaper_name"
 fi

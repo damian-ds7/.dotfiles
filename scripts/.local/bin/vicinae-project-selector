@@ -7,7 +7,7 @@ helper="${PROJECT_CACHE_HELPER:-$HOME/.local/bin/project-cache-helper}"
 project=$(
   "$helper" list |
     sed "s|^$projects_dir/||" |
-    vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick a project...'
+    dmenu-picker --no-quick-look -p 'Pick a project...'
 )
 [[ -z "$project" ]] && exit 0
 

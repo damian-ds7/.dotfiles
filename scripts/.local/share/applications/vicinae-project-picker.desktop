@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=Project selector
+Name=Project Picker
 StartupNotify=true
 Icon=/home/damian/.local/share/applications/icons/projects.png
 Terminal=false
-Keywords=Project;Select;Selection;Selector
+Keywords=Project;Picker;Pick
 Exec=sh -c "$HOME/.local/bin/vicinae-project-selector"

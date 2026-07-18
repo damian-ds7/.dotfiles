@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null |
-    vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Attach to session...')
+  dmenu-picker --no-quick-look -p 'Attach to session...')
 
 if [ -n "$session" ]; then
-    exec kitty --title="Tmux - $session" -e bash -l -c "tmux attach-session -d -t '$session'"
+  exec kitty --title="Tmux - $session" -e bash -l -c "tmux attach-session -d -t '$session'"
 fi

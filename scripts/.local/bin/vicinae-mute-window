@@ -21,8 +21,8 @@ pairs=$(
   ' | sort -u
 )
 
-selection=$(printf "%s\n" "$pairs" | cut -d'|' -f1 | \
-  vicinae dmenu --width 800 --no-metadata --no-quick-look -p 'Pick audio app...')
+selection=$(printf "%s\n" "$pairs" | cut -d'|' -f1 |
+  dmenu-picker --no-quick-look -p 'Pick audio app...')
 
 [ -z "$selection" ] && exit 0
 

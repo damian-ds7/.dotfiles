@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=Tmux session selector
+Name=Tmux Session Picker
 StartupNotify=true
 Icon=/home/damian/.local/share/applications/icons/tmux.png
 Terminal=false
-Keywords=Wallpaper;Select;Selection;Selector
+Keywords=Tmux;Sessoin;Picker;Pick
 Exec=sh -c "$HOME/.local/bin/vicinae-tmux-attach"
