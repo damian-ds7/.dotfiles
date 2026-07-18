@@ -5,4 +5,4 @@ StartupNotify=true
 Icon=/home/damian/.local/share/applications/icons/projects.png
 Terminal=false
 Keywords=Project;Picker;Pick
-Exec=sh -c "$HOME/.local/bin/vicinae-project-selector"
+Exec=sh -c "$HOME/.local/bin/project-picker"

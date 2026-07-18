@@ -36,6 +36,9 @@
     "shortcuts:4881d8a4-6def-44d6-8080-0e5266d60ee5",
     "files:search"
   ],
+   "keybinds": {
+      "toggle-action-panel": "control+B"
+   },
   "providers": {
     "@ajaypremshankar/bd66a1ad-75d7-4b26-8ea7-92fcc9adf473": {
       "entrypoints": {

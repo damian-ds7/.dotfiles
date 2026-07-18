@@ -5,4 +5,4 @@ StartupNotify=true
 Icon=/home/damian/.local/share/applications/icons/wallpaper.png
 Terminal=false
 Keywords=Wallpaper;Picker;Pick
-Exec=sh -c "$HOME/.local/bin/vicinae-wallpaper-selector"
+Exec=sh -c "$HOME/.local/bin/wallpaper-picker"

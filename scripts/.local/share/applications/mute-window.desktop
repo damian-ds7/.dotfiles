@@ -5,4 +5,4 @@ StartupNotify=true
 Icon=/home/damian/.local/share/applications/icons/audio.png
 Terminal=false
 Keywords=Mute;Audio
-Exec=sh -c "$HOME/.local/bin/vicinae-mute-window"
+Exec=sh -c "$HOME/.local/bin/mute-window-picker"
