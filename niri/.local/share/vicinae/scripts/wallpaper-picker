@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title Wallpaper Picker
+# @vicinae.mode silent
+# @vicinae.icon icons/wallpaper.png
 
 wallpapers_dir="$HOME/Pictures/Wallpapers/wallpapers"
 
 selected=$(find -L "$wallpapers_dir" -name "*-normal.png" -type f |
-  dmenu-picker -p 'Pick a wallpaper...')
+  "$HOME"/.local/bin/dmenu-picker -p 'Pick a wallpaper...')
 
 if [ -n "$selected" ]; then
   wallpaper_name=$(basename "$selected" | sed 's/-normal\.png$//')

@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title Sink Picker
+# @vicinae.mode silent
+# @vicinae.icon icons/sink.png
 
 set -euo pipefail
 
@@ -10,7 +14,7 @@ selection=$(
             print
         }
     ' |
-    dmenu-picker --no-quick-look -p "Choose audio sink"
+    "$HOME"/.local/bin/dmenu-picker --no-quick-look -p "Choose audio sink"
 )
 
 [ -z "$selection" ] && exit 0

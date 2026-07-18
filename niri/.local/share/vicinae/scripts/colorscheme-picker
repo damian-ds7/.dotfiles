@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title Colorscheme Picker
+# @vicinae.mode silent
+# @vicinae.icon icons/scheme.png
 
 themes_dir="$HOME/.config/themes"
 select_script="$HOME/.local/bin/select-colorscheme"
@@ -10,7 +14,7 @@ if [[ ! -d "$themes_dir" ]]; then
 fi
 
 selected=$(printf "%s\n" "${THEMES[@]}" | sort |
-  dmenu-picker --no-quick-look -p 'Select colorscheme...')
+  "$HOME"/.local/bin/dmenu-picker --no-quick-look -p 'Select colorscheme...')
 
 if [ -n "$selected" ]; then
   if command -v niri >/dev/null 2>&1; then

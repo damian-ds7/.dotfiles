@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title Tmux Session Picker
+# @vicinae.mode silent
+# @vicinae.icon icons/tmux.png
 
 session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null |
-  dmenu-picker --no-quick-look -p 'Attach to session...')
+  "$HOME"/.local/bin/dmenu-picker --no-quick-look -p 'Attach to session...')
 
 if [ -n "$session" ]; then
   exec kitty --title="Tmux - $session" -e bash -l -c "tmux attach-session -d -t '$session'"

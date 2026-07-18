@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title Project Picker
+# @vicinae.mode silent
+# @vicinae.icon icons/projects.png
+
 # project-selector - launch a project in nvim via vicinae + tmux/kitty
 # Uses project-cache-helper for discovery and MRU management.
 projects_dir="${PROJECTS_DIR:-$HOME/Projects}"
@@ -7,7 +12,7 @@ helper="${PROJECT_CACHE_HELPER:-$HOME/.local/bin/project-cache-helper}"
 project=$(
   "$helper" list |
     sed "s|^$projects_dir/||" |
-    dmenu-picker --no-quick-look -p 'Pick a project...'
+    "$HOME"/.local/bin/dmenu-picker --no-quick-look -p 'Pick a project...'
 )
 [[ -z "$project" ]] && exit 0
 

@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title Mute Window
+# @vicinae.mode silent
+# @vicinae.icon icons/audio.png
 
 pairs=$(
   pactl list sink-inputs | awk '
@@ -22,7 +26,7 @@ pairs=$(
 )
 
 selection=$(printf "%s\n" "$pairs" | cut -d'|' -f1 |
-  dmenu-picker --no-quick-look -p 'Pick audio app...')
+  "$HOME"/.local/bin/dmenu-picker --no-quick-look -p 'Pick audio app...')
 
 [ -z "$selection" ] && exit 0
 

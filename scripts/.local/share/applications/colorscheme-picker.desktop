@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Color Scheme Picker
-StartupNotify=true
-Icon=/home/damian/.local/share/applications/icons/scheme.png
-Terminal=false
-Keywords=Color;Scheme;Picker;Pick
-Exec=sh -c "$HOME/.local/bin/colorscheme-picker"

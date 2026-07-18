@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Tmux Session Picker
-StartupNotify=true
-Icon=/home/damian/.local/share/applications/icons/tmux.png
-Terminal=false
-Keywords=Tmux;Sessoin;Picker;Pick
-Exec=sh -c "$HOME/.local/bin/tmux-session-picker"

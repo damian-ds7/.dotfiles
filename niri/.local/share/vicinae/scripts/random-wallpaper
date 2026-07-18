@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title Random Wallpaper
+# @vicinae.mode silent
+# @vicinae.icon icons/random.png
+
+"$HOME/.local/bin/awww-random-wallpaper"
