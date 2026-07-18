@@ -2,6 +2,7 @@
 enabled = true
 position = "bottom"
 active_monitor_only = false
+smart_auto_hide = true
 
 icon_size = 48
 main_axis_padding = 16
