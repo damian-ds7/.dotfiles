@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+selection=$(
+  pactl list sinks |
+    awk '
+        /^[[:space:]]*Description:/ {
+            sub(/^[[:space:]]*Description:[[:space:]]*/, "")
+            print
+        }
+    ' |
+    dmenu-picker --no-quick-look -p "Choose audio sink"
+)
+
+[ -z "$selection" ] && exit 0
+
+sink=$(
+  pactl list sinks |
+    awk -v desc="$selection" '
+        /^[[:space:]]*Name:/ {
+            sub(/^[[:space:]]*Name:[[:space:]]*/, "")
+            name = $0
+        }
+
+        /^[[:space:]]*Description:/ {
+            sub(/^[[:space:]]*Description:[[:space:]]*/, "")
+            if ($0 == desc) {
+                print name
+                exit
+            }
+        }
+    '
+)
+
+pactl set-default-sink "$sink"

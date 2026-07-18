@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Sink Picker
+StartupNotify=true
+# https://www.flaticon.com/free-icons/mixing-table
+Icon=/home/damian/.local/share/applications/icons/sink.png
+Terminal=false
+Keywords=Audio;Sink;Picker;Pick
+Exec=sh -c "$HOME/.local/bin/sink-picker"
