@@ -10,23 +10,32 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 local create_and_open = function(path)
   local dir = vim.fs.dirname(path)
   local name = vim.fs.basename(path)
-
   if vim.uv.fs_stat(dir).type == "directory" then vim.fn.mkdir(dir, "p") end
-
   vim.cmd("edit " .. vim.fn.fnameescape(path))
   vim.cmd "write"
-
   vim.notify("Created: " .. name, vim.log.levels.INFO, { title = "File System" })
 end
 
 ---@param opts { base_dir?: string, prompt?: string }
 local new_file_prompt = function(opts)
+  local base_dir = vim.fn.fnamemodify(opts.base_dir or vim.fn.getcwd(), ":p")
+  if not base_dir:match "/$" then base_dir = base_dir .. "/" end
+
+  _G.__new_file_complete = function(arglead)
+    local matches = vim.fn.getcompletion(base_dir .. arglead, "file")
+    local results = {}
+    for _, m in ipairs(matches) do
+      table.insert(results, m:sub(#base_dir + 1))
+    end
+    return results
+  end
+
   vim.ui.input({
-    prompt = opts.prompt,
+    prompt = opts.prompt or ("New file (in " .. base_dir .. "): "),
+    completion = "customlist,v:lua.__new_file_complete",
   }, function(input)
     if not input or input == "" then return end
-
-    local full_path = opts.base_dir .. "/" .. input
+    local full_path = base_dir .. input
     create_and_open(full_path)
   end)
 end
