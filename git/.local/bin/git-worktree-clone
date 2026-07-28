@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+REPO_URL="$1"
+DIR="${2:-$(basename "$REPO_URL" .git)}"
+
+mkdir -p "$DIR"
+cd "$DIR" || exit
+git clone --bare "$REPO_URL" .bare
+echo "gitdir: ./.bare" >.git
+git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+git fetch origin
+
+DEFAULT_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+
+git worktree add "$DEFAULT_BRANCH" "$DEFAULT_BRANCH"

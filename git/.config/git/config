@@ -29,6 +29,8 @@
 
 [alias]
     sdiff = -c delta.features=side-by-side diff
+    worktree-clone = "!git-worktree-clone"
+    browse = "!git-browse"
 
 [pull]
    rebase = true
