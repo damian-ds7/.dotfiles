@@ -3,4 +3,4 @@
 # dmenu-picker - A wrapper around vicinae or other dmenu-like programs.
 # Passes all arguments directly through.
 
-exec vicinae dmenu --width 800 --no-metadata "$@"
+exec vicinae dmenu --no-metadata "$@"
