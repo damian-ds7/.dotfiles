@@ -11,15 +11,15 @@
       "version": "2.0.0 - 3.0.0"
     },
     "catppuccin": {
-      "rev": "49a926655a2f5579e9c276470fc300baaa49e524",
+      "rev": "79e2049a0fdf7ec840f8463fe1d962c94493196b",
       "src": "https://github.com/catppuccin/nvim"
     },
     "cmake-tools": {
-      "rev": "98cdc162572a7b77733030425d8d045d68f2a1fd",
+      "rev": "22859d754b5de738cfe9945e0910729f63deefd0",
       "src": "https://github.com/Civitasv/cmake-tools.nvim"
     },
     "codecompanion": {
-      "rev": "65b8938ec42d0226bb456b8df20aa6729e2849b3",
+      "rev": "cedbead815fb435026daa63a487bb69260c1cf69",
       "src": "https://github.com/olimorris/codecompanion.nvim",
       "version": "19.0.0 - 20.0.0"
     },
@@ -28,7 +28,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "dap": {
-      "rev": "531771530d4f82ad2d21e436e3cc052d68d7aebb",
+      "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "friendly-snippets": {
@@ -36,15 +36,15 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns": {
-      "rev": "25050e4ed39e628282831d4cbecb1850454ce915",
+      "rev": "31d6fb2d618bca1482b9f274751ead5f03461408",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "jupynvim": {
-      "rev": "2014c3e254f2bd461522d85fcc9b19df1fda6aaf",
+      "rev": "666717172ea4b008af0a3361dd1794cfd3b2ac44",
       "src": "https://github.com/sheng-tse/jupynvim"
     },
     "lspeek": {
-      "rev": "92eebe76655dc5ddf94f884a3535bac2f7a4e877",
+      "rev": "84ec109b8fee3c8764d52c5c24aa76bb512e836e",
       "src": "https://github.com/r4ppz/lspeek.nvim"
     },
     "lualine": {
@@ -68,27 +68,27 @@
       "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
     },
     "match-up": {
-      "rev": "a2d618496223386844acb5a6763cfc3cc1357af1",
+      "rev": "055881643e1b37038a572c883de7b1969716db77",
       "src": "https://github.com/andymass/vim-matchup"
     },
     "mini": {
-      "rev": "7ed410c73ebb910754c2938a6dae50c51c3a096a",
+      "rev": "946ae64e0ee807ae3c41f382f0114b4ed4915b2c",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.icons": {
-      "rev": "d48ad47359218d2b019034f95f601b3861180885",
+      "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.misc": {
-      "rev": "317e20ad3bdf0f4535f9a7efdae7fbe5c4439f29",
+      "rev": "0524e8f7191782609374df6bcf9e607021ceccb1",
       "src": "https://github.com/echasnovski/mini.misc"
     },
     "mini.sessions": {
-      "rev": "e59286b20fbf61171039ddfebc736cf9562e75d5",
+      "rev": "49f89c3cd35a4926e3f03f268b73da303aec1ad8",
       "src": "https://github.com/nvim-mini/mini.sessions"
     },
     "neotest": {
-      "rev": "ad991822b7076b1d940b33a9d6d0d30416d5df81",
+      "rev": "1c529a1ef9c82e8131e872368415cecc2bb86ea2",
       "src": "https://github.com/nvim-neotest/neotest"
     },
     "neotest-golang": {
@@ -97,7 +97,7 @@
       "version": "2.0.0 - 3.0.0"
     },
     "neotest-python": {
-      "rev": "e6df4f1892f6137f58135917db24d1655937d831",
+      "rev": "1b56ca4ba51c6014f986d6548ee629bdc95589d1",
       "src": "https://github.com/nvim-neotest/neotest-python"
     },
     "noice": {
@@ -122,19 +122,19 @@
       "version": "1.0.0 - 2.0.0"
     },
     "nvim-lspconfig": {
-      "rev": "a683e0ddf0cf64c6cd689e18ffb480ade3c162b7",
+      "rev": "b7b920947f21339ee41fbb38c79d6445e12900aa",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
-      "rev": "21f5324bfac14e22ba26553caf69ec76ae8a7662",
+      "rev": "edcc181a875301dd21840189aa2f2f9ad69fc172",
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "rev": "61df84986b4b4ec469ee745a182e433d49f8c27e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
+      "rev": "898ee307df58f854d11cd7edd06472574d48014e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "nvim-ufo": {
@@ -146,7 +146,7 @@
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "oil-git": {
-      "rev": "54de208323d00c519e26280f8b5b4b821d32f955",
+      "rev": "bc25e507061f3e1b4e05f0fcda8c0ac81811d8bc",
       "src": "https://github.com/malewicz1337/oil-git.nvim"
     },
     "oil-lsp-diagnostics": {
@@ -183,7 +183,7 @@
       "src": "https://github.com/christoomey/vim-tmux-navigator"
     },
     "vimtex": {
-      "rev": "fedb7ffc1bebf254cc74e7419c3a5930b6719065",
+      "rev": "853eb587873a7061a083655578be56dd8027b834",
       "src": "https://github.com/lervag/vimtex"
     },
     "which-key": {
