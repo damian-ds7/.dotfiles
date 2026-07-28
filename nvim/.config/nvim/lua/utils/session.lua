@@ -22,8 +22,8 @@ function M.restore_session()
   return false
 end
 
-function M.write_session()
-  local name = current_session_name()
+function M.write_session(path)
+  local name = encode(path or vim.fn.getcwd())
   sessions.write(name, { verbose = false })
 end
 

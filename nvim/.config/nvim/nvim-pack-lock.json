@@ -191,8 +191,8 @@
       "src": "https://github.com/folke/which-key.nvim"
     },
     "worktrees": {
-      "rev": "bd3bb6db01aee69775b8d237dcb50d66d96d2d68",
-      "src": "https://github.com/afonsofrancof/worktrees.nvim"
+      "rev": "9682494e33b375feccf93412adf807eb15f36c1e",
+      "src": "https://github.com/Juksuu/worktrees.nvim"
     }
   }
 }
