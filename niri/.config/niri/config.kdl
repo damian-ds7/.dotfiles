@@ -13,7 +13,7 @@ include "layout.kdl"
 spawn-at-startup "~/.local/bin/awww-initialize"
 spawn-at-startup "~/.cargo/bin/niri-sidebar" "listen"
 spawn-sh-at-startup "noctalia"
-spawn-sh-at-startup "vicinae server --replace"
+spawn-at-startup "vicinae" "server"
 
 environment {
     XCURSOR_SIZE "24"
