@@ -82,11 +82,8 @@ return plugin {
       },
     },
     interactions = {
-      chat = {
-        adapter = "gemini_cli",
-      },
       cli = {
-        agent = "antigravity_cli",
+        agent = "claude_code",
         agents = {
           antigravity_cli = {
             cmd = "agy",
@@ -94,21 +91,13 @@ return plugin {
             description = "Antigravity CLI",
             provider = "terminal",
           },
+          claude_code = {
+            cmd = "claude",
+            args = {},
+            description = "Claude Code",
+            provider = "terminal",
+          },
         },
-      },
-      inline = {
-        adapter = "gemini_cli",
-      },
-    },
-    adapters = {
-      acp = {
-        gemini_cli = function()
-          return require("codecompanion.adapters").extend("gemini_cli", {
-            defaults = {
-              auth_method = "oauth-personal", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
-            },
-          })
-        end,
       },
     },
     triggers = {
