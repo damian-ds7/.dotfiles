@@ -7,6 +7,7 @@ autocmd("TextYankPost", {
   callback = function()
     if vim.version().minor < 13 then
       -- TODO: remove
+      ---@diagnostic disable-next-line: deprecated
       vim.hl.on_yank()
     else
       vim.hl.hl_op()

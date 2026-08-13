@@ -118,6 +118,7 @@ end
 
 local function create_bottom_window(opts)
   local height = math.floor(state.split_dims.h_ratio * vim.o.lines)
+  local width = vim.o.columns
 
   local buf = vim.api.nvim_buf_is_valid(opts.buf) and opts.buf
     or vim.api.nvim_create_buf(false, true)
@@ -125,7 +126,15 @@ local function create_bottom_window(opts)
   vim.cmd "botright split"
 
   local win = vim.api.nvim_get_current_win()
-  vim.api.nvim_win_set_height(win, height)
+
+  if vim.version().minor < 13 then
+    -- TODO: remove
+    ---@diagnostic disable-next-line: deprecated
+    vim.api.nvim_win_set_height(win, height)
+  else
+    vim.api.nvim_win_resize(win, width, height)
+  end
+
   vim.api.nvim_win_set_buf(win, buf)
 
   vim.wo[win].number = false
