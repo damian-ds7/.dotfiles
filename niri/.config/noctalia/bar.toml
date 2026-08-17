@@ -84,7 +84,7 @@ hide_when_no_unread = true
 show_label = false
 
 [widget.workspaces]
-display = "none"
+show_labels = false
 pill_scale = 0.9
 
 [widget.media]
