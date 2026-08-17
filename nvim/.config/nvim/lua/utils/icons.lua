@@ -16,9 +16,9 @@ local M = {
   },
   diagnostics = {
     Error = " ",
-    Warn = " ",
-    Hint = " ",
+    Warn = " ",
     Info = " ",
+    Hint = " ",
   },
   git = {
     added = " ",
