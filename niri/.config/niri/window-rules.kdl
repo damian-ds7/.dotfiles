@@ -1,12 +1,4 @@
 // -----------------------------
-// Workspaces
-// -----------------------------
-workspace "browser"
-workspace "code"
-workspace "teams"
-workspace "other"
-
-// -----------------------------
 // Global Window Behavior
 // -----------------------------
 window-rule {
@@ -152,54 +144,27 @@ window-rule {
 }
 
 // -----------------------------
-// Workspace Assignments
+// Size overrides
 // -----------------------------
 
 window-rule {
     match app-id="^(zen|zen-twilight)$"
     exclude app-id="zen" title="^Picture-in-Picture$"
 
-    open-on-workspace "browser"
-    open-maximized true
-    open-focused true
-}
-
-window-rule {
     match app-id="^Code$"
     match app-id="^code$"
     match app-id="Neovim" title="project"
     match app-id="jetbrains-idea"
     exclude app-id="jetbrains-idea" title="Welcome to IntelliJ IDEA"
+
     exclude app-id="page.codeberg.libre_menu_editor.LibreMenuEditor"
-
-    open-on-workspace "code"
-    open-maximized true
-    open-focused true
-}
-
-window-rule {
     match app-id="chrome-teams.microsoft.com__v2-Default"
     match app-id="chrome-teams.microsoft.com__v2_-Default"
 
-    open-on-workspace "teams"
-    open-maximized true
-    open-focused true
-}
-
-window-rule {
     match app-id="Deezer"
     match app-id="dev.aunetx.deezer"
     match app-id="discord"
 
-    open-on-workspace "other"
     open-maximized true
     open-focused true
-}
-
-window-rule {
-    match app-id="com.github.wwmm.easyeffects"
-
-    open-on-workspace "other"
-    open-maximized true
-    open-focused false
 }
