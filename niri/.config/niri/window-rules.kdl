@@ -37,6 +37,7 @@ window-rule {
 
 window-rule {
     exclude app-id="^(zen|zen-twilight)$"
+    exclude app-id="Delfin"
 
     opacity 0.90
 }
