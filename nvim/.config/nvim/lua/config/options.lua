@@ -64,7 +64,38 @@ opt.confirm = true
 opt.autowrite = true
 opt.completeopt = "menu,menuone,noselect"
 
-opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
+local function is_tmux() return vim.env.TMUX ~= nil end
+
+if is_tmux() then
+  local copy = { "tmux", "load-buffer", "-w", "-" }
+  local paste =
+    { "bash", "-c", "tmux refresh-client -l && sleep 0.05 && tmux save-buffer -" }
+  vim.g.clipboard = {
+    name = "tmux",
+    copy = {
+      ["+"] = copy,
+      ["*"] = copy,
+    },
+    paste = {
+      ["+"] = paste,
+      ["*"] = paste,
+    },
+    cache_enabled = 0,
+  }
+elseif vim.env.SSH_CONNECTION then
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy "+",
+      ["*"] = require("vim.ui.clipboard.osc52").copy "*",
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste "+",
+      ["*"] = require("vim.ui.clipboard.osc52").paste "*",
+    },
+  }
+end
+vim.opt.clipboard = "unnamedplus"
 
 opt.spell = false
 opt.spelllang = "en,pl"
@@ -88,4 +119,3 @@ opt.grepprg = "rg --vimgrep"
 opt.grepformat = "%f:%l:%c:%m"
 opt.sessionoptions = "buffers,curdir,tabpages,winsize,help,folds,skiprtp"
 opt.exrc = true
-
