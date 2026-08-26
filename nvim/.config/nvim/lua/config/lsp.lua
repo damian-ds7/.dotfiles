@@ -23,12 +23,12 @@ autocmd("LspAttach", {
 
     if not client then return end
 
-    map(buf, "<leader>cr", vim.lsp.buf.rename, "Rename")
-    map(buf, "<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
-    map(buf, "<leader>cl", vim.lsp.codelens.run, "Codelens", { "n", "x" })
-
     map(buf, "gD", vim.lsp.buf.declaration, "Declaration")
     map(buf, "gd", function() Snacks.picker.lsp_definitions() end, "Definition")
+
+    map(buf, "grn", vim.lsp.buf.rename, "Rename")
+    map(buf, "gra", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
+    map(buf, "grx", vim.lsp.codelens.run, "Codelens", { "n", "x" })
     map(buf, "grr", function() Snacks.picker.lsp_references() end, "References")
     map(
       buf,
