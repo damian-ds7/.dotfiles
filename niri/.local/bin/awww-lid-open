@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+sleep 0.3
+
+transition="none"
+duration="0"
+fps="60"
+opts="--transition-type $transition --transition-duration $duration --transition-fps $fps"
+
+"$HOME/.cargo/bin/awww" img --namespace wallpaper $opts \
+  "$HOME/Pictures/Wallpapers/current/normal.png"

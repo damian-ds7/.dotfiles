@@ -33,6 +33,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 switch-events {
     lid-close { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
+    lid-open { spawn "~/.local/bin/awww-lid-open"; }
 }
 
 recent-windows {
