@@ -192,7 +192,6 @@ return plugin {
       },
       separator = separator,
       color = pill_color,
-      always_visible = true,
     }
 
     local deb = {
