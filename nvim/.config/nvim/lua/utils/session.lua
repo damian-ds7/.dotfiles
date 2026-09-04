@@ -32,16 +32,6 @@ local function register_auto_save()
     group = vim.api.nvim_create_augroup("session-auto-save", { clear = true }),
     once = true,
     callback = function()
-      -- vim.notify(
-      --   string.format(
-      --     "this_session='%s' session_loaded=%s buftype='%s' file='%s'",
-      --     vim.v.this_session,
-      --     tostring(session_loaded),
-      --     vim.bo.buftype,
-      --     vim.fn.expand "%"
-      --   ),
-      --   vim.log.levels.INFO
-      -- )
       if vim.v.this_session ~= "" then return end
       if session_loaded then return end
       if vim.bo.buftype ~= "" or vim.fn.expand "%" == "" then return end
@@ -79,7 +69,7 @@ function M.setup()
   vim.keymap.set(
     "n",
     "<leader>R",
-    function() sessions.restart() end,
+    "<Cmd>restart<CR>",
     { desc = "Restart Neovim" }
   )
 
