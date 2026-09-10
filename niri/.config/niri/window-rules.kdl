@@ -36,9 +36,6 @@ window-rule {
 }
 
 window-rule {
-    exclude app-id="^(zen|zen-twilight)$"
-    exclude app-id="net.nullsum.JelliumDesktop"
-
     opacity 0.90
 }
 
@@ -67,6 +64,14 @@ window-rule {
             blur true
         }
     }
+}
+
+window-rule {
+    match app-id="^(zen|zen-twilight)$"
+    match app-id="net.nullsum.JelliumDesktop"
+    match app-id="mpv"
+
+    opacity 1.0
 }
 
 // -----------------------------
