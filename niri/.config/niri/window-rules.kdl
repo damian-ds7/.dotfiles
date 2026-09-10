@@ -41,8 +41,6 @@ window-rule {
 
 window-rule {
     match is-active=false
-    exclude app-id="^(zen|zen-twilight)$"
-    exclude app-id="net.nullsum.JelliumDesktop"
 
     opacity 0.85
 }
@@ -170,6 +168,8 @@ window-rule {
     match app-id="Deezer"
     match app-id="dev.aunetx.deezer"
     match app-id="discord"
+
+    match app-id="net.nullsum.JelliumDesktop"
 
     open-maximized true
     open-focused true
