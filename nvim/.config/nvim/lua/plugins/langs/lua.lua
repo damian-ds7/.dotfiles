@@ -1,3 +1,5 @@
+local snacks_dir = vim.fn.stdpath "data" .. "/site/pack/core/opt/snacks"
+
 return lang {
   eager = true,
   servers = {
@@ -20,7 +22,7 @@ return lang {
             globals = { "vim", "Snacks" },
           },
           workspace = {
-            library = { vim.env.VIMRUNTIME },
+            library = { vim.env.VIMRUNTIME, snacks_dir },
             checkThirdParty = false,
           },
           telemetry = {

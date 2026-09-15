@@ -26,6 +26,7 @@ return plugin {
   config = function(opts)
     local snacks = require "snacks"
     snacks.setup(opts)
+    require("utils.picker").setup()
 
     snacks.toggle.option("spell", { name = "Spelling" }):map "<leader>us"
     snacks.toggle.option("wrap", { name = "Wrap" }):map "<leader>uw"
@@ -88,6 +89,13 @@ return plugin {
         smart = {
           filter = { cwd = true },
           matcher = { frecency = true, sort_empty = true },
+          hidden = true,
+        },
+        files = {
+          hidden = true,
+        },
+        grep = {
+          hidden = true,
         },
         zoxide = {
           finder = "files_zoxide",
