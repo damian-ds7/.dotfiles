@@ -25,8 +25,8 @@ fi
 
 if is_installed lsd; then
   alias ls='lsd --git '
-  alias ll='lsd -lX --group-dirs=first --header --no-symlink --git '
-  alias la='lsd -lAX --group-dirs=first --header --git '
+  alias ll='lsd -l --group-dirs=first --header --no-symlink --git '
+  alias la='lsd -lA --group-dirs=first --header --git '
 else
   alias ls='command ls --color=always '
   alias ll='ls -l --color=always '
