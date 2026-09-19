@@ -194,6 +194,15 @@ return plugin {
       color = pill_color,
     }
 
+    local command = {
+      ---@diagnostic disable-next-line: undefined-field
+      function() return require("noice").api.status.command.get() end,
+      cond = function()
+        ---@diagnostic disable-next-line: undefined-field
+        return package.loaded["noice"] and require("noice").api.status.command.has()
+      end,
+    }
+
     local deb = {
       function() return "  " .. require("dap").status() end,
       cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
@@ -217,6 +226,7 @@ return plugin {
       lualine_b = { space, branch },
       lualine_c = { space, filename[1], filename[2] },
       lualine_x = {
+        command,
         macro,
         deb,
       },
