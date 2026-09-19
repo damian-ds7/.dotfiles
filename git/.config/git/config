@@ -29,6 +29,9 @@
     colorMoved = default
     mnemonicPrefix = true
 
+[rerere]
+    enabled = true
+
 [alias]
     sdiff = -c delta.features=side-by-side diff
     worktree-clone = "!git-worktree-clone"
