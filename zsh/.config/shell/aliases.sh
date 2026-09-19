@@ -14,14 +14,11 @@ alias df='df -hT '
 
 alias c='clear '
 
+alias grep='command grep --color=auto  '
+
 # -------------------------
 #  Aliases with fallback to original command
 # -------------------------
-if is_installed rg; then
-  alias grep='rg '
-else
-  alias grep='command grep --color=auto  '
-fi
 
 if is_installed lsd; then
   alias ls='lsd --git '
