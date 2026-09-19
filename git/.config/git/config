@@ -25,7 +25,9 @@
     conflictstyle = diff3
 
 [diff]
+    algorithm = histogram
     colorMoved = default
+    mnemonicPrefix = true
 
 [alias]
     sdiff = -c delta.features=side-by-side diff
