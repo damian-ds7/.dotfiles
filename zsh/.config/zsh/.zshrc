@@ -44,11 +44,53 @@ setopt interactivecomments
 WORDCHARS=${WORDCHARS//\//}
 WORDCHARS=${WORDCHARS//./}
 
+# Accept forward, but a leading punctuation run "sticks" to the word AFTER it
+custom-forward-word() {
+  local rest=$RBUFFER
+  if [[ $rest =~ '^[[:space:]]+' ]]; then
+    CURSOR+=${#MATCH}
+    rest=${rest[${#MATCH}+1,-1]}
+  fi
+  if [[ $rest =~ '^[^[:alnum:][:space:]]*[[:alnum:]]+' ]]; then
+    CURSOR+=${#MATCH}
+  else
+    zle .forward-word
+  fi
+}
+zle -N custom-forward-word
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(custom-forward-word)
+
+# Delete backward, removing the trailing alnum run together with any
+# punctuation run directly in front of it
+custom-backward-kill-word() {
+  local left=$LBUFFER
+  local trimmed=0
+  if [[ $left =~ '[[:space:]]+$' ]]; then
+    trimmed=${#MATCH}
+    left=${left[1,-1-trimmed]}
+  fi
+
+  if [[ $left =~ '[^[:alnum:][:space:]]*[[:alnum:]]+$' ]]; then
+    local total=$((trimmed + ${#MATCH}))
+    local newcursor=$((CURSOR - total))
+    BUFFER=${LBUFFER[1,-1-total]}$RBUFFER
+    CURSOR=$newcursor
+  elif [[ $left =~ '[^[:alnum:][:space:]]+$' ]]; then
+    local total=$((trimmed + ${#MATCH}))
+    local newcursor=$((CURSOR - total))
+    BUFFER=${LBUFFER[1,-1-total]}$RBUFFER
+    CURSOR=$newcursor
+  else
+    zle .backward-kill-word
+  fi
+}
+zle -N custom-backward-kill-word
+
 # Binds
 bindkey '^ ' autosuggest-accept
-bindkey '^Y' forward-word
+bindkey '^Y' custom-forward-word
 bindkey '^[ ' autosuggest-accept
-bindkey '^[y' forward-word
+bindkey '^[y' custom-forward-word
 bindkey '^Z' fancy-ctrl-z
 bindkey '^[l' clear-screen
 bindkey '^_' undo
@@ -56,6 +98,7 @@ bindkey ' ' magic-space
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 bindkey '^F' open-yazi
+bindkey '^W' custom-backward-kill-word
 
 # Directory stack navigation
 bindkey -M viins '^[[1;3D' cd-back    # Alt+Left
