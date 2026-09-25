@@ -97,7 +97,6 @@ bindkey '^_' undo
 bindkey ' ' magic-space
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
-bindkey '^F' open-yazi
 bindkey '^W' custom-backward-kill-word
 
 # Directory stack navigation
@@ -132,14 +131,6 @@ function fancy-ctrl-z() {
   fi
 }
 zle -N fancy-ctrl-z
-
-function open-yazi() {
-  if command -v yazi >/dev/null 2>&1; then
-    yazi
-    zle redisplay
-  fi
-}
-zle -N open-yazi
 
 # External Tool Initialization
 if command -v zoxide >/dev/null 2>&1; then
