@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-code --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
-
-sleep 1
-
-niri msg action consume-or-expel-window-left
-#niri msg action toggle-column-tabbed-display

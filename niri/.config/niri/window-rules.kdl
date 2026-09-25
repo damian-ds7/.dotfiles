@@ -111,12 +111,6 @@ window-rule {
 }
 
 window-rule {
-    match title="bluetui"
-    open-floating true
-    max-height 700
-}
-
-window-rule {
     match app-id="localsend"
     open-floating true
     default-column-width { fixed 450; }
@@ -135,7 +129,6 @@ window-rule {
 // -----------------------------
 
 window-rule {
-    match app-id="com.damian.yazi"
     match app-id="org.gnome.Calendar"
     match app-id="Bitwarden"
 

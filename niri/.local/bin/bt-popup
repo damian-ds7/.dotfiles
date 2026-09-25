@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-niri msg action spawn-sh -- "kitty --title=bluetui -e ~/.cargo/bin/bluetui"

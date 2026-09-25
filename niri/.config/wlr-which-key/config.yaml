@@ -40,9 +40,6 @@ menu:
       - key: "e"
         desc: Files (Nautilus)
         cmd: nautilus
-      - key: "y"
-        desc: Files (Yazi)
-        cmd: ~/.local/bin/yazi-window
       - key: "n"
         desc: Neovim
         cmd: gtk-launch neovim
