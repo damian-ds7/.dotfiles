@@ -146,8 +146,8 @@ menu:
         desc: Toggle auto suspend (idle inhibitor)
         cmd: noctalia msg caffeine-toggle
       - key: "l"
-        desc: Lock screen
-        cmd: noctalia msg session lock
+        desc: Toggle lid event inhibit
+        cmd:  noctalia msg plugin damian-ds7/niri-lid-close:service all toggle-inhibit
       - key: "m"
         desc: Toggle Dark/Light mode
         cmd: niri msg action do-screen-transition --delay-ms=500; ~/.local/bin/toggle-dark-mode
@@ -161,18 +161,21 @@ menu:
   - key: "p"
     desc: Power
     submenu:
-      - key: "s"
-        desc: Suspend
-        cmd: systemctl suspend
-      - key: "r"
-        desc: Reboot
-        cmd: systemctl reboot
-      - key: "p"
-        desc: Power off
-        cmd: systemctl poweroff
+      - key: "l"
+        desc: Lock screen
+        cmd: noctalia msg session lock
       - key: "m"
         desc: Power off monitors
         cmd: niri msg action power-off-monitors
+      - key: "p"
+        desc: Power off
+        cmd: systemctl poweroff
+      - key: "r"
+        desc: Reboot
+        cmd: systemctl reboot
+      - key: "s"
+        desc: Suspend
+        cmd: systemctl suspend
 
   - key: "w"
     desc: Window
