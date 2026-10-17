@@ -153,10 +153,10 @@ menu:
         cmd: niri msg action do-screen-transition --delay-ms=500; ~/.local/bin/toggle-dark-mode
       - key: "s"
         desc: Change color scheme
-        cmd: ~/.local/bin/vicinae-colorscheme-selector
+        cmd: vicinae deeplink vicinae://launch/scripts/colorscheme-picker
       - key: "w"
         desc: Change wallpaper
-        cmd: ~/.local/bin/vicinae-wallpaper-selector
+        cmd: vicinae deeplink vicinae://launch/scripts/wallpaper-picker
 
   - key: "p"
     desc: Power
