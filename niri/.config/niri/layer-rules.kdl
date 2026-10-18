@@ -26,7 +26,6 @@ layer-rule {
     }
 
     geometry-corner-radius 20
-    opacity 0.80
     background-effect {
         blur true
         xray false
