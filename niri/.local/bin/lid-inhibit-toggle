@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# lid-inhibit-toggle - Toggle suspend-on-lid-close.
+
+if "$HOME/.local/bin/in-niri"; then
+  noctalia msg plugin damian-ds7/niri-lid-close:service all toggle-inhibit
+fi

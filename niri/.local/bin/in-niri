@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# in-niri - Exits 0 when running inside a live niri session.
+
+[ -n "${NIRI_SOCKET:-}" ] && niri msg version >/dev/null 2>&1

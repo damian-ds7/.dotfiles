@@ -71,8 +71,8 @@ binds {
         spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "s c";
     }
 
-    // Window submenu (w)
+    // Window submenu (window-niri.yaml)
     Mod+W hotkey-overlay-title="Which-key: Window" {
-        spawn "~/.cargo/bin/wlr-which-key" "--initial-keys" "w";
+        spawn "~/.cargo/bin/wlr-which-key" "window-niri";
     }
 }

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if "$HOME/.local/bin/in-niri"; then
+  niri msg action power-off-monitors
+fi

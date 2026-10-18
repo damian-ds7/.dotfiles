@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# screen-transition - Crossfade the screen on the next redraw.
+# Usage: screen-transition [DELAY_MS]
+
+if "$HOME/.local/bin/in-niri"; then
+  niri msg action do-screen-transition --delay-ms="${1:-500}"
+fi

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "Usage: $(basename "$0") <screen|area|window>" >&2
+  exit 2
+}
+
+if "$HOME/.local/bin/in-niri"; then
+  case "${1:-}" in
+  screen) niri msg action screenshot-screen ;;
+  area) niri msg action screenshot --show-pointer=false ;;
+  window) niri msg action screenshot-window ;;
+  *) usage ;;
+  esac
+fi

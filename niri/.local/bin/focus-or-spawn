@@ -20,19 +20,6 @@ fi
 APP_ID="$1"
 EXECUTABLE="$2"
 
-if ! command -v jq >/dev/null 2>&1; then
-  echo "Error: jq is not installed. Please install jq to use this script."
-  exit 1
-fi
-
-if [ -n "$TITLE" ]; then
-  WINDOW_ID=$(niri msg --json windows | jq -r --arg app_id "$APP_ID" --arg title "$TITLE" '.[] | select(.app_id == $app_id and .title == $title) | .id' | head -n1)
-else
-  WINDOW_ID=$(niri msg --json windows | jq -r --arg app_id "$APP_ID" '.[] | select(.app_id == $app_id) | .id' | head -n1)
-fi
-
-if [ -n "$WINDOW_ID" ]; then
-  niri msg action focus-window --id "$WINDOW_ID"
-else
-  bash -c "$EXECUTABLE" &
+if "$HOME/.local/bin/in-niri"; then
+  "$HOME/.local/bin/niri-focus-or-spawn" "$APP_ID" "$EXECUTABLE" "$TITLE"
 fi
