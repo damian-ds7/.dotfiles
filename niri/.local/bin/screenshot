@@ -12,4 +12,6 @@ if "$HOME/.local/bin/in-niri"; then
   window) niri msg action screenshot-window ;;
   *) usage ;;
   esac
+elif "$HOME/.local/bin/in-umbriel"; then
+  "$HOME/.local/bin/umbriel-screenshot" "${1:-}"
 fi

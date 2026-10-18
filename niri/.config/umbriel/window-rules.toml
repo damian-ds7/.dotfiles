@@ -1,0 +1,123 @@
+# -----------------------------
+# Visual Effects
+# -----------------------------
+
+[effects.preset.desaturate]
+kind = "window"
+shader = "effects/desaturate.glsl"
+
+[[window_rule]]
+blur = true
+opacity = 0.90
+
+[[window_rule]]
+match.is_floating = true
+blur_optimized = false
+
+[[window_rule]]
+match.is_focused = false
+opacity = 0.85
+window_effect = "desaturate"
+
+# Keep floating windows in colour
+[[window_rule]]
+match.is_floating = true
+window_effect = "off"
+
+[[window_rule]]
+match.app_id = ["^(zen|zen-twilight)$", "net.nullsum.JelliumDesktop", "mpv"]
+opacity = 1.0
+
+# -----------------------------
+# Size overrides
+# -----------------------------
+
+[[window_rule]]
+match.app_id = [
+  "^(zen|zen-twilight)$",
+  "^Code$",
+  "^code$",
+  "jetbrains-idea",
+  "chrome-teams.microsoft.com__v2-Default",
+  "chrome-teams.microsoft.com__v2_-Default",
+  "Deezer",
+  "dev.aunetx.deezer",
+  "discord",
+  "net.nullsum.JelliumDesktop",
+]
+default_maximize = true
+default_focused = true
+
+[[window_rule]]
+match.app_id = "Neovim"
+match.title = "project"
+default_maximize = true
+default_focused = true
+
+# -----------------------------
+# Floating Rules
+# -----------------------------
+
+[[window_rule]]
+match.app_id = ["org.gnome.Calculator", "xfce-polkit", "io.github.nozwock.Packet"]
+default_floating = true
+
+[[window_rule]]
+match.title = ["impala", "Discord Updater"]
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^steam$"
+match.title = ["Friends List", "Steam Settings"]
+default_floating = true
+
+# Placed after size overrides so it cancels the jetbrains-idea maximize
+[[window_rule]]
+match.app_id = "jetbrains-idea"
+match.title = "Welcome to IntelliJ IDEA"
+default_floating = true
+default_maximize = false
+
+# Placed after size overrides so it cancels the zen maximize
+[[window_rule]]
+match.title = "^Picture-in-Picture$"
+default_floating = true
+default_maximize = false
+default_focused = false
+focus_on_activate = false
+# Opens pinned (visible on every workspace) in the bottom-right corner;
+default_pinned = true
+default_floating_size_px = { width = 515, height = 290 }
+default_position = { x = 14, y = 14, anchor = "bottom_right" }
+
+[[window_rule]]
+match.app_id = "^steam$"
+match.title = '^notificationtoasts_\d+_desktop$'
+default_position = { x = 10, y = 10, anchor = "bottom_right" }
+
+[[window_rule]]
+match.app_id = "com.nvim.edit"
+default_floating = true
+default_floating_size_px = { width = 850, height = 450 }
+
+[[window_rule]]
+match.app_id = "localsend"
+default_floating = true
+default_floating_size_px = { width = 450, height = 690 }
+
+[[window_rule]]
+match.app_id = "dev.noctalia.Noctalia.Settings"
+default_floating = true
+default_floating_size_px = { width = 1080, height = 920 }
+
+# -----------------------------
+# Sizing Rules (Tiling)
+# -----------------------------
+
+[[window_rule]]
+match.app_id = ["org.gnome.Calendar", "Bitwarden"]
+default_scrolling_extent = 0.6666
+
+[[window_rule]]
+match.app_id = "steam_app"
+default_fullscreen = true

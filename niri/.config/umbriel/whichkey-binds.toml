@@ -1,0 +1,36 @@
+[keybinds]
+"Mod+Shift+Slash" = "cheatsheet-toggle"
+
+"Mod+Slash" = { action = "spawn:~/.cargo/bin/wlr-which-key", repeat = false }
+
+# Power submenu (p)
+"Mod+P" = { action = "spawn:~/.cargo/bin/wlr-which-key --initial-keys p", repeat = false }
+
+"Mod+Alt+Page_Up" = { action = "spawn:systemctl suspend", repeat = false }
+"Mod+Alt+BackSpace" = { action = "spawn:systemctl reboot", repeat = false }
+"Mod+Alt+Home" = { action = "spawn:systemctl poweroff", repeat = false }
+"Mod+Shift+E" = { action = "spawn:noctalia msg panel-toggle session", repeat = false }
+
+# UI submenu (u)
+"Mod+U" = { action = "spawn:~/.cargo/bin/wlr-which-key --initial-keys u", repeat = false }
+
+# Vicinae submenu (v)
+"Mod+Shift+Space" = { action = "spawn:~/.cargo/bin/wlr-which-key --initial-keys v", repeat = false }
+"Mod+Space" = { action = "spawn:vicinae toggle", repeat = false }
+"Mod+V" = { action = "spawn:vicinae vicinae://launch/clipboard/history", repeat = false }
+"Mod+Grave" = { action = "spawn:vicinae vicinae://launch/wm/switch-windows", repeat = false }
+
+# Apps submenu (a)
+"Mod+A" = { action = "spawn:~/.cargo/bin/wlr-which-key --initial-keys a", repeat = false }
+
+# System submenu (s)
+"Mod+S" = { action = "spawn:~/.cargo/bin/wlr-which-key --initial-keys s", repeat = false }
+"Mod+Shift+D" = { action = "spawn:~/.local/bin/screen-transition 500; ~/.local/bin/toggle-dark-mode", repeat = false }
+
+# Capture submenu (s c)
+"Print" = { action = "spawn:~/.cargo/bin/wlr-which-key --initial-keys 's c'", repeat = false }
+"Mod+X" = { action = "spawn:~/.cargo/bin/wlr-which-key --initial-keys 's c'", repeat = false }
+
+# Window submenu (window-umbriel.yaml)
+"Mod+W" = { action = "spawn:~/.cargo/bin/wlr-which-key window-umbriel", repeat = false }
+"Mod+Shift+M" = { action = "spawn:~/.cargo/bin/wlr-which-key window-umbriel --initial-keys t", repeat = false }

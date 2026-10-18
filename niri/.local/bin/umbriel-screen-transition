@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# umbriel-screen-transition - Fade screen changes for a moment using the
+# screen-transition effect preset, then restore the configured screen effect.
+# Usage: umbriel-screen-transition [DELAY_MS]
+
+DURATION_MS=$((${1:-500} + 1000))
+
+OUTPUTS=$(umbriel outputs --json | jq -r '.[] | select(.enabled) | .name')
+
+for output in $OUTPUTS; do
+  umbriel msg "effect-screen-set:screen-transition/$output" >/dev/null
+done
+
+(
+  sleep "$((DURATION_MS / 1000)).$(printf '%03d' $((DURATION_MS % 1000)))"
+  for output in $OUTPUTS; do
+    umbriel msg "effect-screen-reset:$output" >/dev/null
+  done
+) &

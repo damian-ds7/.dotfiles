@@ -5,4 +5,7 @@ location = "https://github.com/noctalia-dev/official-plugins"
 auto_update = false   # opt-in background pull on startup (off by default)
 
 [plugins]
-enabled = ["noctalia/screen_recorder"]
+enabled = [
+    "noctalia/screen_recorder",
+    "noctalia/umbriel-companion"
+]

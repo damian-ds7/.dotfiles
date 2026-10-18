@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# in-umbriel - Exits 0 when running inside a live Umbriel session.
+
+[ -n "${UMBRIEL_SOCKET:-}" ] && umbriel workspaces >/dev/null 2>&1

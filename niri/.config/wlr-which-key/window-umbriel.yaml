@@ -1,0 +1,111 @@
+# Theming
+font: JetBrainsMono Nerd Font 12
+separator: " ➜ "
+border_width: 2
+corner_r: 20
+padding: 15 # Defaults to corner_r
+column_padding: 25 # Defaults to padding
+
+# Anchor and margin
+anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
+# Only relevant when anchor is not center
+margin_right: 8
+margin_bottom: 8
+margin_left: 0
+margin_top: 0
+
+# Permits key bindings that conflict with compositor key bindings.
+# Default is `false`.
+inhibit_compositor_keyboard_shortcuts: false
+
+# Try to guess the correct keyboard layout to use. Default is `false`.
+auto_kbd_layout: true
+
+menu:
+  - key: "l"
+    desc: Layout
+    submenu:
+      - key: "o"
+        desc: Overview
+        cmd: umbriel msg overview-toggle
+      - key: "c"
+        desc: Close window
+        cmd: umbriel msg window-close
+      - key: "t"
+        desc: Toggle tabbed columns
+        cmd: umbriel msg column-toggle-tabbed
+      - key: "f"
+        desc: Toggle floating
+        cmd: umbriel msg window-toggle-floating
+      - key: "F"
+        desc: Switch focus floating/tiling
+        cmd: umbriel msg window-focus-switch-floating
+      - key: "p"
+        desc: Toggle pinned
+        cmd: umbriel msg window-toggle-pinned
+      - key: "["
+        desc: Consume/expel left
+        cmd: umbriel msg window-consume-or-expel-left
+      - key: "]"
+        desc: Consume/expel right
+        cmd: umbriel msg window-consume-or-expel-right
+
+  - key: "t"
+    desc: Layout mode
+    submenu:
+      - key: "s"
+        desc: Scrolling
+        cmd: umbriel msg workspace-set-layout:scrolling
+      - key: "d"
+        desc: Tiling (dwindle)
+        cmd: umbriel msg workspace-set-layout:dwindle
+      - key: "m"
+        desc: Master
+        cmd: umbriel msg workspace-set-layout:master
+      - key: "t"
+        desc: Cycle modes
+        cmd: umbriel msg workspace-set-layout:toggle
+        keep_open: true
+
+  - key: "r"
+    desc: Resize
+    submenu:
+      - key: "p"
+        desc: Next column width preset
+        cmd: umbriel msg window-cycle-primary-extent
+        keep_open: true
+      - key: "P"
+        desc: Next window height preset
+        cmd: umbriel msg window-cycle-secondary-extent
+      - key: "-"
+        desc: Column width -10%
+        cmd: umbriel msg window-modify-primary-extent:-0.1
+      - key: "="
+        desc: Column width +10%
+        cmd: umbriel msg window-modify-primary-extent:0.1
+      - key: "_"
+        desc: Window height -10%
+        cmd: umbriel msg window-modify-secondary-extent:-0.1
+      - key: "+"
+        desc: Window height +10%
+        cmd: umbriel msg window-modify-secondary-extent:0.1
+
+  - key: "m"
+    desc: Maximize
+    submenu:
+      - key: "c"
+        desc: Maximize column
+        cmd: umbriel msg window-toggle-maximize
+      - key: "e"
+        desc: Maximize window to edges
+        cmd: umbriel msg window-toggle-maximize-to-edges
+      - key: "f"
+        desc: Fullscreen window
+        cmd: umbriel msg window-toggle-fullscreen
+
+  - key: "v"
+    desc: View
+    submenu:
+      - key: "c"
+        desc: Center column
+        cmd: umbriel msg column-center

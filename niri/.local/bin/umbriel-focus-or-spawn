@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# umbriel-focus-or-spawn - Focus an Umbriel window by app-id (and optional title), or spawn it.
+# Usage: umbriel-focus-or-spawn <app-id> <executable> [title]
+
+APP_ID="$1"
+EXECUTABLE="$2"
+TITLE="${3:-}"
+
+if ! command -v jq >/dev/null 2>&1; then
+  echo "Error: jq is not installed. Please install jq to use this script."
+  exit 1
+fi
+
+WINDOW=$(umbriel windows --json | jq -c --arg app_id "$APP_ID" --arg title "$TITLE" \
+  'first(.[] | select(.app_id == $app_id and ($title == "" or .title == $title))) // empty')
+
+if [ -z "$WINDOW" ]; then
+  bash -c "$EXECUTABLE" &
+  exit 0
+fi
+
+WINDOW_ID=$(jq -r '.id' <<<"$WINDOW")
+WORKSPACE_ID=$(jq -r '.workspace' <<<"$WINDOW")
+
+# Switch to the window's workspace first when it is not already shown
+WORKSPACE=$(umbriel workspaces --json | jq -r --arg id "$WORKSPACE_ID" '
+  first(.[] | select(.id == $id and (.active | not))
+    | if .named then "\"\(.name)\"/\(.output)" else "\(.index)/\(.output)" end) // empty')
+
+if [ -n "$WORKSPACE" ]; then
+  umbriel msg "workspace-switch:$WORKSPACE" >/dev/null
+fi
+
+umbriel msg "window-focus:$WINDOW_ID" >/dev/null

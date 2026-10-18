@@ -1,0 +1,14 @@
+[colors]
+accent_primary = "#8839efFF"
+error = "#d20f39FF"
+
+[colors.border]
+focused = "#8839efFF"
+unfocused = "#6c7086FF"
+
+[colors.overview]
+badge = "#8839efFF"
+
+[colors.tab_bar]
+active = "#8839efFF"
+urgent = "#d20f39FF"

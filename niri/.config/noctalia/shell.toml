@@ -34,6 +34,9 @@ open_near_click_control_center = true
 [shell.mpris]
 blacklist = ["zen", "zen-twilight"]
 
+[shell.screenshot]
+confirm_region = true
+
 [[shell.session.actions]]
 action = "logout"
 shortcut = "1"

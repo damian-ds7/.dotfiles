@@ -1,0 +1,20 @@
+[layout]
+gap = 10
+extent_presets = [0.33333, 0.5, 0.66667, 1.0]
+
+[layout.scrolling]
+default_extent_fraction = 0.5
+center_focused = "on_overflow"
+center_underfull_strip = true
+
+[appearance]
+prefer_no_csd = true
+border_width = 2
+corner_radius = 20
+
+[appearance.shadow]
+enabled = true
+softness = 15
+
+[appearance.tab_bar]
+hide_when_single = true

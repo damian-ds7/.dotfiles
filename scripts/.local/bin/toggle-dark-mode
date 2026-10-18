@@ -39,6 +39,7 @@ CONFIGS=(
   "$CONF_DIR/kitty"
   "$CONF_DIR/lsd"
   "$CONF_DIR/niri"
+  "$CONF_DIR/umbriel"
   "$CONF_DIR/noctalia"
   "$CONF_DIR/vicinae"
   "$CONF_DIR/wlr-which-key"

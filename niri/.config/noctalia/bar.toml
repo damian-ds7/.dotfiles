@@ -28,7 +28,7 @@ capsule_thickness = 0.76
 capsule_radius = 8.0
 capsule_opacity = 1.0
 
-start = ["workspaces", "media"]
+start = ["noctalia/umbriel-companion:bar", "workspaces", "media"]
 center = ["clock_top", "notifications"]
 end = ["tray", "network", "bluetooth", "volume", "battery"]
 
@@ -65,7 +65,7 @@ capsule_thickness = 0.76
 capsule_radius = 8.0
 capsule_opacity = 1.0
 
-start = ["workspaces", "media"]
+start = ["noctalia/umbriel-companion:bar", "workspaces", "media"]
 center = ["clock_side", "notifications"]
 end = ["tray", "network", "bluetooth", "volume", "battery"]
 

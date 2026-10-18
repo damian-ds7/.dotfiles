@@ -1,0 +1,65 @@
+# DOCS
+# https://github.com/noctalia-dev/umbriel (see docs/user)
+
+[include]
+files = [
+  "outputs.toml",
+  "input.toml",
+  "layer-rules.toml",
+  "window-rules.toml",
+  "whichkey-binds.toml",
+  "umbriel-binds.toml",
+  "layout.toml",
+]
+
+[include.optional]
+files = [
+  "themes/current-theme.toml",
+]
+
+[general]
+autostart = [
+  "~/.local/bin/awww-initialize",
+  "noctalia",
+  "vicinae server",
+]
+show_cheatsheet = false
+focus_on_activate = true
+
+[environment]
+XCURSOR_SIZE = "24"
+
+[events]
+lid_open = "~/.local/bin/awww-lid-open"
+
+[hot_corners.top_left]
+enabled = true
+delay_ms = 0
+action = "overview-toggle"
+
+[hot_corners.top_right]
+enabled = true
+delay_ms = 0
+action = "overview-toggle"
+
+[workspaces]
+back_and_forth = true
+
+[overview]
+zoom = 0.6
+workspace_wallpaper = false
+background_blur = false
+
+[colors.overview]
+background_tint = "#00000000"
+workspace_background = "#00000000"
+
+# Toggled at runtime by ~/.local/bin/screen-transition
+[effects.preset.screen-transition]
+kind = "screen"
+shader = "effects/screen-transition.glsl"
+
+[appearance.blur]
+passes = 4
+noise = 0.02
+saturation = 2

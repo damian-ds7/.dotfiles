@@ -1,0 +1,155 @@
+[keybinds]
+"Mod" = { action = "overview-toggle", repeat = false }
+"Mod+Q" = { action = "window-close", repeat = false }
+"Mod+MouseMiddle" = "window-close"
+
+"Mod+I" = "workspace-focus-last"
+
+# Focus: columns / windows (arrows + hjkl)
+"Mod+Left" = "window-focus-left"
+"Mod+Right" = "window-focus-right"
+"Mod+Down" = "window-focus-or-workspace-down"
+"Mod+Up" = "window-focus-or-workspace-up"
+
+"Mod+H" = "window-focus-left"
+"Mod+L" = "window-focus-right"
+"Mod+J" = "window-focus-or-workspace-down"
+"Mod+K" = "window-focus-or-workspace-up"
+
+# Move: columns / windows (Ctrl + arrows + hjkl)
+"Mod+Ctrl+Left" = "column-move-left"
+"Mod+Ctrl+Right" = "column-move-right"
+"Mod+Ctrl+Down" = "window-move-or-workspace-down"
+"Mod+Ctrl+Up" = "window-move-or-workspace-up"
+
+"Mod+Ctrl+H" = "column-move-left"
+"Mod+Ctrl+L" = "column-move-right"
+"Mod+Ctrl+J" = "window-move-or-workspace-down"
+"Mod+Ctrl+K" = "window-move-or-workspace-up"
+
+# Focus first/last column
+"Mod+Home" = "column-focus-first"
+"Mod+End" = "column-focus-last"
+
+# Move column to first/last
+"Mod+Ctrl+Home" = "column-move-to-first"
+"Mod+Ctrl+End" = "column-move-to-last"
+
+# Focus monitor (Shift + arrows + hjkl)
+"Mod+Shift+Left" = "output-focus-left"
+"Mod+Shift+Right" = "output-focus-right"
+"Mod+Shift+Down" = "output-focus-down"
+"Mod+Shift+Up" = "output-focus-up"
+
+"Mod+Shift+H" = "output-focus-left"
+"Mod+Shift+L" = "output-focus-right"
+"Mod+Shift+J" = "output-focus-down"
+"Mod+Shift+K" = "output-focus-up"
+
+# Move column to monitor (Shift+Ctrl + arrows + hjkl)
+"Mod+Shift+Ctrl+Left" = "column-move-to-output-left"
+"Mod+Shift+Ctrl+Right" = "column-move-to-output-right"
+"Mod+Shift+Ctrl+Down" = "column-move-to-output-down"
+"Mod+Shift+Ctrl+Up" = "column-move-to-output-up"
+
+"Mod+Shift+Ctrl+H" = "column-move-to-output-left"
+"Mod+Shift+Ctrl+L" = "column-move-to-output-right"
+"Mod+Shift+Ctrl+J" = "column-move-to-output-down"
+"Mod+Shift+Ctrl+K" = "column-move-to-output-up"
+
+# Workspace focus (PgUp/PgDn + ,/.)
+"Mod+Page_Down" = "workspace-next"
+"Mod+Page_Up" = "workspace-previous"
+"Mod+Comma" = "workspace-next"
+"Mod+Period" = "workspace-previous"
+
+# Move column to workspace (Shift + PgUp/PgDn + u/i)
+"Mod+Shift+Page_Down" = "column-move-to-workspace-next"
+"Mod+Shift+Page_Up" = "column-move-to-workspace-previous"
+"Mod+Shift+U" = "column-move-to-workspace-next"
+"Mod+Shift+I" = "column-move-to-workspace-previous"
+
+# Workspace via mouse wheel
+"Mod+WheelDown" = { action = "workspace-next", cooldown_ms = 150 }
+"Mod+WheelUp" = { action = "workspace-previous", cooldown_ms = 150 }
+"Mod+Ctrl+WheelDown" = { action = "column-move-to-workspace-next", cooldown_ms = 150 }
+"Mod+Ctrl+WheelUp" = { action = "column-move-to-workspace-previous", cooldown_ms = 150 }
+
+# Column focus via wheel horizontal
+"Mod+WheelRight" = "window-focus-right"
+"Mod+WheelLeft" = "window-focus-left"
+"Mod+Ctrl+WheelRight" = "column-move-right"
+"Mod+Ctrl+WheelLeft" = "column-move-left"
+
+# Alternate wheel mappings (shift)
+"Mod+Shift+WheelDown" = "window-focus-right"
+"Mod+Shift+WheelUp" = "window-focus-left"
+"Mod+Ctrl+Shift+WheelDown" = "column-move-right"
+"Mod+Ctrl+Shift+WheelUp" = "column-move-left"
+
+# Workspace numbers
+"Mod+1" = "workspace-switch:1"
+"Mod+2" = "workspace-switch:2"
+"Mod+3" = "workspace-switch:3"
+"Mod+4" = "workspace-switch:4"
+"Mod+5" = "workspace-switch:5"
+"Mod+6" = "workspace-switch:6"
+"Mod+7" = "workspace-switch:7"
+"Mod+8" = "workspace-switch:8"
+"Mod+9" = "workspace-switch:9"
+
+# Move column to workspace numbers
+"Mod+Ctrl+1" = "column-move-to-workspace:1"
+"Mod+Ctrl+2" = "column-move-to-workspace:2"
+"Mod+Ctrl+3" = "column-move-to-workspace:3"
+"Mod+Ctrl+4" = "column-move-to-workspace:4"
+"Mod+Ctrl+5" = "column-move-to-workspace:5"
+"Mod+Ctrl+6" = "column-move-to-workspace:6"
+"Mod+Ctrl+7" = "column-move-to-workspace:7"
+"Mod+Ctrl+8" = "column-move-to-workspace:8"
+"Mod+Ctrl+9" = "column-move-to-workspace:9"
+
+# Consume / expel
+"Mod+BracketLeft" = "window-consume-or-expel-left"
+"Mod+BracketRight" = "window-consume-or-expel-right"
+
+# Layout / sizing controls
+"Mod+R" = "window-cycle-primary-extent"
+"Mod+Shift+R" = "window-cycle-secondary-extent"
+
+"Mod+F" = "window-toggle-maximize"
+"Mod+Ctrl+Return" = "window-toggle-maximize-to-edges"
+"Mod+Shift+F" = "window-toggle-fullscreen"
+
+"Mod+C" = "column-center"
+
+"Mod+Minus" = "window-modify-primary-extent:-0.1"
+"Mod+Equal" = "window-modify-primary-extent:0.1"
+"Mod+Shift+Minus" = "window-modify-secondary-extent:-0.1"
+"Mod+Shift+Equal" = "window-modify-secondary-extent:0.1"
+
+"Mod+M" = { action = "workspace-set-layout:toggle", repeat = false }
+
+"Mod+Ctrl+V" = "window-toggle-floating"
+"Mod+Shift+V" = "window-focus-switch-floating"
+
+"Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
+
+"Alt+Tab" = "window-focus-last"
+
+"XF86AudioRaiseVolume" = { action = "spawn:wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 0.05+", allow_when_locked = true }
+"XF86AudioLowerVolume" = { action = "spawn:wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 0.05-", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", allow_when_locked = true, repeat = false }
+"XF86AudioMicMute" = { action = "spawn:wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle", allow_when_locked = true, repeat = false }
+"Alt+XF86AudioMute" = { action = "spawn:wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle", allow_when_locked = true, repeat = false }
+
+"XF86AudioPlay" = { action = "spawn:playerctl play-pause", allow_when_locked = true, repeat = false }
+"XF86AudioPause" = { action = "spawn:playerctl pause", allow_when_locked = true, repeat = false }
+"XF86TouchpadToggle" = { action = "spawn:playerctl play-pause", allow_when_locked = true, repeat = false }
+"XF86AudioNext" = { action = "spawn:playerctl next", allow_when_locked = true }
+"XF86AudioPrev" = { action = "spawn:playerctl previous", allow_when_locked = true }
+
+"XF86MonBrightnessUp" = { action = "spawn:~/.local/bin/brightness-up-down 5", allow_when_locked = true }
+"XF86MonBrightnessDown" = { action = "spawn:~/.local/bin/brightness-up-down -5", allow_when_locked = true }
+
+"Mod+Shift+S" = "spawn:~/.local/bin/screenshot area"

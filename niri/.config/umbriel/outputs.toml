@@ -1,0 +1,19 @@
+# Check names and modes with `umbriel outputs`
+
+[output."ASUSTek COMPUTER INC VG27A R7LMQS013728"]
+mode = "2560x1440@119.998"
+position = [0, 0]
+focus_at_startup = true
+
+[output."Acer Technologies Acer VG240Y 0x03427A2D"]
+mode = "1920x1080@75.000"
+position = [2560, 0]
+
+[output."Samsung Electric Company SAMSUNG 0x01000E00"]
+mode = "2560x1440@59.951"
+scale = 1.8
+
+[output.eDP-1]
+mode = "2880x1800@90.001"
+scale = 1.75
+position = [458, 1440]

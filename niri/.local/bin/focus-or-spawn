@@ -22,4 +22,6 @@ EXECUTABLE="$2"
 
 if "$HOME/.local/bin/in-niri"; then
   "$HOME/.local/bin/niri-focus-or-spawn" "$APP_ID" "$EXECUTABLE" "$TITLE"
+elif "$HOME/.local/bin/in-umbriel"; then
+  "$HOME/.local/bin/umbriel-focus-or-spawn" "$APP_ID" "$EXECUTABLE" "$TITLE"
 fi
