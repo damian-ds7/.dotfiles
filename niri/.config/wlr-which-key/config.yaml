@@ -54,7 +54,7 @@ menu:
         cmd: ~/.local/bin/nvim-edit-popup
       - key: "m"
         desc: Music (Deezer)
-        cmd: ~/.local/bin/focus-or-spawn "dev.aunetx.deezer" "flatpak run dev.aunetx.deezer"
+        cmd: ~/.local/bin/deezer-toggle
       - key: "r"
         desc: Resources
         cmd: flatpak run net.nokyan.Resources

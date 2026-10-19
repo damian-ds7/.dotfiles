@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# deezer-toggle - Show Deezer, launching it when needed.
+# In Umbriel it lives in the "music" scratchpad, which this shows or hides.
+
+if "$HOME/.local/bin/in-niri"; then
+  "$HOME/.local/bin/niri-focus-or-spawn" "dev.aunetx.deezer" "flatpak run dev.aunetx.deezer"
+elif "$HOME/.local/bin/in-umbriel"; then
+  # An empty scratchpad runs its spawn_when_empty command instead
+  umbriel msg scratchpad-toggle:music >/dev/null
+fi

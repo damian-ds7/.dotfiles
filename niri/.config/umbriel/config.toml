@@ -63,3 +63,8 @@ shader = "effects/screen-transition.glsl"
 passes = 4
 noise = 0.02
 saturation = 2
+
+[animation.scratchpad]
+enabled = true
+dim = 0.2
+blur = true

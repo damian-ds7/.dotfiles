@@ -22,6 +22,12 @@ fi
 
 WINDOW_ID=$(jq -r '.id' <<<"$WINDOW")
 WORKSPACE_ID=$(jq -r '.workspace' <<<"$WINDOW")
+SCRATCHPAD=$(jq -r '.scratchpad' <<<"$WINDOW")
+
+# Scratchpad windows are revealed on the current output by window-focus
+if [ -n "$SCRATCHPAD" ]; then
+  WORKSPACE_ID=""
+fi
 
 # Switch to the window's workspace first when it is not already shown
 WORKSPACE=$(umbriel workspaces --json | jq -r --arg id "$WORKSPACE_ID" '
