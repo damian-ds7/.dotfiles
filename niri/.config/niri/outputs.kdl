@@ -1,16 +1,19 @@
 output "ASUSTek COMPUTER INC VG27A R7LMQS013728" {
     mode "2560x1440@119.998"
-    position x=0 y=0
+    position x=1080 y=240
     focus-at-startup
     hot-corners {
         top-left
+        top-right
     }
 }
 
 output "Acer Technologies Acer VG240Y 0x03427A2D" {
     mode "1920x1080@75.000"
-    position x=2560 y=0
+    transform "90"
+    position x=0 y=0
     hot-corners {
+        top-left
         top-right
     }
 }
@@ -23,5 +26,5 @@ output "Samsung Electric Company SAMSUNG 0x01000E00" {
 output "eDP-1" {
     mode "2880x1800@90.001"
     scale 1.75
-    position x=458 y=1440
+    position x=1538 y=1680
 }
