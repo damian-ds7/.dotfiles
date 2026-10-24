@@ -1,15 +1,15 @@
 binds {
-    Mod+Tab repeat=false { toggle-overview; }
+    Mod { release { toggle-overview; }; }
     Mod+Q repeat=false { close-window; }
     Mod+MouseMiddle { close-window; }
 
-    Mod+I { focus-workspace-previous; }
+    Mod+I repeat=false { focus-workspace-previous; }
 
     // Focus: columns / windows (arrows + hjkl)
-    Mod+Left  { focus-column-left-or-last; }
+    Mod+Left { focus-column-left-or-last; }
     Mod+Right { focus-column-right-or-first; }
-    Mod+Down  { focus-window-or-workspace-down; }
-    Mod+Up    { focus-window-or-workspace-up; }
+    Mod+Down { focus-window-or-workspace-down; }
+    Mod+Up { focus-window-or-workspace-up; }
 
     Mod+H { focus-column-left-or-last; }
     Mod+L { focus-column-right-or-first; }
@@ -17,10 +17,10 @@ binds {
     Mod+K { focus-window-or-workspace-up; }
 
     // Move: columns / windows (Ctrl + arrows + hjkl)
-    Mod+Control+Left  { move-column-left; }
+    Mod+Control+Left { move-column-left; }
     Mod+Control+Right { move-column-right; }
-    Mod+Control+Down  { move-window-down-or-to-workspace-down; }
-    Mod+Control+Up    { move-window-up-or-to-workspace-up; }
+    Mod+Control+Down { move-window-down-or-to-workspace-down; }
+    Mod+Control+Up { move-window-up-or-to-workspace-up; }
 
     Mod+Control+H { move-column-left; }
     Mod+Control+L { move-column-right; }
@@ -29,17 +29,17 @@ binds {
 
     // Focus first/last column
     Mod+Home { focus-column-first; }
-    Mod+End  { focus-column-last; }
+    Mod+End { focus-column-last; }
 
     // Move column to first/last
     Mod+Control+Home { move-column-to-first; }
-    Mod+Control+End  { move-column-to-last; }
+    Mod+Control+End { move-column-to-last; }
 
     // Focus monitor (Shift + arrows + hjkl)
-    Mod+Shift+Left  { focus-monitor-left; }
+    Mod+Shift+Left { focus-monitor-left; }
     Mod+Shift+Right { focus-monitor-right; }
-    Mod+Shift+Down  { focus-monitor-down; }
-    Mod+Shift+Up    { focus-monitor-up; }
+    Mod+Shift+Down { focus-monitor-down; }
+    Mod+Shift+Up { focus-monitor-up; }
 
     Mod+Shift+H { focus-monitor-left; }
     Mod+Shift+L { focus-monitor-right; }
@@ -47,10 +47,10 @@ binds {
     Mod+Shift+K { focus-monitor-up; }
 
     // Move column to monitor (Shift+Ctrl + arrows + hjkl)
-    Mod+Shift+Control+Left  { move-column-to-monitor-left; }
+    Mod+Shift+Control+Left { move-column-to-monitor-left; }
     Mod+Shift+Control+Right { move-column-to-monitor-right; }
-    Mod+Shift+Control+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Control+Up    { move-column-to-monitor-up; }
+    Mod+Shift+Control+Down { move-column-to-monitor-down; }
+    Mod+Shift+Control+Up { move-column-to-monitor-up; }
 
     Mod+Shift+Control+H { move-column-to-monitor-left; }
     Mod+Shift+Control+L { move-column-to-monitor-right; }
@@ -59,33 +59,33 @@ binds {
 
     // Workspace focus (PgUp/PgDn + ,/.)
     Mod+Page_Down { focus-workspace-down; }
-    Mod+Page_Up   { focus-workspace-up; }
-    Mod+Comma     { focus-workspace-down; }
-    Mod+Period    { focus-workspace-up; }
+    Mod+Page_Up { focus-workspace-up; }
+    Mod+Comma { focus-workspace-down; }
+    Mod+Period { focus-workspace-up; }
 
     // Move column to workspace (Shift + PgUp/PgDn + u/i)
     Mod+Shift+Page_Down { move-column-to-workspace-down; }
-    Mod+Shift+Page_Up   { move-column-to-workspace-up; }
-    Mod+Shift+U         { move-column-to-workspace-down; }
-    Mod+Shift+I         { move-column-to-workspace-up; }
+    Mod+Shift+Page_Up { move-column-to-workspace-up; }
+    Mod+Shift+U { move-column-to-workspace-down; }
+    Mod+Shift+I { move-column-to-workspace-up; }
 
     // Workspace via mouse wheel
     Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
     Mod+Control+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Control+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Control+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
     // Column focus via wheel horizontal
     Mod+WheelScrollRight { focus-column-right-or-first; }
-    Mod+WheelScrollLeft  { focus-column-left-or-last; }
+    Mod+WheelScrollLeft { focus-column-left-or-last; }
     Mod+Control+WheelScrollRight { move-column-right; }
-    Mod+Control+WheelScrollLeft  { move-column-left; }
+    Mod+Control+WheelScrollLeft { move-column-left; }
 
     // Alternate wheel mappings (shift)
     Mod+Shift+WheelScrollDown { focus-column-right-or-first; }
-    Mod+Shift+WheelScrollUp   { focus-column-left-or-last; }
+    Mod+Shift+WheelScrollUp { focus-column-left-or-last; }
     Mod+Control+Shift+WheelScrollDown { move-column-right; }
-    Mod+Control+Shift+WheelScrollUp   { move-column-left; }
+    Mod+Control+Shift+WheelScrollUp { move-column-left; }
 
     // Workspace numbers
     Mod+1 { focus-workspace 1; }
@@ -110,18 +110,18 @@ binds {
     Mod+Control+9 { move-column-to-workspace 9; }
 
     // Consume / expel
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+BracketLeft repeat=false { consume-or-expel-window-left; }
+    Mod+BracketRight repeat=false { consume-or-expel-window-right; }
 
     // Layout / sizing controls
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Control+R { reset-window-height; }
 
-    Mod+F { maximize-column; }
-    Mod+Control+Return { maximize-window-to-edges; }
-    Mod+Shift+F { fullscreen-window; }
-    Mod+G { expand-column-to-available-width; }
+    Mod+F repeat=false { maximize-column; }
+    Mod+Control+Return repeat=false { maximize-window-to-edges; }
+    Mod+Shift+F repeat=false { fullscreen-window; }
+    Mod+G repeat=false { expand-column-to-available-width; }
 
     Mod+Control+C { center-visible-columns; }
     Mod+C { center-column; }
@@ -131,39 +131,56 @@ binds {
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    Mod+Control+V { toggle-window-floating; }
-    Mod+Shift+V   { switch-focus-between-floating-and-tiling; }
+    Mod+ISO_Level3_Shift { release { toggle-column-tabbed-display; }; }
 
-    // Mod+W { toggle-column-tabbed-display; }
+    Mod+Control { release { toggle-window-floating; }; }
+    Mod+Escape { release { toggle-window-floating; }; }
+    Mod+Shift { release { switch-focus-between-floating-and-tiling; }; }
 
     Mod+Shift+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
-    XF86AudioRaiseVolume                     allow-when-locked=true { spawn "wpctl" "set-volume" "--limit" "1.0" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
-    XF86AudioLowerVolume                     allow-when-locked=true { spawn "wpctl" "set-volume" "--limit" "1.0" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
-    XF86AudioMute                            allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioMicMute                         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    Alt+XF86AudioMute                        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    ISO_Level3_Shift+XF86AudioMute           allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    ISO_Level3_Shift+XF86AudioRaiseVolume    allow-when-locked=true { spawn "wpctl" "set-volume" "--limit" "1.0" "@DEFAULT_AUDIO_SOURCE@" "0.05+"; }
-    ISO_Level3_Shift+XF86AudioLowerVolume    allow-when-locked=true { spawn "wpctl" "set-volume" "--limit" "1.0" "@DEFAULT_AUDIO_SOURCE@" "0.05-"; }
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "wpctl" "set-volume" "--limit" "1.0" "@DEFAULT_AUDIO_SINK@" "0.05+";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "wpctl" "set-volume" "--limit" "1.0" "@DEFAULT_AUDIO_SINK@" "0.05-";
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+    }
+    XF86AudioMicMute allow-when-locked=true {
+        spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+    }
+    Alt+XF86AudioMute allow-when-locked=true {
+        spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+    }
+    ISO_Level3_Shift+XF86AudioMute allow-when-locked=true {
+        spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+    }
+    ISO_Level3_Shift+XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "wpctl" "set-volume" "--limit" "1.0" "@DEFAULT_AUDIO_SOURCE@" "0.05+";
+    }
+    ISO_Level3_Shift+XF86AudioLowerVolume allow-when-locked=true {
+        spawn "wpctl" "set-volume" "--limit" "1.0" "@DEFAULT_AUDIO_SOURCE@" "0.05-";
+    }
 
-    XF86AudioPlay                     allow-when-locked=true { spawn "playerctl" "play-pause"; }
-    XF86AudioPause                    allow-when-locked=true { spawn "playerctl" "pause"; }
-    XF86TouchpadToggle                allow-when-locked=true { spawn "playerctl" "play-pause"; }
-    XF86AudioNext                     allow-when-locked=true { spawn "playerctl" "next"; }
-    XF86AudioPrev                     allow-when-locked=true { spawn "playerctl" "previous"; }
+    XF86AudioPlay repeat=false allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPause repeat=false allow-when-locked=true { spawn "playerctl" "pause"; }
+    XF86TouchpadToggle repeat=false allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioNext repeat=false allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPrev repeat=false allow-when-locked=true { spawn "playerctl" "previous"; }
 
     XF86MonBrightnessUp allow-when-locked=true { spawn-sh "~/.local/bin/brightness-up-down 5"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn-sh "~/.local/bin/brightness-up-down -5"; }
 
-    Mod+Shift+S { screenshot show-pointer=false; }
+    Mod+Shift+S repeat=false { screenshot show-pointer=false; }
 }
 
 recent-windows {
     binds {
-        Alt+Tab         { next-window; }
-        Alt+Shift+Tab   { previous-window; }
-        Alt+grave       { next-window     filter="app-id"; }
+        Alt+Tab { next-window; }
+        Alt+Shift+Tab { previous-window; }
+        Alt+grave { next-window     filter="app-id"; }
         Alt+Shift+grave { previous-window filter="app-id"; }
     }
 }
