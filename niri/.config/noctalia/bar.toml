@@ -39,7 +39,8 @@ enabled = true
 position = "left"
 enabled = false
 auto_hide = false
-reserve_space = true
+# niri struts keep tiles clear instead, so floating coords stay screen-relative
+reserve_space = false
 layer = "top"
 
 thickness = 44
