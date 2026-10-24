@@ -2,12 +2,14 @@
 
 [output."ASUSTek COMPUTER INC VG27A R7LMQS013728"]
 mode = "2560x1440@119.998"
-position = [0, 0]
+position = [1080, 240]
 focus_at_startup = true
 
 [output."Acer Technologies Acer VG240Y 0x03427A2D"]
 mode = "1920x1080@75.000"
-position = [2560, 0]
+transform = "90"
+position = [0, 0]
+workspace_axis = "horizontal"
 
 [output."Samsung Electric Company SAMSUNG 0x01000E00"]
 mode = "2560x1440@59.951"
@@ -16,4 +18,4 @@ scale = 1.8
 [output.eDP-1]
 mode = "2880x1800@90.001"
 scale = 1.75
-position = [458, 1440]
+position = [1538, 1680]
