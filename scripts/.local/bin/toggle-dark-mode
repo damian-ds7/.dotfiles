@@ -116,6 +116,15 @@ else
   apply_theme "light" "'prefer-light'" "adw-gtk3" "$SCHEME"
 fi
 
+# select-colorscheme sets THEME_NO_OSD to show its own scheme OSD instead
+if [ -z "${THEME_NO_OSD:-}" ] && command -v noctalia >/dev/null 2>&1; then
+  if [ "$MODE" = "dark" ]; then
+    noctalia msg osd-show '{"icon":"moon","value":"Dark mode enabled"}' &>/dev/null &
+  else
+    noctalia msg osd-show '{"icon":"moon-off","value":"Dark mode disabled","inactive":true}' &>/dev/null &
+  fi
+fi
+
 killall -q -SIGUSR1 zsh &
 
 disown -a
