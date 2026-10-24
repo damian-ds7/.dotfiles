@@ -47,4 +47,8 @@ esac
 
 echo "$scheme" >"$THEMES_DIR"/scheme
 
-"$HOME/.local/bin/toggle-dark-mode" "$mode"
+THEME_NO_OSD=1 "$HOME/.local/bin/toggle-dark-mode" "$mode"
+
+if command -v noctalia >/dev/null 2>&1; then
+  noctalia msg osd-show palette "$scheme" &>/dev/null
+fi
