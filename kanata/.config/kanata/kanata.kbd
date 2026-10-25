@@ -19,6 +19,13 @@ act as tab on quick tap, but change hjkl keys to arrow keys on hold.
   ;; linux-dev /dev/input/by-path/platform-i8042-serio-0-event-kbd
   ;; External keyboard
   ;; linux-dev /dev/input/by-path/pci-0000:00:14.0-usb-0:3.2:1.1-event
+  linux-dev-names-exclude (
+    "Keebart Sofle Choc Pro"
+    "Keebart Sofle Choc Pro Mouse"
+    "Keebart Sofle Choc Pro System Control"
+    "Keebart Sofle Choc Pro Consumer Control"
+    "Keebart Sofle Choc Pro Keyboard"
+  )
 )
 
 (defsrc
