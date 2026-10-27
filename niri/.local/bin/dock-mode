@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if "$HOME/.local/bin/in-niri"; then
+  noctalia msg plugin damian-ds7/dock-mode:service all toggle-dock-mode
+fi
