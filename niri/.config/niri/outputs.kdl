@@ -15,12 +15,6 @@ output "ASUSTek COMPUTER INC VG27A R7LMQS013728" {
 }
 
 output "Acer Technologies Acer VG240Y 0x03427A2D" {
-    // room for the noctalia side bar (reserve_space = false)
-    layout {
-        struts {
-            left 44
-        }
-    }
     mode "1920x1080@75.000"
     transform "90"
     position x=0 y=0
