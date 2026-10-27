@@ -31,6 +31,16 @@ end = ["tray", "network", "bluetooth", "volume", "battery"]
 [bar.top.monitor.eDP-1]
 enabled = true
 
+[bar.top.monitor."VG240Y"]
+enabled = true
+smart_auto_hide = false
+reserve_space = true
+margin_ends = 0
+margin_edge = 0
+radius = 0
+radius_bottom_right = 12
+radius_bottom_left = 12
+
 [bar.side]
 position = "left"
 enabled = false
@@ -63,9 +73,6 @@ center = ["clock_side", "notifications"]
 end = ["tray", "network", "bluetooth", "volume", "battery"]
 
 [bar.side.monitor."VG27A"]
-enabled = true
-
-[bar.side.monitor."VG240Y"]
 enabled = true
 
 [widget.clock_top]
