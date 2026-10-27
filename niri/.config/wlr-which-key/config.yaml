@@ -110,9 +110,9 @@ menu:
       - key: "c"
         desc: Capture
         submenu:
-          - key: "r"
-            desc: Toggle screen recorder
-            cmd: noctalia msg plugin noctalia/screen_recorder:service all start
+          - key: "t"
+            desc: Noctalia Screen Toolkit
+            cmd: noctalia msg plugin alexander/screen-toolkit:service all toggle
           - key: "f"
             desc: Screenshot (full screen)
             cmd: ~/.local/bin/screenshot screen
@@ -143,8 +143,8 @@ menu:
         desc: Toggle auto suspend (idle inhibitor)
         cmd: noctalia msg caffeine-toggle
       - key: "l"
-        desc: Toggle lid event inhibit
-        cmd: ~/.local/bin/lid-inhibit-toggle
+        desc: Toggle dock mode
+        cmd: ~/.local/bin/dock-mode
       - key: "m"
         desc: Toggle Dark/Light mode
         cmd: ~/.local/bin/screen-transition 500; ~/.local/bin/toggle-dark-mode
