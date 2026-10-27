@@ -19,7 +19,7 @@ margin_edge = 10
 padding = 14
 widget_spacing = 13
 scale = 1.1
-font_weight = "regular"
+font_weight = 700
 font_family = ""
 
 capsule = false
@@ -63,7 +63,7 @@ margin_edge = 0
 padding = 14
 widget_spacing = 13
 scale = 1.1
-font_weight = "regular"
+font_weight = 700
 font_family = ""
 
 capsule = false
