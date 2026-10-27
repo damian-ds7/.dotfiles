@@ -11,6 +11,8 @@ show_location = true
 telemetry_enabled = false
 avatar_path = "~/.face"
 corner_radius_scale = 1.8
+niri_overview_type_to_launch_enabled = true
+niri_overview_close_on_launch_enabled = true
 
 [accessibility]
 ui_scale = 1.1
