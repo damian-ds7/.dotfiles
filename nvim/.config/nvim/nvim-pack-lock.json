@@ -15,11 +15,11 @@
       "src": "https://github.com/catppuccin/nvim"
     },
     "cmake-tools": {
-      "rev": "ee807ac4e62591720de2f6ad0abbfb966c4c7b97",
+      "rev": "782a254c62a61af1d4febddd0d6dbc5ea414a027",
       "src": "https://github.com/Civitasv/cmake-tools.nvim"
     },
     "codecompanion": {
-      "rev": "3d83aaa78ed125ea403fe8c975e51f07cf0c49b0",
+      "rev": "6794c8bcbe9e8614588749cafb5de29d7fa57c3b",
       "src": "https://github.com/olimorris/codecompanion.nvim",
       "version": "19.0.0 - 20.0.0"
     },
@@ -32,19 +32,19 @@
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "friendly-snippets": {
-      "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
+      "rev": "b2ea5c41a150ba72fb656eedb4ed0a86d138d945",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns": {
-      "rev": "8d79f2410c76e62b92e51c28c82e28c1c5a3daeb",
+      "rev": "1e9d0fbfe7ff848bc402d2c2e2854fb4eff2dce7",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "jupynvim": {
-      "rev": "5e8eb2c2a6e41c722ff502360a5335dde21a634f",
+      "rev": "8c23c85357073e01120b540b911430cbae2e70c3",
       "src": "https://github.com/sheng-tse/jupynvim"
     },
     "lspeek": {
-      "rev": "3322ffb55deba02d47503309130b4a0164f79483",
+      "rev": "50e701033fe7aa2d8a223dd7e28b92fb7b4c48e4",
       "src": "https://github.com/r4ppz/lspeek.nvim"
     },
     "lualine": {
@@ -72,19 +72,19 @@
       "src": "https://github.com/andymass/vim-matchup"
     },
     "mini": {
-      "rev": "4389a4f31f854ce066949ea89c72dc71564f5c20",
+      "rev": "a03ad899bda446b5a81cfa99d8aeeb92241522f3",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.icons": {
-      "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
+      "rev": "eab3e692d796d78ea6ffc978d8a380ff26fcf4e3",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.misc": {
-      "rev": "0524e8f7191782609374df6bcf9e607021ceccb1",
+      "rev": "1e9cae4ee48176252a7ddee28133cf9764b74c58",
       "src": "https://github.com/echasnovski/mini.misc"
     },
     "mini.sessions": {
-      "rev": "59b682b3208eefb5053a80dd3bc93ced69f363af",
+      "rev": "ecf7507070bb2f3bac8f139ee182d79f9c60b801",
       "src": "https://github.com/nvim-mini/mini.sessions"
     },
     "neotest": {
@@ -122,7 +122,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "nvim-lspconfig": {
-      "rev": "ffd261c09c3dabd0bf1a438f47a8ae3b22f3c3ff",
+      "rev": "4b2b045b8ceb035f5c8bc9cab19b95706bfa6a19",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -130,7 +130,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "f603a2f4da48728f80257fb5fbb90145fd1dc173",
+      "rev": "a2f694478be07f89c2d03cc17858a8745a400c4b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
@@ -142,11 +142,11 @@
       "src": "https://github.com/kevinhwang91/nvim-ufo"
     },
     "oil": {
-      "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
+      "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "oil-git": {
-      "rev": "8eac25d26386d663cee62aada79a79bd831ed7eb",
+      "rev": "8bab14df0b7db7a62fa75c8978d6181daed2f0a2",
       "src": "https://github.com/malewicz1337/oil-git.nvim"
     },
     "oil-lsp-diagnostics": {
@@ -166,7 +166,7 @@
       "src": "https://github.com/rose-pine/neovim"
     },
     "rustaceanvim": {
-      "rev": "9cb125de42c0256ed1bc1f9ded8d8f0381317a17",
+      "rev": "b7ca983c6ec88c94cf25e5deaad96df9a68b9a98",
       "src": "https://github.com/mrcjkb/rustaceanvim",
       "version": "9.0.0 - 10.0.0"
     },
@@ -183,7 +183,7 @@
       "src": "https://github.com/christoomey/vim-tmux-navigator"
     },
     "vimtex": {
-      "rev": "42dcf1699e45725bd3b366ecab2ae06f6e0f8118",
+      "rev": "8459d862eff5eabc3bf5d2601099aa0efb2f2496",
       "src": "https://github.com/lervag/vimtex"
     },
     "which-key": {
