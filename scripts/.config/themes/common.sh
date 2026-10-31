@@ -1,1 +1,1 @@
-THEMES=("catppuccin" "rose-pine")
+THEMES=("catppuccin" "rose-pine" "vague")

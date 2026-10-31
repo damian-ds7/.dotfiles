@@ -1,5 +1,8 @@
 {
   "theme": {
+    "light": {
+      "name": "rose-pine"
+    },
     "dark": {
       "name": "rose-pine"
     }

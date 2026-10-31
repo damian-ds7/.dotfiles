@@ -1,0 +1,86 @@
+# Vague for Vicinae, selected by ~/.config/vicinae/themes/vague/dark.json
+
+[meta]
+name = "Vague"
+description = "A cool, dark, low contrast colorscheme"
+variant = "dark"
+
+[colors.core]
+accent = "#aeaed1"
+accent_foreground = "#141415"
+background = "#141415"
+foreground = "#cdcdcd"
+secondary_background = "#1c1c24"
+border = "#252530"
+
+[colors.main_window]
+border = "#252530"
+
+[colors.settings_window]
+border = "#878787"
+
+[colors.accents]
+blue = "#6e94b2"
+green = "#7fa563"
+magenta = "#bb9dbd"
+orange = "#e0a363"
+red = "#d8647e"
+yellow = "#f3be7c"
+cyan = "#b4d4cf"
+purple = "#aeaed1"
+
+[colors.text]
+default = "#cdcdcd"
+muted = "#606079"
+danger = "#d8647e"
+success = "#7fa563"
+placeholder = "#606079"
+
+[colors.text.selection]
+background = "#333738"
+foreground = "#cdcdcd"
+
+[colors.text.links]
+default = "#7e98e8"
+visited = "#bb9dbd"
+
+[colors.input]
+border = "#252530"
+border_focus = "#aeaed1"
+border_error = "#d8647e"
+
+[colors.button.primary]
+background = "#252530"
+foreground = "#cdcdcd"
+
+[colors.button.primary.hover]
+background = "#333738"
+
+[colors.button.primary.focus]
+outline = "#aeaed1"
+
+[colors.list.item.hover]
+background = "#1c1c24"
+foreground = "#cdcdcd"
+
+[colors.list.item.selection]
+background = "#252530"
+foreground = "#cdcdcd"
+secondary_background = "#333738"
+secondary_foreground = "#cdcdcd"
+
+[colors.grid.item]
+background = "#1c1c24"
+
+[colors.grid.item.hover]
+outline = "#606079"
+
+[colors.grid.item.selection]
+outline = "#aeaed1"
+
+[colors.scrollbars]
+background = "#252530"
+
+[colors.loading]
+bar = "#aeaed1"
+spinner = "#aeaed1"

@@ -1,5 +1,8 @@
 {
   "theme": {
+    "light": {
+      "name": "catppuccin-mocha"
+    },
     "dark": {
       "name": "catppuccin-mocha"
     }

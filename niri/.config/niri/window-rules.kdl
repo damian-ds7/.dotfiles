@@ -132,6 +132,7 @@ window-rule {
 
 window-rule {
     match app-id="steam_app"
+    exclude title="AotR_Launcher"
     open-fullscreen true
 }
 

@@ -242,6 +242,17 @@ return plugin {
       },
     }
     opts.sections = sections
+
+    -- 'auto' paints the middle black when the colorscheme has a transparent background and
+    -- no lualine theme of its own (e.g. vague), keep it transparent instead
+    opts.options.theme = function()
+      local theme = require("lualine.utils.loader").load_theme "auto"
+      for _, m in pairs(theme) do
+        if m.c then m.c.bg = "NONE" end
+      end
+      return theme
+    end
+
     require("lualine").setup(opts)
   end,
   opts = {

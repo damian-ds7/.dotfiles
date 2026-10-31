@@ -1,0 +1,38 @@
+user: "#c48282"           # func
+group: "#e0a363"          # number
+permission:
+  read: "#7fa563"         # plus
+  write: "#f3be7c"        # warning
+  exec: "#d8647e"         # error
+  exec-sticky: "#bb9dbd"  # parameter
+  no-access: "#606079"    # comment
+  octal: "#90a0b5"        # operator
+  acl: "#b4d4cf"          # builtin
+  context: "#878787"      # float border
+date:
+  hour-old: "#cdcdcd"     # fg
+  day-old: "#9bb4bc"      # type
+  older: "#606079"        # comment
+size:
+  none: "#606079"         # comment
+  small: "#9bb4bc"        # type
+  medium: "#6e94b2"       # keyword
+  large: "#bb9dbd"        # parameter
+inode:
+  valid: "#aeaed1"        # constant
+  invalid: "#606079"      # comment
+links:
+  valid: "#cdcdcd"        # fg
+  invalid: "#606079"      # comment
+tree-edge: "#606079"      # comment
+git-status:
+  default: "#878787"      # float border
+  unmodified: "#606079"   # comment
+  ignored: "#606079"      # comment
+  new-in-index: "#7fa563" # plus
+  new-in-workdir: "#7fa563" # plus
+  typechange: "#f3be7c"   # delta
+  deleted: "#d8647e"      # error
+  renamed: "#9bb4bc"      # type
+  modified: "#f3be7c"     # delta
+  conflicted: "#d8647e"   # error

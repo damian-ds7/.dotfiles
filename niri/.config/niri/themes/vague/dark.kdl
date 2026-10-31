@@ -1,0 +1,14 @@
+layout {
+    border {
+        active-color "#aeaed1"
+        inactive-color "#606079"
+        urgent-color "#d8647e"
+    }
+}
+
+recent-windows {
+    highlight {
+        active-color "#aeaed1"
+        urgent-color "#d8647e"
+    }
+}
