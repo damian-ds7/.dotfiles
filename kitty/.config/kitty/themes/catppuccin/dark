@@ -26,7 +26,7 @@ scrollbar_track_color   #45475a
 url_color               #f5e0dc
 
 # Kitty window border colors
-active_border_color     #b4befe
+active_border_color     #cba6f7
 inactive_border_color   #6c7086
 bell_border_color       #f9e2af
 
@@ -35,10 +35,10 @@ wayland_titlebar_color system
 macos_titlebar_color system
 
 # Tab bar colors
-active_tab_foreground   #11111b
-active_tab_background   #cba6f7
+active_tab_foreground   #cdd6f4
+active_tab_background   #585b70
 inactive_tab_foreground #cdd6f4
-inactive_tab_background #181825
+inactive_tab_background #45475a
 tab_bar_background      #11111b
 
 # Colors for marks (marked text in the terminal)

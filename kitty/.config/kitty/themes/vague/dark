@@ -12,8 +12,8 @@ selection_background     #252530
 cursor                   none
 url_color                #bb9dbd
 
-active_border_color #878787
-inactive_border_color #252530
+active_border_color #f3be7c
+inactive_border_color #606079
 
 color0   #252530
 color8   #606079
@@ -33,6 +33,6 @@ color7   #cdcdcd
 color15  #d7d7d7
 
 active_tab_foreground    #cdcdcd
-active_tab_background    #252530
-inactive_tab_foreground  #606079
-inactive_tab_background  #141415
+active_tab_background    #333738
+inactive_tab_foreground  #878787
+inactive_tab_background  #252530

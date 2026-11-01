@@ -17,14 +17,16 @@ def draw_tab(
     draw_data, screen, tab, before, max_title_length, index, is_last, extra_data
 ):
     bar_bg = _c(draw_data.default_bg)  # tab bar bg, falls back to terminal bg
+    chip_text = _c(opts.background)
 
     if tab.is_active:
-        pill = _c(opts.color8)  # slightly lighter pill
-        chip = _c(draw_data.active_bg)  # theme's active tab color (mauve)
+        pill = _c(opts.active_tab_background)
+        text = _c(opts.active_tab_foreground)
+        chip = _c(opts.active_border_color)
     else:
-        pill = _c(opts.color0)
-        chip = _c(opts.color7)  # muted chip
-    text = _c(opts.foreground)
+        pill = _c(opts.inactive_tab_background)
+        text = _c(opts.inactive_tab_foreground)
+        chip = _c(opts.inactive_border_color)
 
     title = tab.title
     if tab.layout_name == "stack":
@@ -54,7 +56,7 @@ def draw_tab(
     screen.draw("█")
 
     cur.bg = chip
-    cur.fg = bar_bg
+    cur.fg = chip_text
     screen.draw(f" {index}")
 
     cur.bg = bar_bg
