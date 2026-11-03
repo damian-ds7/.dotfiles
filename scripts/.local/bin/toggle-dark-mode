@@ -19,9 +19,9 @@ fi
 
 if command -v noctalia >/dev/null 2>&1; then
   if [ "$MODE" = "dark" ]; then
-    noctalia msg osd-show '{"icon":"moon","value":"Dark Mode Off"}' &>/dev/null &
+    noctalia msg osd-show '{"icon":"moon","value":"Dark Mode On"}' &>/dev/null &
   else
-    noctalia msg osd-show '{"icon":"moon-off","value":"Dark Mode On","inactive":true}' &>/dev/null &
+    noctalia msg osd-show '{"icon":"moon-off","value":"Dark Mode Off","inactive":true}' &>/dev/null &
   fi
 fi
 
