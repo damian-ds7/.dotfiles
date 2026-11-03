@@ -75,6 +75,10 @@
       "rev": "a03ad899bda446b5a81cfa99d8aeeb92241522f3",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
+    "mini.base16": {
+      "rev": "e1bb1cb70aa33dc7038cd79bb597325e51597fa1",
+      "src": "https://github.com/nvim-mini/mini.base16"
+    },
     "mini.icons": {
       "rev": "eab3e692d796d78ea6ffc978d8a380ff26fcf4e3",
       "src": "https://github.com/nvim-mini/mini.icons"

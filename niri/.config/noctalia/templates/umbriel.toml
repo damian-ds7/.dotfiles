@@ -1,0 +1,14 @@
+[colors]
+accent_primary = "{{ colors.primary.default.hex }}FF"
+error = "{{ colors.error.default.hex }}FF"
+
+[colors.border]
+focused = "{{ colors.primary.default.hex }}FF"
+unfocused = "{{ colors.outline.default.hex }}FF"
+
+[colors.overview]
+badge = "{{ colors.primary.default.hex }}FF"
+
+[colors.tab_bar]
+active = "{{ colors.primary.default.hex }}FF"
+urgent = "{{ colors.error.default.hex }}FF"

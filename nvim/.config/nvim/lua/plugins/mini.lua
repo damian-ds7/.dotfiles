@@ -111,6 +111,8 @@ return {
       end
     end,
   },
+  -- Set up by colors/noctalia.lua
+  plugin { src = "nvim-mini/mini.base16" },
   plugin {
     src = "nvim-mini/mini.sessions",
     config = function()

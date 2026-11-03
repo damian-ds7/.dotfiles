@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+
+# Usage: theme-apply [--native | --hook dark|light]
+#
+# Applies the scheme and mode from ~/.config/themes/{scheme,mode} to every app in CONFIGS.
+#   --native  skip apps that use a noctalia-generated theme (noctalia is re-rendering them)
+#   --hook    run by noctalia after rendering; applies only the generated themes, or
+#             everything when the change came from noctalia itself
+#
+# Per app, the first of themes/{<scheme>,noctalia,$DEFAULT_SCHEME}/<mode>[.ext] that
+# exists is passed to themes/switch-theme.sh, or else linked as themes/current-theme[.ext]
+# and followed by themes/reload.sh.
+
+source "$HOME/.config/themes/common.sh"
+
+CONF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+CONFIGS=(
+  "$CONF_DIR/bat"
+  "$CONF_DIR/ghostty"
+  "$CONF_DIR/kitty"
+  "$CONF_DIR/lsd"
+  "$CONF_DIR/niri"
+  "$CONF_DIR/umbriel"
+  "$CONF_DIR/vicinae"
+  "$CONF_DIR/wlr-which-key"
+  "$CONF_DIR/nvim"
+  "$CONF_DIR/tmux"
+  "$HOME/Pictures/Wallpapers"
+)
+
+# Sets $src to the variant's file for $mode
+find_variant_file() { # <theme_dir> <variant>
+  local match
+  for match in "$1/$2/$mode" "$1/$2/$mode".*; do
+    if [[ -f $match ]]; then
+      src=$match
+      return
+    fi
+  done
+  return 1
+}
+
+# Noctalia renders noctalia/current[.ext]; link it as noctalia/<mode>[.ext] like other variants
+link_generated() { # <theme_dir>
+  local file
+  for file in "$1/$NOCTALIA_SCHEME"/current*; do
+    [[ -f $file ]] && ln -sfn "${file##*/}" "$1/$NOCTALIA_SCHEME/$mode${file##*/current}"
+  done
+}
+
+# Sets $variant and $src to the first variant with a file for $mode
+resolve_variant() { # <theme_dir>
+  link_generated "$1"
+  for variant in "$scheme" "$NOCTALIA_SCHEME" "$DEFAULT_SCHEME"; do
+    find_variant_file "$1" "$variant" && return
+  done
+
+  # No variant on disk, a switch-theme.sh may still handle the scheme on its own
+  variant=$scheme
+  src=""
+}
+
+apply_app() { # <theme_dir> <variant> <src>
+  local theme_dir=$1 variant=$2 src=$3 link ext=""
+
+  if [[ -x $theme_dir/switch-theme.sh ]]; then
+    "$theme_dir/switch-theme.sh" "$variant" "$mode"
+    return
+  fi
+
+  if [[ -z $src ]]; then
+    echo "Warning: No theme file found for $variant/$mode in $theme_dir"
+    return 1
+  fi
+
+  [[ $src != */"$mode" ]] && ext=".${src##*.}"
+
+  # Variants may differ in extension, drop links left over from another one
+  for link in "$theme_dir"/current-theme*; do
+    [[ -L $link && $link != "$theme_dir/current-theme$ext" ]] && rm -f "$link"
+  done
+  ln -sf "$(realpath --relative-to="$theme_dir" "$src")" "$theme_dir/current-theme$ext"
+
+  if [[ -x $theme_dir/reload.sh ]]; then
+    "$theme_dir/reload.sh" "$mode"
+  fi
+}
+
+apply_gtk() {
+  command -v dconf >/dev/null 2>&1 || return 0
+  local gtk_theme="adw-gtk3"
+  [[ $mode == dark ]] && gtk_theme+="-dark"
+  dconf write /org/gnome/desktop/interface/color-scheme "'prefer-$mode'"
+  dconf write /org/gnome/desktop/interface/gtk-theme "'$gtk_theme'"
+}
+
+# Crossfade over the app reloads instead of showing them one by one
+screen_transition() {
+  [[ -n ${NIRI_SOCKET:-} ]] || return 0
+  niri msg action do-screen-transition --delay-ms=500 &>/dev/null
+}
+
+only="" # native | noctalia
+scheme="$(read_state scheme "$DEFAULT_SCHEME")"
+mode="$(read_state mode "$DEFAULT_MODE")"
+
+case ${1:-} in
+--native) only=native ;;
+--hook)
+  hook_scheme="$(scheme_from_palette "$(noctalia_msg color-scheme-get)")"
+  # theme-set already applied the native themes for this state
+  if [[ $hook_scheme == "$scheme" && $2 == "$mode" ]]; then
+    only=$NOCTALIA_SCHEME
+  fi
+  scheme=$hook_scheme
+  mode=$2
+  ;;
+esac
+
+if ! is_mode "$mode"; then
+  echo "theme-apply: invalid mode '$mode' (expected dark|light)" >&2
+  exit 1
+fi
+
+targets=()
+for config_dir in "${CONFIGS[@]}"; do
+  [[ -d $config_dir/themes ]] || continue
+  resolve_variant "$config_dir/themes"
+
+  case $only in
+  native) [[ $variant == "$NOCTALIA_SCHEME" ]] && continue ;;
+  "$NOCTALIA_SCHEME") [[ $variant == "$NOCTALIA_SCHEME" ]] || continue ;;
+  esac
+  targets+=("$config_dir/themes" "$variant" "$src")
+done
+
+((${#targets[@]})) && screen_transition
+
+if [[ $only != "$NOCTALIA_SCHEME" ]]; then
+  write_state scheme "$scheme"
+  write_state mode "$mode"
+  apply_gtk
+  killall -q -SIGUSR1 zsh &
+fi
+
+for ((i = 0; i < ${#targets[@]}; i += 3)); do
+  apply_app "${targets[@]:i:3}" &>/dev/null &
+done
+
+disown -a

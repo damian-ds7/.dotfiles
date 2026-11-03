@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# Usage: theme-set [-s scheme] [-m dark|light]
+#
+# Writes the state files and applies the theme. With noctalia running, changes are also
+# sent to noctalia; native themes apply right away and the generated ones once noctalia
+# has rendered them (its hook runs theme-apply --hook).
+
+source "$HOME/.config/themes/common.sh"
+
+usage() {
+  echo "Usage: $(basename "$0") [-s scheme] [-m dark|light]" >&2
+  echo >&2
+  echo "Available schemes:" >&2
+  list_schemes >&2
+}
+
+scheme=""
+mode=""
+while getopts "s:m:h" opt; do
+  case $opt in
+  s) scheme=$OPTARG ;;
+  m) mode=$OPTARG ;;
+  *)
+    usage
+    exit 2
+    ;;
+  esac
+done
+
+if [[ -n $scheme ]] && ! is_scheme "$scheme"; then
+  echo "theme-set: unknown scheme '$scheme'" >&2
+  usage
+  exit 1
+fi
+
+if [[ -n $mode ]] && ! is_mode "$mode"; then
+  echo "theme-set: invalid mode '$mode' (expected dark|light)" >&2
+  exit 1
+fi
+
+old_scheme="$(read_state scheme "$DEFAULT_SCHEME")"
+old_mode="$(read_state mode "$DEFAULT_MODE")"
+scheme="${scheme:-$old_scheme}"
+mode="${mode:-$old_mode}"
+
+write_state scheme "$scheme"
+write_state mode "$mode"
+
+if noctalia_running && [[ $scheme != "$old_scheme" || $mode != "$old_mode" ]]; then
+  if [[ $scheme != "$old_scheme" ]]; then
+    palette="${SCHEMES[$scheme]}"
+    noctalia_msg color-scheme-set "${palette%% *}" "${palette#* }" >/dev/null
+  fi
+  [[ $mode != "$old_mode" ]] && noctalia_msg theme-mode-set "$mode" >/dev/null
+
+  exec "$THEME_BIN/theme-apply" --native
+fi
+
+exec "$THEME_BIN/theme-apply"

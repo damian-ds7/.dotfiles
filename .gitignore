@@ -5,4 +5,6 @@ _git-*
 hypridle.conf
 hyprlock.conf
 **/themes/current-theme*
+**/themes/noctalia/
+niri/.local/share/vicinae/themes/noctalia.toml
 tmux/.config/tmux/plugins/

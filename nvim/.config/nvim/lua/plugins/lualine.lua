@@ -243,11 +243,13 @@ return plugin {
     }
     opts.sections = sections
 
-    -- 'auto' paints the middle black when the colorscheme has a transparent background and
-    -- no lualine theme of its own (e.g. vague), keep it transparent instead
+    -- 'auto' paints sections black when the colorscheme has a transparent background and no
+    -- lualine theme of its own (vague, noctalia), keep them transparent instead. b and c also
+    -- cover y and x; the pills bring their own colors.
     opts.options.theme = function()
       local theme = require("lualine.utils.loader").load_theme "auto"
       for _, m in pairs(theme) do
+        if m.b then m.b.bg = "NONE" end
         if m.c then m.c.bg = "NONE" end
       end
       return theme

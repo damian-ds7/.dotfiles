@@ -1,0 +1,38 @@
+user: "{{ colors.primary.default.hex }}"
+group: "{{ colors.secondary.default.hex }}"
+permission:
+  read: "{{ colors.terminal_normal_green.default.hex }}"
+  write: "{{ colors.terminal_normal_yellow.default.hex }}"
+  exec: "{{ colors.terminal_normal_red.default.hex }}"
+  exec-sticky: "{{ colors.primary.default.hex }}"
+  no-access: "{{ colors.outline.default.hex }}"
+  octal: "{{ colors.terminal_normal_cyan.default.hex }}"
+  acl: "{{ colors.terminal_normal_cyan.default.hex }}"
+  context: "{{ colors.terminal_bright_cyan.default.hex }}"
+date:
+  hour-old: "{{ colors.terminal_normal_cyan.default.hex }}"
+  day-old: "{{ colors.terminal_bright_cyan.default.hex }}"
+  older: "{{ colors.terminal_normal_blue.default.hex }}"
+size:
+  none: "{{ colors.outline.default.hex }}"
+  small: "{{ colors.terminal_normal_green.default.hex }}"
+  medium: "{{ colors.terminal_normal_yellow.default.hex }}"
+  large: "{{ colors.terminal_bright_red.default.hex }}"
+inode:
+  valid: "{{ colors.terminal_normal_magenta.default.hex }}"
+  invalid: "{{ colors.outline.default.hex }}"
+links:
+  valid: "{{ colors.terminal_normal_magenta.default.hex }}"
+  invalid: "{{ colors.outline.default.hex }}"
+tree-edge: "{{ colors.on_surface_variant.default.hex }}"
+git-status:
+  default: "{{ colors.on_surface.default.hex }}"
+  unmodified: "{{ colors.outline.default.hex }}"
+  ignored: "{{ colors.outline.default.hex }}"
+  new-in-index: "{{ colors.terminal_normal_green.default.hex }}"
+  new-in-workdir: "{{ colors.terminal_normal_green.default.hex }}"
+  typechange: "{{ colors.terminal_normal_yellow.default.hex }}"
+  deleted: "{{ colors.terminal_normal_red.default.hex }}"
+  renamed: "{{ colors.terminal_normal_green.default.hex }}"
+  modified: "{{ colors.terminal_normal_yellow.default.hex }}"
+  conflicted: "{{ colors.terminal_normal_red.default.hex }}"

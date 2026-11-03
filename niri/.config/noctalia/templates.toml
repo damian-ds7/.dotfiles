@@ -1,0 +1,52 @@
+# App themes rendered to <app>/themes/noctalia/current[.ext] (dark/light link to it).
+# theme-apply uses them only when an app has no native theme for the current scheme.
+
+[theme.templates.user.bat]
+input_path  = "templates/bat.tmTheme"
+output_path = "$XDG_CONFIG_HOME/bat/themes/noctalia/current"
+
+[theme.templates.user.kitty]
+input_path  = "templates/kitty.conf"
+output_path = "$XDG_CONFIG_HOME/kitty/themes/noctalia/current"
+
+[theme.templates.user.ghostty]
+input_path  = "templates/ghostty"
+output_path = "$XDG_CONFIG_HOME/ghostty/themes/noctalia/current"
+
+[theme.templates.user.niri]
+input_path  = "templates/niri.kdl"
+output_path = "$XDG_CONFIG_HOME/niri/themes/noctalia/current.kdl"
+
+[theme.templates.user.umbriel]
+input_path  = "templates/umbriel.toml"
+output_path = "$XDG_CONFIG_HOME/umbriel/themes/noctalia/current.toml"
+
+[theme.templates.user.wlr-which-key]
+input_path  = "templates/wlr-which-key.yaml"
+output_path = "$XDG_CONFIG_HOME/wlr-which-key/themes/noctalia/current.yaml"
+
+[theme.templates.user.lsd]
+input_path  = "templates/lsd.yaml"
+output_path = "$XDG_CONFIG_HOME/lsd/themes/noctalia/current.yaml"
+
+[theme.templates.user.tmux]
+input_path  = "templates/tmux.conf"
+output_path = "$XDG_CONFIG_HOME/tmux/themes/noctalia/current.conf"
+
+[theme.templates.user.nvim]
+input_path  = "templates/nvim.lua"
+output_path = "$XDG_CONFIG_HOME/nvim/themes/noctalia/current.lua"
+
+[theme.templates.user.vicinae-theme]
+input_path  = "templates/vicinae.toml"
+output_path = "$XDG_DATA_HOME/vicinae/themes/noctalia.toml"
+
+[theme.templates.user.vicinae]
+input_path  = "templates/vicinae.json"
+output_path = "$XDG_CONFIG_HOME/vicinae/themes/noctalia/current.json"
+
+[theme.templates.user.theme-apply]
+input_path  = "templates/theme-apply.stamp"
+output_path = "$XDG_STATE_HOME/noctalia/theme-apply.stamp"
+index       = 100
+post_hook   = "~/.local/bin/theme-apply --hook {{ mode }}"
