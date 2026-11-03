@@ -1,5 +1,5 @@
 // Fade each frame toward the new screen contents, smoothing out sudden changes
-// such as a theme switch. Enabled only briefly by ~/.local/bin/screen-transition.
+// such as a theme switch. Enabled only briefly by scripts/screen-transition.
 vec4 screen(vec2 uv) {
   vec4 cur = umbriel_sample(uv);
   vec4 prev = umbriel_sample_previous(uv);

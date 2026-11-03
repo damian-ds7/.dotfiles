@@ -88,26 +88,26 @@
 "Mod+Ctrl+Shift+WheelUp" = "column-move-left"
 
 # Workspace numbers
-"Mod+1" = "workspace-switch:1"
-"Mod+2" = "workspace-switch:2"
-"Mod+3" = "workspace-switch:3"
-"Mod+4" = "workspace-switch:4"
-"Mod+5" = "workspace-switch:5"
-"Mod+6" = "workspace-switch:6"
-"Mod+7" = "workspace-switch:7"
-"Mod+8" = "workspace-switch:8"
-"Mod+9" = "workspace-switch:9"
+"Mod+1" = "workspace-switch 1"
+"Mod+2" = "workspace-switch 2"
+"Mod+3" = "workspace-switch 3"
+"Mod+4" = "workspace-switch 4"
+"Mod+5" = "workspace-switch 5"
+"Mod+6" = "workspace-switch 6"
+"Mod+7" = "workspace-switch 7"
+"Mod+8" = "workspace-switch 8"
+"Mod+9" = "workspace-switch 9"
 
 # Move column to workspace numbers
-"Mod+Ctrl+1" = "column-move-to-workspace:1"
-"Mod+Ctrl+2" = "column-move-to-workspace:2"
-"Mod+Ctrl+3" = "column-move-to-workspace:3"
-"Mod+Ctrl+4" = "column-move-to-workspace:4"
-"Mod+Ctrl+5" = "column-move-to-workspace:5"
-"Mod+Ctrl+6" = "column-move-to-workspace:6"
-"Mod+Ctrl+7" = "column-move-to-workspace:7"
-"Mod+Ctrl+8" = "column-move-to-workspace:8"
-"Mod+Ctrl+9" = "column-move-to-workspace:9"
+"Mod+Ctrl+1" = "column-move-to-workspace 1"
+"Mod+Ctrl+2" = "column-move-to-workspace 2"
+"Mod+Ctrl+3" = "column-move-to-workspace 3"
+"Mod+Ctrl+4" = "column-move-to-workspace 4"
+"Mod+Ctrl+5" = "column-move-to-workspace 5"
+"Mod+Ctrl+6" = "column-move-to-workspace 6"
+"Mod+Ctrl+7" = "column-move-to-workspace 7"
+"Mod+Ctrl+8" = "column-move-to-workspace 8"
+"Mod+Ctrl+9" = "column-move-to-workspace 9"
 
 # Consume / expel
 "Mod+BracketLeft" = "window-consume-or-expel-left"
@@ -123,33 +123,34 @@
 
 "Mod+C" = "column-center"
 
-"Mod+Minus" = "window-modify-primary-extent:-0.1"
-"Mod+Equal" = "window-modify-primary-extent:0.1"
-"Mod+Shift+Minus" = "window-modify-secondary-extent:-0.1"
-"Mod+Shift+Equal" = "window-modify-secondary-extent:0.1"
+"Mod+Minus" = "window-modify-primary-extent -0.1"
+"Mod+Equal" = "window-modify-primary-extent 0.1"
+"Mod+Shift+Minus" = "window-modify-secondary-extent -0.1"
+"Mod+Shift+Equal" = "window-modify-secondary-extent 0.1"
 
-"Mod+M" = { action = "workspace-set-layout:toggle", repeat = false }
+"Mod+M" = { action = "workspace-set-layout toggle", repeat = false }
 
 "Mod+Ctrl+V" = "window-toggle-floating"
-"Mod+Shift+V" = "window-focus-switch-floating"
+"Mod+Escape" = { action = "window-focus-switch-floating", repeat = false }
+"Mod+Shift+V" = { action = "window-focus-switch-floating", repeat = false }
 
 "Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
 
 "Alt+Tab" = "window-focus-last"
 
-"XF86AudioRaiseVolume" = { action = "spawn:wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 0.05+", allow_when_locked = true }
-"XF86AudioLowerVolume" = { action = "spawn:wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 0.05-", allow_when_locked = true }
-"XF86AudioMute" = { action = "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", allow_when_locked = true, repeat = false }
-"XF86AudioMicMute" = { action = "spawn:wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle", allow_when_locked = true, repeat = false }
-"Alt+XF86AudioMute" = { action = "spawn:wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle", allow_when_locked = true, repeat = false }
+"XF86AudioRaiseVolume" = { action = "spawn wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 0.05+", allow_when_locked = true }
+"XF86AudioLowerVolume" = { action = "spawn wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 0.05-", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", allow_when_locked = true, repeat = false }
+"XF86AudioMicMute" = { action = "spawn wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle", allow_when_locked = true, repeat = false }
+"Alt+XF86AudioMute" = { action = "spawn wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle", allow_when_locked = true, repeat = false }
 
-"XF86AudioPlay" = { action = "spawn:playerctl play-pause", allow_when_locked = true, repeat = false }
-"XF86AudioPause" = { action = "spawn:playerctl pause", allow_when_locked = true, repeat = false }
-"XF86TouchpadToggle" = { action = "spawn:playerctl play-pause", allow_when_locked = true, repeat = false }
-"XF86AudioNext" = { action = "spawn:playerctl next", allow_when_locked = true }
-"XF86AudioPrev" = { action = "spawn:playerctl previous", allow_when_locked = true }
+"XF86AudioPlay" = { action = "spawn playerctl play-pause", allow_when_locked = true, repeat = false }
+"XF86AudioPause" = { action = "spawn playerctl pause", allow_when_locked = true, repeat = false }
+"XF86TouchpadToggle" = { action = "spawn playerctl play-pause", allow_when_locked = true, repeat = false }
+"XF86AudioNext" = { action = "spawn playerctl next", allow_when_locked = true }
+"XF86AudioPrev" = { action = "spawn playerctl previous", allow_when_locked = true }
 
-"XF86MonBrightnessUp" = { action = "spawn:~/.local/bin/brightness-up-down 5", allow_when_locked = true }
-"XF86MonBrightnessDown" = { action = "spawn:~/.local/bin/brightness-up-down -5", allow_when_locked = true }
+"XF86MonBrightnessUp" = { action = "spawn brightnessctl --class=backlight set +5%", allow_when_locked = true }
+"XF86MonBrightnessDown" = { action = "spawn brightnessctl --class=backlight set 5%- --min-value=5", allow_when_locked = true }
 
-"Mod+Shift+S" = "spawn:~/.local/bin/screenshot area"
+"Mod+Shift+S" = "spawn ~/.config/umbriel/scripts/screenshot area"

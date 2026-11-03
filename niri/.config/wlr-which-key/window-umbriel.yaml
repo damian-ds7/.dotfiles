@@ -55,16 +55,19 @@ menu:
     submenu:
       - key: "s"
         desc: Scrolling
-        cmd: umbriel msg workspace-set-layout:scrolling
+        cmd: umbriel msg workspace-set-layout scrolling
       - key: "d"
         desc: Tiling (dwindle)
-        cmd: umbriel msg workspace-set-layout:dwindle
+        cmd: umbriel msg workspace-set-layout dwindle
       - key: "m"
         desc: Master
-        cmd: umbriel msg workspace-set-layout:master
+        cmd: umbriel msg workspace-set-layout master
+      - key: "f"
+        desc: Stacking (floating)
+        cmd: umbriel msg workspace-set-layout stacking
       - key: "t"
         desc: Cycle modes
-        cmd: umbriel msg workspace-set-layout:toggle
+        cmd: umbriel msg workspace-set-layout toggle
         keep_open: true
 
   - key: "r"
@@ -79,16 +82,16 @@ menu:
         cmd: umbriel msg window-cycle-secondary-extent
       - key: "-"
         desc: Column width -10%
-        cmd: umbriel msg window-modify-primary-extent:-0.1
+        cmd: umbriel msg window-modify-primary-extent -0.1
       - key: "="
         desc: Column width +10%
-        cmd: umbriel msg window-modify-primary-extent:0.1
+        cmd: umbriel msg window-modify-primary-extent 0.1
       - key: "_"
         desc: Window height -10%
-        cmd: umbriel msg window-modify-secondary-extent:-0.1
+        cmd: umbriel msg window-modify-secondary-extent -0.1
       - key: "+"
         desc: Window height +10%
-        cmd: umbriel msg window-modify-secondary-extent:0.1
+        cmd: umbriel msg window-modify-secondary-extent 0.1
 
   - key: "m"
     desc: Maximize

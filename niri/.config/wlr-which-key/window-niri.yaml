@@ -104,16 +104,16 @@ menu:
     submenu:
       - key: "t"
         desc: Toggle window in sidebar
-        cmd: ~/.local/bin/niri-sidebar-wrapper toggle-window
+        cmd: ~/.config/niri/scripts/sidebar toggle-window
       - key: "v"
         desc: Toggle sidebar visibility
-        cmd: ~/.local/bin/niri-sidebar-wrapper toggle-visibility
+        cmd: ~/.config/niri/scripts/sidebar toggle-visibility
       - key: "f"
         desc: Flip sidebar order
-        cmd: ~/.local/bin/niri-sidebar-wrapper flip
+        cmd: ~/.config/niri/scripts/sidebar flip
       - key: "r"
         desc: Reorder sidebar
-        cmd: ~/.local/bin/niri-sidebar-wrapper reorder
+        cmd: ~/.config/niri/scripts/sidebar reorder
       - key: "o"
         desc: Focus sidebar
-        cmd: ~/.local/bin/niri-sidebar-wrapper focus
+        cmd: ~/.config/niri/scripts/sidebar focus

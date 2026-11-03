@@ -1,11 +1,24 @@
 #!/usr/bin/env bash
+usage() {
+  echo "Usage: $0 [-t <title>] <app-id> <executable>"
+  exit 1
+}
 
-# niri-focus-or-spawn - Focus a niri window by app-id (and optional title), or spawn it.
-# Usage: niri-focus-or-spawn <app-id> <executable> [title]
+TITLE=""
+while getopts "t:" opt; do
+  case $opt in
+  t) TITLE="$OPTARG" ;;
+  *) usage ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+if [ $# -ne 2 ]; then
+  usage
+fi
 
 APP_ID="$1"
 EXECUTABLE="$2"
-TITLE="${3:-}"
 
 if ! command -v jq >/dev/null 2>&1; then
   echo "Error: jq is not installed. Please install jq to use this script."

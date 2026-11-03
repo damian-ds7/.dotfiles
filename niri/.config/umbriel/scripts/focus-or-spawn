@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# focus-or-spawn - Focus an Umbriel window by app-id (and optional title), or spawn it.
+# Usage: focus-or-spawn [-t <title>] <app-id> <executable>
+
+usage() {
+  echo "Usage: $0 [-t <title>] <app-id> <executable>"
+  exit 1
+}
+
+TITLE=""
+while getopts "t:" opt; do
+  case $opt in
+  t) TITLE="$OPTARG" ;;
+  *) usage ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+[ $# -eq 2 ] || usage
+
+APP_ID="$1"
+EXECUTABLE="$2"
+
+WINDOW_ID=$(umbriel windows --json | jq -r --arg app_id "$APP_ID" --arg title "$TITLE" \
+  'first(.[] | select(.app_id == $app_id and ($title == "" or .title == $title)) | .id) // empty')
+
+if [ -z "$WINDOW_ID" ]; then
+  bash -c "$EXECUTABLE" &
+  exit 0
+fi
+
+WINDOW=$(umbriel windows --json | jq -c --arg id "$WINDOW_ID" 'first(.[] | select(.id == $id))')
+
+# Switch to the window's workspace first when it is not already shown. Scratchpad
+# windows are revealed on the current output by window-focus instead.
+if [ -z "$(jq -r '.scratchpad // empty' <<<"$WINDOW")" ]; then
+  mapfile -t SWITCH < <(umbriel workspaces --json | jq -r --arg id "$(jq -r '.workspace' <<<"$WINDOW")" '
+    first(.[] | select(.id == $id and (.active | not))
+      | if .named then ["--name", .name] else [.index | tostring] end + ["--output", .output])
+    | .[]')
+  if [ ${#SWITCH[@]} -gt 0 ]; then
+    umbriel msg workspace-switch "${SWITCH[@]}" >/dev/null
+  fi
+fi
+
+umbriel msg window-focus "$WINDOW_ID" >/dev/null

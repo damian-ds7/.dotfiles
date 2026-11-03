@@ -14,6 +14,7 @@ workspace_axis = "horizontal"
 [output."Samsung Electric Company SAMSUNG 0x01000E00"]
 mode = "2560x1440@59.951"
 scale = 1.8
+position = [3640, 560]
 
 [output.eDP-1]
 mode = "2880x1800@90.001"

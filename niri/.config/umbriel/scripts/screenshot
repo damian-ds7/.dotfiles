@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# umbriel-screenshot - Screenshot the focused output, a region, or the focused window.
+# screenshot - Screenshot the focused output, a region, or the focused window.
 # Screen and window shots are saved like niri's and copied to the clipboard;
 # region selection is handed to Noctalia.
-# Usage: umbriel-screenshot <screen|area|window>
+# Usage: screenshot <screen|area|window>
 
 usage() {
   echo "Usage: $(basename "$0") <screen|area|window>" >&2

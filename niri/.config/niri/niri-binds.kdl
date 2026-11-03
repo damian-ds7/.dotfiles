@@ -170,8 +170,8 @@ binds {
     XF86AudioNext repeat=false allow-when-locked=true { spawn "playerctl" "next"; }
     XF86AudioPrev repeat=false allow-when-locked=true { spawn "playerctl" "previous"; }
 
-    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "~/.local/bin/brightness-up-down 5"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "~/.local/bin/brightness-up-down -5"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-" "--min-value=5"; }
 
     Mod+Shift+S repeat=false { screenshot show-pointer=false; }
 }

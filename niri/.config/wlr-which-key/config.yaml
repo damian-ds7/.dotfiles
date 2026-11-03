@@ -54,7 +54,7 @@ menu:
         cmd: ~/.local/bin/nvim-edit-popup
       - key: "m"
         desc: Music (Deezer)
-        cmd: ~/.local/bin/deezer-toggle
+        cmd: if [ -n "$NIRI_SOCKET" ]; then ~/.config/niri/scripts/focus-or-spawn dev.aunetx.deezer "flatpak run dev.aunetx.deezer"; else umbriel msg scratchpad-toggle music; fi
       - key: "r"
         desc: Resources
         cmd: flatpak run net.nokyan.Resources
@@ -115,13 +115,13 @@ menu:
             cmd: noctalia msg plugin alexander/screen-toolkit:service all toggle
           - key: "f"
             desc: Screenshot (full screen)
-            cmd: ~/.local/bin/screenshot screen
+            cmd: if [ -n "$NIRI_SOCKET" ]; then niri msg action screenshot-screen; else ~/.config/umbriel/scripts/screenshot screen; fi
           - key: "s"
             desc: Screenshot (area, no pointer)
-            cmd: ~/.local/bin/screenshot area
+            cmd: if [ -n "$NIRI_SOCKET" ]; then niri msg action screenshot --show-pointer=false; else ~/.config/umbriel/scripts/screenshot area; fi
           - key: "w"
             desc: Screenshot (window)
-            cmd: ~/.local/bin/screenshot window
+            cmd: if [ -n "$NIRI_SOCKET" ]; then niri msg action screenshot-window; else ~/.config/umbriel/scripts/screenshot window; fi
 
       - key: "n"
         desc: Network
@@ -144,10 +144,10 @@ menu:
         cmd: noctalia msg caffeine-toggle
       - key: "l"
         desc: Toggle dock mode
-        cmd: ~/.local/bin/dock-mode
+        cmd: noctalia msg plugin damian-ds7/dock-mode:service all toggle-dock-mode
       - key: "m"
         desc: Toggle Dark/Light mode
-        cmd: ~/.local/bin/screen-transition 500; ~/.local/bin/toggle-dark-mode
+        cmd: if [ -n "$NIRI_SOCKET" ]; then niri msg action do-screen-transition --delay-ms=500; else ~/.config/umbriel/scripts/screen-transition 500; fi; ~/.local/bin/toggle-dark-mode
       - key: "s"
         desc: Change color scheme
         cmd: vicinae deeplink vicinae://launch/scripts/colorscheme-picker
@@ -163,7 +163,7 @@ menu:
         cmd: noctalia msg session lock
       - key: "m"
         desc: Power off monitors
-        cmd: ~/.local/bin/power-off-monitors
+        cmd: if [ -n "$NIRI_SOCKET" ]; then niri msg action power-off-monitors; else umbriel msg dpms-off; fi
       - key: "p"
         desc: Power off
         cmd: systemctl poweroff
@@ -173,3 +173,4 @@ menu:
       - key: "s"
         desc: Suspend
         cmd: systemctl suspend
+

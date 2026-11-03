@@ -25,6 +25,10 @@ match.is_floating = true
 window_effect = "off"
 
 [[window_rule]]
+match.app_id = ["Nautilus", "chrome", "deluge", "chromium", "^code$", "Loupe"]
+blur_popups = true
+
+[[window_rule]]
 match.app_id = ["^(zen|zen-twilight)$", "net.nullsum.JelliumDesktop", "mpv"]
 opacity = 1.0
 
@@ -120,11 +124,15 @@ default_scrolling_extent = 0.6666
 match.app_id = "steam_app"
 default_fullscreen = true
 
+[[window_rule]]
+match.app_id = "steam_app"
+match.title = "AotR_Launcher"
+default_fullscreen = false
+
 # -----------------------------
 # Scratchpads
 # -----------------------------
 
-# Toggled by ~/.local/bin/deezer-toggle
 [[scratchpad]]
 name = "music"
 spawn_when_empty = "flatpak run dev.aunetx.deezer"
