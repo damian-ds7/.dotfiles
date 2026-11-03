@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title Output Picker
+# @vicinae.mode silent
+
+set -euo pipefail
+
+# One line per output: [on] "Description" (CONNECTOR)
+selection=$(
+  niri msg outputs |
+    awk '
+        /^Output / { if (line) print "[" state "] " line; line = $0; sub(/^Output /, "", line); state = "on" }
+        /^  Disabled/ { state = "off" }
+        END { if (line) print "[" state "] " line }
+    ' |
+    "$HOME"/.local/bin/dmenu-picker --no-quick-look -p "Toggle output"
+)
+
+[ -z "$selection" ] && exit 0
+
+output=$(sed -E 's/.*\(([^)]+)\)$/\1/' <<<"$selection")
+
+if [[ $selection == "[on]"* ]]; then
+  niri msg output "$output" off
+else
+  niri msg output "$output" on
+fi

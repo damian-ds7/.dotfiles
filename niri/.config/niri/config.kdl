@@ -11,7 +11,6 @@ include optional=true "themes/current-theme.kdl"
 include "layout.kdl"
 
 spawn-at-startup "~/.local/bin/awww-initialize"
-spawn-at-startup "~/.local/bin/hdmi-watch.sh"
 spawn-at-startup "~/.cargo/bin/niri-sidebar" "listen"
 spawn-sh-at-startup "noctalia"
 spawn-at-startup "vicinae" "server"
