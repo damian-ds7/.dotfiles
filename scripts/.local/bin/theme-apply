@@ -107,8 +107,8 @@ mode="$(read_state mode "$DEFAULT_MODE")"
 case ${1:-} in
 --native) only=native ;;
 --hook)
-  hook_scheme="$(scheme_from_palette "$(noctalia_msg color-scheme-get)")"
-  # theme-set already applied the native themes for this state
+  palette="$(noctalia_msg color-scheme-get)" # "<source> <name>"
+  hook_scheme="$(scheme_from_palette "$palette")"
   if [[ $hook_scheme == "$scheme" && $2 == "$mode" ]]; then
     only=$NOCTALIA_SCHEME
   fi
@@ -120,6 +120,21 @@ esac
 if ! is_mode "$mode"; then
   echo "theme-apply: invalid mode '$mode' (expected dark|light)" >&2
   exit 1
+fi
+
+# Noctalia re-renders its templates and reruns the hook on every start. Skip hooks
+# for the palette and mode the last hook applied, except wallpaper palettes, whose
+# colors change with the wallpaper under the same name.
+applied_stamp="${XDG_STATE_HOME:-$HOME/.local/state}/noctalia/theme-apply.applied"
+
+if [[ ${1:-} == --hook ]]; then
+  if [[ $palette != wallpaper\ * && -f $applied_stamp && $(<"$applied_stamp") == "$palette $mode" ]]; then
+    exit 0
+  fi
+  mkdir -p "${applied_stamp%/*}"
+  echo "$palette $mode" >"$applied_stamp"
+else
+  rm -f "$applied_stamp"
 fi
 
 targets=()
