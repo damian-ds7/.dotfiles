@@ -4,13 +4,9 @@
 # @vicinae.mode silent
 # @vicinae.icon icons/wallpaper.png
 
-wallpapers_dir="$HOME/Pictures/Wallpapers/wallpapers"
-
-selected=$(find -L "$wallpapers_dir" -name "*-normal.png" -type f |
+selected=$(find "$HOME/Pictures/Wallpapers" -type f -name '*.png' | sort |
   "$HOME"/.local/bin/dmenu-picker -p 'Pick a wallpaper...')
 
 if [ -n "$selected" ]; then
-  wallpaper_name=$(basename "$selected" | sed 's/-normal\.png$//')
-
-  "$HOME/.local/bin/awww-set-wallpaper" "$wallpaper_name"
+  noctalia msg wallpaper-set "$selected"
 fi

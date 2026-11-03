@@ -4,7 +4,7 @@ layer-rule {
 }
 
 layer-rule {
-    match namespace="awww"
+    match namespace="^noctalia-wallpaper"
     place-within-backdrop true
 }
 

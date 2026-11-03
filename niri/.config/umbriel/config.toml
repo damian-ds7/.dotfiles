@@ -19,7 +19,6 @@ files = [
 
 [general]
 autostart = [
-  "~/.local/bin/awww-initialize",
   "noctalia",
   "vicinae server",
 ]
@@ -31,7 +30,6 @@ XCURSOR_SIZE = "24"
 
 [events]
 lid_close = "noctalia msg plugin damian-ds7/dock-mode:service all lid-close"
-lid_open = "~/.local/bin/awww-lid-open"
 
 [hot_corners.top_left]
 enabled = true

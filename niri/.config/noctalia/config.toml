@@ -7,7 +7,9 @@ sound_volume = 1.0
 enabled = false
 
 [wallpaper]
-enabled = false
+enabled = true
+directory_dark = "~/Pictures/Wallpapers/dark"
+directory_light = "~/Pictures/Wallpapers/light"
 
 [wallpaper.automation]
 enabled = false

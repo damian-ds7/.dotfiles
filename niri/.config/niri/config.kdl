@@ -10,7 +10,6 @@ include "niri-binds.kdl"
 include optional=true "themes/current-theme.kdl"
 include "layout.kdl"
 
-spawn-at-startup "~/.local/bin/awww-initialize"
 spawn-at-startup "~/.cargo/bin/niri-sidebar" "listen"
 spawn-sh-at-startup "noctalia"
 spawn-at-startup "vicinae" "server"
@@ -33,7 +32,6 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 switch-events {
     lid-close { spawn "noctalia" "msg" "plugin" "damian-ds7/dock-mode:service" "all" "lid-close"; }
-    lid-open { spawn "~/.local/bin/awww-lid-open"; }
 }
 
 recent-windows {

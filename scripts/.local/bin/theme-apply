@@ -26,7 +26,6 @@ CONFIGS=(
   "$CONF_DIR/wlr-which-key"
   "$CONF_DIR/nvim"
   "$CONF_DIR/tmux"
-  "$HOME/Pictures/Wallpapers"
 )
 
 # Sets $src to the variant's file for $mode

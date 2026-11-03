@@ -4,4 +4,4 @@
 # @vicinae.mode silent
 # @vicinae.icon icons/random.png
 
-"$HOME/.local/bin/awww-random-wallpaper"
+noctalia msg wallpaper-random
