@@ -29,8 +29,14 @@ output "Acer Technologies Acer VG240Y 0x03427A2D" {
 
 output "Samsung Electric Company SAMSUNG 0x01000E00" {
     off
+    layout {
+        struts {
+            left 44
+        }
+    }
     mode "2560x1440@59.951"
     scale 1.8
+    position x=3640 y=560
 }
 
 output "eDP-1" {
