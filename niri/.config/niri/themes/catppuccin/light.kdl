@@ -12,3 +12,7 @@ recent-windows {
         urgent-color "#d20f39"
     }
 }
+
+overview {
+    backdrop-color "#eff1f5"
+}

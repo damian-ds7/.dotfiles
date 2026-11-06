@@ -14,6 +14,8 @@ directory_light = "~/Pictures/Wallpapers/light"
 [wallpaper.automation]
 enabled = false
 
+[wallpaper.monitor."VG240Y"]
+enabled = false
 
 [brightness]
 enable_ddcutil = false

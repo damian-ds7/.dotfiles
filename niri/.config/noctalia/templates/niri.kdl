@@ -12,3 +12,8 @@ recent-windows {
         urgent-color "{{ colors.error.default.hex }}"
     }
 }
+
+// solid backdrop; only visible on outputs without a noctalia wallpaper (VG240Y)
+overview {
+    backdrop-color "{{ colors.surface.default.hex }}"
+}
