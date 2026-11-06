@@ -6,7 +6,7 @@ output "ASUSTek COMPUTER INC VG27A R7LMQS013728" {
         }
     }
     mode "2560x1440@119.998"
-    position x=1080 y=240
+    position x=1080 y=-20
     focus-at-startup
     hot-corners {
         top-left
@@ -36,7 +36,7 @@ output "Samsung Electric Company SAMSUNG 0x01000E00" {
     }
     mode "2560x1440@59.951"
     scale 1.8
-    position x=3640 y=560
+    position x=3640 y=300
 }
 
 output "eDP-1" {
