@@ -33,13 +33,6 @@ enabled = true
 
 [bar.top.monitor."VG240Y"]
 enabled = true
-smart_auto_hide = false
-reserve_space = true
-margin_ends = 0
-margin_edge = 0
-radius = 0
-radius_bottom_right = 12
-radius_bottom_left = 12
 
 [bar.side]
 position = "left"
