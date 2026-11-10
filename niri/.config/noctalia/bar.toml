@@ -17,7 +17,7 @@ radius = 20
 margin_ends = 180
 margin_edge = 10
 padding = 14
-widget_spacing = 13
+widget_spacing = 17
 scale = 1.1
 font_weight = 700
 font_family = ""
@@ -94,3 +94,7 @@ hide_when_no_media = true
 
 [widget.battery]
 display_mode = "glyph"
+
+[widget.tray]
+drawer = true
+pinned = [ "steam" ]

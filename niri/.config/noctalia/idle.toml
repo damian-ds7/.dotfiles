@@ -6,6 +6,7 @@ pre_action_fade_seconds = 3
 action = "screen_off"
 enabled = true
 timeout = 180
+locked_timeout = 10
 
 [idle.behavior.lock]
 action = "lock"

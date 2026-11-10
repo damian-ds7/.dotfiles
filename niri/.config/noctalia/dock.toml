@@ -27,5 +27,4 @@ inactive_opacity = 0.85
 show_dots = true
 show_instance_count = false
 
-pinned = ["zen-twilight", "neovim", "kitty", "deezer"]
-
+pinned = [ "zen-twilight", "neovim", "kitty", "dev.aunetx.deezer" ]
