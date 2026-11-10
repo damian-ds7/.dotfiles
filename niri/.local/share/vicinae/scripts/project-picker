@@ -4,10 +4,21 @@
 # @vicinae.mode silent
 # @vicinae.icon icons/projects.png
 
-# project-selector - launch a project in nvim via vicinae + tmux/kitty
+# project-picker - open a project in a kitty window via vicinae.
 # Uses project-cache-helper for discovery and MRU management.
+#
+# By default opens a plain kitty window running nvim in the project root.
+# If the project contains a kitty session file (project.kitty-session), kitty
+# is launched with that session instead, e.g.:
+#
+#   layout tall
+#   launch --title editor nvim
+#   launch --title shell
+#
+# See https://sw.kovidgoyal.net/kitty/overview/#sessions for the format.
 projects_dir="${PROJECTS_DIR:-$HOME/Projects}"
 helper="${PROJECT_CACHE_HELPER:-$HOME/.local/bin/project-cache-helper}"
+session_file_name="${PROJECT_KITTY_SESSION:-project.kitty-session}"
 
 project=$(
   "$helper" list |
@@ -19,20 +30,23 @@ project=$(
 full_path="$projects_dir/$project"
 "$helper" select "$full_path" &
 
-session_name="${project//[\/\.]/-}"
 window_id="Neovim"
-window_title="project-$session_name"
+window_title="project-${project//[\/\.]/-}"
+session_file="$full_path/$session_file_name"
 
-if [[ -f "$full_path/project-launch.sh" ]]; then
-  launch_cmd="tmux new-session -d -s '$session_name' -c '$full_path' && \
-              tmux send-keys -t '$session_name' '$full_path/project-launch.sh' Enter && \
-              tmux attach -t '$session_name'"
+cmd=(kitty --title="$window_title" --app-id="$window_id" --directory="$full_path")
+if [[ -f "$session_file" ]]; then
+  cmd+=(--session="$session_file")
 else
-  launch_cmd="tmux new-session -A -s '$session_name' -c '$full_path' $HOME/.local/bin/nvim"
+  # login shell so nvim gets the full environment (PATH etc.)
+  cmd+=(bash -l -c "exec $HOME/.local/bin/nvim")
 fi
 
-if [ -x "$HOME/.local/bin/focus-or-spawn" ]; then
-  exec "$HOME/.local/bin/focus-or-spawn" "-t" "$window_title" "$window_id" "kitty --title=$window_title --app-id=$window_id -e bash -l -c '$launch_cmd'"
+cd "$full_path" || exit 1
+
+if [[ -x "$HOME/.local/bin/focus-or-spawn" ]]; then
+  # focus-or-spawn takes a single command string, so quote it safely
+  exec "$HOME/.local/bin/focus-or-spawn" -t "$window_title" "$window_id" "${cmd[*]@Q}"
 else
-  exec kitty --title="$window_title" --app-id="$window_id" -e bash -l -c "$launch_cmd"
+  exec "${cmd[@]}"
 fi
